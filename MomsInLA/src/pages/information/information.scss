@@ -36,6 +36,37 @@ page-information {
         display: flex;
         flex-direction: column;
     }
+
+    .info-list{
+        padding-left:9px; 
+        padding-right:21px;
+        border-bottom:1px solid #aaaaaa;
+    }
+
+    .info-title{
+        font-size: 15px;
+        margin: 7px 0px;
+        width:100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .info-content{
+        flex:1;
+        font-size: 13px;
+        margin-left: 11px;
+        margin-bottom: 17px;
+        color:rgba(16, 16, 16, 0.5);
+        overflow:hidden;
+        text-overflow: ellipsis;
+        line-height: 19px;
+        height:76px
+    }
+
+    .toolbar .searchbar-ios .searchbar-input{
+        background: #ffffff;
+    }
 }
 
 
