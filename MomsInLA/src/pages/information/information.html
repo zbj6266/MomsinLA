@@ -1,0 +1,262 @@
+<ion-header>
+  <!-- <ion-navbar>
+    <ion-title><ion-searchbar></ion-searchbar></ion-title>
+    
+  </ion-navbar> -->
+  <ion-toolbar>
+    <!-- <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <button ion-button clear small navPop style="padding: 0;">  
+            <img class="back-btn" src="assets/image/back.png" />  
+          </button>
+        </ion-col>
+        <ion-col col-11>
+          <ion-searchbar></ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid> -->
+    <div style="display: flex">
+      <div>
+      <button ion-button clear small navPop style="padding: 0;">  
+        <img class="back-btn" src="assets/image/back.png" />  
+      </button>
+      </div>
+      <div style="flex:1"><ion-searchbar></ion-searchbar></div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+ <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="planPurchase">
+    <ion-segment-button *ngFor="let item of planPurchases" value="{{item}}">
+
+        <div class="custom_button">{{item}}</div>
+
+       
+
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="category==1" [ngSwitch]="planPurchase" >
+    <ion-list *ngSwitchCase="'智能消费'">
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-input placeholder="输入您的座驾" clearInput></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item class="padding-left-3px">
+            <ion-input type="number" placeholder="输入您完成购物最长时限" clearInput></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <ion-item>
+            <ion-input type="text" placeholder="输入商品1" clearInput></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item class="padding-left-3px">
+            <ion-input type="text" placeholder="输入商品2" clearInput></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item class="padding-left-3px">
+            <ion-input type="text" placeholder="输入商品3" clearInput></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-item>
+        <ion-label>是否只去有机商店</ion-label>
+        <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
+      </ion-item>
+      <ion-item text-center>
+        <!-- <ion-card text-center> -->
+            <button ion-button (click) = "calculate()" color = "dark" outline>计算</button>
+        <!-- </ion-card> -->
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'打折软件'">
+      <ion-item>
+        <!-- <ion-thumbnail item-start> -->
+          <img src="imgs/dealmoon.png">
+        <!-- </ion-thumbnail> -->
+        <h2>打折软件</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'打折商品'">
+      <ion-item>
+        <!-- <ion-thumbnail item-start> -->
+          <img src="imgs/discount-poster.jpg">
+        <!-- </ion-thumbnail> -->
+        <h2>打折商品</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'团购信息'">
+      <ion-item>
+        <!-- <ion-thumbnail item-start> -->
+          <img src="imgs/group-discount.jpg">
+        <!-- </ion-thumbnail> -->
+        <h2>团购信息</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!-- moms strategies end -->
+
+  <!-- professional lectures start -->
+  <ion-segment mode="md" *ngIf="category==2" [(ngModel)]="lecture">
+    <ion-segment-button *ngFor="let item of lectures" value="{{item}}">
+        <div class="custom_button">{{item}}</div>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="category==2" [ngSwitch]="lecture">
+    <ion-list *ngSwitchCase="'保险理财'">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'宝宝教育'">
+      <ion-item>
+        <ion-thumbnail item-start>
+
+          <img src="assets/imgs/thumbnail-puppy-1.jpg">
+
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+
+        </ion-thumbnail>
+        <h2>宝宝教育</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'健康常识'">
+      <ion-item>
+        <ion-thumbnail item-start>
+
+          <img src="assets/imgs/thumbnail-puppy-1.jpg">
+
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+
+        </ion-thumbnail>
+        <h2>健康常识</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'法律知识'">
+      <ion-item>
+        <ion-thumbnail item-start>
+
+          <img src="assets/imgs/thumbnail-puppy-1.jpg">
+
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+
+        </ion-thumbnail>
+        <h2>法律知识</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!-- professional lectures end -->
+
+  <!-- moms strategies start -->
+  <ion-segment mode="md" *ngIf="category==3" [(ngModel)]="strategy">
+    <ion-segment-button *ngFor="let item of strategies" value="{{item}}">
+        <div class="custom_button">{{item}}</div>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="category==3" [ngSwitch]="strategy">
+    <ion-list *ngSwitchCase="'学区攻略'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/logo.png">
+        </ion-thumbnail>
+        <h2>学区攻略</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'出游攻略'">
+      <ion-item>
+        <ion-thumbnail item-start>
+
+          <img src="assets/imgs/thumbnail-puppy-1.jpg">
+
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+
+        </ion-thumbnail>
+        <h2>出游攻略</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'医疗攻略'">
+      <ion-item>
+        <ion-thumbnail item-start>
+
+          <img src="assets/imgs/thumbnail-puppy-1.jpg">
+
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+
+        </ion-thumbnail>
+        <h2>医疗攻略</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'小知识'">
+      <ion-item>
+        <ion-thumbnail item-start>
+
+          <img src="assets/imgs/thumbnail-puppy-1.jpg">
+
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+
+        </ion-thumbnail>
+        <h2>小知识</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!-- moms strategies end -->
+
+  <!-- expense platform start -->
+  <ion-segment mode="md" *ngIf="category==4" [(ngModel)]="expense">
+    <ion-segment-button *ngFor="let item of expenses" value="{{item}}">
+        <div class="custom_button">{{item}}</div>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="category==4" [ngSwitch]="expense">
+    <ion-list *ngSwitchCase="'商品买卖'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+        </ion-thumbnail>
+        <h2>商品买卖</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'家政服务'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+        </ion-thumbnail>
+        <h2>家政服务</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'房屋租住'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+        </ion-thumbnail>
+        <h2>房屋租住</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'妈妈兼职'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+        </ion-thumbnail>
+        <h2>妈妈兼职</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!-- expense platform end -->
+</ion-content>

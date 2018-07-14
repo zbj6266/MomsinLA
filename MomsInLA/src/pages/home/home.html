@@ -1,0 +1,45 @@
+<ion-header id="header" no-border>
+  <ion-navbar class="navbar">
+    <ion-title text-center>Momsinla</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="content">
+  <div style="height:100%;display: flex; flex-direction: column;">
+  <div class="home-logo">
+    <img src="imgs/logo_title.png" />
+  </div>
+  <div class="center-view" style="padding-top: 30px">
+    <div (click) = "activityList()"
+    style="text-align:center;margin:auto;">
+      <img src="imgs/icon_daily_activity.png" height="160" width="160">
+      <div class="font-content">每日活动</div>
+    </div>
+  </div>
+  </div>
+</ion-content>
+
+<ion-footer no-border>
+  <div class="column">
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center (click) = "toInformation(1)">
+          <img src="imgs/icon_save.png" height="32" width="32" />
+          <div class="font-content">精打细算</div>
+        </ion-col>
+        <ion-col text-center (click) = "toInformation(2)">
+          <img src="imgs/icon_lecture.png" height="32" width="32" />
+          <div class="font-content">专家讲座</div>
+        </ion-col>
+        <ion-col text-center (click) = "toInformation(3)">
+          <img src="imgs/icon_strategy.png" height="32" width="32" />
+          <div class="font-content">妈妈攻略</div>
+        </ion-col>
+        <ion-col text-center (click) = "toInformation(4)">
+          <img src="imgs/icon_expense.png" height="32" width="32" />
+          <div class="font-content">交易平台</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-footer>
