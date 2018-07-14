@@ -1,23 +1,40 @@
 page-information {
     .segment-md .segment-button{
         color: black;
-        border-bottom: 2px solid #aaaaaa;
+        border-bottom: 1px solid #aaaaaa;
         height: 10rem;
         line-height: 6.2rem;
     
     }
     
     .segment-button.segment-activated div{
-        background: #fad548;
+        background: #ffd500;
         color: black;
     }
 
     .custom_button{
-       border:2px solid #fad548; 
+       border:2px solid #ffd500; 
        border-radius:50%;
        width: 70px;
        height: 70px;
+       margin:auto;
        margin-top:14px;
+    }
+
+    .button-clear-md, .button-clear-ios{
+        color: black;
+
+    }
+
+    .button-small-md, .button-small-ios{
+        padding: 0 8px !important;
+        font-size: 1.8rem;
+    }
+
+    .container{
+        height:100%;
+        display: flex;
+        flex-direction: column;
     }
 }
 

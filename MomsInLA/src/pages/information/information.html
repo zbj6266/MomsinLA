@@ -19,7 +19,7 @@
     <div style="display: flex">
       <div>
       <button ion-button clear small navPop style="padding: 0;">  
-        <img class="back-btn" src="assets/image/back.png" />  
+        <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> 
       </button>
       </div>
       <div style="flex:1"><ion-searchbar></ion-searchbar></div>
@@ -31,11 +31,7 @@
 <ion-content>
  <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="planPurchase">
     <ion-segment-button *ngFor="let item of planPurchases" value="{{item}}">
-
-        <div class="custom_button">{{item}}</div>
-
-       
-
+        {{item}}
     </ion-segment-button>
   </ion-segment>
 
@@ -108,57 +104,109 @@
   <!-- moms strategies end -->
 
   <!-- professional lectures start -->
-  <ion-segment mode="md" *ngIf="category==2" [(ngModel)]="lecture">
+  <div class="container" *ngIf="category==2">
+  <div>
+  <ion-segment mode="md"  [(ngModel)]="lecture">
     <ion-segment-button *ngFor="let item of lectures" value="{{item}}">
         <div class="custom_button">{{item}}</div>
     </ion-segment-button>
   </ion-segment>
+  </div>
+  <div style="flex:1">
+  <ion-scroll scrollY="true" style="height: 100%;">
   <div *ngIf="category==2" [ngSwitch]="lecture">
     <ion-list *ngSwitchCase="'保险理财'">
-      <ion-item>
-        <ion-grid>
-          <ion-row>
-
-          </ion-row>
-        </ion-grid>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+          <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+          <div style="display: flex">
+            <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+            <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+             </div>
+          </div>  
+        </div>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+          <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+          <div style="display: flex">
+            <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+            <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+              </div>
+          </div>  
+        </div>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+                </div>
+            </div>  
+          </div>
+          <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+              <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+              <div style="display: flex">
+                <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                    洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+                  </div>
+              </div>  
+            </div>
+            <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+                <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+                <div style="display: flex">
+                  <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                  <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                      洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+                    </div>
+                </div>  
+              </div>
+              <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+                  <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+                  <div style="display: flex">
+                    <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                    <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                        洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+                      </div>
+                  </div>  
+                </div>
     </ion-list>
     <ion-list *ngSwitchCase="'宝宝教育'">
-      <ion-item>
-        <ion-thumbnail item-start>
-
-          <img src="assets/imgs/thumbnail-puppy-1.jpg">
-
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-
-        </ion-thumbnail>
-        <h2>宝宝教育</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'健康常识'">
-      <ion-item>
-        <ion-thumbnail item-start>
-
-          <img src="assets/imgs/thumbnail-puppy-1.jpg">
-
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-
-        </ion-thumbnail>
-        <h2>健康常识</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'法律知识'">
-      <ion-item>
-        <ion-thumbnail item-start>
-
-          <img src="assets/imgs/thumbnail-puppy-1.jpg">
-
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-
-        </ion-thumbnail>
-        <h2>法律知识</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
+  </div>
+  </ion-scroll>
+  </div>
   </div>
   <!-- professional lectures end -->
 
@@ -171,48 +219,48 @@
 
   <div *ngIf="category==3" [ngSwitch]="strategy">
     <ion-list *ngSwitchCase="'学区攻略'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/logo.png">
-        </ion-thumbnail>
-        <h2>学区攻略</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'出游攻略'">
-      <ion-item>
-        <ion-thumbnail item-start>
-
-          <img src="assets/imgs/thumbnail-puppy-1.jpg">
-
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-
-        </ion-thumbnail>
-        <h2>出游攻略</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'医疗攻略'">
-      <ion-item>
-        <ion-thumbnail item-start>
-
-          <img src="assets/imgs/thumbnail-puppy-1.jpg">
-
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-
-        </ion-thumbnail>
-        <h2>医疗攻略</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'小知识'">
-      <ion-item>
-        <ion-thumbnail item-start>
-
-          <img src="assets/imgs/thumbnail-puppy-1.jpg">
-
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-
-        </ion-thumbnail>
-        <h2>小知识</h2>
-      </ion-item>
+          <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+              <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+              <div style="display: flex">
+                <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                    洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+                 </div>
+              </div>  
+            </div>
     </ion-list>
   </div>
   <!-- moms strategies end -->
@@ -226,36 +274,48 @@
 
   <div *ngIf="category==4" [ngSwitch]="expense">
     <ion-list *ngSwitchCase="'商品买卖'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>商品买卖</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'家政服务'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>家政服务</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'房屋租住'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>房屋租住</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
     <ion-list *ngSwitchCase="'妈妈兼职'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>妈妈兼职</h2>
-      </ion-item>
+        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
+            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
+            <div style="display: flex">
+              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">
+                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财
+               </div>
+            </div>  
+          </div>
     </ion-list>
   </div>
   <!-- expense platform end -->
