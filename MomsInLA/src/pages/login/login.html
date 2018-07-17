@@ -18,12 +18,12 @@
 
   <ion-item>
     <ion-label floating>Username</ion-label>
-    <ion-input type="text" #username></ion-input>
+    <ion-input onfocus="this.placeholder = '' " type="text" onblur="this.placeholder = 'Username'" #username></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Password</ion-label>
-    <ion-input type="password" #password></ion-input>
+    <ion-input onfocus="this.placeholder = '' " type="password" onblur="this.placeholder = 'Password'" #password></ion-input>
   </ion-item>
 
 	</ion-list>

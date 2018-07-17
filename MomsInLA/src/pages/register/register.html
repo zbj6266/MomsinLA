@@ -24,12 +24,12 @@
 
   <ion-item>
   	<ion-icon name="man" item-left></ion-icon>   
-    <ion-input placeholder="请输入您的昵称" type="text" #username></ion-input> 
+    <ion-input onfocus="this.placeholder = '' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = '请输入您的昵称'" #username></ion-input> 
   </ion-item>
 
   <ion-item>
     <ion-icon name="mail" item-left> </ion-icon>
-    <ion-input placeholder="请输入您的邮箱" type="email" #email></ion-input>
+    <ion-input onfocus="this.placeholder = '' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = '请输入您的邮箱'" #email></ion-input>
   </ion-item>
 
   <ion-item no-lines>

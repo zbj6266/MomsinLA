@@ -1,3 +1,87 @@
 page-contact {
+	.text-input::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.text-input:-moz-placeholder {
+  text-align: center;
+}
+
+.text-input::-moz-placeholder {
+  text-align: center;
+}
+
+.text-input:-ms-input-placeholder {
+  text-align: center;
+}
+
+input[type="text"]
+{
+    font-size:19px;
+}
+
+#rounded {
+        width: 100%;
+        height: 50px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 0px;
+        margin-bottom: 5px;  
+    }
+
+    #container {
+        width: 300px; 
+        margin-left:auto; 
+        margin-right: auto; 
+    }
+     .button-active{
+        background: #fad548;
+        color: black;
+    }
+
+    .segment-md .segment-button{
+        color: black;
+        border-bottom: 2px solid #aaaaaa;
+        height: 10rem;
+        line-height: 6.2rem;
+    
+    }
+    
+    .button.activated div{
+        background: #fad548;
+        color: black;
+    }
+
+    .custom-button{
+  color: #222;
+}
+
+     ion-label{
+    
+        font-size: 0.9em;
+   }
+
+     .radio-activated{
+        background: #fad548;
+        color: black;
+    }
+
+    .align-items-flex-end {
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+}
+.button-group{
+		width:380px;
+		margin-left:-30px; 
+	}
+
+
+ 
+    
+   
+
+
+   
+
 
 }
