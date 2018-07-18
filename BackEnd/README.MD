@@ -24,6 +24,7 @@ New({
 ## 1、HTML 
 ### Only need reference two Javascript Libraries in HTML
 ```html
-  <script src=http://13.59.120.88:80/tml.js></script>
-  <script src=http://13.59.120.88:80/socket.io/socket.io.js></script>
+  <script src=http://13.59.120.88:80/tml.js></script>  This is reference the client function library.
+
+  <script src=http://13.59.120.88:80/socket.io/socket.io.js></script> Using third-party socket library.
 ```
