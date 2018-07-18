@@ -21,10 +21,21 @@ New({
 
 # Help
 
-## 1、HTML 
+## 1、HTML code
 ### Only need reference two Javascript Libraries in HTML
 ```html
+
   <script src=http://13.59.120.88:80/tml.js></script>  This is reference the client function library.
 
   <script src=http://13.59.120.88:80/socket.io/socket.io.js></script> Using third-party socket library.
+
+```
+
+## 2、Javascript code
+### (1)、Create a client instance
+```Javascript
+
+  tim = tml(); //Create a client instance
+
+  //If you connect multiple servers at the same time, you can create multiple client instances.
 ```
