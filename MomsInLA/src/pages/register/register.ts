@@ -33,6 +33,7 @@ export class RegisterPage {
   	// .catch(error => {
   	// 	console.log('got an error ', error)
   	// })
+    Signup(this.user.value, this.password.value);
   	console.log('Would register user with ', this.user.value, this.password.value);
   }
 
