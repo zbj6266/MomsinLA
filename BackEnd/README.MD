@@ -66,7 +66,7 @@ Using third-party socket library from CDN.
  
 
 
-### (5)、Signup a new user
+### (5) Signup a new user
 ```Javascript
 
   tim.X('user').New({
@@ -95,3 +95,8 @@ Using third-party socket library from CDN.
      });
 ```
 #### Listen for real-time messages registered by users
+
+### (9) List all users
+```Javascript
+console.log(await tim.X('user').Get());
+```
