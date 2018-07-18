@@ -100,17 +100,17 @@ Using third-party socket library from CDN.
 
 ### (9) Query users
 ```Javascript
-      console.log(await tim.X('user').Get());//List top 10 users
+console.log(await tim.X('user').Get());//List top 10 users
 
-      //List top 50 users
-      console.log(await tim.X('user').Get({query: {  
-            $limit: 50
-          }}))
-    
-    //Query the user whose email is 'a'
-    console.log(await tim.X('user').Get({query: { 
-      email: 'a'
+//List top 50 users
+console.log(await tim.X('user').Get({query: {  
+      $limit: 50
     }}))
+
+//Query the user whose email is 'a'
+console.log(await tim.X('user').Get({query: { 
+      email: 'a'
+}}))
 ```
 #### Can also be written as
 
