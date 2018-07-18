@@ -1,20 +1,22 @@
 ****
 
-这是Backend的调用的代码。登录函数和注册函数。。前端留好空的函数，把这些填进去就可以了。方法还是上次跟你说的New，Get，Put..这些可以当做普通的JS函数调用，但其底层是Socket协议。所以Backend是不需要再写什么代码了，前端把需要的数据整理出来就可以了。
-
+这是Backend的调用的代码。登录函数和注册函数。。前端留好空的函数，把这些填进去就可以了。
+方法还是上次跟你说的New，Get，Put..这些可以当做普通的JS函数调用，但其底层是Socket协议。
+所以Backend是不需要再写什么代码了，前端把需要的数据整理出来就可以了。
 BackEnd为NoSql，不需要数据结构。所以前端随便存任何格式数据进去都可以。存任何格式数据的代码均为：
 ```
 New({
-      email: u,
-      password: p
+      任意Json对象
     });。
 ```
-
+参数为任意Json对象，底层会编译为二进制后使用Socket传输到服务器，
 因此Backend也不需要改什么代码。
 
 ***
 
-项目完成后，会给大家提供培训
+项目完成后，会给大家提供培训。但不要期望可以在几年内学会底层。
+能够短时间学会的一定不是真正的技术，因为所有人都可以快速学会它。
+你毕生奋斗的终点可能只是高手的起点。高手极力谦虚仍是别人眼中的狂妄
 ---
 ---
 ——————
@@ -110,5 +112,21 @@ Using third-party socket library from CDN.
       email: 'a'
     }}))
 ```
+#### Can also be written as
 
+```Javascript
+ //List top 10 users
+ tim.X('user').Get().then(data => console.log(data));
+    
+ //List top 50 users
+ tim.X('user').Get({query: {
+     $limit: 50
+    }}).then(data => console.log(data));
+    
+//Query the user whose email is 'a'
+ tim.X('user').Get({query: {
+      email: 'a'
+    }}).then(data => console.log(data));
+    
+```
 
