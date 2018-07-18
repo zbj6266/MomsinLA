@@ -30610,6 +30610,81 @@ page-activitylist .popover-content .tiny {
   font-size: 2px !important;
 }
 
+page-contact .text-input::-webkit-input-placeholder {
+  text-align: center;
+}
+
+page-contact .text-input:-moz-placeholder {
+  text-align: center;
+}
+
+page-contact .text-input::-moz-placeholder {
+  text-align: center;
+}
+
+page-contact .text-input:-ms-input-placeholder {
+  text-align: center;
+}
+
+page-contact input[type="text"] {
+  font-size: 19px;
+}
+
+page-contact #rounded {
+  width: 100%;
+  height: 50px;
+  border-radius: 0px;
+  margin-bottom: 5px;
+}
+
+page-contact #container {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+page-contact .button-active {
+  background: #fad548;
+  color: black;
+}
+
+page-contact .segment-md .segment-button {
+  color: black;
+  border-bottom: 2px solid #aaaaaa;
+  height: 10rem;
+  line-height: 6.2rem;
+}
+
+page-contact .button.activated div {
+  background: #fad548;
+  color: black;
+}
+
+page-contact .custom-button {
+  color: #222;
+}
+
+page-contact ion-label {
+  font-size: 0.9em;
+}
+
+page-contact .radio-activated {
+  background: #fad548;
+  color: black;
+}
+
+page-contact .align-items-flex-end {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+}
+
+page-contact .button-group {
+  width: 380px;
+  margin-left: -30px;
+}
+
 page-information .segment-md .segment-button {
   color: black;
   border-bottom: 1px solid #aaaaaa;
