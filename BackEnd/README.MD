@@ -25,10 +25,13 @@ New({
 ### Only need reference two Javascript Libraries in HTML
 ```html
 
-  <script src=http://13.59.120.88:80/tml.js></script> Reference the client function library. This‘s a dynamic library, so don't save to local.
+  <script src=http://13.59.120.88:80/tml.js></script>
+Reference the client function library. This‘s a dynamic library, so don't save to local.
+
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
- Using third-party socket library from CDN.
+Using third-party socket library from CDN.
 
 ```
 
