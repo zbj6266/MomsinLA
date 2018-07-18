@@ -12,9 +12,8 @@ Moms in Los Angeles ![alt text](https://d25lcipzij17d.cloudfront.net/badge.svg?i
 #### Maintain Publish project, Compile , icon design, splash design, app store introduction, user manual, terms, upload, and publish the app, iOS and Android, Third platform Publish.
 **Zhishen Huo & Tim**
 
-### 3. Backend Team（已完成）
-#### Analyze backend interfaces and services based UI.
-**Tim**
+#### 3. Backend Team（已完成）
+##### Analyze backend interfaces and services based UI. **Tim**
 
 ### 4. Algorithm Team
 #### Algorithmic feasibility analysis and design.
