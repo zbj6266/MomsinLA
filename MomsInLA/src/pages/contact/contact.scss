@@ -54,6 +54,7 @@ input[type="text"]
 
     .custom-button{
   color: #222;
+
 }
 
      ion-label{
@@ -71,9 +72,25 @@ input[type="text"]
     -webkit-align-items: flex-end;
 }
 .button-group{
-		width:380px;
-		margin-left:-30px; 
+display: flex;
+        flex-direction: column;
+		 padding-top: 4px;
+        padding-right: 5px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+spacing:10000px;
+       
 	}
+  .btn{
+color: #222;
+
+letter-spacing:-0.6px;
+  }
+
 
 
  
