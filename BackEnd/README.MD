@@ -21,7 +21,7 @@ New({
 
 # BackEnd Help
 
-## 1、HTML code
+## 1 HTML code
 ### Only need reference two Javascript Libraries in HTML
 ```html
 
@@ -35,21 +35,21 @@ Using third-party socket library from CDN.
 
 ```
 
-## 2、Javascript code
-### (1)、Create a client instance
+## 2 Javascript code
+### (1) Create a client instance
 ```Javascript
 
   tim = tml(); //Create a client instance
 ```
 #### If you connect multiple servers at the same time, you can create multiple client instances.
 
-### (2)、Connect a server
+### (2) Connect a server
 ```Javascript
 
   tim.Load(tml.Net(io('13.59.120.88:80'))); 
 ```
 
-### (3)、Load authentication module
+### (3) Load authentication module
 ```Javascript
 
   tim.Load(tml.Auth());
@@ -59,7 +59,7 @@ Using third-party socket library from CDN.
 
 
 
-### (4)、eXpand a new feature
+### (4) eXpand a new feature
 ```Javascript
   tim.X('feature name')
 ```
@@ -75,7 +75,7 @@ Using third-party socket library from CDN.
     });
 ```
 
-### (6)、Login code
+### (6) Login code
 ```Javascript
       tim.Login({
             email: "test email",
@@ -83,8 +83,15 @@ Using third-party socket library from CDN.
           });
 ```
  
-### (7)、Logout code
+### (7) Logout code
 ```Javascript
     tim.Logout();
 ```
  
+### (8) Monitor user registration
+```Javascript
+    tim.X('user').on('add', function(msg){
+      console.log(msg);
+     });
+```
+#### Listen for real-time messages registered by users
