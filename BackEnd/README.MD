@@ -36,6 +36,15 @@ New({
 ```Javascript
 
   tim = tml(); //Create a client instance
-
-  //If you connect multiple servers at the same time, you can create multiple client instances.
+  
 ```
+#### If you connect multiple servers at the same time, you can create multiple client instances.
+
+### (2)、Connect a server
+```Javascript
+
+  tim.Load(tml.Net(io('13.59.120.88:80'))); 
+  
+```
+
+
