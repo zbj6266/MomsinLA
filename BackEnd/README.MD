@@ -96,11 +96,17 @@ Using third-party socket library from CDN.
 ```
 #### Listen for real-time messages registered by users
 
-### (9) List all users
+### (9) Query users
 ```Javascript
-console.log(await tim.X('user').Get());//List top 10 users
+      console.log(await tim.X('user').Get());//List top 10 users
 
-console.log(await tim.X('user').Get({query: {  //List top 50 users
-      $limit: 50
+      //List top 50 users
+      console.log(await tim.X('user').Get({query: {  
+            $limit: 50
+          }}))
+    
+    //Query the user whose username is 'a'
+    console.log(await tim.X('user').Get({query: { 
+      email: 'a'
     }}))
 ```
