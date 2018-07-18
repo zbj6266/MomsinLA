@@ -105,8 +105,10 @@ Using third-party socket library from CDN.
             $limit: 50
           }}))
     
-    //Query the user whose username is 'a'
+    //Query the user whose email is 'a'
     console.log(await tim.X('user').Get({query: { 
       email: 'a'
     }}))
 ```
+
+
