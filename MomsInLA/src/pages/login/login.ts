@@ -29,7 +29,7 @@ export class LoginPage {
 
   signInUser() {
 
-    Login(this.user.value, this.password.value);
+    //Login(this.user.value, this.password.value);
   	console.log('Would sign in with ', this.user.value, this.password.value);
   }
 
