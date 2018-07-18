@@ -72,4 +72,19 @@ New({
       password: "test"
     });
 ```
+#### You can also use
+```Javascript
+  tim.Signup({
+      email: "test email",
+      password: "test"
+    });
+```
+
+### (6)、Login code
+```Javascript
+      tim.Login({
+            email: "test email",
+            password: "test"
+          });
+```
  
