@@ -36,7 +36,6 @@ New({
 ```Javascript
 
   tim = tml(); //Create a client instance
-  
 ```
 #### If you connect multiple servers at the same time, you can create multiple client instances.
 
@@ -44,7 +43,6 @@ New({
 ```Javascript
 
   tim.Load(tml.Net(io('13.59.120.88:80'))); 
-  
 ```
 
 ### (3)、Load authentication module
@@ -86,5 +84,10 @@ New({
             email: "test email",
             password: "test"
           });
+```
+ 
+### (7)、Logout code
+```Javascript
+    tim.Logout();
 ```
  
