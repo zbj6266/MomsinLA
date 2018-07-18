@@ -98,5 +98,9 @@ Using third-party socket library from CDN.
 
 ### (9) List all users
 ```Javascript
-console.log(await tim.X('user').Get());
+console.log(await tim.X('user').Get());//List top 10 users
+
+console.log(await tim.X('user').Get({query: {  //List top 50 users
+      $limit: 50
+    }}))
 ```
