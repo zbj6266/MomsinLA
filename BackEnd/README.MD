@@ -25,9 +25,10 @@ New({
 ### Only need reference two Javascript Libraries in HTML
 ```html
 
-  <script src=http://13.59.120.88:80/tml.js></script>  This is reference the client function library.
+  <script src=http://13.59.120.88:80/tml.js></script> Reference the client function library. This‘s a dynamic library, so don't save to local.
 
-  <script src=http://13.59.120.88:80/socket.io/socket.io.js></script> Using third-party socket library.
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+ Using third-party socket library from CDN.
 
 ```
 
@@ -66,13 +67,6 @@ New({
 ```Javascript
 
   tim.X('user').New({
-      email: "test email",
-      password: "test"
-    });
-```
-#### You can also use
-```Javascript
-  tim.Signup({
       email: "test email",
       password: "test"
     });
