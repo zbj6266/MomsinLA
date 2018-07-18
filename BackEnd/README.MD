@@ -19,7 +19,7 @@ New({
 ---
 ——————
 
-# Help
+# BackEnd Help
 
 ## 1、HTML code
 ### Only need reference two Javascript Libraries in HTML
@@ -51,8 +51,25 @@ New({
 ```Javascript
 
   tim.Load(tml.Auth());
-  
 ```
 #### Provide offline login, multi-server login, automatic login, user cache and other functions. If you don't need these features, you should not execute this line of code.
 
 
+
+
+### (4)、eXpand a new feature
+```Javascript
+  tim.X('feature name')
+```
+ 
+
+
+### (5)、Signup a new user
+```Javascript
+
+  tim.X('user').New({
+      email: "test email",
+      password: "test"
+    });
+```
+ 
