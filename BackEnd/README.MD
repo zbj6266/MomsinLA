@@ -47,4 +47,12 @@ New({
   
 ```
 
+### (3)、Load authentication module
+```Javascript
+
+  tim.Load(tml.Auth());
+  
+```
+#### Provide offline login, multi-server login, automatic login, user cache and other functions. If you don't need these features, you should not execute this line of code.
+
 
