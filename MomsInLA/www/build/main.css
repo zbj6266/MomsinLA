@@ -30693,7 +30693,7 @@ page-contact .button-group {
   padding-top: 4px;
   padding-right: 5px;
   padding-bottom: 0px;
-  padding-left: 0px;
+  padding-left: 15px;
   margin-top: 0px;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -30702,7 +30702,6 @@ page-contact .button-group {
 
 page-contact .btn {
   color: #222;
-  letter-spacing: -1.4px;
 }
 
 page-information .segment-md .segment-button {
