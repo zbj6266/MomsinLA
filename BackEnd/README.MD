@@ -59,12 +59,21 @@ Using third-party socket library from CDN.
 
 
 
-### (4) eXtend a new feature
+### (4) Using eXtend feature
 ```Javascript
-  tim.X('feature name')
+  tim.X('feature name').xxx()
 ```
 #### Feature name can be defined by yourself, starting with lowercase letter and only letters without numbers & symbols.
 
+#### .xxx() should be Get(), Set(), New(), Del(). These are all asynchronous methods, so every asynchronous method needs to be followed by "then" or add "await" in front. 
+```Javascript
+console.log(await tim.X('feature name').Get());//add "await" in front
+```
+#### Can also be written as
+
+```Javascript
+ tim.X('feature name').Get().then(data => console.log(data)); //followed by "then"
+```
 
 ### (5) Signup a new user
 ```Javascript
