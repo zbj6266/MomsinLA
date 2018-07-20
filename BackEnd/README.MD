@@ -59,7 +59,7 @@ Using third-party socket library from CDN.
 
 
 
-### (4) eXpand a new feature
+### (4) eXtend a new feature
 ```Javascript
   tim.X('feature name')
 ```
