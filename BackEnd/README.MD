@@ -131,4 +131,4 @@ console.log(await tim.X('user').Get({query: {
     }}).then(data => console.log(data));
     
 ```
-
+所有的服务器方法都要经过网络，都是异步方法，所以异步方法后面需要加then或者前面加await
