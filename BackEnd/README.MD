@@ -63,7 +63,7 @@ Using third-party socket library from CDN.
 ```Javascript
   tim.X('feature name')
 ```
- 
+#### Feature name can be defined by yourself, starting with lowercase letter without spaces.
 
 
 ### (5) Signup a new user
