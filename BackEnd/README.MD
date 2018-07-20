@@ -82,6 +82,10 @@ Using third-party socket library from CDN.
             password: "test"
           });
 ```
+ #### Use local cache to automatically login can be written as
+```Javascript
+      tim.Login();
+```
  
 ### (7) Logout code
 ```Javascript
