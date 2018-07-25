@@ -47,31 +47,32 @@ GetDB = async () => {
   (await tim.X('user').Get()).data.forEach(OnUser);
 };
 
-Signup = async (u, p) => {
-  try {
-   await tim.X('user').New({
-      email: u,
-      password: p
-    });
-  } catch (error) {
-    alert(error);
-    console.log(error);
+// Signup = async (u, p) => {
+//   try {
+//    await tim.X('user').New({
+//       email: u,
+//       password: p
+//     });
+//   } catch (error) {
+//     alert(error);
+//     console.log(error);
 
-  }
-};
+//   }
+// };
 
-Login = async (u, p) => {
-  try {
-    await tim.Logout();
-    await tim.Login({
-      email: u,
-      password: p
-    });
-  } catch (error) {
-    alert(error);
-    console.log(error);
-  }
-};
+// Login = async (u, p) => {
+//   try {
+//     await tim.Logout();
+//     await tim.Login({
+//       email: u,
+//       password: p
+//     });
+
+//   } catch (error) {
+//     // alert(error);
+//     console.log(error);
+//   }
+// };
 
 Send = text => {
  tim.X('chat').New({text: text});
