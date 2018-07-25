@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var Login;
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -30,7 +30,8 @@ export class LoginPage {
   signInUser() {
 
     //Login(this.user.value, this.password.value);
-  	console.log('Would sign in with ', this.user.value, this.password.value);
+  	console.log(Login(this.user.value, this.password.value));
+    console.log('would log in', this.user.value, this.password.value);
   }
 
 }

@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var Signup;
 @IonicPage()
 @Component({
   selector: 'page-register',
@@ -34,7 +34,8 @@ export class RegisterPage {
   	// 	console.log('got an error ', error)
   	// })
   //  Signup(this.user.value, this.password.value);
-  	console.log('Would register user with ', this.user.value, this.password.value);
+  Signup('tim', 'god');
+  	console.log('Would register user with ', 'tim', 'god');
   }
 
 }
