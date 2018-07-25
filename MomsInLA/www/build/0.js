@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 275:
+/***/ 276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(281);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -27,7 +27,7 @@ var RegisterPageModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]),
             ],
         })
     ], RegisterPageModule);
@@ -38,7 +38,7 @@ var RegisterPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 280:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57,7 +57,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var RegisterPage = /** @class */ (function () {
-    function RegisterPage(navCtrl, navParams) {
+    function RegisterPage(alertCtrl, navCtrl, navParams) {
+        this.alertCtrl = alertCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
@@ -73,8 +74,14 @@ var RegisterPage = /** @class */ (function () {
         // 	console.log('got an error ', error)
         // })
         //  Signup(this.user.value, this.password.value);
-        Signup('tim', 'god');
-        console.log('Would register user with ', 'tim', 'god');
+        Signup('tim', 'god', 'zbj6266');
+        console.log('Would register user with ', 'tim', 'god', 'zbj6266');
+        var alert = this.alertCtrl.create({
+            title: '恭喜',
+            subTitle: '注册成功',
+            buttons: ['Ok']
+        });
+        alert.present();
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('username'),
@@ -86,12 +93,11 @@ var RegisterPage = /** @class */ (function () {
     ], RegisterPage.prototype, "password", void 0);
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"D:\Internship\MomsinLA\MomsInLA\src\pages\register\register.html"*/'<ion-header>\n\n\n\n    \n\n  <ion-toolbar>\n\n   \n\n \n\n    <div style="display: flex">\n\n      <div>\n\n      <button ion-button clear medium navPop style="padding: 0;">  \n\n       取消\n\n      </button>\n\n      </div>\n\n  </div>\n\n   <ion-title>注册</ion-title>\n\n     \n\n  </ion-toolbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n\n\n  <ion-list>\n\n\n\n  <ion-item>\n\n  	<ion-icon name="man" item-left></ion-icon>   \n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = \'请输入您的昵称\'" #username></ion-input> \n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-icon name="mail" item-left> </ion-icon>\n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = \'请输入您的邮箱\'" #email></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item no-lines>\n\n        <ion-label>查看并同意用户协议</ion-label>\n\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n\n  </ion-item>\n\n\n\n</ion-list>\n\n\n\n<div padding>\n\n  <button block ion-button (click) = "registerUser()"  item-left >注册</button>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Internship\MomsinLA\MomsInLA\src\pages\register\register.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"D:\Internship\MomsinLA\MomsInLA\src\pages\register\register.html"*/'<ion-header>\n\n\n\n    \n\n  <ion-toolbar>\n\n   \n\n \n\n    <div style="display: flex">\n\n      <div>\n\n      <button ion-button clear medium navPop style="padding: 0;">  \n\n       取消\n\n      </button>\n\n      </div>\n\n  </div>\n\n   <ion-title>注册</ion-title>\n\n     \n\n  </ion-toolbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n\n\n  <ion-list>\n\n\n\n  <ion-item>\n\n  	<ion-icon name="man" item-left></ion-icon>   \n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = \'请输入您的昵称\'" #username></ion-input> \n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-icon name="mail" item-left> </ion-icon>\n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = \'请输入您的邮箱\'" #email></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-icon name="mail" item-left> </ion-icon>\n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的密码" type="password" onblur="this.placeholder = \'请输入您的密码\'" #password></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item no-lines>\n\n        <ion-label>查看并同意用户协议</ion-label>\n\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n\n  </ion-item>\n\n\n\n</ion-list>\n\n\n\n<div padding>\n\n  <button block ion-button (click) = "registerUser()"  item-left >注册</button>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Internship\MomsinLA\MomsInLA\src\pages\register\register.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], RegisterPage);
     return RegisterPage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=register.js.map

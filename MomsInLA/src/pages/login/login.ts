@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController  } from 'ionic-angular';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,7 +19,7 @@ export class LoginPage {
 	@ViewChild('username') user;
 	@ViewChild('password') password;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -32,6 +32,28 @@ export class LoginPage {
     //Login(this.user.value, this.password.value);
   	console.log(Login(this.user.value, this.password.value));
     console.log('would log in', this.user.value, this.password.value);
+  if(Login(this.user.value, this.password.value)){
+    let alert = this.alertCtrl.create({
+
+      title: '恭喜!',
+      subTitle: '登陆成功!',
+      buttons: ['Ok']
+    });
+
+    alert.present();
+  }
+  else{
+    let alert = this.alertCtrl.create({
+
+      
+      subTitle: '登陆失败!',
+      buttons: ['Ok']
+    });
+
+    alert.present();
+  }
   }
 
-}
+  }
+
+

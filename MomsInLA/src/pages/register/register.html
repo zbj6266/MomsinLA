@@ -32,6 +32,11 @@
     <ion-input onfocus="this.placeholder = '' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = '请输入您的邮箱'" #email></ion-input>
   </ion-item>
 
+  <ion-item>
+    <ion-icon name="mail" item-left> </ion-icon>
+    <ion-input onfocus="this.placeholder = '' " placeholder="请输入您的密码" type="password" onblur="this.placeholder = '请输入您的密码'" #password></ion-input>
+  </ion-item>
+
   <ion-item no-lines>
         <ion-label>查看并同意用户协议</ion-label>
         <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>
