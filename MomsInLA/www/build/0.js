@@ -92,9 +92,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 var RegisterPage = /** @class */ (function () {
-    function RegisterPage(loadingCtrl, toastCtrl, navCtrl, navParams) {
+    function RegisterPage(toastCtrl, navCtrl, navParams) {
         var _this = this;
-        this.loadingCtrl = loadingCtrl;
         this.toastCtrl = toastCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -155,7 +154,7 @@ var RegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-register',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/'<ion-header>\n\n    \n  <ion-toolbar>\n   \n \n    <div style="display: flex">\n      <div>\n      <button ion-button clear medium navPop style="padding: 0;">  \n       取消\n      </button>\n      </div>\n  </div>\n   <ion-title>注册</ion-title>\n     \n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding>\n\n\n  <ion-list>\n\n  <ion-item>\n  	<ion-icon name="man" item-left></ion-icon>   \n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = \'请输入您的昵称\'" #username></ion-input> \n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="mail" item-left> </ion-icon>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = \'请输入您的邮箱\'" #email></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="mail" item-left> </ion-icon>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的密码" type="password" onblur="this.placeholder = \'请输入您的密码\'" #password></ion-input>\n  </ion-item>\n\n  <ion-item no-lines>\n        <ion-label>查看并同意用户协议</ion-label>\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n  </ion-item>\n\n</ion-list>\n\n<div padding>\n  <button block ion-button (click) = "registerUser()"  item-left >注册</button>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _c || Object])
     ], RegisterPage);
     return RegisterPage;
     var _a, _b, _c;

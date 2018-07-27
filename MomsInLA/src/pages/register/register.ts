@@ -19,7 +19,7 @@ export class RegisterPage {
 	@ViewChild('password') password;
 
   
-  constructor(private loadingCtrl: LoadingController, private toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
