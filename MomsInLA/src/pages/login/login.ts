@@ -42,16 +42,23 @@ export class LoginPage {
         email: u,
         password: p
       });
+
       this.presentToast('login successfully');
-    } catch (error) {
+      this.navCtrl.push("ProfilePage");
+ //this.navCtrl.pop();
+          } catch (error) {
       this.presentToast('login fail');
     }
   };
 
   signInUser() {
-    this.Login(this.user.value, this.password.value);
-  }
+    this.Login(this.user.value, this.password.value)
+     
+    // this.Login(this.user.value, this.password.value);
+
+  
 
   }
+}
 
 

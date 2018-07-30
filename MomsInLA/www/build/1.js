@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 274:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(284);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var LoginPageModule = /** @class */ (function () {
-    function LoginPageModule() {
+var RegisterPageModule = /** @class */ (function () {
+    function RegisterPageModule() {
     }
-    LoginPageModule = __decorate([
+    RegisterPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]),
             ],
         })
-    ], LoginPageModule);
-    return LoginPageModule;
+    ], RegisterPageModule);
+    return RegisterPageModule;
 }());
 
-//# sourceMappingURL=login.module.js.map
+//# sourceMappingURL=register.module.js.map
 
 /***/ }),
 
-/***/ 279:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -91,70 +91,76 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 
 
-var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, navParams, toastCtrl) {
+var RegisterPage = /** @class */ (function () {
+    function RegisterPage(toastCtrl, navCtrl, navParams) {
         var _this = this;
+        this.toastCtrl = toastCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.toastCtrl = toastCtrl;
-        this.Login = function (u, p) { return __awaiter(_this, void 0, void 0, function () {
+        this.Signup = function (u, p) { return __awaiter(_this, void 0, void 0, function () {
             var error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, tim.Logout()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, tim.Login({
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, tim.X('user').New({
                                 email: u,
                                 password: p
                             })];
-                    case 2:
+                    case 1:
                         _a.sent();
-                        this.presentToast('login successfully');
-                        return [3 /*break*/, 4];
-                    case 3:
+                        this.presentToast('register successfully');
+                        this.navCtrl.push("UserPage");
+                        return [3 /*break*/, 3];
+                    case 2:
                         error_1 = _a.sent();
-                        this.presentToast('login fail');
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        console.log(error_1);
+                        this.presentToast('register fail');
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         }); };
     }
-    LoginPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad LoginPage');
+    RegisterPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RegisterPage');
     };
-    LoginPage.prototype.presentToast = function (msg) {
+    RegisterPage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({
             message: msg,
             duration: 1000
         });
         toast.present();
     };
-    LoginPage.prototype.signInUser = function () {
-        this.Login(this.user.value, this.password.value);
+    RegisterPage.prototype.registerUser = function () {
+        // this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
+        // .then(data => {
+        // 	console.log('got data ', data);
+        // })
+        // .catch(error => {
+        // 	console.log('got an error ', error)
+        // })
+        //  Signup(this.user.value, this.password.value);
+        this.Signup(this.user.value, this.password.value);
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('username'),
         __metadata("design:type", Object)
-    ], LoginPage.prototype, "user", void 0);
+    ], RegisterPage.prototype, "user", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('password'),
         __metadata("design:type", Object)
-    ], LoginPage.prototype, "password", void 0);
-    LoginPage = __decorate([
+    ], RegisterPage.prototype, "password", void 0);
+    RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>登陆</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<ion-list>\n\n  <ion-item>\n    <ion-label floating>Username</ion-label>\n    <ion-input onfocus="this.placeholder = \'\' " type="text" onblur="this.placeholder = \'Username\'" #username></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Password</ion-label>\n    <ion-input onfocus="this.placeholder = \'\' " type="password" onblur="this.placeholder = \'Password\'" #password></ion-input>\n  </ion-item>\n\n	</ion-list>\n\n	<div padding>\n  <button block ion-button (click) = "signInUser()" item-left>Sign In</button>\n	</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/login/login.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"D:\Internship\MomsinLA\MomsInLA\src\pages\register\register.html"*/'<ion-header>\n\n\n\n    \n\n  <ion-toolbar>\n\n   \n\n \n\n    <div style="display: flex">\n\n      <div>\n\n      <button ion-button clear medium navPop style="padding: 0;">  \n\n       取消\n\n      </button>\n\n      </div>\n\n  </div>\n\n   <ion-title>注册</ion-title>\n\n     \n\n  </ion-toolbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n\n\n  <ion-list>\n\n\n\n  <ion-item>\n\n  	<ion-icon name="man" item-left></ion-icon>   \n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = \'请输入您的昵称\'" #username></ion-input> \n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-icon name="mail" item-left> </ion-icon>\n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = \'请输入您的邮箱\'" #email></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-icon name="mail" item-left> </ion-icon>\n\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的密码" type="password" onblur="this.placeholder = \'请输入您的密码\'" #password></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item no-lines>\n\n        <ion-label>查看并同意用户协议</ion-label>\n\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n\n  </ion-item>\n\n\n\n</ion-list>\n\n\n\n<div padding>\n\n  <button block ion-button (click) = "registerUser()"  item-left >注册</button>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Internship\MomsinLA\MomsInLA\src\pages\register\register.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _c || Object])
-    ], LoginPage);
-    return LoginPage;
-    var _a, _b, _c;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+    ], RegisterPage);
+    return RegisterPage;
 }());
 
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=register.js.map
 
 /***/ })
 

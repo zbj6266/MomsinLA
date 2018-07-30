@@ -33,6 +33,7 @@ export class RegisterPage {
         password: p
       });
       this.presentToast('register successfully');
+      this.navCtrl.push("UserPage");
 
     } catch (error) {
       console.log(error);
