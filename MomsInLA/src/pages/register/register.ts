@@ -7,7 +7,8 @@ import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angul
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-declare var tim;
+declare var tim 
+// declare var Signup;
 @IonicPage()
 @Component({
   selector: 'page-register',
@@ -33,7 +34,7 @@ export class RegisterPage {
         password: p
       });
       this.presentToast('register successfully');
-      this.navCtrl.push("UserPage");
+      this.navCtrl.push("LoginPage");
 
     } catch (error) {
       console.log(error);

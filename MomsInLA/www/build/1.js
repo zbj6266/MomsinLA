@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 277:
+/***/ 276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(283);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var RegisterPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 284:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91,6 +91,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 
 
+// declare var Signup;
 var RegisterPage = /** @class */ (function () {
     function RegisterPage(toastCtrl, navCtrl, navParams) {
         var _this = this;
@@ -110,7 +111,7 @@ var RegisterPage = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         this.presentToast('register successfully');
-                        this.navCtrl.push("UserPage");
+                        this.navCtrl.push("LoginPage");
                         return [3 /*break*/, 3];
                     case 2:
                         error_1 = _a.sent();

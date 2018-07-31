@@ -71,7 +71,8 @@ var SettingPage = /** @class */ (function () {
         console.log('ionViewDidLoad SettingPage');
     };
     SettingPage.prototype.Logout = function () {
-        this.navCtrl.push("UserPage");
+        this.navCtrl.pop();
+        this.navCtrl.pop();
     };
     SettingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

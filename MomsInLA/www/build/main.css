@@ -33619,8 +33619,26 @@ page-profile .toolbar-title {
   font-size: 1.5rem;
 }
 
+page-profile .title-md {
+  font-weight: lighter;
+  font-size: 1.5rem;
+  padding-left: 150px;
+}
+
+page-profile .adjust.title-md {
+  padding-left: 115px;
+}
+
 page-profile .toolbar-background {
   background-color: white;
+}
+
+page-profile .icon1.bar-button-md {
+  margin-right: 200px;
+}
+
+page-profile .icon2.bar-button-md {
+  margin-left: 110px;
 }
 
 page-register .button {
