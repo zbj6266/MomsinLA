@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+
 declare var tim;
 
 @IonicPage()
@@ -22,23 +25,18 @@ export class InformationPage {
   strategy : string = "学区攻略";
   expenses : Array<string> = ["商品买卖","家政服务","房屋租住","妈妈兼职"];
   expense : string = "商品买卖";
+  films: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
     this.category = navParams.get("item");
-    // if(this.category == 1)
-    //   this.title = "精打细算";
-    // else if(this.category == 2)
-    //   this.title = "专家讲座";
-    // else if(this.category == 3)
-    //   this.title = "妈妈攻略";
-    // else if(this.category == 4)
-    //   this.title = "交易平台";
-    
-    
+    this.films = this.httpClient.get('https://swapi.co/api/films');
+    this.films
+    .subscribe(data => {
+      console.log('my data: ', data);
+    })
   }
 
   ionViewDidLoad() {
-    
     console.log('ionViewDidLoad InformationPage');
     tim.X('info').Get({query:{category:{main:this.category,sub:1}}}).then(data=>{
       this.disp =data.data;
@@ -55,9 +53,6 @@ export class InformationPage {
     console.log(id)
   }
 
-  popover(){
-
-  }
 
 
 }

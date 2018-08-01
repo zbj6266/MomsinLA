@@ -12,6 +12,10 @@ import { UserPage } from '../pages/user/user';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpClientModule } from '@angular/common/http';
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
+
+
 // import { Calendar } from '@ionic-native/calendar';
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp,{tabsHideOnSubPages: true})
   ],
   bootstrap: [IonicApp],
@@ -41,6 +46,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
