@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 
-/**
- * Generated class for the InformationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 declare var tim;
 
 @IonicPage()
@@ -59,6 +53,10 @@ export class InformationPage {
 
   openDetail(id){
     console.log(id)
+  }
+
+  popover(){
+
   }
 
 
