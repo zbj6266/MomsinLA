@@ -50,7 +50,7 @@ export class InformationPage {
   }
 
   openDetail(id){
-    console.log(id)
+    this.navCtrl.push('InfoDetailPage',{infoId: id});
   }
 
 
