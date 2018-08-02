@@ -1,20 +1,34 @@
 // 活动类栏目(activity)
 {
-	//id:(string);
-	createDate:(number); 
-	creator: (string);
+	//id:(string);//系统默认ID
+	createDate:(number); //创建时间，毫秒
+	creator: {
+		userName: (string); //发布者名称
+		userImgs: (string); //发布者头像
+	};	//创建者
 	activityDate:{
-		from:(number);
-		to:(number);
+		from:(number);	//活动起始时间，毫秒
+		to:(number);	//活动终止时间，毫秒
 	}
-	title:(string);
-	content:(string);
-	address: (string);
-	
-	imgs:[(string)];
-	numsLike: (number);
-	numsRead: (number);
-	keywords:[];
+	title:(string);	//活动标题
+	content:(string);	//活动内容
+	address: (string);	//活动地址
+	city: (string);	//城市
+	website: (string); //官网地址
+	imgs:[(string)];	//图片
+	numsLike: (number);	//点赞数
+	numsRead: (number);	//浏览量
+	numsParticipate: (number); //签到人数
+	actiCategories:[(string)]; //活动类型
+	comments: [
+		{
+			userImg: (string); //用户头像
+			userName: (string);  //用户名
+			numsLike: (number); //评论点赞
+			content: (string); //评论内容
+			time: (string); //评论时间
+		}
+	] //评论
 
 
 }
