@@ -15,14 +15,23 @@ declare var tim;
 })
 export class InfoDetailPage {
   infoId: string;
+  table: string;
+  disp: any = {};
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.infoId = navParams.get("infoId");
+    this.table = navParams.get("table");
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InfoDetailPage');
-    tim.X('info').Get({query:{_id:this.infoId}}).then(data=>
-    console.log(data));
+    tim.X(this.table).Get({query:{_id:this.infoId}}).then(data=>{
+      this.disp = data.data[0];
+      document.getElementById("info-content").innerHTML = this.disp.content;
+      //document.getElementById("supplement").innerHTML = this.disp.supplement.content;
+    });
+    
   }
 
   like(){
