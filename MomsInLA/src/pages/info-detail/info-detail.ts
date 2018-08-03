@@ -28,7 +28,7 @@ export class InfoDetailPage {
     console.log('ionViewDidLoad InfoDetailPage');
     tim.X(this.table).Get({query:{_id:this.infoId}}).then(data=>{
       this.disp = data.data[0];
-      document.getElementById("info-content").innerHTML = this.disp.content;
+      // document.getElementById("info-content").innerHTML = this.disp.content;
       //document.getElementById("supplement").innerHTML = this.disp.supplement.content;
     });
     

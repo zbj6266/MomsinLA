@@ -89,23 +89,23 @@ var map = {
 		5
 	],
 	"../pages/information/information.module": [
-		286,
+		282,
 		4
 	],
 	"../pages/login/login.module": [
-		282,
+		283,
 		3
 	],
 	"../pages/profile/profile.module": [
-		283,
+		284,
 		2
 	],
 	"../pages/register/register.module": [
-		284,
+		285,
 		1
 	],
 	"../pages/setting/setting.module": [
-		285,
+		286,
 		0
 	],
 	"../pages/user/user.module": [
@@ -541,11 +541,11 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/activitylist/activitylist.module#ActivitylistPageModule', name: 'ActivitylistPage', segment: 'activitylist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info-detail/info-detail.module#InfoDetailPageModule', name: 'InfoDetailPage', segment: 'info-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/information/information.module#InformationPageModule', name: 'InformationPage', segment: 'information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/setting/setting.module#SettingPageModule', name: 'SettingPage', segment: 'setting', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/information/information.module#InformationPageModule', name: 'InformationPage', segment: 'information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/user/user.module#UserPageModule', name: 'UserPage', segment: 'user', priority: 'low', defaultHistory: [] }
                     ]
                 })

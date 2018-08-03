@@ -30,14 +30,13 @@
   </ion-card>
   <div class="info-title">{{disp.title}}</div>
   <ion-card>
-    <ion-card-content id="info-content" class="info-content">     
+    <ion-card-content id="info-content" class="info-content" innerHTML="{{disp.content}}">     
     </ion-card-content>
   </ion-card>
   <div *ngIf="disp.hasOwnProperty('supplement')">
   <div class="option-title">{{disp.supplement.title}}</div>
   <ion-card>
-    <ion-card-content id="supplement" class="info-content">
-      {{disp.supplement.content}}
+    <ion-card-content id="supplement" class="info-content" innerHTML="{{disp.supplement.content}}">
     </ion-card-content>
   </ion-card>
   </div>
