@@ -25,4 +25,16 @@ export class InfoDetailPage {
     console.log(data));
   }
 
+  like(){
+    var obj = document.getElementById("like");
+    var imgSrc = obj.getAttribute("src");
+　  if(imgSrc=="assets/imgs/icon_like.png"){
+      obj.setAttribute("src", "assets/imgs/icon_like_select.png");
+    }
+    else{
+      obj.setAttribute("src", "assets/imgs/icon_like.png");
+    
+    }
+  }
+
 }
