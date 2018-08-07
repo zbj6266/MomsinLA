@@ -61,7 +61,7 @@ export class ActivitylistPage {
  //  	this.events = data;
 //   }
 // );
-
+    navCtrl.push('ActivityPage');
 
 
 

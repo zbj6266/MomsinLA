@@ -33424,6 +33424,198 @@ ion-navbar.toolbar {
   color: #000000;
 }
 
+page-activity .creator {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  padding: 7px 16px;
+  border-bottom: solid 1px #aaaaaa;
+  background-color: white;
+}
+
+page-activity .name {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  line-height: 34px;
+  color: #101010;
+  font-size: 17px;
+  font-family: -apple-system;
+  margin-left: 10px;
+}
+
+page-activity .offer {
+  line-height: 34px;
+  color: #ffd500;
+  font-size: 13px;
+  text-align: center;
+  font-family: -apple-system;
+}
+
+page-activity .content {
+  background-color: #f8f8f8;
+}
+
+page-activity .detail {
+  padding-top: 15px;
+  text-align: center;
+}
+
+page-activity .keyword {
+  text-align: center;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 17px;
+}
+
+page-activity .button-space {
+  float: left;
+  margin: 4px;
+}
+
+page-activity .button-md, page-activity .button-ios {
+  width: 74px;
+  border-radius: 2px;
+  overflow: hidden;
+  height: 40px;
+  font-weight: 500;
+  line-height: 22px;
+  background-color: #ffd500;
+  color: #101010;
+  font-size: 13px;
+  text-align: center;
+  -webkit-box-shadow: 0px 1px 1px 0px #aaaaaa;
+  box-shadow: 0px 1px 1px 0px #aaaaaa;
+  font-family: -apple-system;
+  padding: 0;
+  margin: 2px;
+}
+
+@media only screen and (min-width: 260px) {
+  page-activity .keyword {
+    margin-left: auto;
+    margin-right: auto;
+    width: 260px;
+  }
+}
+
+@media only screen and (min-width: 344px) {
+  page-activity .keyword {
+    margin-left: auto;
+    margin-right: auto;
+    width: 344px;
+  }
+}
+
+@media only screen and (min-width: 430px) {
+  page-activity .keyword {
+    margin: auto;
+    width: 430px;
+  }
+}
+
+page-activity .detail-title {
+  padding: 13px 0 12px 17px;
+  height: 50px;
+  line-height: 25px;
+  border-radius: 0px;
+  background-color: rgba(225, 91, 0, 0.95);
+  color: white;
+  font-size: 17px;
+  -webkit-box-shadow: 0px 1px 0px 0px #aaaaaa;
+  box-shadow: 0px 1px 0px 0px #aaaaaa;
+  font-family: -apple-system;
+  text-align: left;
+}
+
+page-activity .section {
+  padding: 17px 27px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #101010;
+  text-align: left;
+  font-weight: 500;
+}
+
+page-activity #content {
+  margin: 23px 0;
+  line-height: 20px;
+}
+
+page-activity .content-img {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+page-activity .info-user {
+  padding: 15px 30px;
+  height: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+  text-align: center;
+}
+
+page-activity .info-like {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  line-height: 20px;
+  color: #101010;
+  font-size: 15px;
+  font-family: -apple-system;
+  text-align: center;
+}
+
+page-activity .info-collect {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  line-height: 20px;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  color: #101010;
+  font-size: 15px;
+  font-family: -apple-system;
+}
+
+page-activity .info-margin {
+  margin-left: 6px;
+}
+
+page-activity .comments {
+  margin-top: 30px;
+  padding: 3px 17px;
+  background: white;
+  text-align: left;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+page-activity .comments-title {
+  color: rgba(225, 91, 0, 0.95);
+  font-size: 15px;
+  font-family: -apple-system;
+}
+
 page-activitylist ion-icon {
   font-size: 25px;
 }

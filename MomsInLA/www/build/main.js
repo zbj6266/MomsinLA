@@ -1,4 +1,4 @@
-webpackJsonp([8],{
+webpackJsonp([9],{
 
 /***/ 100:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -80,37 +80,41 @@ webpackEmptyAsyncContext.id = 112;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../pages/activitylist/activitylist.module": [
+	"../pages/activity/activity.module": [
 		280,
+		7
+	],
+	"../pages/activitylist/activitylist.module": [
+		281,
 		6
 	],
 	"../pages/info-detail/info-detail.module": [
-		281,
+		282,
 		5
 	],
 	"../pages/information/information.module": [
-		282,
+		283,
 		4
 	],
 	"../pages/login/login.module": [
-		283,
+		284,
 		3
 	],
 	"../pages/profile/profile.module": [
-		284,
+		285,
 		2
 	],
 	"../pages/register/register.module": [
-		285,
+		286,
 		1
 	],
 	"../pages/setting/setting.module": [
-		286,
+		287,
 		0
 	],
 	"../pages/user/user.module": [
-		287,
-		7
+		288,
+		8
 	]
 };
 function webpackAsyncContext(req) {
@@ -539,6 +543,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], { tabsHideOnSubPages: true }, {
                     links: [
+                        { loadChildren: '../pages/activity/activity.module#ActivityPageModule', name: 'ActivityPage', segment: 'activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/activitylist/activitylist.module#ActivitylistPageModule', name: 'ActivitylistPage', segment: 'activitylist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info-detail/info-detail.module#InfoDetailPageModule', name: 'InfoDetailPage', segment: 'info-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/information/information.module#InformationPageModule', name: 'InformationPage', segment: 'information', priority: 'low', defaultHistory: [] },
