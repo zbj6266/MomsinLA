@@ -1,7 +1,8 @@
 import { Component, ViewChild} from '@angular/core';
 import { NavController, NavParams, Select } from 'ionic-angular';
 
-
+declare var tim;
+declare var Create;
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -29,6 +30,7 @@ buttonColor11: string = '#f4f4f4'; //Default Color
     timeStarts: '09:00',
     
   }
+  //name:string;
  activeMenu: string;
 
   // category : number;
@@ -46,7 +48,7 @@ buttonColor11: string = '#f4f4f4'; //Default Color
   // skittles: Array<any>;  
   // notifications: string = 'mute_1';
   // rating: number = 2;
-@ViewChild('sectionSelect') sectionSelect: Select;
+  @ViewChild('sectionSelect') sectionSelect: Select;
   @ViewChild('sectionSelect2') sectionSelect2: Select;
   @ViewChild('sectionSelect3') sectionSelect3: Select;
   locate() {
@@ -162,6 +164,7 @@ changeState11(){
 addEvent(){
 this.buttonColor = '#fad548'; //desired Color
 
+
 }
 addEventa(){
 this.buttonColor1 = '#fad548'; //desired Color
@@ -256,8 +259,11 @@ this.buttonColor11 = '#fad548'; //desired Color
     console.log('ionViewDidLoad ContactPage');
   }
   
+  
 
   createEvent() {
   this.navCtrl.push("");
   }
+
+
 }
