@@ -18,13 +18,13 @@
   <ion-list>
   <ion-item id = "rounded">
     
-    <ion-input onfocus="this.placeholder = '' " placeholder="活动名称" type="text" onblur="this.placeholder = '活动名称'"#username></ion-input>
+    <ion-input onfocus="this.placeholder = '' " placeholder="活动名称" type="text" [(ngModel)]="name" onblur="this.placeholder = '活动名称'"#username></ion-input>
   </ion-item>
 </ion-list>
 </div>
 <ion-list>
   <ion-item>
-    <ion-textarea #msgInput rows="7" maxLength="200"  onfocus="this.placeholder = '' " placeholder="活动介绍，请不要超过200个字" onblur="this.placeholder = '活动介绍，请不要超过200个字'"></ion-textarea>
+    <ion-textarea #msgInput rows="7" maxLength="200"  onfocus="this.placeholder = '' " placeholder="活动介绍，请不要超过200个字" [(ngModel)]="nameC" onblur="this.placeholder = '活动介绍，请不要超过200个字'"></ion-textarea>
   </ion-item>
 </ion-list>
 
@@ -67,7 +67,7 @@
         <ion-col col-8>
     <ion-item>
     
-    <ion-input onfocus="this.placeholder = '' " placeholder="具体地址" type="text" onblur="this.placeholder = '具体地址'"></ion-input>
+    <ion-input onfocus="this.placeholder = '' " placeholder="具体地址" type="text" [(ngModel)]="address" onblur="this.placeholder = '具体地址'"></ion-input>
   </ion-item>
 </ion-col>
 </ion-row>
@@ -77,7 +77,7 @@
     <ion-col col-6>
         <ion-item>
         
-        <ion-input onfocus="this.placeholder = '' " placeholder="城市" type="text" onblur="this.placeholder = '城市'"></ion-input>
+        <ion-input onfocus="this.placeholder = '' " placeholder="城市" [(ngModel)]="city" type="text" onblur="this.placeholder = '城市'"></ion-input>
       </ion-item>
 
 
@@ -115,13 +115,13 @@
     <ion-col col-4 no-padding>
 
     <ion-item no-lines>
-      <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{'background-color': buttonColor}"  class="custom-button" (click) = "changeState()">免费</button>
+      <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{'background-color': buttonColor}"  [(ngModel)]="actCategory1" class="custom-button" (click) = "changeState()">免费</button>
     </ion-item>
   </ion-col>
     <ion-col col-8 no-padding>
     <ion-item no-lines>
       
-      <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{'background-color': buttonColor1}"  class="custom-button" (click) = "changeState1()">收费 $/人均</button>
+      <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{'background-color': buttonColor1}"  [(ngModel)]="actCategory2" class="custom-button" (click) = "changeState1()">收费 $/人均</button>
      
     </ion-item>
   </ion-col>
@@ -133,13 +133,13 @@
     <ion-col col-6 no-padding>
 
     <ion-item no-lines>
-      <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{'background-color': buttonColor2}"  class="custom-button" (click) = "changeState2()">公共活动</button>
+      <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{'background-color': buttonColor2}"  [(ngModel)]="actCategory3" class="custom-button" (click) = "changeState2()">公共活动</button>
     </ion-item>
   </ion-col>
     <ion-col col-6 no-padding>
     <ion-item no-lines>
       
-      <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{'background-color': buttonColor3}"  class="custom-button" (click) = "changeState3()">私人活动</button>
+      <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{'background-color': buttonColor3}"  [(ngModel)]="actCategory4" class="custom-button" (click) = "changeState3()">私人活动</button>
      
     </ion-item>
   </ion-col>
@@ -192,25 +192,25 @@
   <ion-row>
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventd();" [ngStyle]="{'background-color': buttonColor4}" class="btn" (dblclick) = "changeState4()">户外游乐</button>
+           <button ion-button no-margin medium full (click)="addEventd();" [ngStyle]="{'background-color': buttonColor4}" [(ngModel)]="actCategory5" class="btn" (dblclick) = "changeState4()">户外游乐</button>
         </ion-item>
     </ion-col>
 
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEvente();" [ngStyle]="{'background-color': buttonColor5}"  class="btn" (dblclick) = "changeState5()">益智教育</button>
+           <button ion-button no-margin medium full (click)="addEvente();" [ngStyle]="{'background-color': buttonColor5}"  [(ngModel)]="actCategory6" class="btn" (dblclick) = "changeState5()">益智教育</button>
         </ion-item>
     </ion-col>
 
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventf();" [ngStyle]="{'background-color': buttonColor6}"  class="btn" (dblclick) = "changeState6()">动物植物</button>
+           <button ion-button no-margin medium full (click)="addEventf();" [ngStyle]="{'background-color': buttonColor6}"  [(ngModel)]="actCategory7" class="btn" (dblclick) = "changeState6()">动物植物</button>
         </ion-item>
     </ion-col>
 
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventg();" [ngStyle]="{'background-color': buttonColor7}"  class="btn" (dblclick) = "changeState7()">游乐园</button>
+           <button ion-button no-margin medium full (click)="addEventg();" [ngStyle]="{'background-color': buttonColor7}"  [(ngModel)]="actCategory8" class="btn" (dblclick) = "changeState7()">游乐园</button>
         </ion-item>
     </ion-col>
   </ion-row>
@@ -219,26 +219,26 @@
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
          
-           <button ion-button no-margin medium full (click)="addEventh();" [ngStyle]="{'background-color': buttonColor8}"  class="btn" (dblclick) = "changeState8()">室内游乐</button>
+           <button ion-button no-margin medium full (click)="addEventh();" [ngStyle]="{'background-color': buttonColor8}" [(ngModel)]="actCategory9" class="btn" (dblclick) = "changeState8()">室内游乐</button>
          
         </ion-item>
     </ion-col>
 
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventi();" [ngStyle]="{'background-color': buttonColor9}"  class="btn" (dblclick) = "changeState9()">科普知识</button>
+           <button ion-button no-margin medium full (click)="addEventi();" [ngStyle]="{'background-color': buttonColor9}"  [(ngModel)]="actCategory10" class="btn" (dblclick) = "changeState9()">科普知识</button>
         </ion-item>
     </ion-col>
 
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventj();" [ngStyle]="{'background-color': buttonColor10}"  class="btn" (dblclick) = "changeState10()">免费停车</button>
+           <button ion-button no-margin medium full (click)="addEventj();" [ngStyle]="{'background-color': buttonColor10}"  [(ngModel)]="actCategory11" class="btn" (dblclick) = "changeState10()">免费停车</button>
         </ion-item>
     </ion-col>
 
     <ion-col col-3 no-padding>
         <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventk();" [ngStyle]="{'background-color': buttonColor11}"  class="btn" (dblclick) = "changeState11()">其他类型</button>
+           <button ion-button no-margin medium full (click)="addEventk();" [ngStyle]="{'background-color': buttonColor11}"  [(ngModel)]="actCategory12" class="btn" (dblclick) = "changeState11()">其他类型</button>
         </ion-item>
     </ion-col>
   </ion-row>

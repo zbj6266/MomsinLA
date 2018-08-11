@@ -7,14 +7,16 @@ page-user {
 .button {
         background: #fad548;
         color: black;
-        margin-top: 50px
     }
 
+.button:after{
+  margin: 0 200px;
+}
 
 .displayed {
     display: block;
-    margin: 30px auto;
-    
+    margin-left: auto;
+    margin-right: auto;
 }
 .title{
      text-align:center;

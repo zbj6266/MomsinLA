@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the UserPage page.
@@ -15,22 +14,15 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'user.html',
 })
 export class UserPage {
-  @ViewChild('username') uname;
+   @ViewChild('username') uname;
 	@ViewChild('password') password;
 
-  key: string = "username";
-  username: string = null;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
-  }
-
-  ionViewWillEnter(){
-    this.storage.get(this.key).then((val)=> this.username = val);
   }
   signIn() {
   this.navCtrl.push("LoginPage");
