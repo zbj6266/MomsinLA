@@ -33964,6 +33964,15 @@ page-login .toolbar-title {
   font-size: 1.2rem;
 }
 
+page-login .title-md {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+page-login .otherlogin.title-md {
+  text-align: center;
+}
+
 page-profile .displayed {
   display: block;
   margin-left: auto;
@@ -33978,11 +33987,10 @@ page-profile .toolbar-title {
 page-profile .title-md {
   font-weight: lighter;
   font-size: 1.5rem;
-  padding-left: 150px;
 }
 
 page-profile .adjust.title-md {
-  padding-left: 115px;
+  text-align: center;
 }
 
 page-profile .toolbar-background {
@@ -34043,6 +34051,6 @@ page-user .displayed {
   margin-right: auto;
 }
 
-page-user .center {
+page-user .title {
   text-align: center;
 }

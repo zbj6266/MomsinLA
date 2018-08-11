@@ -103,10 +103,10 @@
   </div>
   <!-- moms strategies end -->
 
-  <!-- professional lectures start -->
+  <!-- information start -->
   <div class="container" >
   <div>
-  <ion-segment mode="md"  [(ngModel)]="lecture" *ngIf="category==2">
+  <ion-segment mode="md" *ngIf="category==2" [(ngModel)]="lecture">
     <ion-segment-button *ngFor="let item of lectures" value="{{item.name}}" (click)="loadData(item.index)">
       <div class="custom_button">{{item.name}}</div>
     </ion-segment-button>
@@ -114,6 +114,12 @@
 
   <ion-segment mode="md" *ngIf="category==3" [(ngModel)]="strategy">
       <ion-segment-button *ngFor="let item of strategies" value="{{item.name}}" (click)="loadData(item.index)">
+          <div class="custom_button">{{item.name}}</div>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-segment mode="md" *ngIf="category==4" [(ngModel)]="expense">
+      <ion-segment-button *ngFor="let item of expenses" value="{{item.name}}" (click)="loadData(item.index)">
           <div class="custom_button">{{item.name}}</div>
       </ion-segment-button>
     </ion-segment>
@@ -137,7 +143,7 @@
   </ion-scroll>
   </div>
   </div>
-  <!-- professional lectures end -->
+  <!-- information end -->
 
   <!-- moms strategies start -->
   
@@ -191,13 +197,7 @@
   <!-- moms strategies end -->
 
   <!-- expense platform start -->
-  <ion-segment mode="md" *ngIf="category==4" [(ngModel)]="expense">
-    <ion-segment-button *ngFor="let item of expenses" value="{{item}}">
-        <div class="custom_button">{{item}}</div>
-    </ion-segment-button>
-  </ion-segment>
-
-  <div *ngIf="category==4" [ngSwitch]="expense">
+  <!-- <div *ngIf="category==4" [ngSwitch]="expense">
     <ion-list *ngSwitchCase="'商品买卖'">
         <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">
             <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>
@@ -242,6 +242,6 @@
             </div>  
           </div>
     </ion-list>
-  </div>
+  </div> -->
   <!-- expense platform end -->
 </ion-content>

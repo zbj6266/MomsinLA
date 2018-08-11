@@ -59,8 +59,8 @@ export class InformationPage {
 
   onSearch(event){
     console.log(event.target.value);
-
-    tim.X(this.tables[this.category-1]).Get({category:{$regex: event.target.value}}).then(data=>
+    var re = new RegExp(event.target.value,"i");
+    tim.X(this.tables[this.category-1]).Get({query:{title:/to/i}}).then(data=>
       console.log(data));
   }
 
