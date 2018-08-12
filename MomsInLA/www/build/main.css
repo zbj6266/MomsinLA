@@ -33973,6 +33973,33 @@ page-login .otherlogin.title-md {
   text-align: center;
 }
 
+page-login .nav-title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  color: black;
+  padding: 0.4rem 0;
+}
+
+page-login .nav-button {
+  width: 76px;
+}
+
+page-login .button-clear-md, page-login .button-clear-ios {
+  color: black;
+}
+
+page-login .button-small-md, page-login .button-small-ios {
+  font-size: 1.5rem;
+}
+
+page-login ion-icon {
+  font-size: 3rem;
+}
+
 page-profile .displayed {
   display: block;
   margin-left: auto;
@@ -34039,16 +34066,12 @@ page-user .home-logo {
 page-user .button {
   background: #fad548;
   color: black;
-}
-
-page-user .button:after {
-  margin: 0 200px;
+  margin-top: 50px;
 }
 
 page-user .displayed {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 30px auto;
 }
 
 page-user .title {
