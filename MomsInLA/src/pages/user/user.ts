@@ -18,10 +18,10 @@ export class UserPage {
   @ViewChild('username') uname;
 	@ViewChild('password') password;
 
-  key: string = "username";
-  username: string = null;
+  key: string = "userId";
+  userId: string = null;
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-
+    
   }
   
 
@@ -30,13 +30,20 @@ export class UserPage {
   }
 
   ionViewWillEnter(){
-    this.storage.get(this.key).then((val)=> this.username = val);
+    this.storage.get(this.key).then((val)=> {
+      console.log(val);
+      this.userId = val
+  });
   }
   signIn() {
   this.navCtrl.push("LoginPage");
   }
-  register() {
-  	this.navCtrl.push("RegisterPage");
+  // register() {
+  // 	this.navCtrl.push("RegisterPage");
+  // }
+
+  toSetting() {
+    this.navCtrl.push("SettingPage");
   }
 
 }

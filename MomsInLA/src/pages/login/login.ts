@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, ToastController  } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the LoginPage page.
  *
@@ -18,7 +19,7 @@ export class LoginPage {
 	@ViewChild('username') user;
 	@ViewChild('password') password;
 
-  constructor(public app : App, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+  constructor(public app : App, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -42,24 +43,22 @@ export class LoginPage {
         email: u,
         password: p
       });
-
-      this.presentToast('login successfully');
-
-//      this.app.getRootNav().push(profilePage);
-this.navCtrl.push("ProfilePage");
- //this.navCtrl.pop();
-          } catch (error) {
+      tim.X('user').Get({query:{email:u}}).then(data=>{
+        this.storage.set('userId',data.data[0]._id);
+        this.navCtrl.pop();
+      });
+      
+    } catch (error) {
       this.presentToast('login fail');
     }
   };
 
   signInUser() {
     this.Login(this.user.value, this.password.value)
-     
-    // this.Login(this.user.value, this.password.value);
+  }
 
-  
-
+  toSignup(){
+    this.navCtrl.push('RegisterPage');
   }
 }
 

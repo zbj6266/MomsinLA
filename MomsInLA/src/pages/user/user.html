@@ -7,21 +7,128 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>登陆</ion-title>
-
+    <ion-title *ngIf="userId==null">登陆</ion-title>
+		<ion-title *ngIf="userId!=null">我的</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<div *ngIf="username==null">
+	<div *ngIf="userId==null">
 		<img class="displayed"  height="125" width="125" src="assets/imgs/user_portrait.png">
 		<button class="login" block ion-button (click) = "signIn()" item-left>立即登录</button>
 			<!-- <button block ion-button (click) = "register()" color = "dark" >注册</button> -->
 	</div>
-	<div *ngIf="username != null">
-		<p>login</p>
+	<div *ngIf="userId != null">
+			<img class="displayed"  height="150 px" width="150 px" src="imgs/User-photo.png">
+			
+		
+			<ion-title class = "adjust" style = "padding-top: 20px; padding-bottom: 20px">妈妈洛杉矶</ion-title>
+		
+		
+		<ion-item>
+		<ion-toolbar >
+		<ion-buttons start>
+					<button class = "icon1" ion-button icon-only>
+						<ion-icon name="chatboxes" color = "dark"></ion-icon>
+					</button>
+			</ion-buttons>
+					<ion-buttons>
+					<div text-center>
+				 <button ion-button full class = "icon2" (click) = "myPost()" color = "dark">我的帖子</button>
+		 </div>
+				</ion-buttons>
+				<ion-buttons end>
+					<button ion-button icon-only>
+						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>
+					</button>
+				</ion-buttons>
+		</ion-toolbar>
+		</ion-item>
+			 
+		
+		<!-- <button ion-button full outline (click) = "myPost()" color = "dark">我的帖子<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon></button> -->
+				<ion-item>
+				<ion-toolbar >
+		<ion-buttons start>
+					<button class = "icon1" ion-button icon-only>
+						<ion-icon name="clipboard" color = "dark"></ion-icon>
+					</button>
+			</ion-buttons>
+					<ion-buttons>
+					<div text-center>
+				 <button ion-button full class = "icon2" (click) = "myCollection()" color = "dark">我的收藏</button>
+		 </div>
+				</ion-buttons>
+				<ion-buttons end>
+					<button ion-button icon-only>
+						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>
+					</button>
+				</ion-buttons>
+		</ion-toolbar>
+		</ion-item>
+		
+		<ion-item>
+		
+		<ion-toolbar >
+		<ion-buttons start>
+					<button class = "icon1" ion-button icon-only>
+						<ion-icon name="cash" color = "dark"></ion-icon>
+					</button>
+			</ion-buttons>
+					<ion-buttons>
+					<div text-center>
+				 <button ion-button full class = "icon2" (click) = "myCredits()" color = "dark">我的积分</button>
+		 </div>
+				</ion-buttons>
+				<ion-buttons end>
+					<button ion-button icon-only>
+						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>
+					</button>
+				</ion-buttons>
+		</ion-toolbar>
+		</ion-item>
+		
+		<ion-item>
+		<ion-toolbar >
+		<ion-buttons start>
+					<button class = "icon1" ion-button icon-only>
+						<ion-icon name="clock" color = "dark"></ion-icon>
+					</button>
+			</ion-buttons>
+					<ion-buttons>
+					<div text-center>
+				 <button ion-button full class = "icon2" (click) = "History()" color = "dark">浏览记录</button>
+		 </div>
+				</ion-buttons>
+				<ion-buttons end>
+					<button ion-button icon-only>
+						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>
+					</button>
+				</ion-buttons>
+		</ion-toolbar>
+		</ion-item>
+		
+		<ion-item>
+		<ion-toolbar >
+		<ion-buttons start>
+					<button class = "icon1" ion-button icon-only>
+						<ion-icon name="settings" color = "dark"></ion-icon>
+					</button>
+			</ion-buttons>
+					<ion-buttons>
+					<div text-center>
+				 <button ion-button full class = "icon2" (click) = "toSetting()" color = "dark">我的设置</button>
+		 </div>
+				</ion-buttons>
+				<ion-buttons end>
+					<button ion-button icon-only>
+						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>
+					</button>
+				</ion-buttons>
+		</ion-toolbar>
+		</ion-item>
 	</div>
 				
  				 

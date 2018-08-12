@@ -34077,3 +34077,15 @@ page-user .displayed {
 page-user .title {
   text-align: center;
 }
+
+page-user .adjust.title-md {
+  text-align: center;
+}
+
+page-user .icon1.bar-button-md {
+  margin-right: 200px;
+}
+
+page-user .icon2.bar-button-md {
+  margin-left: 110px;
+}
