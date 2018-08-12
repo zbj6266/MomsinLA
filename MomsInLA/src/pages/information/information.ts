@@ -21,7 +21,7 @@ export class InformationPage {
   planPurchase : string = "智能消费";
   lectures : any = [{name:"保险理财", index:0},{name:"宝宝教育",index:1},{name:"健康常识", index:2},{name:"法律知识",index:3}];
   lecture : string = "保险理财";
-  strategies : Array<string> = ["学区攻略","出游攻略","医疗攻略","小知识"];
+  strategies : Array<any> = [{name:"学区攻略", index:0},{name:"出游攻略", index:1},{name:"医疗攻略", index:2},{name:"小知识", index:3}];
   strategy : string = "学区攻略";
   expenses : Array<string> = ["商品买卖","家政服务","房屋租住","妈妈兼职"];
   expense : string = "商品买卖";
@@ -30,11 +30,7 @@ export class InformationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
     this.category = navParams.get("item");
-    this.films = this.httpClient.get('https://swapi.co/api/films');
-    this.films
-    .subscribe(data => {
-      console.log('my data: ', data);
-    })
+    
   }
 
   ionViewDidLoad() {
@@ -56,7 +52,16 @@ export class InformationPage {
 
   openDetail(id){
     console.log(id);
-    this.navCtrl.push('InfoDetailPage',{infoId: id, table: this.tables[this.category-1]});
+    tim.X(this.tables[this.category-1]).Set(id, {$inc:{numsRead:1}}).then(
+      data=>this.navCtrl.push('InfoDetailPage',{infoId: id, table: this.tables[this.category-1]})
+    );
+  }
+
+  onSearch(event){
+    console.log(event.target.value);
+    var re = new RegExp(event.target.value,"i");
+    tim.X(this.tables[this.category-1]).Get({query:{title:/to/i}}).then(data=>
+      console.log(data));
   }
 
 
