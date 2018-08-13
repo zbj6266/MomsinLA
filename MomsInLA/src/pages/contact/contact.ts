@@ -1,14 +1,18 @@
 import { Component, ViewChild} from '@angular/core';
-import { NavController, NavParams, Select } from 'ionic-angular';
+import { NavController, NavParams, Select, ActionSheetController } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var tim;
 declare var Create;
+
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
-export class ContactPage {
 
+export class ContactPage {
 
 buttonColor: string = '#f4f4f4'; //Default Color
 buttonColor1: string = '#f4f4f4'; //Default Color
@@ -22,7 +26,11 @@ buttonColor8: string = '#f4f4f4'; //Default Color
 buttonColor9: string = '#f4f4f4'; //Default Color
 buttonColor10: string = '#f4f4f4'; //Default Color
 buttonColor11: string = '#f4f4f4'; //Default Color
-	
+
+picArray: Array<any> = [];
+picNum: number = -1;
+picUrl:string ="assets/imgs/logo.png";
+
   calName = '';
   events = [];
   public event = {
@@ -221,24 +229,9 @@ this.buttonColor11 = '#fad548'; //desired Color
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera,public actionSheetCtrl: ActionSheetController, private sanitizer:DomSanitizer) {
   
   	this.calName = navParams.get('name');
- 
-
-	// this.category = navParams.get("item");
- //    if(this.category == 1)
- //      this.title = "活动";
-    
-	// this.calendar.findAllEventsInNamedCalendar(this.calName).then(
- //  data => {
- //  	this.events = data;
-//   }
-// );
-
-
-
-
   }
 
 
@@ -263,6 +256,75 @@ this.buttonColor11 = '#fad548'; //desired Color
 
   createEvent() {
   this.navCtrl.push("");
+  }
+
+
+  openCamera(){
+    // this.picArray.push("assets/imgs/logo.png");
+
+    const option: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      saveToPhotoAlbum: true
+    }
+    this.camera.getPicture(option).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.picArray.push(this.sanitizer.bypassSecurityTrustResourceUrl(imageData));
+      let filename = imageData.split("/").pop();
+      console.log(imageData);
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+     }, (err) => {
+      // Handle error
+     });
+  }
+
+  
+  openGallery(){
+    const option: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+    }
+    this.camera.getPicture(option).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.picArray.push(this.sanitizer.bypassSecurityTrustResourceUrl(imageData));
+      this.picNum = this.picNum + 1;
+      let filename = imageData.split("/").pop();
+      console.log(imageData);
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+     }, (err) => {
+      // Handle error
+     });
+  }
+
+  deletePic(){
+    this.picNum = this.picNum-1;
+    this.picArray.pop();
+  }
+
+  chooseSource(){
+    const actionSheet = this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: '拍照',
+          handler: () => {
+            this.openCamera();
+          }
+        },{
+          text: '从相册选取',
+          handler: () => {
+            this.openGallery();
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
 

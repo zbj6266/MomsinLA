@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
 
 declare var tim;
 
@@ -15,7 +13,6 @@ export class InformationPage {
   
 
   category: number;
-  title : string;
   disp : any;
   planPurchases : Array<string> = ["智能消费","打折软件","打折商品","团购信息"];
   planPurchase : string = "智能消费";
@@ -23,12 +20,11 @@ export class InformationPage {
   lecture : string = "保险理财";
   strategies : Array<any> = [{name:"学区攻略", index:0},{name:"出游攻略", index:1},{name:"医疗攻略", index:2},{name:"小知识", index:3}];
   strategy : string = "学区攻略";
-  expenses : Array<string> = ["商品买卖","家政服务","房屋租住","妈妈兼职"];
+  expenses : Array<any> = [{name: "商品买卖", index:0},{name: "家政服务", index:1},{name:"房屋租住", index:2},{name:"妈妈兼职",index:3}];
   expense : string = "商品买卖";
-  films: any;
   tables: Array<string> = ["purchases","lectures","strategies","expenses"];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.category = navParams.get("item");
     
   }

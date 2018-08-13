@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 286:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfoDetailPageModule", function() { return InfoDetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_detail__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_detail__ = __webpack_require__(296);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -27,7 +27,7 @@ var InfoDetailPageModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__info_detail__["a" /* InfoDetailPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__info_detail__["a" /* InfoDetailPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__info_detail__["a" /* InfoDetailPage */]),
             ],
         })
     ], InfoDetailPageModule);
@@ -38,13 +38,13 @@ var InfoDetailPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 295:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoDetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -87,7 +87,7 @@ var InfoDetailPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-info-detail',template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/info-detail/info-detail.html"*/'<!--\n  Generated template for the InfoDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar center>\n    <ion-title>专家讲座</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-card>\n    <div class="info-img">\n        <img src="assets/imgs/logo.png"/>\n    </div>\n    <ion-card-content *ngIf="disp.hasOwnProperty(\'introduction\')">\n      <ion-card-title>\n          {{disp.introduction.introTitle}}<br>\n          {{disp.introduction.introText}}\n      </ion-card-title>\n      <p>\n          {{disp.introduction.introContent}}\n      </p>\n    </ion-card-content>\n  </ion-card>\n  <div class="info-title">{{disp.title}}</div>\n  <ion-card>\n    <ion-card-content id="info-content" class="info-content" innerHTML="{{disp.content}}">     \n    </ion-card-content>\n  </ion-card>\n  <div *ngIf="disp.hasOwnProperty(\'supplement\')">\n  <div class="option-title">{{disp.supplement.title}}</div>\n  <ion-card>\n    <ion-card-content id="supplement" class="info-content" innerHTML="{{disp.supplement.content}}">\n    </ion-card-content>\n  </ion-card>\n  </div>\n  <div class="info-user">\n    <div class="info-like">\n      <div (click)="like()"><img id="like" src="assets/imgs/icon_like.png" width="20" height="20"></div>\n      <div class="info-margin">点赞</div>\n    </div>\n    <div class="info-collect">\n      <div><img src="assets/imgs/icon_collect.png" width="20" height="20"></div>\n      <div class="info-margin">收藏</div>\n    </div>\n    <div class="info-read">阅读 {{disp.numsRead}}</div>\n  </div>\n  <div class="info-share">\n    <div class="share-title">分享</div>\n    <div class="share-content">\n      <div class="sina">\n        <div><img src="assets/imgs/weibo.png"></div>\n        <div class="share-content-title">新浪微博</div>\n      </div>\n      <div class="wechat">\n        <div><img src="assets/imgs/weixin.png" alt=""></div>\n        <div class="share-content-title">微信</div>\n      </div>\n      <div class="facebook">\n          <div><img src="assets/imgs/facebook.png" alt=""></div>\n          <div class="share-content-title">Facebook</div>  \n      </div>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/info-detail/info-detail.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], InfoDetailPage);
     return InfoDetailPage;
 }());
