@@ -14,7 +14,7 @@ export class InformationPage {
 
   category: number;
   disp : any;
-  planPurchases : Array<string> = ["智能消费","打折软件","打折商品","团购信息"];
+  planPurchases : Array<any> = [{name:"智能消费",index:0},{name:"打折软件",index:1},{name:"打折商品", index:2},{name:"团购信息",index:3}];
   planPurchase : string = "智能消费";
   lectures : any = [{name:"保险理财", index:0},{name:"宝宝教育",index:1},{name:"健康常识", index:2},{name:"法律知识",index:3}];
   lecture : string = "保险理财";
@@ -26,7 +26,12 @@ export class InformationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.category = navParams.get("item");
-    
+    var arr=["dfs","qqq","ttt"];
+    console.log(arr);
+    delete arr[2];
+    console.log(arr);
+    console.log(arr[3]);
+
   }
 
   ionViewDidLoad() {
@@ -58,6 +63,14 @@ export class InformationPage {
     var re = new RegExp(event.target.value,"i");
     tim.X(this.tables[this.category-1]).Get({query:{title:/to/i}}).then(data=>
       console.log(data));
+  }
+
+  openAdd(){
+    this.navCtrl.push('ExchangeaddPage');
+  }
+
+  openExchange(id){
+    this.navCtrl.push('ExchangedetailPage');
   }
 
 

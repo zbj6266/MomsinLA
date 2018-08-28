@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Select} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Select, Img} from 'ionic-angular';
 // import { Calendar } from '@ionic-native/calendar';
 /**
  * Generated class for the ActivitylistPage page.
@@ -15,35 +15,21 @@ import { IonicPage, NavController, NavParams, Select} from 'ionic-angular';
   templateUrl: 'activitylist.html',
 })
 export class ActivitylistPage {
-  gaming: string;
+  
+  //
+  activityCards = [new ActivitylistCard(1), 
+                  new ActivitylistCard(2),
+                  new ActivitylistCard(3)];
+
+
   filters: Array<string>;
-  calName = '';
-  events = [];
-  public event = {
-    month: '2018-07-01',
-    timeStarts: '07:43',
-    
-  }
-  // petAlertOpts: any;
-  // petData: any;
-  // pets: Array<string>;
-  // hairColorData: any;
-  // hairColor: any;
-  // skittlesData: any;
-  // skittles: Array<any>;  
-  // notifications: string = 'mute_1';
-  // rating: number = 2;
+  
 	@ViewChild('sectionSelect') sectionSelect: Select;
   @ViewChild('sectionSelect2') sectionSelect2: Select;
   @ViewChild('sectionSelect3') sectionSelect3: Select;
   locate() {
      this.sectionSelect.open();
   }
-
-  calendar() {
-     this.sectionSelect2.open();
-  }
-
 
   filter() {
      this.sectionSelect3.open();
@@ -52,10 +38,8 @@ export class ActivitylistPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  
-  	this.calName = navParams.get('name');
-	this.gaming = 'n64';
-	this.filters = ['<1km'];
+
+    this.filters = ['<1km'];
 	// this.calendar.findAllEventsInNamedCalendar(this.calName).then(
  //  data => {
  //  	this.events = data;
@@ -66,7 +50,6 @@ export class ActivitylistPage {
 
 
   }
-
   compareFn(option1: any, option2: any) {
       return option1.value === option2.value;
   }
@@ -83,5 +66,28 @@ export class ActivitylistPage {
     console.log('ionViewDidLoad ActivitylistPage');
   }
   
+
+}
+
+
+export class ActivitylistCard{
+
+  title: string;
+  time: string;
+  location: string;
+  featrues: Array<string>
+  likes: number;
+  ThumbnailImg:string;
+  isOfficial:boolean;
+  
+  constructor(public id: number){
+    this.title = 'Kids Club at the Grove: blah blah';
+    this.time = '2018-01-01T18:00:00';//@todo reformat
+    this.location = '189 The Grove DR. CA91719';//@todo reformat
+    this.featrues = ['shoufei 10 dao','huwaiyouwan'];
+    this.likes = 15;
+    this.ThumbnailImg = 'assets/image/activityThumbnail.png';
+    this.isOfficial = false;
+  }
 
 }

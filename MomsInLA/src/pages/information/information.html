@@ -28,14 +28,14 @@
 </ion-header>
 
 
-<ion-content>
- <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="planPurchase">
+<ion-content fullscreen>
+ <!-- <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="planPurchase">
     <ion-segment-button *ngFor="let item of planPurchases" value="{{item}}">
         {{item}}
     </ion-segment-button>
-  </ion-segment>
+  </ion-segment> -->
 
-  <div *ngIf="category==1" [ngSwitch]="planPurchase" >
+  <!-- <div *ngIf="category==1" [ngSwitch]="planPurchase" >
     <ion-list *ngSwitchCase="'智能消费'">
       <ion-row>
         <ion-col col-6>
@@ -71,41 +71,39 @@
         <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
       </ion-item>
       <ion-item text-center>
-        <!-- <ion-card text-center> -->
             <button ion-button (click) = "calculate()" color = "dark" outline>计算</button>
-        <!-- </ion-card> -->
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'打折软件'">
       <ion-item>
-        <!-- <ion-thumbnail item-start> -->
           <img src="imgs/dealmoon.png">
-        <!-- </ion-thumbnail> -->
         <h2>打折软件</h2>
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'打折商品'">
       <ion-item>
-        <!-- <ion-thumbnail item-start> -->
           <img src="imgs/discount-poster.jpg">
-        <!-- </ion-thumbnail> -->
         <h2>打折商品</h2>
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'团购信息'">
       <ion-item>
-        <!-- <ion-thumbnail item-start> -->
           <img src="imgs/group-discount.jpg">
-        <!-- </ion-thumbnail> -->
         <h2>团购信息</h2>
       </ion-item>
     </ion-list>
-  </div>
+  </div> -->
   <!-- moms strategies end -->
 
   <!-- information start -->
   <div class="container" >
   <div>
+  <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="planPurchase">
+      <ion-segment-button *ngFor="let item of planPurchases" value="{{item.name}}" (click)="loadData(item.index)">
+        <div class="custom_button">{{item.name}}</div>
+      </ion-segment-button>
+    </ion-segment>
+
   <ion-segment mode="md" *ngIf="category==2" [(ngModel)]="lecture">
     <ion-segment-button *ngFor="let item of lectures" value="{{item.name}}" (click)="loadData(item.index)">
       <div class="custom_button">{{item.name}}</div>
@@ -128,7 +126,7 @@
   <div style="flex:1">
   <ion-scroll scrollY="true" style="height: 100%;">
   <div>
-    <ion-list>
+    <ion-list *ngIf="category!=4">
         <div class="info-list" *ngFor="let item of disp" (click)="openDetail(item._id)">
           <div class="info-title">{{item.title}}</div>
           <div style="display: flex">
@@ -138,6 +136,123 @@
              </div>
           </div>  
         </div>
+    </ion-list>
+    <ion-list *ngIf="category==4">
+        <div class="info-list" (click)="openExchange(1)">
+          <div class="info-title">7成新电箱</div>
+          <div style="display: flex">
+            <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+            <div class="exchange-text">
+            <div class="exchange-content">
+              开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+            </div>
+            <div class="exchange-time">
+                  发帖日期：07/08/2018
+            </div>
+            </div>
+            
+          </div>  
+        </div>
+
+        <div class="info-list" (click)="openDetail(1)">
+            <div class="info-title">7成新电箱</div>
+            <div style="display: flex">
+              <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+              <div class="exchange-text">
+              <div class="exchange-content">
+                开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+              </div>
+              <div class="exchange-time">
+                    发帖日期：07/08/2018
+              </div>
+              </div>
+              
+            </div>  
+          </div><div class="info-list" (click)="openDetail(1)">
+              <div class="info-title">7成新电箱</div>
+              <div style="display: flex">
+                <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                <div class="exchange-text">
+                <div class="exchange-content">
+                  开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+                </div>
+                <div class="exchange-time">
+                      发帖日期：07/08/2018
+                </div>
+                </div>
+                
+              </div>  
+            </div><div class="info-list" (click)="openDetail(1)">
+                <div class="info-title">7成新电箱</div>
+                <div style="display: flex">
+                  <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                  <div class="exchange-text">
+                  <div class="exchange-content">
+                    开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+                  </div>
+                  <div class="exchange-time">
+                        发帖日期：07/08/2018
+                  </div>
+                  </div>
+                  
+                </div>  
+              </div><div class="info-list" (click)="openDetail(1)">
+                  <div class="info-title">7成新电箱</div>
+                  <div style="display: flex">
+                    <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                    <div class="exchange-text">
+                    <div class="exchange-content">
+                      开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+                    </div>
+                    <div class="exchange-time">
+                          发帖日期：07/08/2018
+                    </div>
+                    </div>
+                    
+                  </div>  
+                </div><div class="info-list" (click)="openDetail(1)">
+                    <div class="info-title">7成新电箱</div>
+                    <div style="display: flex">
+                      <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                      <div class="exchange-text">
+                      <div class="exchange-content">
+                        开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+                      </div>
+                      <div class="exchange-time">
+                            发帖日期：07/08/2018
+                      </div>
+                      </div>
+                      
+                    </div>  
+                  </div><div class="info-list" (click)="openDetail(1)">
+                      <div class="info-title">7成新电箱</div>
+                      <div style="display: flex">
+                        <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                        <div class="exchange-text">
+                        <div class="exchange-content">
+                          开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+                        </div>
+                        <div class="exchange-time">
+                              发帖日期：07/08/2018
+                        </div>
+                        </div>
+                        
+                      </div>  
+                    </div><div class="info-list" (click)="openDetail(1)">
+                        <div class="info-title">7成新电箱</div>
+                        <div style="display: flex">
+                          <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
+                          <div class="exchange-text">
+                          <div class="exchange-content">
+                            开发绿色翻领宽松的疯狂拉升地方喀喇昆仑法律开发的看法开始了东方时空的饭卡斯洛伐克啦大神开发了 
+                          </div>
+                          <div class="exchange-time">
+                                发帖日期：07/08/2018
+                          </div>
+                          </div>
+                          
+                        </div>  
+                      </div>
     </ion-list>
   </div>
   </ion-scroll>
@@ -245,3 +360,6 @@
   </div> -->
   <!-- expense platform end -->
 </ion-content>
+<ion-footer no-border *ngIf="category==4">
+    <div class="icon-add" (click)="openAdd()"></div>
+  </ion-footer>

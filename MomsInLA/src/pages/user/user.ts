@@ -21,7 +21,7 @@ export class UserPage {
   key: string = "userId";
   userId: string = null;
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-    
+    this.storage.set(this.key,'dfs');
   }
   
 
@@ -30,6 +30,7 @@ export class UserPage {
   }
 
   ionViewWillEnter(){
+
     this.storage.get(this.key).then((val)=> {
       console.log(val);
       this.userId = val
@@ -45,5 +46,9 @@ export class UserPage {
   toSetting() {
     this.navCtrl.push("SettingPage");
   }
+  myCollection() {
+    this.navCtrl.push("CollectionPage");
+  }
+ 
 
 }

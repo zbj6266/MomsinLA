@@ -1,0 +1,74 @@
+<!--
+  Generated template for the CollectionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+        <div style="display: flex">
+          <div class="nav-button">
+          <button ion-button clear small navPop>  
+            <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> 
+          </button>
+          </div>
+          <div class="nav-title">收藏</div>
+          
+        </div>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+
+<div style="display: flex">
+  <div class="button-space"><button  name="活动" class="button-select" (click)='selectCategory($event)'>活动</button></div>
+  <div class="button-space"><button  name="讲座" (click)='selectCategory($event)'>讲座</button></div>
+  <div class="button-space"><button  name="攻略" (click)='selectCategory($event)'>攻略</button></div>
+  
+</div>
+
+
+
+
+
+
+
+  <!-- information start -->
+ 
+  <div class="title">三星电视 8成新 二手出售</div>
+  <div class="content-space">
+    <img src="assets/imgs/logo.png" width="100%">
+    <div class="content">2015年购入的55寸电视，型号：XXXX。现以200刀卖出，价格可刀可议。手机：626-420-2054/ 微信：XXXX
+    </div>
+    <div class="date">截止日期：7/8/2018<br>
+    阅读量 8080</div>
+  </div>
+  <div class="share-space">
+        <div class="info-share">
+          <div class="share-title">分享</div>
+          <div class="share-content">
+            <div class="sina">
+              <div><img src="assets/imgs/weibo.png"></div>
+              <div class="share-content-title">新浪微博</div>
+            </div>
+            <div class="wechat">
+              <div><img src="assets/imgs/weixin.png" alt=""></div>
+              <div class="share-content-title">微信</div>
+            </div>
+            <div class="facebook">
+                <div><img src="assets/imgs/facebook.png" alt=""></div>
+                <div class="share-content-title">Facebook</div>  
+            </div>
+          </div>
+        </div>
+  </div>
+  
+
+</ion-content>
+
+

@@ -61,11 +61,45 @@ page-information {
         overflow:hidden;
         text-overflow: ellipsis;
         line-height: 19px;
-        height:76px
+        max-height:76px；
+    }
+
+    .exchange-text{
+        flex:1;
+        margin-left: 11px;
+        margin-bottom: 17px;
+    }
+
+    .exchange-content{
+        
+        font-size: 13px;
+        
+        color:rgba(16, 16, 16, 0.5);
+        overflow:hidden;
+        text-overflow: ellipsis;
+        line-height: 19px;
+        max-height:38px;
+    }
+
+    .exchange-time{
+        margin-top: 5px;
+        font-size: 13px;
     }
 
     .toolbar .searchbar-ios .searchbar-input{
         background: #ffffff;
+    }
+
+    ion-footer{
+        background: rgba(1, 1, 1, 0.01);
+    }
+
+    .icon-add{
+        margin:14px auto;
+        width:38px;
+        height:38px;
+        background-image: url('../assets/icon/icon_add.png');
+        background-size:38px 38px
     }
 }
 
