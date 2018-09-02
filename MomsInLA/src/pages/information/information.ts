@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
-
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
+import { map } from 'rxjs/operators';
 
 declare var tim;
 
@@ -24,45 +25,37 @@ export class InformationPage {
   expense : string = "商品买卖";
   tables: Array<string> = ["purchases","lectures","strategies","expenses"];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  list$: any;
+  disp$: any
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fsp:FirebaseServiceProvider) {
     this.category = navParams.get("item");
-    var arr=["dfs","qqq","ttt"];
-    console.log(arr);
-    delete arr[2];
-    console.log(arr);
-    console.log(arr[3]);
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformationPage');
-    tim.X(this.tables[this.category-1]).Get({query:{category:0}}).then(data=>{
-      this.disp =data.data;
-      console.log(this.disp);
-    })
+    this.loadData(0);
   
   }
 
 
   loadData(index){
-    tim.X(this.tables[this.category-1]).Get({query:{category:index}}).then(data=>{
-      console.log(data);
-      this.disp =data.data;
-    })
+    this.disp$ = this.fsp.getInformationItems(this.category-1,index).snapshotChanges().pipe(
+      map(changes=>{
+        return changes.map(c=>({
+          key: c.payload.key, ...c.payload.val()
+        }))
+      })
+    );
   }
 
   openDetail(id){
     console.log(id);
-    tim.X(this.tables[this.category-1]).Set(id, {$inc:{numsRead:1}}).then(
-      data=>this.navCtrl.push('InfoDetailPage',{infoId: id, table: this.tables[this.category-1]})
-    );
+    
   }
 
   onSearch(event){
     console.log(event.target.value);
-    var re = new RegExp(event.target.value,"i");
-    tim.X(this.tables[this.category-1]).Get({query:{title:/to/i}}).then(data=>
-      console.log(data));
   }
 
   openAdd(){

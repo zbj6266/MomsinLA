@@ -1,14 +1,14 @@
 webpackJsonp([6],{
 
-/***/ 286:
+/***/ 508:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivitylistPageModule", function() { return ActivitylistPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExchangedetailPageModule", function() { return ExchangedetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__activitylist__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__exchangedetail__ = __webpack_require__(520);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ActivitylistPageModule = /** @class */ (function () {
-    function ActivitylistPageModule() {
+var ExchangedetailPageModule = /** @class */ (function () {
+    function ExchangedetailPageModule() {
     }
-    ActivitylistPageModule = __decorate([
+    ExchangedetailPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */],
+                __WEBPACK_IMPORTED_MODULE_2__exchangedetail__["a" /* ExchangedetailPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__exchangedetail__["a" /* ExchangedetailPage */]),
             ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */],
-            ]
         })
-    ], ActivitylistPageModule);
-    return ActivitylistPageModule;
+    ], ExchangedetailPageModule);
+    return ExchangedetailPageModule;
 }());
 
-//# sourceMappingURL=activitylist.module.js.map
+//# sourceMappingURL=exchangedetail.module.js.map
 
 /***/ }),
 
-/***/ 295:
+/***/ 520:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivitylistPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExchangedetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,76 +56,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-// import { Calendar } from '@ionic-native/calendar';
 /**
- * Generated class for the ActivitylistPage page.
+ * Generated class for the ExchangedetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ActivitylistPage = /** @class */ (function () {
-    function ActivitylistPage(navCtrl, navParams) {
+var ExchangedetailPage = /** @class */ (function () {
+    function ExchangedetailPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.calName = '';
-        this.events = [];
-        this.event = {
-            month: '2018-07-01',
-            timeStarts: '07:43',
-        };
-        this.calName = navParams.get('name');
-        this.gaming = 'n64';
-        this.filters = ['<1km'];
-        // this.calendar.findAllEventsInNamedCalendar(this.calName).then(
-        //  data => {
-        //  	this.events = data;
-        //   }
-        // );
-        navCtrl.push('ActivityPage');
     }
-    ActivitylistPage.prototype.locate = function () {
-        this.sectionSelect.open();
+    ExchangedetailPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ExchangedetailPage');
     };
-    ActivitylistPage.prototype.calendar = function () {
-        this.sectionSelect2.open();
-    };
-    ActivitylistPage.prototype.filter = function () {
-        this.sectionSelect3.open();
-    };
-    ActivitylistPage.prototype.compareFn = function (option1, option2) {
-        return option1.value === option2.value;
-    };
-    ActivitylistPage.prototype.monthChange = function (val) {
-        console.log('Month Change:', val);
-    };
-    ActivitylistPage.prototype.dayChange = function (val) {
-        console.log('Day Change:', val);
-    };
-    ActivitylistPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ActivitylistPage');
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */])
-    ], ActivitylistPage.prototype, "sectionSelect", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect2'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */])
-    ], ActivitylistPage.prototype, "sectionSelect2", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect3'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */])
-    ], ActivitylistPage.prototype, "sectionSelect3", void 0);
-    ActivitylistPage = __decorate([
+    ExchangedetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-activitylist',template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/activitylist/activitylist.html"*/'<!--\n  Generated template for the ActivitylistPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>activitylist</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content >\n<ion-searchbar\n  [(ngModel)]="myInput"\n  [showCancelButton]="shouldShowCancel"\n  (ionInput)="onInput($event)"\n  (ionCancel)="onCancel($event)">\n</ion-searchbar>\n\n\n  <ion-list>\n  	<ion-grid>\n  		<ion-row justify-content-start>\n        	<ion-col col-3>\n        		<ion-item no-lines>\n    			<button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n    			</ion-item>\n    		</ion-col>\n\n\n    \n\n    <!-- <ion-item>\n      <ion-label>Gaming</ion-label>\n      <ion-select [(ngModel)]="gaming" okText="Okay" cancelText="Dismiss">\n        <ion-option value="nes">NES</ion-option>\n        <ion-option value="n64">Nintendo64</ion-option>\n        <ion-option value="ps">PlayStation</ion-option>\n        <ion-option value="genesis">Sega Genesis</ion-option>\n        <ion-option value="saturn">Sega Saturn</ion-option>\n        <ion-option value="snes">SNES</ion-option>\n      </ion-select>\n    </ion-item> -->\n    \n		    \n\n		      <!-- <ion-col col-4>\n		      <ion-select  (ionChange)="monthChange($event)">\n		        <ion-option value="01">January</ion-option>\n		        <ion-option value="02">February</ion-option>\n		        <ion-option value="03">March</ion-option>\n		        <ion-option value="04">April</ion-option>\n		        <ion-option value="05">May</ion-option>\n		        <ion-option value="06">June</ion-option>\n		        <ion-option value="07">July</ion-option>\n		        <ion-option value="08">August</ion-option>\n		        <ion-option value="09">September</ion-option>\n		        <ion-option value="10">October</ion-option>\n		        <ion-option value="11">November</ion-option>\n		        <ion-option value="12">December</ion-option>\n		      </ion-select>\n		  </ion-col>\n		      <ion-col col-2>\n		      <ion-select #sectionSelect2 (ionChange)="dayChange($event)">\n		        <ion-option value="01">01</ion-option>\n		        <ion-option value="02">02</ion-option>\n		        <ion-option value="03">03</ion-option>\n		        <ion-option value="04">04</ion-option>\n		        <ion-option value="05">05</ion-option>\n		        <ion-option value="06">06</ion-option>\n		        <ion-option value="07">07</ion-option>\n		        <ion-option value="08">08</ion-option>\n		        <ion-option value="09">09</ion-option>\n		        <ion-option value="10">10</ion-option>\n		        <ion-option value="11">11</ion-option>\n		        <ion-option value="12">12</ion-option>\n		        <ion-option value="13">13</ion-option>\n		        <ion-option value="14">14</ion-option>\n		        <ion-option value="15">15</ion-option>\n		        <ion-option value="16">16</ion-option>\n		        <ion-option value="17">17</ion-option>\n		        <ion-option value="18">18</ion-option>\n		        <ion-option value="19">19</ion-option>\n		        <ion-option value="20">20</ion-option>\n		        <ion-option value="21">21</ion-option>\n		        <ion-option value="22">22</ion-option>\n		        <ion-option value="23">23</ion-option>\n		        <ion-option value="24">24</ion-option>\n		        <ion-option value="25">25</ion-option>\n		        <ion-option value="26">26</ion-option>\n		        <ion-option value="27">27</ion-option>\n		        <ion-option value="28">28</ion-option>\n		        <ion-option value="29">29</ion-option>\n		        <ion-option value="30">30</ion-option>\n		        <ion-option value="31">31</ion-option>\n\n		      </ion-select>\n		    \n		\n		</ion-col> -->\n		\n	<ion-col col-xl-1>\n		<ion-item no-lines >\n\n		 <ion-datetime #sectionSelect2 displayFormat="MMM DD YYYY" [(ngModel)]="event" style="display: none"></ion-datetime>\n		</ion-item>\n	</ion-col>\n	<ion-col col-3>\n		<ion-buttons end>\n				<button ion-button icon-only (click) = "calendar()" color = "dark" clear><ion-icon name="calendar" item-right></ion-icon></button>\n    		</ion-buttons>\n    	</ion-col>\n	\n	\n<ion-col col-xl-1>\n	\n    <ion-item no-lines>\n      \n	\n      <ion-select #sectionSelect3 [(ngModel)]="filters" interface="popover" cancelText="Nah" okText="Okay!" style="display: none">\n        <ion-option value="<1km">《1km</ion-option>\n        <ion-option value="rating">评分高</ion-option>\n        <ion-option value="View">访问</ion-option>\n        <ion-option value="feature">热门</ion-option>\n        \n      		</ion-select>\n   	 	</ion-item>\n    \n	</ion-col>\n	<ion-col col-3>\n			<ion-buttons end>\n				<button ion-button icon-only (click) = "filter()" color = "dark" clear><ion-icon name="md-color-filter" item-left></ion-icon></button>\n    		</ion-buttons>\n    </ion-col>\n			</ion-row>\n		</ion-grid>\n    </ion-list>\n\n</ion-content>\n\n    <!-- ion-item>\n      <ion-label>Pets</ion-label>\n      <ion-select [(ngModel)]="pets" multiple="true" [selectOptions]="petAlertOpts">\n        <ion-option *ngFor="let o of petData" [value]="o.value">{{o.text}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Skittles</ion-label>\n      <ion-select [(ngModel)]="skittles" multiple="true" okText="Okay" cancelText="Dismiss" [compareWith]="compareFn">\n        <ion-option *ngFor="let o of skittlesData" [value]="o">{{o.text}}</ion-option>\n      </ion-select>\n    </ion-item> -->\n\n   \n\n  \n    \n\n    <!-- < ion-item> -->\n      <!-- <ion-label>Rating</ion-label>\n      <ion-select [(ngModel)]="rating" interface="action-sheet">\n        <ion-option value="1">1 Star</ion-option>\n        <ion-option value="2">2 Stars</ion-option>\n        <ion-option value="3">3 Stars</ion-option>\n        <ion-option value="4">4 Stars</ion-option>\n        <ion-option value="5">5 Stars</ion-option>\n      </ion-select>\n    </ion-item> --> \n\n<!--  <-----------------Original code--------------->\n <!-- <ion-content padding>\n<ion-searchbar\n  [(ngModel)]="myInput"\n  [showCancelButton]="shouldShowCancel"\n  (ionInput)="onInput($event)"\n  (ionCancel)="onCancel($event)">\n</ion-searchbar>\n<ion-row>\n        <ion-col col-4>\n          <ion-item>\n            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        <ion-col col-4>\n          <ion-item class="padding-left-3px">\n            <button ion-button (click) = "calendar()" color = "dark" clear><ion-icon name="calendar"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        \n        \n\n	<ion-buttons end>\n		<button ion-button icon-only (click) = "filter()" color = "dark" clear><ion-icon name="md-color-filter"></ion-icon></button>\n	</ion-buttons>      		\n	<ion-label>Gender</ion-label>\n  <ion-select [(ngModel)]="gender">\n    <ion-option value="f">Female</ion-option>\n    <ion-option value="m">Male</ion-option>\n  </ion-select>\n	 </ion-row> -->\n	<!-- <ion-row>\n        <ion-col text-center>\n          <ion-item>\n            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        <ion-col>\n        	\n        </ion-col>\n        \n     </ion-row> -->\n\n<!-- </ion-content> -->\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/activitylist/activitylist.html"*/,
+            selector: 'page-exchangedetail',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangedetail/exchangedetail.html"*/'<!--\n  Generated template for the ExchangedetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-toolbar>\n        <div style="display: flex">\n          <div class="nav-button">\n          </div>\n          <div class="nav-title">交易帖子</div>\n          <div class="nav-button">\n          </div>\n        </div>\n    </ion-toolbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="title">三星电视 8成新 二手出售</div>\n  <div class="content-space">\n    <img src="assets/imgs/logo.png" width="100%">\n    <div class="content">2015年购入的55寸电视，型号：XXXX。现以200刀卖出，价格可刀可议。手机：626-420-2054/ 微信：XXXX\n    </div>\n    <div class="date">截止日期：7/8/2018<br>\n    阅读量 8080</div>\n  </div>\n  <div class="share-space">\n        <div class="info-share">\n          <div class="share-title">分享</div>\n          <div class="share-content">\n            <div class="sina">\n              <div><img src="assets/imgs/weibo.png"></div>\n              <div class="share-content-title">新浪微博</div>\n            </div>\n            <div class="wechat">\n              <div><img src="assets/imgs/weixin.png" alt=""></div>\n              <div class="share-content-title">微信</div>\n            </div>\n            <div class="facebook">\n                <div><img src="assets/imgs/facebook.png" alt=""></div>\n                <div class="share-content-title">Facebook</div>  \n            </div>\n          </div>\n        </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangedetail/exchangedetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], ActivitylistPage);
-    return ActivitylistPage;
+    ], ExchangedetailPage);
+    return ExchangedetailPage;
 }());
 
-//# sourceMappingURL=activitylist.js.map
+//# sourceMappingURL=exchangedetail.js.map
 
 /***/ })
 

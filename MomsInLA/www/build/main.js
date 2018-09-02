@@ -1,13 +1,13 @@
-webpackJsonp([9],{
+webpackJsonp([12],{
 
-/***/ 102:
+/***/ 153:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(152);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -33,6 +33,7 @@ var UserPage = /** @class */ (function () {
         this.storage = storage;
         this.key = "userId";
         this.userId = null;
+        this.storage.set(this.key, 'dfs');
     }
     UserPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad UserPage');
@@ -53,6 +54,9 @@ var UserPage = /** @class */ (function () {
     UserPage.prototype.toSetting = function () {
         this.navCtrl.push("SettingPage");
     };
+    UserPage.prototype.myCollection = function () {
+        this.navCtrl.push("CollectionPage");
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('username'),
         __metadata("design:type", Object)
@@ -63,7 +67,7 @@ var UserPage = /** @class */ (function () {
     ], UserPage.prototype, "password", void 0);
     UserPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-user',template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/user/user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title *ngIf="userId==null">登陆</ion-title>\n		<ion-title *ngIf="userId!=null">我的</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<div *ngIf="userId==null">\n		<img class="displayed"  height="125" width="125" src="assets/imgs/user_portrait.png">\n		<button class="login" block ion-button (click) = "signIn()" item-left>立即登录</button>\n			<!-- <button block ion-button (click) = "register()" color = "dark" >注册</button> -->\n	</div>\n	<div *ngIf="userId != null">\n			<img class="displayed"  height="150 px" width="150 px" src="imgs/User-photo.png">\n			\n		\n			<ion-title class = "adjust" style = "padding-top: 20px; padding-bottom: 20px">妈妈洛杉矶</ion-title>\n		\n		\n		<ion-item>\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="chatboxes" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "myPost()" color = "dark">我的帖子</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n			 \n		\n		<!-- <button ion-button full outline (click) = "myPost()" color = "dark">我的帖子<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon></button> -->\n				<ion-item>\n				<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="clipboard" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "myCollection()" color = "dark">我的收藏</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n		\n		<ion-item>\n		\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="cash" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "myCredits()" color = "dark">我的积分</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n		\n		<ion-item>\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="clock" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "History()" color = "dark">浏览记录</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n		\n		<ion-item>\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="settings" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "toSetting()" color = "dark">我的设置</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n	</div>\n				\n 				 \n 			\n 			<!-- <ion-card text-center>\n 			<div>城市： 洛杉矶 <button ion-button (click) = "switch" stacked color = "dark" clear>（切换）</button></div>\n  				\n  			</ion-card>\n  	\n  	\n  	<button ion-button full (click) = "myCredits()" color = "gray">我的积分<ion-icon name="arrow-forward" margin-left= "20px"></ion-icon></button>\n  	<<ion-icon name="arrow-forward"></ion-icon> -->\n  	\n <!--  <button ion-button full (click) = "myCollection()" color = "gray">我的收藏<ion-icon name="arrow-forward" margin-left= "200px"></ion-icon></button>\n  <button ion-button full (click) = "myPost()" color = "gray">我的帖子<ion-icon name="arrow-forward" margin-left= "-200px"></ion-icon></button>\n  <button ion-button full (click) = "History()" color = "gray">浏览历史<ion-icon name="arrow-forward" margin-left= "-200px"></ion-icon></button> --> \n  <!-- <button ion-button (click) = "home()">Go back</button> -->\n\n	\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/user/user.html"*/,
+            selector: 'page-user',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/user/user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title *ngIf="userId==null">登陆</ion-title>\n		<ion-title *ngIf="userId!=null">我的</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<div *ngIf="userId==null">\n		<img class="displayed"  height="125" width="125" src="assets/imgs/user_portrait.png">\n		<button class="login" block ion-button (click) = "signIn()" item-left>立即登录</button>\n			<!-- <button block ion-button (click) = "register()" color = "dark" >注册</button> -->\n	</div>\n	<div *ngIf="userId != null">\n			<img class="displayed"  height="150 px" width="150 px" src="imgs/User-photo.png">\n			\n		\n			<ion-title class = "adjust" style = "padding-top: 20px; padding-bottom: 20px">妈妈洛杉矶</ion-title>\n		\n		\n		<ion-item>\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="chatboxes" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "myPost()" color = "dark">我的帖子</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n			 \n		\n		<!-- <button ion-button full outline (click) = "myPost()" color = "dark">我的帖子<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon></button> -->\n				<ion-item>\n				<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="clipboard" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "myCollection()" color = "dark">我的收藏</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n		\n		<ion-item>\n		\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="cash" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "myCredits()" color = "dark">我的积分</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n		\n		<ion-item>\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="clock" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "History()" color = "dark">浏览记录</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n		\n		<ion-item>\n		<ion-toolbar >\n		<ion-buttons start>\n					<button class = "icon1" ion-button icon-only>\n						<ion-icon name="settings" color = "dark"></ion-icon>\n					</button>\n			</ion-buttons>\n					<ion-buttons>\n					<div text-center>\n				 <button ion-button full class = "icon2" (click) = "toSetting()" color = "dark">我的设置</button>\n		 </div>\n				</ion-buttons>\n				<ion-buttons end>\n					<button ion-button icon-only>\n						<ion-icon name="arrow-forward" padding-left= "100px" color="yellow"></ion-icon>\n					</button>\n				</ion-buttons>\n		</ion-toolbar>\n		</ion-item>\n	</div>\n				\n 				 \n 			\n 			<!-- <ion-card text-center>\n 			<div>城市： 洛杉矶 <button ion-button (click) = "switch" stacked color = "dark" clear>（切换）</button></div>\n  				\n  			</ion-card>\n  	\n  	\n  	<button ion-button full (click) = "myCredits()" color = "gray">我的积分<ion-icon name="arrow-forward" margin-left= "20px"></ion-icon></button>\n  	<<ion-icon name="arrow-forward"></ion-icon> -->\n  	\n <!--  <button ion-button full (click) = "myCollection()" color = "gray">我的收藏<ion-icon name="arrow-forward" margin-left= "200px"></ion-icon></button>\n  <button ion-button full (click) = "myPost()" color = "gray">我的帖子<ion-icon name="arrow-forward" margin-left= "-200px"></ion-icon></button>\n  <button ion-button full (click) = "History()" color = "gray">浏览历史<ion-icon name="arrow-forward" margin-left= "-200px"></ion-icon></button> --> \n  <!-- <button ion-button (click) = "home()">Go back</button> -->\n\n	\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/user/user.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
     ], UserPage);
@@ -74,7 +78,7 @@ var UserPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 113:
+/***/ 191:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -87,49 +91,61 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 113;
+webpackEmptyAsyncContext.id = 191;
 
 /***/ }),
 
-/***/ 155:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/activity/activity.module": [
-		286,
-		7
+		504,
+		10
 	],
 	"../pages/activitylist/activitylist.module": [
-		285,
+		505,
+		9
+	],
+	"../pages/collection/collection.module": [
+		506,
+		8
+	],
+	"../pages/exchangeadd/exchangeadd.module": [
+		507,
+		7
+	],
+	"../pages/exchangedetail/exchangedetail.module": [
+		508,
 		6
 	],
 	"../pages/info-detail/info-detail.module": [
-		287,
+		509,
 		5
 	],
 	"../pages/information/information.module": [
-		288,
+		510,
 		4
 	],
 	"../pages/login/login.module": [
-		289,
+		511,
 		3
 	],
 	"../pages/profile/profile.module": [
-		290,
+		512,
 		2
 	],
 	"../pages/register/register.module": [
-		291,
+		513,
 		1
 	],
 	"../pages/setting/setting.module": [
-		292,
+		514,
 		0
 	],
 	"../pages/user/user.module": [
-		293,
-		8
+		515,
+		11
 	]
 };
 function webpackAsyncContext(req) {
@@ -143,21 +159,21 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 155;
+webpackAsyncContext.id = 233;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 198:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_user__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_user__ = __webpack_require__(153);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -180,7 +196,7 @@ var TabsPage = /** @class */ (function () {
         this.tab4Root = __WEBPACK_IMPORTED_MODULE_4__user_user__["a" /* UserPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="首页" tabIcon="md-home"></ion-tab>\n  <!-- <ion-tab [root]="tab2Root" tabTitle="聊天" tabIcon="information-circle"></ion-tab> -->\n  <ion-tab [root]="tab3Root" tabTitle="活动" tabIcon="md-add-circle"></ion-tab>\n   <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="md-contact"></ion-tab>\n   <!-- <ion-tab [root]="tab2Root" tabTitle="我的" tabIcon="md-contact"></ion-tab> -->\n</ion-tabs>\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/tabs/tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="首页" tabIcon="md-home"></ion-tab>\n  <!-- <ion-tab [root]="tab2Root" tabTitle="聊天" tabIcon="information-circle"></ion-tab> -->\n  <ion-tab [root]="tab3Root" tabTitle="活动" tabIcon="md-add-circle"></ion-tab>\n   <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="md-contact"></ion-tab>\n   <!-- <ion-tab [root]="tab2Root" tabTitle="我的" tabIcon="md-contact"></ion-tab> -->\n</ion-tabs>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/tabs/tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -191,13 +207,13 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 199:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -215,7 +231,7 @@ var AboutPage = /** @class */ (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/about/about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/about/about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], AboutPage);
@@ -226,15 +242,15 @@ var AboutPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 200:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -489,37 +505,36 @@ var ContactPage = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */])
     ], ContactPage.prototype, "sectionSelect", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect2'),
-        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */]) === "function" && _b || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */])
     ], ContactPage.prototype, "sectionSelect2", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect3'),
-        __metadata("design:type", typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */]) === "function" && _c || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Select */])
     ], ContactPage.prototype, "sectionSelect3", void 0);
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-toolbar>\n    <!-- <div style="display: flex">\n      <div>\n      <button ion-button clear medium navPop style="padding: 0;">  \n       取消\n      </button>\n      </div>\n  </div> -->\n    <ion-title>\n      添加活动\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <button ion-button (click)="openCamera()">拍照</button>\n  <div style="width:100%; display: flex">\n    <div style="width: 25%; padding:5px" *ngFor="let pic of picArray">\n      <img [src]="pic" hegiht="100%" width="100%" />\n    </div>\n    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=3">\n        <button  (click)="chooseSource()">add</button>\n    </div>\n    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=0">\n        <button  (click)="deletePic()">delete</button>\n    </div>\n  </div>\n  <div id="container">\n  <ion-list>\n  <ion-item id = "rounded">\n    \n    <ion-input onfocus="this.placeholder = \'\' " placeholder="活动名称" type="text" onblur="this.placeholder = \'活动名称\'"#username></ion-input>\n  </ion-item>\n</ion-list>\n</div>\n<ion-list>\n  <ion-item>\n    <ion-textarea #msgInput rows="7" maxLength="200"  onfocus="this.placeholder = \'\' " placeholder="活动介绍，请不要超过200个字" onblur="this.placeholder = \'活动介绍，请不要超过200个字\'"></ion-textarea>\n  </ion-item>\n</ion-list>\n\n<ion-list>\n    <ion-grid>\n      <ion-row justify-content-start>\n\n  <ion-col col-3>\n    <ion-buttons end>\n        <button ion-button icon-only (click) = "calendar()" color = "dark" clear><ion-icon name="calendar" item-left></ion-icon></button>\n        </ion-buttons>\n      </ion-col>\n\n\n      <ion-col col-xl-1>\n    <ion-item>\n\n     <ion-datetime #sectionSelect2 displayFormat="MMM DD YY" [(ngModel)]="event"></ion-datetime>\n    </ion-item>\n  </ion-col>\n  \n\n     \n      <ion-col col-xl-1 >\n        <ion-item>\n      <ion-datetime displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="event"></ion-datetime>\n    </ion-item>\n    </ion-col>\n \n  </ion-row>\n  </ion-grid>\n</ion-list>\n<ion-row>\n        <ion-col col-3>\n            <ion-item no-lines>\n          <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n\n        <ion-col col-8>\n    <ion-item>\n    \n    <ion-input onfocus="this.placeholder = \'\' " placeholder="具体地址" type="text" onblur="this.placeholder = \'具体地址\'"></ion-input>\n  </ion-item>\n</ion-col>\n</ion-row>\n\n\n<ion-row>\n    <ion-col col-6>\n        <ion-item>\n        \n        <ion-input onfocus="this.placeholder = \'\' " placeholder="城市" type="text" onblur="this.placeholder = \'城市\'"></ion-input>\n      </ion-item>\n\n\n    </ion-col>\n\n    <ion-col col-6>\n        <ion-item>\n        \n        <ion-input onfocus="this.placeholder = \'\' " placeholder="邮编" type="text" onblur="this.placeholder = \'邮编\'"></ion-input>\n      </ion-item>\n\n      \n    </ion-col>\n</ion-row>\n\n<ion-title style = "padding-top: 50px">活动属性</ion-title>\n\n\n<!-- <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="freeEvent">\n    <ion-segment-button *ngFor="let item of freeEvents" value="{{item}}">\n\n        <div class="custom_button">{{item}}</div>\n\n       \n\n    </ion-segment-button>\n  </ion-segment>\n <div *ngIf="category==1" [ngSwitch]="free" >\n    <ion-list *ngSwitchCase="\'免费\'">\n      \n    </ion-list>\n  </div> -->\n  <ion-grid>\n   <ion-row class="align-items-flex-end">\n    <ion-col col-4 no-padding>\n\n    <ion-item no-lines>\n      <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{\'background-color\': buttonColor}"  class="custom-button" (click) = "changeState()">免费</button>\n    </ion-item>\n  </ion-col>\n    <ion-col col-8 no-padding>\n    <ion-item no-lines>\n      \n      <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{\'background-color\': buttonColor1}"  class="custom-button" (click) = "changeState1()">收费 $/人均</button>\n     \n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n<ion-grid>\n<ion-list>\n<ion-row class="align-items-flex-end">\n    <ion-col col-6 no-padding>\n\n    <ion-item no-lines>\n      <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{\'background-color\': buttonColor2}"  class="custom-button" (click) = "changeState2()">公共活动</button>\n    </ion-item>\n  </ion-col>\n    <ion-col col-6 no-padding>\n    <ion-item no-lines>\n      \n      <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{\'background-color\': buttonColor3}"  class="custom-button" (click) = "changeState3()">私人活动</button>\n     \n    </ion-item>\n  </ion-col>\n</ion-row>\n  </ion-list>\n</ion-grid>\n\n<!-- Using radio select --> \n\n  <!-- <ion-list radio-group>\n   <ion-row class="align-items-flex-end">\n    <ion-col col-4>\n\n    <ion-item >\n      <ion-label color="dark" font = "10px">免费</ion-label>\n      <ion-radio color = "yellow" value="always" checked></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-8>\n    <ion-item>\n      <ion-label color="dark">收费</ion-label>\n      <ion-radio color = "yellow" value="locked"></ion-radio>\n      <ion-input onfocus="this.placeholder = \'\' " placeholder="$/人均" type="number" onblur="this.placeholder = \'$/人均\'"></ion-input>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-list>\n<ion-list radio-group>\n<ion-row>\n    <ion-col col-6>\n\n    <ion-item>\n      <ion-label color="dark">公共活动</ion-label>\n      <ion-radio color = "yellow" value="always" checked></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-6>\n    <ion-item>\n      <ion-label color="dark">私人活动</ion-label>\n      \n      <ion-radio color = "yellow" value="locked"></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n  </ion-list> -->\n\n\n\n<ion-grid class = "button-group">\n  <ion-row>\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventd();" [ngStyle]="{\'background-color\': buttonColor4}" class="btn" (dblclick) = "changeState4()">户外游乐</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEvente();" [ngStyle]="{\'background-color\': buttonColor5}"  class="btn" (dblclick) = "changeState5()">益智教育</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventf();" [ngStyle]="{\'background-color\': buttonColor6}"  class="btn" (dblclick) = "changeState6()">动物植物</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventg();" [ngStyle]="{\'background-color\': buttonColor7}"  class="btn" (dblclick) = "changeState7()">游乐园</button>\n        </ion-item>\n    </ion-col>\n  </ion-row>\n\n  <ion-row>\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n         \n           <button ion-button no-margin medium full (click)="addEventh();" [ngStyle]="{\'background-color\': buttonColor8}"  class="btn" (dblclick) = "changeState8()">室内游乐</button>\n         \n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventi();" [ngStyle]="{\'background-color\': buttonColor9}"  class="btn" (dblclick) = "changeState9()">科普知识</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventj();" [ngStyle]="{\'background-color\': buttonColor10}"  class="btn" (dblclick) = "changeState10()">免费停车</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventk();" [ngStyle]="{\'background-color\': buttonColor11}"  class="btn" (dblclick) = "changeState11()">其他类型</button>\n        </ion-item>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n<!-- Using radio select -->\n        \n            <!-- <ion-grid>\n                 <ion-row align-items-center>\n             <ion-col col-xl-1>\n\n    <ion-item no-lines>\n      <ion-label stacked color="dark">户外游乐</ion-label>\n      <ion-radio  color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">益智教育</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label  stacked color="dark">动物植物</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">游乐园</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n\n\n\n<ion-list>\n<ion-grid>\n<ion-row>\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">室内游乐</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">科普知识</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">免费停车</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">其他类型</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n  </ion-list> -->\n\n\n\n         <ion-item no-lines>\n          <button ion-button block large (click) = "createEvent()" color = "yellow">建立活动</button>\n          </ion-item>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/contact/contact.html"*/
+            selector: 'page-contact',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-toolbar>\n    <!-- <div style="display: flex">\n      <div>\n      <button ion-button clear medium navPop style="padding: 0;">  \n       取消\n      </button>\n      </div>\n  </div> -->\n    <ion-title>\n      添加活动\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <button ion-button (click)="openCamera()">拍照</button>\n  <div style="width:100%; display: flex">\n    <div style="width: 25%; padding:5px" *ngFor="let pic of picArray">\n      <img [src]="pic" hegiht="100%" width="100%" />\n    </div>\n    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=3">\n        <button  (click)="chooseSource()">add</button>\n    </div>\n    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=0">\n        <button  (click)="deletePic()">delete</button>\n    </div>\n  </div>\n  <div id="container">\n  <ion-list>\n  <ion-item id = "rounded">\n    \n    <ion-input onfocus="this.placeholder = \'\' " placeholder="活动名称" type="text" onblur="this.placeholder = \'活动名称\'"#username></ion-input>\n  </ion-item>\n</ion-list>\n</div>\n<ion-list>\n  <ion-item>\n    <ion-textarea #msgInput rows="7" maxLength="200"  onfocus="this.placeholder = \'\' " placeholder="活动介绍，请不要超过200个字" onblur="this.placeholder = \'活动介绍，请不要超过200个字\'"></ion-textarea>\n  </ion-item>\n</ion-list>\n\n<ion-list>\n    <ion-grid>\n      <ion-row justify-content-start>\n\n  <ion-col col-3>\n    <ion-buttons end>\n        <button ion-button icon-only (click) = "calendar()" color = "dark" clear><ion-icon name="calendar" item-left></ion-icon></button>\n        </ion-buttons>\n      </ion-col>\n\n\n      <ion-col col-xl-1>\n    <ion-item>\n\n     <ion-datetime #sectionSelect2 displayFormat="MMM DD YY" [(ngModel)]="event"></ion-datetime>\n    </ion-item>\n  </ion-col>\n  \n\n     \n      <ion-col col-xl-1 >\n        <ion-item>\n      <ion-datetime displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="event"></ion-datetime>\n    </ion-item>\n    </ion-col>\n \n  </ion-row>\n  </ion-grid>\n</ion-list>\n<ion-row>\n        <ion-col col-3>\n            <ion-item no-lines>\n          <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n\n        <ion-col col-8>\n    <ion-item>\n    \n    <ion-input onfocus="this.placeholder = \'\' " placeholder="具体地址" type="text" onblur="this.placeholder = \'具体地址\'"></ion-input>\n  </ion-item>\n</ion-col>\n</ion-row>\n\n\n<ion-row>\n    <ion-col col-6>\n        <ion-item>\n        \n        <ion-input onfocus="this.placeholder = \'\' " placeholder="城市" type="text" onblur="this.placeholder = \'城市\'"></ion-input>\n      </ion-item>\n\n\n    </ion-col>\n\n    <ion-col col-6>\n        <ion-item>\n        \n        <ion-input onfocus="this.placeholder = \'\' " placeholder="邮编" type="text" onblur="this.placeholder = \'邮编\'"></ion-input>\n      </ion-item>\n\n      \n    </ion-col>\n</ion-row>\n\n<ion-title style = "padding-top: 50px">活动属性</ion-title>\n\n\n<!-- <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="freeEvent">\n    <ion-segment-button *ngFor="let item of freeEvents" value="{{item}}">\n\n        <div class="custom_button">{{item}}</div>\n\n       \n\n    </ion-segment-button>\n  </ion-segment>\n <div *ngIf="category==1" [ngSwitch]="free" >\n    <ion-list *ngSwitchCase="\'免费\'">\n      \n    </ion-list>\n  </div> -->\n  <ion-grid>\n   <ion-row class="align-items-flex-end">\n    <ion-col col-4 no-padding>\n\n    <ion-item no-lines>\n      <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{\'background-color\': buttonColor}"  class="custom-button" (click) = "changeState()">免费</button>\n    </ion-item>\n  </ion-col>\n    <ion-col col-8 no-padding>\n    <ion-item no-lines>\n      \n      <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{\'background-color\': buttonColor1}"  class="custom-button" (click) = "changeState1()">收费 $/人均</button>\n     \n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n<ion-grid>\n<ion-list>\n<ion-row class="align-items-flex-end">\n    <ion-col col-6 no-padding>\n\n    <ion-item no-lines>\n      <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{\'background-color\': buttonColor2}"  class="custom-button" (click) = "changeState2()">公共活动</button>\n    </ion-item>\n  </ion-col>\n    <ion-col col-6 no-padding>\n    <ion-item no-lines>\n      \n      <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{\'background-color\': buttonColor3}"  class="custom-button" (click) = "changeState3()">私人活动</button>\n     \n    </ion-item>\n  </ion-col>\n</ion-row>\n  </ion-list>\n</ion-grid>\n\n<!-- Using radio select --> \n\n  <!-- <ion-list radio-group>\n   <ion-row class="align-items-flex-end">\n    <ion-col col-4>\n\n    <ion-item >\n      <ion-label color="dark" font = "10px">免费</ion-label>\n      <ion-radio color = "yellow" value="always" checked></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-8>\n    <ion-item>\n      <ion-label color="dark">收费</ion-label>\n      <ion-radio color = "yellow" value="locked"></ion-radio>\n      <ion-input onfocus="this.placeholder = \'\' " placeholder="$/人均" type="number" onblur="this.placeholder = \'$/人均\'"></ion-input>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-list>\n<ion-list radio-group>\n<ion-row>\n    <ion-col col-6>\n\n    <ion-item>\n      <ion-label color="dark">公共活动</ion-label>\n      <ion-radio color = "yellow" value="always" checked></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-6>\n    <ion-item>\n      <ion-label color="dark">私人活动</ion-label>\n      \n      <ion-radio color = "yellow" value="locked"></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n  </ion-list> -->\n\n\n\n<ion-grid class = "button-group">\n  <ion-row>\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventd();" [ngStyle]="{\'background-color\': buttonColor4}" class="btn" (dblclick) = "changeState4()">户外游乐</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEvente();" [ngStyle]="{\'background-color\': buttonColor5}"  class="btn" (dblclick) = "changeState5()">益智教育</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventf();" [ngStyle]="{\'background-color\': buttonColor6}"  class="btn" (dblclick) = "changeState6()">动物植物</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventg();" [ngStyle]="{\'background-color\': buttonColor7}"  class="btn" (dblclick) = "changeState7()">游乐园</button>\n        </ion-item>\n    </ion-col>\n  </ion-row>\n\n  <ion-row>\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n         \n           <button ion-button no-margin medium full (click)="addEventh();" [ngStyle]="{\'background-color\': buttonColor8}"  class="btn" (dblclick) = "changeState8()">室内游乐</button>\n         \n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventi();" [ngStyle]="{\'background-color\': buttonColor9}"  class="btn" (dblclick) = "changeState9()">科普知识</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventj();" [ngStyle]="{\'background-color\': buttonColor10}"  class="btn" (dblclick) = "changeState10()">免费停车</button>\n        </ion-item>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n        <ion-item no-lines no-padding>\n           <button ion-button no-margin medium full (click)="addEventk();" [ngStyle]="{\'background-color\': buttonColor11}"  class="btn" (dblclick) = "changeState11()">其他类型</button>\n        </ion-item>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n<!-- Using radio select -->\n        \n            <!-- <ion-grid>\n                 <ion-row align-items-center>\n             <ion-col col-xl-1>\n\n    <ion-item no-lines>\n      <ion-label stacked color="dark">户外游乐</ion-label>\n      <ion-radio  color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">益智教育</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label  stacked color="dark">动物植物</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">游乐园</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n\n\n\n<ion-list>\n<ion-grid>\n<ion-row>\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">室内游乐</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">科普知识</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">免费停车</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">其他类型</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n  </ion-list> -->\n\n\n\n         <ion-item no-lines>\n          <button ion-button block large (click) = "createEvent()" color = "yellow">建立活动</button>\n          </ion-item>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/contact/contact.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */]])
     ], ContactPage);
     return ContactPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=contact.js.map
 
 /***/ }),
 
-/***/ 202:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -544,7 +559,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/home/home.html"*/'<ion-header id="header" no-border>\n  <ion-navbar class="navbar">\n    <ion-title text-center>Momsinla</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content id="content">\n  <div style="height:100%;display: flex; flex-direction: column;">\n  <div class="home-logo">\n    <img src="imgs/logo_title.png" />\n  </div>\n  <div class="center-view" style="padding-top: 30px">\n    <div (click) = "activityList()"\n    style="text-align:center;margin:auto;">\n      <img src="imgs/icon_daily_activity.png" height="160" width="160">\n      <div class="font-content">每日活动</div>\n    </div>\n  </div>\n  </div>\n</ion-content>\n\n<ion-footer no-border>\n  <div class="column">\n    <ion-grid>\n      <ion-row>\n        <ion-col text-center (click) = "toInformation(1)">\n          <img src="imgs/icon_save.png" height="32" width="32" />\n          <div class="font-content">精打细算</div>\n        </ion-col>\n        <ion-col text-center (click) = "toInformation(2)">\n          <img src="imgs/icon_lecture.png" height="32" width="32" />\n          <div class="font-content">专家讲座</div>\n        </ion-col>\n        <ion-col text-center (click) = "toInformation(3)">\n          <img src="imgs/icon_strategy.png" height="32" width="32" />\n          <div class="font-content">妈妈攻略</div>\n        </ion-col>\n        <ion-col text-center (click) = "toInformation(4)">\n          <img src="imgs/icon_expense.png" height="32" width="32" />\n          <div class="font-content">交易平台</div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/home/home.html"*/'<ion-header id="header" no-border>\n  <ion-navbar class="navbar">\n    <ion-title text-center>Momsinla</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content id="content">\n  <div style="height:100%;display: flex; flex-direction: column;">\n  <div class="home-logo">\n    <img src="imgs/logo_title.png" />\n  </div>\n  <div class="center-view" style="padding-top: 30px">\n    <div (click) = "activityList()"\n    style="text-align:center;margin:auto;">\n      <img src="imgs/icon_daily_activity.png" height="160" width="160">\n      <div class="font-content">每日活动</div>\n    </div>\n  </div>\n  </div>\n</ion-content>\n\n<ion-footer no-border>\n  <div class="column">\n    <ion-grid>\n      <ion-row>\n        <ion-col text-center (click) = "toInformation(1)">\n          <img src="imgs/icon_save.png" height="32" width="32" />\n          <div class="font-content">精打细算</div>\n        </ion-col>\n        <ion-col text-center (click) = "toInformation(2)">\n          <img src="imgs/icon_lecture.png" height="32" width="32" />\n          <div class="font-content">专家讲座</div>\n        </ion-col>\n        <ion-col text-center (click) = "toInformation(3)">\n          <img src="imgs/icon_strategy.png" height="32" width="32" />\n          <div class="font-content">妈妈攻略</div>\n        </ion-col>\n        <ion-col text-center (click) = "toInformation(4)">\n          <img src="imgs/icon_expense.png" height="32" width="32" />\n          <div class="font-content">交易平台</div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], HomePage);
@@ -555,13 +570,62 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 204:
+/***/ 292:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(234);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the FirebaseServiceProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var FirebaseServiceProvider = /** @class */ (function () {
+    function FirebaseServiceProvider(afd) {
+        this.afd = afd;
+        this.tables = ["/purchases/", "/lectures/", "/strategies/", "/expenses/"];
+        console.log('Hello FirebaseServiceProvider Provider');
+    }
+    FirebaseServiceProvider.prototype.getInformationItems = function (index, cat) {
+        console.log("category:" + index, "sub:" + cat);
+        return this.afd.list(this.tables[index], function (ref) { return ref.orderByChild('category').equalTo(cat); });
+    };
+    FirebaseServiceProvider.prototype.getItem = function (index, key) {
+        console.log(this.tables[index] + key);
+        return this.afd.list(this.tables[index] + key);
+    };
+    FirebaseServiceProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+    ], FirebaseServiceProvider);
+    return FirebaseServiceProvider;
+}());
+
+//# sourceMappingURL=firebase-service.js.map
+
+/***/ }),
+
+/***/ 293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(426);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -569,26 +633,29 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 225:
+/***/ 426:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_user__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_screen_orientation__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_storage__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_user__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_screen_orientation__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_storage__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_firebase_service_firebase_service__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angularfire2___ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angularfire2_database__ = __webpack_require__(234);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -611,6 +678,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+var config = {
+    apiKey: "AIzaSyCjg_BSbq9Yy3JqElUTpl-zfo2PhnzZF7I",
+    authDomain: "momsinla-1533369939594.firebaseapp.com",
+    databaseURL: "https://momsinla-1533369939594.firebaseio.com",
+    projectId: "momsinla-1533369939594",
+    storageBucket: "momsinla-1533369939594.appspot.com",
+    messagingSenderId: "480270997253"
+};
 // import { Calendar } from '@ionic-native/calendar';
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -630,8 +708,11 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__angular_common_http__["a" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], { tabsHideOnSubPages: true }, {
                     links: [
-                        { loadChildren: '../pages/activitylist/activitylist.module#ActivitylistPageModule', name: 'ActivitylistPage', segment: 'activitylist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/activity/activity.module#ActivityPageModule', name: 'ActivityPage', segment: 'activity', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/activitylist/activitylist.module#ActivitylistPageModule', name: 'ActivitylistPage', segment: 'activitylist', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/collection/collection.module#CollectionPageModule', name: 'CollectionPage', segment: 'collection', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/exchangeadd/exchangeadd.module#ExchangeaddPageModule', name: 'ExchangeaddPage', segment: 'exchangeadd', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/exchangedetail/exchangedetail.module#ExchangedetailPageModule', name: 'ExchangedetailPage', segment: 'exchangedetail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info-detail/info-detail.module#InfoDetailPageModule', name: 'InfoDetailPage', segment: 'info-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/information/information.module#InformationPageModule', name: 'InformationPage', segment: 'information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
@@ -641,7 +722,9 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/user/user.module#UserPageModule', name: 'UserPage', segment: 'user', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_13__ionic_storage__["a" /* IonicStorageModule */].forRoot()
+                __WEBPACK_IMPORTED_MODULE_13__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_17_angularfire2_database__["b" /* AngularFireDatabaseModule */],
+                __WEBPACK_IMPORTED_MODULE_16_angularfire2___["a" /* AngularFireModule */].initializeApp(config)
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicApp */]],
             entryComponents: [
@@ -657,7 +740,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_12__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */]
+                __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
+                __WEBPACK_IMPORTED_MODULE_15__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]
             ]
         })
     ], AppModule);
@@ -668,16 +752,16 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 275:
+/***/ 488:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(287);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -703,7 +787,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/fox/Documents/ionic/MomsinLA/MomsInLA/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -714,5 +798,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[204]);
+},[293]);
 //# sourceMappingURL=main.js.map

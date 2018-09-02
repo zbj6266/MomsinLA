@@ -17,7 +17,18 @@ import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 
+import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
+import { AngularFireModule }  from 'angularfire2/';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+const config = {
+  apiKey: "AIzaSyCjg_BSbq9Yy3JqElUTpl-zfo2PhnzZF7I",
+  authDomain: "momsinla-1533369939594.firebaseapp.com",
+  databaseURL: "https://momsinla-1533369939594.firebaseio.com",
+  projectId: "momsinla-1533369939594",
+  storageBucket: "momsinla-1533369939594.appspot.com",
+  messagingSenderId: "480270997253"
+};
 // import { Calendar } from '@ionic-native/calendar';
 @NgModule({
   declarations: [
@@ -34,7 +45,10 @@ import { Camera } from '@ionic-native/camera';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp,{tabsHideOnSubPages: true}),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(config)
+
 
   ],
   bootstrap: [IonicApp],
@@ -52,7 +66,8 @@ import { Camera } from '@ionic-native/camera';
     SplashScreen,
     ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Camera
+    Camera,
+    FirebaseServiceProvider
   ]
 })
 export class AppModule {}
