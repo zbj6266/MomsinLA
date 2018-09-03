@@ -3,9 +3,6 @@ import { NavController, NavParams, Select, ActionSheetController } from 'ionic-a
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 
-declare var tim;
-declare var Create;
-
 
 @Component({
   selector: 'page-contact',
@@ -33,9 +30,11 @@ picUrl:string ="assets/imgs/logo.png";
 
   calName = '';
   events = [];
-  public event = {
-    month: '2018-07-01',
-    timeStarts: '09:00',
+  now = new Date();
+  d: string = this.now.getFullYear()+'-'+this.now.getMonth()+'-'+this.now.getDate();
+  event:Object = {
+    date: this.now,
+    time: '9:00',
     
   }
   //name:string;
@@ -59,6 +58,21 @@ picUrl:string ="assets/imgs/logo.png";
   @ViewChild('sectionSelect') sectionSelect: Select;
   @ViewChild('sectionSelect2') sectionSelect2: Select;
   @ViewChild('sectionSelect3') sectionSelect3: Select;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera,public actionSheetCtrl: ActionSheetController, private sanitizer:DomSanitizer) {
+    let now = new Date();
+    let year = now.getFullYear();
+    let month:any = now.getMonth()+1<10? "0"+(now.getMonth()+1):now.getMonth()+1;
+    let date = now.getDate()+1<10? "0"+now.getDate():now.getDate();
+    let hour = now.getHours()+1 < 10 ? "0"+now.getHours():now.getHours();
+    let min = now.getMinutes()+1 < 10 ? "0"+now.getMinutes():now.getMinutes()
+    console.log(year+'-'+month+'-'+date);
+    this.event = {
+      date: year+'-'+month+'-'+date,
+      time: hour+':'+min
+    }
+  	this.calName = navParams.get('name');
+  }
   locate() {
      this.sectionSelect.open();
   }
@@ -225,14 +239,6 @@ addEventk(){
 this.buttonColor11 = '#fad548'; //desired Color
 
 }
-
-
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera,public actionSheetCtrl: ActionSheetController, private sanitizer:DomSanitizer) {
-  
-  	this.calName = navParams.get('name');
-  }
 
 
 
