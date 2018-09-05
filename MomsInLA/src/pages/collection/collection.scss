@@ -70,6 +70,27 @@ page-collection {
     .ex-content{
         width:100%;
     }
+    .exchange-text{
+        flex:1;
+        margin-left: 11px;
+        margin-bottom: 17px;
+    }
+
+    .exchange-content{
+        
+        font-size: 13px;
+        
+        color:rgba(16, 16, 16, 0.5);
+        overflow:hidden;
+        text-overflow: ellipsis;
+        line-height: 19px;
+        max-height:38px;
+    }
+
+    .exchange-time{
+        margin-top: 5px;
+        font-size: 13px;
+    }
 
 
 }
