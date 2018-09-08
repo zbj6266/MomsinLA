@@ -24,7 +24,7 @@
           {{disp.introduction.introText}}
       </ion-card-title>
       <p>
-          {{disp.introduction.introContent}}
+          {{disp.introduction.introduction}}
       </p>
     </ion-card-content>
   </ion-card>
@@ -33,10 +33,10 @@
     <ion-card-content id="info-content" class="info-content" innerHTML="{{disp.content}}">     
     </ion-card-content>
   </ion-card>
-  <div *ngIf="disp.hasOwnProperty('supplement')">
-  <div class="option-title">{{disp.supplement.title}}</div>
+  <div *ngIf="disp.hasOwnProperty('suplement')">
+  <div class="option-title">{{disp.suplement.title}}</div>
   <ion-card>
-    <ion-card-content id="supplement" class="info-content" innerHTML="{{disp.supplement.content}}">
+    <ion-card-content id="supplement" class="info-content" innerHTML="{{disp.suplement.content}}">
     </ion-card-content>
   </ion-card>
   </div>

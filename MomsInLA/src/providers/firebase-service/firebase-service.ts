@@ -22,7 +22,7 @@ export class FirebaseServiceProvider {
 
   getItem(index, key){
     console.log(this.tables[index]+key);
-    return this.afd.list(this.tables[index]+key);
+    return this.afd.object(this.tables[index]+key);
   }
 
 }

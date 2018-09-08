@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 
 /**
  * Generated class for the InfoDetailPage page.
@@ -15,22 +16,22 @@ declare var tim;
 })
 export class InfoDetailPage {
   infoId: string;
-  table: string;
+  table: any;
   disp: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fsp: FirebaseServiceProvider) {
     this.infoId = navParams.get("infoId");
-    this.table = navParams.get("table");
+    this.table = navParams.get("category");
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InfoDetailPage');
-    tim.X(this.table).Get({query:{_id:this.infoId}}).then(data=>{
-      this.disp = data.data[0];
-      // document.getElementById("info-content").innerHTML = this.disp.content;
-      //document.getElementById("supplement").innerHTML = this.disp.supplement.content;
-    });
+    this.fsp.getItem(this.table-1,this.infoId).valueChanges().subscribe(data=>{
+      this.disp = data;
+      console.log(this.disp);
+     }
+    )
     
   }
 

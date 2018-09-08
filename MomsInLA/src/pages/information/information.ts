@@ -51,7 +51,7 @@ export class InformationPage {
 
   openDetail(id){
     console.log(id);
-    
+    this.navCtrl.push('InfoDetailPage',{category:this.category, infoId:id});
   }
 
   onSearch(event){
