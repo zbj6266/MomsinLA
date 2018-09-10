@@ -54,9 +54,27 @@
         <div class="comments-title">评论</div>
         <div></div>
         <ion-item>
-          
+          <div class="comment-item">
+            <div class="user-img">
+              <img src="assets/imgs/logo.png" width="32" height="32">
+            </div>
+            <div class="comment-content">
+                <div>Wendy<span>1小时前</span></div>
+                <div class="comment-text">真好，我要带孩子去</div>
+            </div>
+            <div class="comment-like">
+              <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">
+              <div class="num-like">16</div>
+            </div>
+          </div>
         </ion-item>
       </div>
       
   </div>
 </ion-content>
+<ion-footer no-border>
+  <div style="display: flex">
+  <input type="text" style="flex:1;height:40px;padding-left:6px;border: 1px solid #d8d8d8;margin:2px;border-radius: 2px" placeholder="说两句">
+  <button ion-button>评论</button>
+</div>
+</ion-footer>

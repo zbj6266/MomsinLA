@@ -33607,13 +33607,46 @@ page-activity .comments {
   background: white;
   text-align: left;
   border-top: 1px solid #aaaaaa;
-  border-bottom: 1px solid #aaaaaa;
 }
 
 page-activity .comments-title {
   color: rgba(225, 91, 0, 0.95);
   font-size: 15px;
   font-family: -apple-system;
+}
+
+page-activity .comment-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-activity .comment-content {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+page-activity .comment-content span {
+  margin-left: 5px;
+  color: #aaaaaa;
+}
+
+page-activity .comment-text {
+  margin-top: 8px;
+}
+
+page-activity .comment-like {
+  padding-top: 16px;
+}
+
+page-activity .num-like {
+  font-size: 14px;
+  color: #aaaaaa;
 }
 
 page-activitylist ion-icon {

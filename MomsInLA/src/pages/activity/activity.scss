@@ -158,7 +158,6 @@ page-activity {
         background: white;
         text-align: left;
         border-top: 1px solid #aaaaaa;
-        border-bottom: 1px solid #aaaaaa;
         
     }
 
@@ -166,6 +165,29 @@ page-activity {
         color: rgba(225, 91, 0, 0.95);
         font-size: 15px;
         font-family: -apple-system;        
+    }
+
+    .comment-item{
+        display: flex;
+    }
+    .comment-content{
+        flex:1;
+        margin-left:5px;
+        font-size:14px;
+    }
+    .comment-content span{
+        margin-left:5px;
+        color:#aaaaaa;
+    }
+    .comment-text{
+        margin-top: 8px;
+    }
+    .comment-like{
+        padding-top:16px
+    }
+    .num-like{
+        font-size:14px;
+        color:#aaaaaa;
     }
 
 }

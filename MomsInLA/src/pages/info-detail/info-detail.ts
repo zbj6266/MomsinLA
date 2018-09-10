@@ -8,7 +8,7 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-declare var tim;
+
 @IonicPage()
 @Component({
   selector: 'page-info-detail',
