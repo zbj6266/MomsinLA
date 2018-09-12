@@ -33519,7 +33519,7 @@ page-activity .button-md, page-activity .button-ios {
 
 page-activity .detail-title {
   padding: 13px 0 12px 17px;
-  height: 50px;
+  min-height: 50px;
   line-height: 25px;
   border-radius: 0px;
   background-color: rgba(225, 91, 0, 0.95);
@@ -33649,12 +33649,47 @@ page-activity .num-like {
   color: #aaaaaa;
 }
 
-page-activitylist ion-icon {
-  font-size: 25px;
+page-activitylist .button-ios, page-activitylist .button-md {
+  font-size: 1.3rem;
+  background-color: #ffd500;
+  color: black;
+  border-radius: 0;
 }
 
-page-activitylist .popover-content .tiny {
-  font-size: 2px !important;
+page-activitylist .button-small-md, page-activitylist .button-small-ios {
+  padding: 0 8px !important;
+  font-size: 1.8rem;
+}
+
+page-activitylist .list-item {
+  padding: 1rem;
+  border-bottom: 1px solid #474646;
+}
+
+page-activitylist .title {
+  font-size: 1.4rem;
+}
+
+page-activitylist .list-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: .6rem;
+}
+
+page-activitylist .list-img {
+  width: 30%;
+  height: 6.6rem;
+}
+
+page-activitylist .list-text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 1.3rem;
+  margin-left: .8rem;
 }
 
 page-collection .nav-title {

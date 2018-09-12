@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Select, Img} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Select} from 'ionic-angular';
 // import { Calendar } from '@ionic-native/calendar';
 /**
  * Generated class for the ActivitylistPage page.
@@ -40,15 +40,6 @@ export class ActivitylistPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.filters = ['<1km'];
-	// this.calendar.findAllEventsInNamedCalendar(this.calName).then(
- //  data => {
- //  	this.events = data;
-//   }
-// );
-    navCtrl.push('ActivityPage');
-
-
-
   }
   compareFn(option1: any, option2: any) {
       return option1.value === option2.value;
