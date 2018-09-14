@@ -76,12 +76,6 @@ var ActivitylistPage = /** @class */ (function () {
             new ActivitylistCard(2),
             new ActivitylistCard(3)];
         this.filters = ['<1km'];
-        // this.calendar.findAllEventsInNamedCalendar(this.calName).then(
-        //  data => {
-        //  	this.events = data;
-        //   }
-        // );
-        navCtrl.push('ActivityPage');
     }
     ActivitylistPage.prototype.locate = function () {
         this.sectionSelect.open();

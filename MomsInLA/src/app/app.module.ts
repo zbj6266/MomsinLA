@@ -16,10 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { AngularFireModule }  from 'angularfire2/';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { fromEventPattern } from 'rxjs';
 
 const config = {
   apiKey: "AIzaSyCjg_BSbq9Yy3JqElUTpl-zfo2PhnzZF7I",
@@ -67,7 +70,8 @@ const config = {
     ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    FirebaseServiceProvider
+    FirebaseServiceProvider,
+    Geolocation
   ]
 })
 export class AppModule {}
