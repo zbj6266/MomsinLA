@@ -29,18 +29,23 @@
         <button  (click)="deletePic()">delete</button>
     </div>
   </div>
+  <ion-title>活动时间</ion-title>
 <ion-grid>
+  <div *ngFor="let item of timeArray">
   <ion-row>
-    <ion-col text-center>起始时间</ion-col>
-    <ion-col text-center><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY HH mm"[(ngModel)]="event.date">日期</ion-datetime></ion-col>
-    <ion-col text-center><ion-datetime displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="event.time">时间</ion-datetime></ion-col>
+    <ion-col text-center no-padding style="line-height:3.8rem;">起始时间</ion-col>
+    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.start.date">日期</ion-datetime></ion-col>
+    <ion-col text-center no-padding><ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="item.start.time">时间</ion-datetime></ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col text-center>终止时间</ion-col>
-    <ion-col text-center><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY HH mm"[(ngModel)]="event.date">日期</ion-datetime></ion-col>
-    <ion-col text-center><ion-datetime displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="event.time">时间</ion-datetime></ion-col>
+  <ion-row style="border-bottom:1px solid #aaaaaa">
+    <ion-col text-center no-padding style="line-height:3.8rem;">终止时间</ion-col>
+    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.end.date">日期</ion-datetime></ion-col>
+    <ion-col text-center no-padding><ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="item.end.time">时间</ion-datetime></ion-col>
   </ion-row>
+  </div>
 </ion-grid>
+<button ion-button (click)="addTime()">添加时间</button>
+<button *ngIf="dateNum != 1" ion-button (click)="deleteTime()">删除时间</button>
 <!-- <ion-list>
     <ion-grid>
       <ion-row justify-content-start>
@@ -70,6 +75,7 @@
   </ion-row>
   </ion-grid>
 </ion-list> -->
+<div class="info">
 <ion-row>
     <!-- <ion-col col-3>
             <ion-item no-lines>
@@ -83,7 +89,7 @@
 </ion-row>
 
 
-<ion-row>
+<ion-row no-padding>
     <ion-col col-6>
         <ion-input onfocus="this.placeholder = '' " placeholder="城市" type="text" onblur="this.placeholder = '城市'"></ion-input>
     </ion-col>
@@ -91,6 +97,13 @@
         <ion-input onfocus="this.placeholder = '' " placeholder="邮编" type="text" onblur="this.placeholder = '邮编'"></ion-input>
     </ion-col>
 </ion-row>
+
+<ion-row>
+  <ion-col no-padding>
+    <ion-input onfocus="this.placeholder = '' " placeholder="官方网站" type="text" onblur="this.placeholder = 官方网站"></ion-input>
+  </ion-col>
+</ion-row>
+</div>
 
 <ion-title style = "padding-top: 50px">活动属性</ion-title>
 
@@ -109,43 +122,32 @@
       
     </ion-list>
   </div> -->
+  <div class="feature-one">
   <ion-grid>
    <ion-row class="align-items-flex-end">
-    <ion-col col-4 no-padding>
-
-    <ion-item no-lines>
-      <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{'background-color': buttonColor}"  class="custom-button" (click) = "changeState()">免费</button>
-    </ion-item>
+    <ion-col col-6 no-padding>
+      <!-- <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{'background-color': buttonColor}"  class="custom-button" (click) = "changeState()">免费</button> -->
+      <button class="price selected" (click)="selectPrice($event)">免费</button>
   </ion-col>
-    <ion-col col-8 no-padding>
-    <ion-item no-lines>
-      
-      <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{'background-color': buttonColor1}"  class="custom-button" (click) = "changeState1()">收费 $/人均</button>
-     
-    </ion-item>
+    <ion-col col-6 no-padding>
+      <!-- <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{'background-color': buttonColor1}"  class="custom-button" (click) = "changeState1()">收费</button> -->
+      <button class="price" (click)="selectPrice($event)">收费</button>
   </ion-col>
 </ion-row>
 </ion-grid>
 <ion-grid>
-<ion-list>
 <ion-row class="align-items-flex-end">
     <ion-col col-6 no-padding>
-
-    <ion-item no-lines>
-      <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{'background-color': buttonColor2}"  class="custom-button" (click) = "changeState2()">公共活动</button>
-    </ion-item>
+      <!-- <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{'background-color': buttonColor2}"  class="custom-button" (click) = "changeState2()">公共活动</button> -->
+      <button class="open selected" (click)="selectOpen($event)">公共活动</button>
   </ion-col>
-    <ion-col col-6 no-padding>
-    <ion-item no-lines>
-      
-      <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{'background-color': buttonColor3}"  class="custom-button" (click) = "changeState3()">私人活动</button>
-     
-    </ion-item>
+  <ion-col col-6 no-padding>
+      <!-- <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{'background-color': buttonColor3}"  class="custom-button" (click) = "changeState3()">私人活动</button> -->
+      <button class='open' (click)=selectOpen($event)>私人活动</button>
   </ion-col>
 </ion-row>
-  </ion-list>
 </ion-grid>
-
+</div>
 <!-- Using radio select --> 
 
   <!-- <ion-list radio-group>
@@ -186,62 +188,45 @@
   </ion-list> -->
 
 
-
-<ion-grid class = "button-group">
+<div class="feature-two">
+<ion-grid>
   <ion-row>
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventd();" [ngStyle]="{'background-color': buttonColor4}" class="btn" (dblclick) = "changeState4()">户外游乐</button>
-        </ion-item>
+           <button class="open" (click)="selectTags($event)" name="0">户外游乐</button>
     </ion-col>
 
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEvente();" [ngStyle]="{'background-color': buttonColor5}"  class="btn" (dblclick) = "changeState5()">益智教育</button>
-        </ion-item>
+           <button class="open" (click)="selectTags($event)" name="1">益智教育</button>
     </ion-col>
 
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventf();" [ngStyle]="{'background-color': buttonColor6}"  class="btn" (dblclick) = "changeState6()">动物植物</button>
-        </ion-item>
+           <button class="open" (click)="selectTags($event)" name="2">动物植物</button>
     </ion-col>
 
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventg();" [ngStyle]="{'background-color': buttonColor7}"  class="btn" (dblclick) = "changeState7()">游乐园</button>
-        </ion-item>
+           <button class="open" (click)="selectTags($event)" name="3">游乐园</button>
     </ion-col>
   </ion-row>
 
-  <ion-row>
+  <ion-row style="margin-top:5px">
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-         
-           <button ion-button no-margin medium full (click)="addEventh();" [ngStyle]="{'background-color': buttonColor8}"  class="btn" (dblclick) = "changeState8()">室内游乐</button>
-         
-        </ion-item>
+      <button class="open" (click)="selectTags($event)" name="4">室内游乐</button>
     </ion-col>
 
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventi();" [ngStyle]="{'background-color': buttonColor9}"  class="btn" (dblclick) = "changeState9()">科普知识</button>
-        </ion-item>
+      <button class="open" (click)="selectTags($event)" name="5">科普知识</button>
     </ion-col>
 
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventj();" [ngStyle]="{'background-color': buttonColor10}"  class="btn" (dblclick) = "changeState10()">免费停车</button>
-        </ion-item>
+      <button class="open" (click)="selectTags($event)" name="6">免费停车</button>
     </ion-col>
 
     <ion-col col-3 no-padding>
-        <ion-item no-lines no-padding>
-           <button ion-button no-margin medium full (click)="addEventk();" [ngStyle]="{'background-color': buttonColor11}"  class="btn" (dblclick) = "changeState11()">其他类型</button>
-        </ion-item>
+      <button class="open" (click)="selectTags($event)" name="7">其他类型</button>
     </ion-col>
   </ion-row>
 </ion-grid>
+</div>
 <!-- Using radio select -->
         
             <!-- <ion-grid>
@@ -318,12 +303,12 @@
 </ion-row>
 </ion-grid>
   </ion-list> -->
-
-
-
-         <ion-item no-lines>
-          <button ion-button block large (click) = "createEvent()" color = "yellow">建立活动</button>
-          </ion-item>
-
+<div class="feature-one"  style="margin-top:14px;margin-bottom: 60px">
+<ion-grid>
+  <ion-col no-padding>
+      <button class="selected" (click) = "createEvent()">建立活动</button>
+  </ion-col>
+</ion-grid>
+</div>
 
 </ion-content>

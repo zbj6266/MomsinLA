@@ -26,7 +26,7 @@ margin-bottom: 15px;
 
 input[type="text"]
 {
-    font-size:16px;
+    font-size:1.4rem;
 }
 
 #rounded {
@@ -56,10 +56,6 @@ input[type="text"]
         color: black;
     }
 
-    .custom-button{
-  color: #222;
-
-}
 
      ion-label{
     
@@ -89,11 +85,30 @@ display: flex;
 
        
 	}
-  .btn{
-color: #222;
 
-
+  .feature-one button,.feature-two button{
+    background: white;
+    box-shadow: 0px 1px 1px 0px rgba(170, 170, 170, 1);
+    height:2.6em;
+    color:black;
+    font-weight: 500;
+    width: 100%;
   }
+  .feature-one button{
+    font-size: 1.4rem;
+  }
+  .feature-two button{
+    font-size: 1.3rem;
+  }
+
+  .price,.open{
+    background: white;
+  }
+
+  .selected{
+    background-color:#FFD500 !important;
+  }
+
 
 
 

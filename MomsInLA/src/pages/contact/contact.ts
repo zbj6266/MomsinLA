@@ -40,6 +40,12 @@ picUrl:string ="assets/imgs/logo.png";
   //name:string;
  activeMenu: string;
 
+  isFree : boolean = true;
+  isPublic : boolean = true;
+  tags:Array<boolean> = [false,false,false,false,false,false,false,false];
+  dateNum : number = 1;
+  timeArray : any = [];
+
   // category : number;
   // title : string;
   
@@ -60,19 +66,74 @@ picUrl:string ="assets/imgs/logo.png";
   @ViewChild('sectionSelect3') sectionSelect3: Select;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera,public actionSheetCtrl: ActionSheetController, private sanitizer:DomSanitizer) {
+    this.calName = navParams.get('name');
+    this.createTime()
+  }
+
+  createTime(){
     let now = new Date();
     let year = now.getFullYear();
     let month:any = now.getMonth()+1<10? "0"+(now.getMonth()+1):now.getMonth()+1;
     let date = now.getDate()+1<10? "0"+now.getDate():now.getDate();
     let hour = now.getHours()+1 < 10 ? "0"+now.getHours():now.getHours();
     let min = now.getMinutes()+1 < 10 ? "0"+now.getMinutes():now.getMinutes()
-    console.log(year+'-'+month+'-'+date);
-    this.event = {
+    this.timeArray.push({
+      start:{
       date: year+'-'+month+'-'+date,
       time: hour+':'+min
-    }
-  	this.calName = navParams.get('name');
+    },
+      end:{
+        date: year+'-'+month+'-'+date,
+        time: hour+':'+min
+      }
+    });
   }
+
+  selectPrice(evt){
+    let priceElement = document.getElementsByClassName('price');
+    for(let i = 0; i < priceElement.length; i++){
+      priceElement[i].className="price";
+    }
+    evt.target.className="price selected";
+    if(evt.target.innerText == '免费')
+      this.isFree = true;
+    else
+      this.isFree = false;
+    console.log(this.isFree);
+  }
+
+  selectOpen(evt){
+    let openElement = document.getElementsByClassName('open');
+    for(let i = 0; i < openElement.length; i++){
+      openElement[i].className="open";
+    }
+    evt.target.className="open selected";
+    if(evt.target.innerText == '公共活动')
+      this.isPublic = true;
+    else
+      this.isPublic = false;
+    console.log(this.isPublic);
+  }
+  selectTags(evt){
+    let idx = evt.target.name;
+    if(this.tags[idx]) 
+      evt.target.className = "open";
+    else
+      evt.target.className = "open selected";
+    this.tags[idx] = !this.tags[idx];
+    console.log(this.tags);
+  }
+
+  addTime(){
+    this.dateNum +=1;
+    this.createTime();
+    console.log(this.dateNum);
+  }
+  deleteTime(){
+    this.dateNum -=1;
+    this.timeArray.pop();
+  }
+
   locate() {
      this.sectionSelect.open();
   }

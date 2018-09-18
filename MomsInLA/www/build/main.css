@@ -33818,7 +33818,7 @@ page-contact ion-input, page-contact ion-textarea {
 }
 
 page-contact input[type="text"] {
-  font-size: 16px;
+  font-size: 1.4rem;
 }
 
 page-contact #rounded {
@@ -33843,10 +33843,6 @@ page-contact .segment-md .segment-button {
 page-contact .button.activated div {
   background: #fad548;
   color: black;
-}
-
-page-contact .custom-button {
-  color: #222;
 }
 
 page-contact ion-label {
@@ -33885,8 +33881,30 @@ page-contact .button-group {
   margin-left: 0px;
 }
 
-page-contact .btn {
-  color: #222;
+page-contact .feature-one button, page-contact .feature-two button {
+  background: white;
+  -webkit-box-shadow: 0px 1px 1px 0px #aaaaaa;
+  box-shadow: 0px 1px 1px 0px #aaaaaa;
+  height: 2.6em;
+  color: black;
+  font-weight: 500;
+  width: 100%;
+}
+
+page-contact .feature-one button {
+  font-size: 1.4rem;
+}
+
+page-contact .feature-two button {
+  font-size: 1.3rem;
+}
+
+page-contact .price, page-contact .open {
+  background: white;
+}
+
+page-contact .selected {
+  background-color: #FFD500 !important;
 }
 
 page-exchangeadd .nav-title {
