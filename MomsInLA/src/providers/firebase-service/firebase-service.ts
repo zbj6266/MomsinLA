@@ -10,6 +10,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 @Injectable()
 export class FirebaseServiceProvider {
   tables: Array<string> = ["/purchases/","/lectures/","/strategies/","/expenses/"];
+  dailyEvent: string = '/DailyEvents/';
 
   constructor(public afd: AngularFireDatabase) {
     console.log('Hello FirebaseServiceProvider Provider');
@@ -25,4 +26,11 @@ export class FirebaseServiceProvider {
     return this.afd.object(this.tables[index]+key);
   }
 
+  getDailyEvent(){
+    return this.afd.list(this.dailyEvent);
+  }
+
+  getDailyEventDetail(key){
+    return this.afd.object(this.dailyEvent+key);
+  }
 }

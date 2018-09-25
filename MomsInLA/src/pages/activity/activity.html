@@ -10,7 +10,7 @@
 <ion-content>
   <div class="creator">
     <img src="assets/imgs/logo.png" width="34" height="34" alt="">
-    <div class="name">MomsinLA</div>
+    <div class="name" *ngIf="disp.hasOwnProperty('creator')">{{disp.creator.userName}}</div>
     <span class="offer">发布</span>
   </div>
   <div class="detail">
@@ -29,13 +29,13 @@
         <li class="button-space"><button ion-button>免费停车</button></li> -->
     <!-- </ul>    -->
     </div>
-    <div class="detail-title">Ladera Ranch 儿童活</div>
+    <div class="detail-title">{{disp.title}}</div>
     <div class="section">
       <div id="time">活动时间： 7月12日 10:30am</div>
-      <div id="city">城市： Ladera Ranch</div>
-      <div id="address">具体地址： Ladera Ranch Library. 29551 Sienna PKwy, Ladera Ranch, CA</div>
-      <div id="website">官网：http://josephpeckmusic.com/event/2018-07-12-ladera-ranch/</div>
-      <div id="content">“Joseph Peck's Caribbean Drum Circle”专业音乐家和教育家Joseph Peck，将带这孩子们学习钢制乐器的文化和历，分享他的120个钢管乐队的表演故事，并带领孩子们动手玩打击乐。
+      <div id="city">城市： {{disp.city}}</div>
+      <div id="address">具体地址： {{disp.address}}</div>
+      <div id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
+      <div id="content">{{disp.content}}
         </div>
         <img class="content-img" src="assets/imgs/logo.png" alt="">
     </div>

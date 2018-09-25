@@ -87,4 +87,6 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>开启定位，为您提供更好的服务</string>
     </edit-config>
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <allow-navigation href="http://192.168.1.92:8102" />
 </widget>

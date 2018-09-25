@@ -17,20 +17,20 @@ import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
+import { InAppBrowser } from '@ionic-native/in-app-browser'
 
 
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { AngularFireModule }  from 'angularfire2/';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { fromEventPattern } from 'rxjs';
 
 const config = {
-  apiKey: "AIzaSyCjg_BSbq9Yy3JqElUTpl-zfo2PhnzZF7I",
-  authDomain: "momsinla-1533369939594.firebaseapp.com",
-  databaseURL: "https://momsinla-1533369939594.firebaseio.com",
-  projectId: "momsinla-1533369939594",
-  storageBucket: "momsinla-1533369939594.appspot.com",
-  messagingSenderId: "480270997253"
+  apiKey: "AIzaSyCMT0_8w3orZ7BEMi-7_QOpK8w6keTzXy0",
+  authDomain: "momsinla-de26b.firebaseapp.com",
+  databaseURL: "https://momsinla-de26b.firebaseio.com",
+  projectId: "momsinla-de26b",
+  storageBucket: "momsinla-de26b.appspot.com",
+  messagingSenderId: "240243369411"
 };
 // import { Calendar } from '@ionic-native/calendar';
 @NgModule({
@@ -71,7 +71,8 @@ const config = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     FirebaseServiceProvider,
-    Geolocation
+    Geolocation,
+    InAppBrowser
   ]
 })
 export class AppModule {}

@@ -1,12 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Select} from 'ionic-angular';
-// import { Calendar } from '@ionic-native/calendar';
-/**
- * Generated class for the ActivitylistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
+import { map } from 'rxjs/operators';
 
 @IonicPage()
 
@@ -23,7 +18,7 @@ export class ActivitylistPage {
 
 
   filters: Array<string>;
-  
+  disp$: any;
 	@ViewChild('sectionSelect') sectionSelect: Select;
   @ViewChild('sectionSelect2') sectionSelect2: Select;
   @ViewChild('sectionSelect3') sectionSelect3: Select;
@@ -37,7 +32,7 @@ export class ActivitylistPage {
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fsp: FirebaseServiceProvider) {
 
     this.filters = ['<1km'];
   }
@@ -55,6 +50,22 @@ export class ActivitylistPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActivitylistPage');
+    this.loadData();
+  }
+
+  loadData(){
+    this.disp$ = this.fsp.getDailyEvent().snapshotChanges().pipe(
+      map(changes=>{
+        return changes.map(c=>({
+          key: c.payload.key, ...c.payload.val()
+        }))
+      })
+    );
+  }
+
+  openDetail(key){
+    console.log(key);
+    this.navCtrl.push('ActivityPage',{infoId:key});
   }
   
 

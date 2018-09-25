@@ -70,19 +70,19 @@
 			</ion-card>
 
 		</ion-list> -->
-		<div class="list-item">
-			<div class="title">Kids Club at the Grove儿童俱乐部</div>
+		<div class="list-item" *ngFor="let item of disp$ | async" (click)="openDetail(item.key)">
+			<div class="title">{{item.title}}</div>
 			<div class="list-content">
 					<img class="list-img" src="assets/imgs/logo.png" alt="">
 				<div class="list-text">
 					<div class="time">时间：6月14日 2:00pm</div>
-					<div class="address">地址：189 TheGroveDr. CA 91719</div>
+					<div class="address">地址：{{item.address}}</div>
 					<div class="distant">距离：3 英里</div>
 					<div style="display: flex;">
 							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">免费停车</div>
 							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">免费停车</div>
 							<div style="float:right;margin-top:8px;margin-left:4px">
-								<img src="assets/imgs/icon_like.png" width="16" height="16"><span style="margin-left:4px;line-height: 16px">20</span>
+								<img src="assets/imgs/icon_like.png" width="16" height="16"><span style="margin-left:4px;line-height: 16px">{{item.numsRead}}</span>
 							</div>
 						</div>
 				</div>
