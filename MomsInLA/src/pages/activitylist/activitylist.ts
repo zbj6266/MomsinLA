@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Select} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { map } from 'rxjs/operators';
+import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+import { ActivityFilterComponent } from '../../components/activity-filter/activity-filter';
 
 @IonicPage()
 
@@ -19,20 +21,25 @@ export class ActivitylistPage {
 
   filters: Array<string>;
   disp$: any;
-	@ViewChild('sectionSelect') sectionSelect: Select;
-  @ViewChild('sectionSelect2') sectionSelect2: Select;
-  @ViewChild('sectionSelect3') sectionSelect3: Select;
-  locate() {
-     this.sectionSelect.open();
-  }
+	// @ViewChild('sectionSelect') sectionSelect: Select;
+  // @ViewChild('sectionSelect2') sectionSelect2: Select;
+  // @ViewChild('sectionSelect3') sectionSelect3: Select;
+  // locate() {
+  //    this.sectionSelect.open();
+  // }
 
-  filter() {
-     this.sectionSelect3.open();
-  }
+  // filter() {
+  //    this.sectionSelect3.open();
+  // }
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fsp: FirebaseServiceProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public fsp: FirebaseServiceProvider,
+    private geocoder: NativeGeocoder,
+    private popoverCtrl: PopoverController) {
 
     this.filters = ['<1km'];
   }
@@ -51,6 +58,13 @@ export class ActivitylistPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActivitylistPage');
     this.loadData();
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+  };
+    this.geocoder.reverseGeocode(52.5072095, 13.1452818, options)
+  .then((result: NativeGeocoderReverseResult[]) => console.log(JSON.stringify(result[0])))
+  .catch((error: any) => console.log(error));
   }
 
   loadData(){
@@ -66,6 +80,22 @@ export class ActivitylistPage {
   openDetail(key){
     console.log(key);
     this.navCtrl.push('ActivityPage',{infoId:key});
+  }
+
+  presentPopover(event) {
+    const popover = this.popoverCtrl.create(ActivityFilterComponent);
+    popover.present({
+      ev: event
+    });
+    popover.onDidDismiss(data=>{
+      this.disp$ = this.fsp.getDailyEventInOrder(data.idx).snapshotChanges().pipe(
+        map(changes=>{
+          return changes.map(c=>({
+            key: c.payload.key, ...c.payload.val()
+          }))
+        })
+      );
+    });
   }
   
 

@@ -1,12 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database'
-/*
-  Generated class for the FirebaseServiceProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class FirebaseServiceProvider {
   tables: Array<string> = ["/purchases/","/lectures/","/strategies/","/expenses/"];
@@ -28,6 +22,18 @@ export class FirebaseServiceProvider {
 
   getDailyEvent(){
     return this.afd.list(this.dailyEvent);
+  }
+
+  getDailyEventInOrder(idx){
+    switch(idx){
+      case 0:
+        return this.afd.list(this.dailyEvent, ref=> ref.orderByChild('numsLike'));
+      case 1:
+        return this.afd.list(this.dailyEvent, ref=> ref.orderByChild('numsLike'));
+      case 2:
+        return this.afd.list(this.dailyEvent, ref=> ref.orderByChild('numsLike'));
+
+    }
   }
 
   getDailyEventDetail(key){

@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { map } from 'rxjs/operators';
 
-declare var tim;
-
 @IonicPage()
 @Component({
   selector: 'page-information',
@@ -15,7 +13,7 @@ export class InformationPage {
 
   category: number;
   disp : any;
-  planPurchases : Array<any> = [{name:"智能消费",index:0},{name:"打折软件",index:1},{name:"打折商品", index:2},{name:"团购信息",index:3}];
+  planPurchases : Array<any> = [{name:"打折软件",index:0},{name:"打折商品", index:1},{name:"团购信息",index:2}];
   planPurchase : string = "智能消费";
   lectures : any = [{name:"保险理财", index:0},{name:"宝宝教育",index:1},{name:"健康常识", index:2},{name:"法律知识",index:3}];
   lecture : string = "保险理财";
