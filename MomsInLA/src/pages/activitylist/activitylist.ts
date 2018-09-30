@@ -4,6 +4,7 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 import { map } from 'rxjs/operators';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { ActivityFilterComponent } from '../../components/activity-filter/activity-filter';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @IonicPage()
 
@@ -21,6 +22,7 @@ export class ActivitylistPage {
 
   filters: Array<string>;
   disp$: any;
+  cityLocation: string;
 	// @ViewChild('sectionSelect') sectionSelect: Select;
   // @ViewChild('sectionSelect2') sectionSelect2: Select;
   // @ViewChild('sectionSelect3') sectionSelect3: Select;
@@ -39,12 +41,15 @@ export class ActivitylistPage {
     public navParams: NavParams, 
     public fsp: FirebaseServiceProvider,
     private geocoder: NativeGeocoder,
-    private popoverCtrl: PopoverController) {
+    private popoverCtrl: PopoverController,
+    public geolocation: Geolocation) {
 
     this.filters = ['<1km'];
+    this.cityLocation = '(定位中)';
   }
   compareFn(option1: any, option2: any) {
       return option1.value === option2.value;
+      
   }
 
   monthChange(val: any) {
@@ -62,9 +67,18 @@ export class ActivitylistPage {
       useLocale: true,
       maxResults: 5
   };
-    this.geocoder.reverseGeocode(52.5072095, 13.1452818, options)
-  .then((result: NativeGeocoderReverseResult[]) => console.log(JSON.stringify(result[0])))
-  .catch((error: any) => console.log(error));
+  this.geolocation.getCurrentPosition().then((resp)=>{
+    console.log(resp);
+    this.geocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
+    .then((result: NativeGeocoderReverseResult[]) => {
+      console.log(JSON.stringify(result[0]));
+      this.cityLocation = result[0].locality;
+    })
+    .catch((error: any) => console.log(error));
+  }).catch(err=>{
+    console.log(err)
+  });
+
   }
 
   loadData(){

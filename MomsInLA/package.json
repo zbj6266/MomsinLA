@@ -25,6 +25,7 @@
     "@ionic-native/camera": "^4.11.0",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/geolocation": "^4.12.2",
+    "@ionic-native/google-plus": "^4.15.0",
     "@ionic-native/in-app-browser": "^4.14.0",
     "@ionic-native/native-geocoder": "^4.14.0",
     "@ionic-native/screen-orientation": "^4.11.0",
@@ -37,6 +38,7 @@
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-googleplus": "^5.3.2",
     "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
@@ -75,7 +77,10 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-nativegeocoder": {}
+      "cordova-plugin-nativegeocoder": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj"
+      }
     },
     "platforms": []
   }

@@ -19,12 +19,15 @@ import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { AngularFireModule }  from 'angularfire2/';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ActivityFilterComponent } from '../components/activity-filter/activity-filter';
+import firebase from 'firebase';
+
 
 const config = {
   apiKey: "AIzaSyCMT0_8w3orZ7BEMi-7_QOpK8w6keTzXy0",
@@ -34,6 +37,9 @@ const config = {
   storageBucket: "momsinla-de26b.appspot.com",
   messagingSenderId: "240243369411"
 };
+
+firebase.initializeApp(config);
+
 // import { Calendar } from '@ionic-native/calendar';
 @NgModule({
   declarations: [
@@ -77,7 +83,8 @@ const config = {
     FirebaseServiceProvider,
     Geolocation,
     InAppBrowser,
-    NativeGeocoder
+    NativeGeocoder,
+    GooglePlus
   ]
 })
 export class AppModule {}
