@@ -23,10 +23,13 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
+import { ToastProvider } from '../providers/toast/toast';
+
 import { AngularFireModule }  from 'angularfire2/';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ActivityFilterComponent } from '../components/activity-filter/activity-filter';
 import firebase from 'firebase';
+
 
 
 const config = {
@@ -84,7 +87,8 @@ firebase.initializeApp(config);
     Geolocation,
     InAppBrowser,
     NativeGeocoder,
-    GooglePlus
+    GooglePlus,
+    ToastProvider
   ]
 })
 export class AppModule {}

@@ -61,9 +61,17 @@ page-exchangeadd {
         padding:4px;
         // box-shadow: 0px 1px 1px 0px rgba(170, 170, 170, 0.5);
     }
+
+    .ex-half{
+        width: 50%;
+    }
     .title-space{
         margin-top: 20px;
         box-shadow: 0px 1px 1px 0px rgba(170, 170, 170, 0.5);
+    }
+
+    .alert{
+        border:2px solid rgb(223, 60, 60);
     }
     
     .ex-content{

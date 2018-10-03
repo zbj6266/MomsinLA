@@ -38,7 +38,7 @@ export class ActivityPage {
   }
 
   openBrowser(url){
-    const browser = this.iab.create(url,"_system");
+    this.iab.create(url,"_system");
   }
 
 }

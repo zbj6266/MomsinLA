@@ -31,9 +31,18 @@
   <div class="button-space"><button name=3 (click)='selectCategory($event)'>房屋出租</button></div>
   <div class="button-space"><button name=4 (click)='selectCategory($event)'>妈妈兼职</button></div>
 </div>
-<div class="title-space"><input class="ex-title" type="text" placeholder="帖子标题" [(ngModel)]="title"></div>
+<div class="title-space"><input id="title" class="ex-title" type="text" placeholder="帖子标题" [(ngModel)]="title"></div>
+<div style="display: flex">
+  <div style="flex:1" class="title-space">
+  <input id="price" class="ex-title" type="text" placeholder="单价" [(ngModel)]="price" >
+  </div>
+  <div style="flex:1" class="title-space">
+    <input id="city" class="ex-title" type="text" placeholder="城市" [(ngModel)]="city">
+  </div>
+</div>
+  
 <div class="title-space">
-  <textarea class="ex-content" name="" id="" cols="30" rows="20" placeholder="请输入帖子文本" [(ngModel)]="content"></textarea>
+  <textarea id="content" class="ex-content" cols="30" rows="15" placeholder="请输入帖子文本" [(ngModel)]="content"></textarea>
 </div>
 <div class="ex-text" style="margin-top: 20px">附图</div>
 </ion-content>

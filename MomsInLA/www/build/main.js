@@ -6,7 +6,7 @@ webpackJsonp([12],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(155);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -100,51 +100,51 @@ webpackEmptyAsyncContext.id = 195;
 
 var map = {
 	"../pages/activity/activity.module": [
-		516,
+		517,
 		10
 	],
 	"../pages/activitylist/activitylist.module": [
-		517,
+		518,
 		9
 	],
 	"../pages/collection/collection.module": [
-		518,
+		519,
 		8
 	],
 	"../pages/exchangeadd/exchangeadd.module": [
-		519,
+		520,
 		7
 	],
 	"../pages/exchangedetail/exchangedetail.module": [
-		520,
+		521,
 		6
 	],
 	"../pages/info-detail/info-detail.module": [
-		521,
+		522,
 		5
 	],
 	"../pages/information/information.module": [
-		522,
+		523,
 		4
 	],
 	"../pages/login/login.module": [
-		523,
+		524,
 		3
 	],
 	"../pages/profile/profile.module": [
-		524,
+		525,
 		2
 	],
 	"../pages/register/register.module": [
-		525,
+		526,
 		1
 	],
 	"../pages/setting/setting.module": [
-		526,
+		527,
 		0
 	],
 	"../pages/user/user.module": [
-		527,
+		528,
 		11
 	]
 };
@@ -213,7 +213,7 @@ var TabsPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -248,7 +248,7 @@ var AboutPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(47);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -264,25 +264,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ContactPage = /** @class */ (function () {
-    function ContactPage(navCtrl, navParams, camera, actionSheetCtrl, sanitizer) {
+    function ContactPage(navCtrl, navParams, camera, actionSheetCtrl, sanitizer, platform) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.camera = camera;
         this.actionSheetCtrl = actionSheetCtrl;
         this.sanitizer = sanitizer;
-        this.buttonColor = '#f4f4f4'; //Default Color
-        this.buttonColor1 = '#f4f4f4'; //Default Color
-        this.buttonColor2 = '#f4f4f4'; //Default Color
-        this.buttonColor3 = '#f4f4f4'; //Default Color
-        this.buttonColor4 = '#f4f4f4'; //Default Color
-        this.buttonColor5 = '#f4f4f4'; //Default Color
-        this.buttonColor6 = '#f4f4f4'; //Default Color
-        this.buttonColor7 = '#f4f4f4'; //Default Color
-        this.buttonColor8 = '#f4f4f4'; //Default Color
-        this.buttonColor9 = '#f4f4f4'; //Default Color
-        this.buttonColor10 = '#f4f4f4'; //Default Color
-        this.buttonColor11 = '#f4f4f4'; //Default Color
+        this.platform = platform;
         this.picArray = [];
         this.picNum = -1;
         this.picUrl = "assets/imgs/logo.png";
@@ -301,6 +291,7 @@ var ContactPage = /** @class */ (function () {
         this.timeArray = [];
         this.calName = navParams.get('name');
         this.createTime();
+        console.log(platform.is('ios'));
     }
     ContactPage.prototype.createTime = function () {
         var now = new Date();
@@ -362,144 +353,6 @@ var ContactPage = /** @class */ (function () {
         this.dateNum -= 1;
         this.timeArray.pop();
     };
-    ContactPage.prototype.locate = function () {
-        this.sectionSelect.open();
-    };
-    ContactPage.prototype.calendar = function () {
-        this.sectionSelect2.open();
-    };
-    ContactPage.prototype.filter = function () {
-        this.sectionSelect3.open();
-    };
-    ContactPage.prototype.changeState = function () {
-        if (this.buttonColor1 == '#fad548') {
-            this.buttonColor1 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState1 = function () {
-        if (this.buttonColor == '#fad548') {
-            this.buttonColor = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState2 = function () {
-        if (this.buttonColor3 == '#fad548') {
-            this.buttonColor3 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState3 = function () {
-        if (this.buttonColor2 == '#fad548') {
-            this.buttonColor2 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState4 = function () {
-        if (this.buttonColor4 == '#f4f4f4') {
-            this.buttonColor4 = '#fad548';
-        }
-        else {
-            this.buttonColor4 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState5 = function () {
-        if (this.buttonColor5 == '#f4f4f4') {
-            this.buttonColor5 = '#fad548';
-        }
-        else {
-            this.buttonColor5 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState6 = function () {
-        if (this.buttonColor6 == '#f4f4f4') {
-            this.buttonColor6 = '#fad548';
-        }
-        else {
-            this.buttonColor6 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState7 = function () {
-        if (this.buttonColor7 == '#f4f4f4') {
-            this.buttonColor7 = '#fad548';
-        }
-        else {
-            this.buttonColor7 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState8 = function () {
-        if (this.buttonColor8 == '#f4f4f4') {
-            this.buttonColor8 = '#fad548';
-        }
-        else {
-            this.buttonColor8 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState9 = function () {
-        if (this.buttonColor9 == '#f4f4f4') {
-            this.buttonColor9 = '#fad548';
-        }
-        else {
-            this.buttonColor9 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState10 = function () {
-        if (this.buttonColor10 == '#f4f4f4') {
-            this.buttonColor10 = '#fad548';
-        }
-        else {
-            this.buttonColor10 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.changeState11 = function () {
-        if (this.buttonColor11 == '#f4f4f4') {
-            this.buttonColor11 = '#fad548';
-        }
-        else {
-            this.buttonColor11 = '#f4f4f4';
-        }
-    };
-    ContactPage.prototype.addEvent = function () {
-        this.buttonColor = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventa = function () {
-        this.buttonColor1 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventb = function () {
-        this.buttonColor2 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventc = function () {
-        this.buttonColor3 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventd = function () {
-        this.buttonColor4 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEvente = function () {
-        this.buttonColor5 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventf = function () {
-        this.buttonColor6 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventg = function () {
-        this.buttonColor7 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventh = function () {
-        this.buttonColor8 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventi = function () {
-        this.buttonColor9 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventj = function () {
-        this.buttonColor10 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.addEventk = function () {
-        this.buttonColor11 = '#fad548'; //desired Color
-    };
-    ContactPage.prototype.compareFn = function (option1, option2) {
-        return option1.value === option2.value;
-    };
-    ContactPage.prototype.monthChange = function (val) {
-        console.log('Month Change:', val);
-    };
-    ContactPage.prototype.dayChange = function (val) {
-        console.log('Day Change:', val);
-    };
     ContactPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ContactPage');
     };
@@ -519,10 +372,13 @@ var ContactPage = /** @class */ (function () {
         this.camera.getPicture(option).then(function (imageData) {
             // imageData is either a base64 encoded string or a file URI
             // If it's base64 (DATA_URL):
-            _this.picArray.push(_this.sanitizer.bypassSecurityTrustResourceUrl(imageData));
-            var filename = imageData.split("/").pop();
+            // let showUrl = normalizeURL(imageData) ;
+            // if(this.platform.is('android'))
+            var showUrl = _this.sanitizer.bypassSecurityTrustResourceUrl(imageData);
+            _this.picArray.push(showUrl);
+            _this.picNum = _this.picNum + 1;
+            // let filename = imageData.split("/").pop();
             console.log(imageData);
-            // let base64Image = 'data:image/jpeg;base64,' + imageData;
         }, function (err) {
             // Handle error
         });
@@ -539,7 +395,12 @@ var ContactPage = /** @class */ (function () {
         this.camera.getPicture(option).then(function (imageData) {
             // imageData is either a base64 encoded string or a file URI
             // If it's base64 (DATA_URL):
-            _this.picArray.push(_this.sanitizer.bypassSecurityTrustResourceUrl(imageData));
+            var showUrl;
+            if (_this.platform.is('android'))
+                showUrl = _this.sanitizer.bypassSecurityTrustResourceUrl(imageData);
+            else
+                showUrl = Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* normalizeURL */])(imageData);
+            _this.picArray.push(showUrl);
             _this.picNum = _this.picNum + 1;
             var filename = imageData.split("/").pop();
             console.log(imageData);
@@ -571,23 +432,16 @@ var ContactPage = /** @class */ (function () {
         });
         actionSheet.present();
     };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Select */])
-    ], ContactPage.prototype, "sectionSelect", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect2'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Select */])
-    ], ContactPage.prototype, "sectionSelect2", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('sectionSelect3'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Select */])
-    ], ContactPage.prototype, "sectionSelect3", void 0);
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-contact',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-toolbar>\n    <!-- <div style="display: flex">\n      <div>\n      <button ion-button clear medium navPop style="padding: 0;">  \n       取消\n      </button>\n      </div>\n  </div> -->\n    <ion-title text-center>\n      添加活动\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  \n  <ion-input onfocus="this.placeholder=\'\'" placeholder="活动名称" type="text" onblur="this.placeholder = \'活动名称\'"#username></ion-input>\n  <ion-textarea #msgInput rows="7" maxLength="200"  onfocus="this.placeholder =\'\'" placeholder="活动介绍，请不要超过200个字" onblur="this.placeholder = \'活动介绍，请不要超过200个字\'"></ion-textarea>\n  <button ion-button (click)="openCamera()">拍照</button>\n  <div style="width:100%; display: flex">\n    <div style="width: 25%; padding:5px" *ngFor="let pic of picArray">\n      <img [src]="pic" hegiht="100%" width="100%" />\n    </div>\n    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=3">\n        <button  (click)="chooseSource()">add</button>\n    </div>\n    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=0">\n        <button  (click)="deletePic()">delete</button>\n    </div>\n  </div>\n  <ion-title>活动时间</ion-title>\n<ion-grid>\n  <div *ngFor="let item of timeArray">\n  <ion-row>\n    <ion-col text-center no-padding style="line-height:3.8rem;">起始时间</ion-col>\n    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.start.date">日期</ion-datetime></ion-col>\n    <ion-col text-center no-padding><ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="item.start.time">时间</ion-datetime></ion-col>\n  </ion-row>\n  <ion-row style="border-bottom:1px solid #aaaaaa">\n    <ion-col text-center no-padding style="line-height:3.8rem;">终止时间</ion-col>\n    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.end.date">日期</ion-datetime></ion-col>\n    <ion-col text-center no-padding><ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="item.end.time">时间</ion-datetime></ion-col>\n  </ion-row>\n  </div>\n</ion-grid>\n<button ion-button (click)="addTime()">添加时间</button>\n<button *ngIf="dateNum != 1" ion-button (click)="deleteTime()">删除时间</button>\n<!-- <ion-list>\n    <ion-grid>\n      <ion-row justify-content-start>\n\n  <ion-col col-3>\n    <ion-buttons end>\n        <button ion-button icon-only (click) = "calendar()" color = "dark" clear><ion-icon name="calendar" item-left></ion-icon></button>\n        </ion-buttons>\n      </ion-col>\n      <div>起始时间</div>\n\n      <ion-col col-xl-1>\n    <ion-item>\n\n     <ion-datetime #sectionSelect2 displayFormat="MMM DD YY" [(ngModel)]="event"></ion-datetime>\n    </ion-item>\n  </ion-col>\n  \n\n     \n      <ion-col col-xl-1 >\n        <ion-item>\n      <ion-datetime displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="event"></ion-datetime>\n    </ion-item>\n    </ion-col>\n \n  </ion-row>\n  </ion-grid>\n</ion-list> -->\n<div class="info">\n<ion-row>\n    <!-- <ion-col col-3>\n            <ion-item no-lines>\n            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n            </ion-item>\n      具体地址\n    </ion-col> -->\n    <ion-col>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="具体地址" type="text" onblur="this.placeholder = \'具体地址\'"></ion-input>\n</ion-col>\n</ion-row>\n\n\n<ion-row no-padding>\n    <ion-col col-6>\n        <ion-input onfocus="this.placeholder = \'\' " placeholder="城市" type="text" onblur="this.placeholder = \'城市\'"></ion-input>\n    </ion-col>\n    <ion-col col-6>\n        <ion-input onfocus="this.placeholder = \'\' " placeholder="邮编" type="text" onblur="this.placeholder = \'邮编\'"></ion-input>\n    </ion-col>\n</ion-row>\n\n<ion-row>\n  <ion-col no-padding>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="官方网站" type="text" onblur="this.placeholder = 官方网站"></ion-input>\n  </ion-col>\n</ion-row>\n</div>\n\n<ion-title style = "padding-top: 50px">活动属性</ion-title>\n\n\n<!-- <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="freeEvent">\n    <ion-segment-button *ngFor="let item of freeEvents" value="{{item}}">\n\n        <div class="custom_button">{{item}}</div>\n\n       \n\n    </ion-segment-button>\n  </ion-segment>\n <div *ngIf="category==1" [ngSwitch]="free" >\n    <ion-list *ngSwitchCase="\'免费\'">\n      \n    </ion-list>\n  </div> -->\n  <div class="feature-one">\n  <ion-grid>\n   <ion-row class="align-items-flex-end">\n    <ion-col col-6 no-padding>\n      <!-- <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{\'background-color\': buttonColor}"  class="custom-button" (click) = "changeState()">免费</button> -->\n      <button class="price selected" (click)="selectPrice($event)">免费</button>\n  </ion-col>\n    <ion-col col-6 no-padding>\n      <!-- <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{\'background-color\': buttonColor1}"  class="custom-button" (click) = "changeState1()">收费</button> -->\n      <button class="price" (click)="selectPrice($event)">收费</button>\n  </ion-col>\n</ion-row>\n</ion-grid>\n<ion-grid>\n<ion-row class="align-items-flex-end">\n    <ion-col col-6 no-padding>\n      <!-- <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{\'background-color\': buttonColor2}"  class="custom-button" (click) = "changeState2()">公共活动</button> -->\n      <button class="open selected" (click)="selectOpen($event)">公共活动</button>\n  </ion-col>\n  <ion-col col-6 no-padding>\n      <!-- <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{\'background-color\': buttonColor3}"  class="custom-button" (click) = "changeState3()">私人活动</button> -->\n      <button class=\'open\' (click)=selectOpen($event)>私人活动</button>\n  </ion-col>\n</ion-row>\n</ion-grid>\n</div>\n<!-- Using radio select --> \n\n  <!-- <ion-list radio-group>\n   <ion-row class="align-items-flex-end">\n    <ion-col col-4>\n\n    <ion-item >\n      <ion-label color="dark" font = "10px">免费</ion-label>\n      <ion-radio color = "yellow" value="always" checked></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-8>\n    <ion-item>\n      <ion-label color="dark">收费</ion-label>\n      <ion-radio color = "yellow" value="locked"></ion-radio>\n      <ion-input onfocus="this.placeholder = \'\' " placeholder="$/人均" type="number" onblur="this.placeholder = \'$/人均\'"></ion-input>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-list>\n<ion-list radio-group>\n<ion-row>\n    <ion-col col-6>\n\n    <ion-item>\n      <ion-label color="dark">公共活动</ion-label>\n      <ion-radio color = "yellow" value="always" checked></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-6>\n    <ion-item>\n      <ion-label color="dark">私人活动</ion-label>\n      \n      <ion-radio color = "yellow" value="locked"></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n  </ion-list> -->\n\n\n<div class="feature-two">\n<ion-grid>\n  <ion-row>\n    <ion-col col-3 no-padding>\n           <button class="open" (click)="selectTags($event)" name="0">户外游乐</button>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n           <button class="open" (click)="selectTags($event)" name="1">益智教育</button>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n           <button class="open" (click)="selectTags($event)" name="2">动物植物</button>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n           <button class="open" (click)="selectTags($event)" name="3">游乐园</button>\n    </ion-col>\n  </ion-row>\n\n  <ion-row style="margin-top:5px">\n    <ion-col col-3 no-padding>\n      <button class="open" (click)="selectTags($event)" name="4">室内游乐</button>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n      <button class="open" (click)="selectTags($event)" name="5">科普知识</button>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n      <button class="open" (click)="selectTags($event)" name="6">免费停车</button>\n    </ion-col>\n\n    <ion-col col-3 no-padding>\n      <button class="open" (click)="selectTags($event)" name="7">其他类型</button>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n</div>\n<!-- Using radio select -->\n        \n            <!-- <ion-grid>\n                 <ion-row align-items-center>\n             <ion-col col-xl-1>\n\n    <ion-item no-lines>\n      <ion-label stacked color="dark">户外游乐</ion-label>\n      <ion-radio  color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n    <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">益智教育</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label  stacked color="dark">动物植物</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">游乐园</ion-label>\n      \n      <ion-radio color = "yellow" ></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n\n\n\n<ion-list>\n<ion-grid>\n<ion-row>\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">室内游乐</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">科普知识</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">免费停车</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n\n  <ion-col col-xl-1>\n    <ion-item no-lines>\n      <ion-label stacked color="dark">其他类型</ion-label>\n      \n      <ion-radio color = "yellow"></ion-radio>\n    </ion-item>\n  </ion-col>\n</ion-row>\n</ion-grid>\n  </ion-list> -->\n<div class="feature-one"  style="margin-top:14px;margin-bottom: 60px">\n<ion-grid>\n  <ion-col no-padding>\n      <button class="selected" (click) = "createEvent()">建立活动</button>\n  </ion-col>\n</ion-grid>\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/contact/contact.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]])
     ], ContactPage);
     return ContactPage;
 }());
@@ -602,7 +456,7 @@ var ContactPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(156);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -719,7 +573,7 @@ var FirebaseServiceProvider = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityFilterComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -744,7 +598,7 @@ var ActivityFilterComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'activity-filter',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/components/activity-filter/activity-filter.html"*/'<!-- Generated template for the ActivityFilterComponent component -->\n<!-- <div>\n  {{text}}\n</div> -->\n<ion-item *ngFor=\'let item of filter\' (click)=\'clickItem(item)\'>\n  {{item.name}}\n</ion-item>\n\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/components/activity-filter/activity-filter.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
     ], ActivityFilterComponent);
     return ActivityFilterComponent;
 }());
@@ -753,13 +607,63 @@ var ActivityFilterComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 302:
+/***/ 300:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToastProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the ToastProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var ToastProvider = /** @class */ (function () {
+    function ToastProvider(toastCtrl) {
+        this.toastCtrl = toastCtrl;
+    }
+    ToastProvider.prototype.presentToast = function (msg, time, location) {
+        var toast = this.toastCtrl.create({
+            message: msg,
+            duration: time,
+            position: location
+        });
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
+    };
+    ToastProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+    ], ToastProvider);
+    return ToastProvider;
+}());
+
+//# sourceMappingURL=toast.js.map
+
+/***/ }),
+
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(436);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -767,15 +671,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 435:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(508);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(295);
@@ -783,20 +687,21 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_user__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(508);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_screen_orientation__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_screen_orientation__ = __webpack_require__(516);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_storage__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_geolocation__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_native_geocoder__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_google_plus__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_google_plus__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_firebase_service_firebase_service__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_angularfire2___ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_angularfire2_database__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_activity_filter_activity_filter__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_firebase__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_toast_toast__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_angularfire2___ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_angularfire2_database__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_activity_filter_activity_filter__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_firebase__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -828,6 +733,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var config = {
     apiKey: "AIzaSyCMT0_8w3orZ7BEMi-7_QOpK8w6keTzXy0",
     authDomain: "momsinla-de26b.firebaseapp.com",
@@ -836,7 +742,7 @@ var config = {
     storageBucket: "momsinla-de26b.appspot.com",
     messagingSenderId: "240243369411"
 };
-__WEBPACK_IMPORTED_MODULE_23_firebase___default.a.initializeApp(config);
+__WEBPACK_IMPORTED_MODULE_24_firebase___default.a.initializeApp(config);
 // import { Calendar } from '@ionic-native/calendar';
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -850,7 +756,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_user_user__["a" /* UserPage */],
-                __WEBPACK_IMPORTED_MODULE_22__components_activity_filter_activity_filter__["a" /* ActivityFilterComponent */]
+                __WEBPACK_IMPORTED_MODULE_23__components_activity_filter_activity_filter__["a" /* ActivityFilterComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -872,8 +778,8 @@ var AppModule = /** @class */ (function () {
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_13__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_21_angularfire2_database__["b" /* AngularFireDatabaseModule */],
-                __WEBPACK_IMPORTED_MODULE_20_angularfire2___["a" /* AngularFireModule */].initializeApp(config)
+                __WEBPACK_IMPORTED_MODULE_22_angularfire2_database__["b" /* AngularFireDatabaseModule */],
+                __WEBPACK_IMPORTED_MODULE_21_angularfire2___["a" /* AngularFireModule */].initializeApp(config)
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicApp */]],
             entryComponents: [
@@ -883,7 +789,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_user_user__["a" /* UserPage */],
-                __WEBPACK_IMPORTED_MODULE_22__components_activity_filter_activity_filter__["a" /* ActivityFilterComponent */]
+                __WEBPACK_IMPORTED_MODULE_23__components_activity_filter_activity_filter__["a" /* ActivityFilterComponent */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
@@ -895,7 +801,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_geolocation__["a" /* Geolocation */],
                 __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__["a" /* InAppBrowser */],
                 __WEBPACK_IMPORTED_MODULE_17__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
-                __WEBPACK_IMPORTED_MODULE_18__ionic_native_google_plus__["a" /* GooglePlus */]
+                __WEBPACK_IMPORTED_MODULE_18__ionic_native_google_plus__["a" /* GooglePlus */],
+                __WEBPACK_IMPORTED_MODULE_20__providers_toast_toast__["a" /* ToastProvider */]
             ]
         })
     ], AppModule);
@@ -906,13 +813,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 507:
+/***/ 508:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(291);
@@ -952,5 +859,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[302]);
+},[303]);
 //# sourceMappingURL=main.js.map

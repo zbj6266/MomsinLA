@@ -5,7 +5,9 @@
       "id": "cordova-plugin-calendar@5.1.2"
     },
     "is_top_level": true,
-    "variables": {}
+    "variables": {
+      "CALENDAR_USAGE_DESCRIPTION": " "
+    }
   },
   "cordova-plugin-whitelist": {
     "source": {
@@ -103,7 +105,9 @@
       "id": "cordova-plugin-nativegeocoder@^3.1.2"
     },
     "is_top_level": true,
-    "variables": {}
+    "variables": {
+      "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service"
+    }
   },
   "cordova-plugin-googleplus": {
     "source": {
@@ -114,5 +118,13 @@
     "variables": {
       "REVERSED_CLIENT_ID": "com.googleusercontent.apps.240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj"
     }
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support@1.7.1"
+    },
+    "is_top_level": false,
+    "variables": {}
   }
 }

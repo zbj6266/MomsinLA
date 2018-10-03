@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 525:
+/***/ 526:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(538);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,13 +38,13 @@ var RegisterPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 537:
+/***/ 538:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -156,7 +156,7 @@ var RegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-register',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/'<ion-header>\n\n    \n  <ion-toolbar>\n   \n \n    <div style="display: flex">\n      <div>\n      <button ion-button clear medium navPop style="padding: 0;">  \n       取消\n      </button>\n      </div>\n  </div>\n   <ion-title>注册</ion-title>\n     \n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding>\n\n\n  <ion-list>\n\n  <ion-item>\n  	<ion-icon name="man" item-left></ion-icon>   \n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = \'请输入您的昵称\'" #username></ion-input> \n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="mail" item-left> </ion-icon>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = \'请输入您的邮箱\'" #email></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="mail" item-left> </ion-icon>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的密码" type="password" onblur="this.placeholder = \'请输入您的密码\'" #password></ion-input>\n  </ion-item>\n\n  <ion-item no-lines>\n        <ion-label>查看并同意用户协议</ion-label>\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n  </ion-item>\n\n</ion-list>\n\n<div padding>\n  <button block ion-button (click) = "registerUser()"  item-left >注册</button>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], RegisterPage);
     return RegisterPage;
 }());

@@ -91,7 +91,7 @@
     <allow-navigation href="http://192.168.1.92:8102" />
     <plugin name="cordova-plugin-nativegeocoder" spec="^3.1.2" />
     <plugin name="cordova-plugin-googleplus" spec="^5.3.2">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj" />
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.240243369411-3dihv28en6u117pbskoinbejs38e6k19" />
     </plugin>
     <allow-navigation href="http://192.168.1.92:8101" />
 </widget>

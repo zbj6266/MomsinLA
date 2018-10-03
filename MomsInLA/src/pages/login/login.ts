@@ -39,7 +39,9 @@ export class LoginPage {
 
   loginGoogle(){
     this.googlePlus.login({
-      'webClientID':'240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com',
+      // 'webClientID':'240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com',
+      'webClientID':'240243369411-3dihv28en6u117pbskoinbejs38e6k19.apps.googleusercontent.com',
+      
       'offline': true,
     }).then(res=>{
       console.log(res);
