@@ -108,11 +108,11 @@ var map = {
 		9
 	],
 	"../pages/collection/collection.module": [
-		519,
+		520,
 		8
 	],
 	"../pages/exchangeadd/exchangeadd.module": [
-		520,
+		519,
 		7
 	],
 	"../pages/exchangedetail/exchangedetail.module": [
@@ -120,11 +120,11 @@ var map = {
 		6
 	],
 	"../pages/info-detail/info-detail.module": [
-		522,
+		523,
 		5
 	],
 	"../pages/information/information.module": [
-		523,
+		522,
 		4
 	],
 	"../pages/login/login.module": [
@@ -528,7 +528,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var FirebaseServiceProvider = /** @class */ (function () {
     function FirebaseServiceProvider(afd) {
         this.afd = afd;
-        this.tables = ["/purchases/", "/lectures/", "/strategies/", "/expenses/"];
+        this.tables = ["/purchases/", "/lectures/", "/strategies/", "/Exchange/"];
         this.dailyEvent = '/DailyEvents/';
         console.log('Hello FirebaseServiceProvider Provider');
     }
@@ -555,6 +555,10 @@ var FirebaseServiceProvider = /** @class */ (function () {
     };
     FirebaseServiceProvider.prototype.getDailyEventDetail = function (key) {
         return this.afd.object(this.dailyEvent + key);
+    };
+    //send exchange information
+    FirebaseServiceProvider.prototype.sendExchange = function (data) {
+        this.afd.list('/Exchange/').push(data);
     };
     FirebaseServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -765,11 +769,11 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/activity/activity.module#ActivityPageModule', name: 'ActivityPage', segment: 'activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/activitylist/activitylist.module#ActivitylistPageModule', name: 'ActivitylistPage', segment: 'activitylist', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/collection/collection.module#CollectionPageModule', name: 'CollectionPage', segment: 'collection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/exchangeadd/exchangeadd.module#ExchangeaddPageModule', name: 'ExchangeaddPage', segment: 'exchangeadd', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/collection/collection.module#CollectionPageModule', name: 'CollectionPage', segment: 'collection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/exchangedetail/exchangedetail.module#ExchangedetailPageModule', name: 'ExchangedetailPage', segment: 'exchangedetail', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info-detail/info-detail.module#InfoDetailPageModule', name: 'InfoDetailPage', segment: 'info-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/information/information.module#InformationPageModule', name: 'InformationPage', segment: 'information', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info-detail/info-detail.module#InfoDetailPageModule', name: 'InfoDetailPage', segment: 'info-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },

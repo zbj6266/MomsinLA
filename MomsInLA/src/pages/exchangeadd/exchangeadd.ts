@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastProvider } from '../../providers/toast/toast';
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class ExchangeaddPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private toast: ToastProvider) {
+    private toast: ToastProvider,
+    public fsp: FirebaseServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -78,6 +80,24 @@ export class ExchangeaddPage {
       this.inputAlert("content");
       return;
     }
+
+    let jsonData = {
+      createTime: new Date().getTime(),
+      category: this.category,
+      title: this.title,
+      sale: this.price,
+      zipCode: this.city,
+      content: this.content,
+      imgs: [],
+      creator:{
+        userID: 1111,
+        userName: "MomsinLA",
+        userImg: ""
+      },
+      numRead: 0
+    }
+
+    this.fsp.sendExchange(jsonData);
   }
 
 }

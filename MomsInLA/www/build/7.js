@@ -1,6 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 520:
+/***/ 519:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExchangeaddPageModule", function() { return ExchangeaddPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__exchangeadd__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__exchangeadd__ = __webpack_require__(531);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ExchangeaddPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 532:
+/***/ 531:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,6 +46,7 @@ var ExchangeaddPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_toast_toast__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__ = __webpack_require__(296);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,11 +59,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ExchangeaddPage = /** @class */ (function () {
-    function ExchangeaddPage(navCtrl, navParams, toast) {
+    function ExchangeaddPage(navCtrl, navParams, toast, fsp) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.toast = toast;
+        this.fsp = fsp;
         this.category = 1;
         this.title = "";
         this.price = "";
@@ -123,15 +126,31 @@ var ExchangeaddPage = /** @class */ (function () {
             this.inputAlert("content");
             return;
         }
+        var jsonData = {
+            createTime: new Date().getTime(),
+            category: this.category,
+            title: this.title,
+            sale: this.price,
+            zipCode: this.city,
+            content: this.content,
+            imgs: [],
+            creator: {
+                userID: 1111,
+                userName: "MomsinLA",
+                userImg: ""
+            },
+            numRead: 0
+        };
+        this.fsp.sendExchange(jsonData);
     };
     ExchangeaddPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-exchangeadd',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangeadd/exchangeadd.html"*/'<!--\n  Generated template for the ExchangeaddPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-toolbar>\n        <div style="display: flex">\n          <div class="nav-button">\n          <button ion-button clear small navPop>  \n            <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> \n          </button>\n          </div>\n          <div class="nav-title">添加帖子</div>\n          <div class="nav-button publish">\n            <button ion-button clear small (click)="publish()" style="color:#e15b00">发布</button>\n          </div>\n        </div>\n    </ion-toolbar>\n\n</ion-header>\n\n\n<ion-content padding>\n<div class="ex-text">帖子类别:</div>\n<div style="display: flex">\n  <div class="button-space"><button name=1 class="button-select" (click)=\'selectCategory($event)\'>商品买卖</button></div>\n  <div class="button-space"><button name=2 (click)=\'selectCategory($event)\'>家政服务</button></div>\n  <div class="button-space"><button name=3 (click)=\'selectCategory($event)\'>房屋出租</button></div>\n  <div class="button-space"><button name=4 (click)=\'selectCategory($event)\'>妈妈兼职</button></div>\n</div>\n<div class="title-space"><input id="title" class="ex-title" type="text" placeholder="帖子标题" [(ngModel)]="title"></div>\n<div style="display: flex">\n  <div style="flex:1" class="title-space">\n  <input id="price" class="ex-title" type="text" placeholder="单价" [(ngModel)]="price" >\n  </div>\n  <div style="flex:1" class="title-space">\n    <input id="city" class="ex-title" type="text" placeholder="城市" [(ngModel)]="city">\n  </div>\n</div>\n  \n<div class="title-space">\n  <textarea id="content" class="ex-content" cols="30" rows="15" placeholder="请输入帖子文本" [(ngModel)]="content"></textarea>\n</div>\n<div class="ex-text" style="margin-top: 20px">附图</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangeadd/exchangeadd.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_toast_toast__["a" /* ToastProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_toast_toast__["a" /* ToastProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_toast_toast__["a" /* ToastProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_toast_toast__["a" /* ToastProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]) === "function" && _d || Object])
     ], ExchangeaddPage);
     return ExchangeaddPage;
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=exchangeadd.js.map

@@ -3,7 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 @Injectable()
 export class FirebaseServiceProvider {
-  tables: Array<string> = ["/purchases/","/lectures/","/strategies/","/expenses/"];
+  tables: Array<string> = ["/purchases/","/lectures/","/strategies/","/Exchange/"];
   dailyEvent: string = '/DailyEvents/';
 
   constructor(public afd: AngularFireDatabase) {
@@ -38,5 +38,10 @@ export class FirebaseServiceProvider {
 
   getDailyEventDetail(key){
     return this.afd.object(this.dailyEvent+key);
+  }
+
+  //send exchange information
+  sendExchange(data){
+    this.afd.list('/Exchange/').push(data);
   }
 }

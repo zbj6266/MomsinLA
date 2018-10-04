@@ -21,7 +21,7 @@ export class InformationPage {
   strategy : string = "学区攻略";
   expenses : Array<any> = [{name: "商品买卖", index:0},{name: "家政服务", index:1},{name:"房屋租住", index:2},{name:"妈妈兼职",index:3}];
   expense : string = "商品买卖";
-  tables: Array<string> = ["purchases","lectures","strategies","expenses"];
+  
 
   list$: any;
   disp$: any
@@ -38,13 +38,21 @@ export class InformationPage {
 
 
   loadData(index){
-    this.disp$ = this.fsp.getInformationItems(this.category-1,index).snapshotChanges().pipe(
+    this.fsp.getInformationItems(this.category-1,index).snapshotChanges().pipe(
       map(changes=>{
         return changes.map(c=>({
           key: c.payload.key, ...c.payload.val()
         }))
       })
-    );
+    ).subscribe(data=> {
+      this.disp$ = data;
+      console.log(data);
+      if(this.category == 4){
+        for(let i = 0; i < this.disp$.length; i++){
+          this.disp$[i].createTime = new Date(this.disp$[i].createTime).toLocaleDateString("en-US");
+        }
+      }
+    });
   }
 
   openDetail(id){
@@ -61,7 +69,7 @@ export class InformationPage {
   }
 
   openExchange(id){
-    this.navCtrl.push('ExchangedetailPage');
+    this.navCtrl.push('ExchangedetailPage',{category: this.category, infoId:id});
   }
 
 
