@@ -88,12 +88,13 @@ picUrl:string ="assets/imgs/logo.png";
       this.isPublic = false;
     console.log(this.isPublic);
   }
+
   selectTags(evt){
     let idx = evt.target.name;
     if(this.tags[idx]) 
-      evt.target.className = "open";
+      evt.target.className = "tag";
     else
-      evt.target.className = "open selected";
+      evt.target.className = "tag selected";
     this.tags[idx] = !this.tags[idx];
     console.log(this.tags);
   }
