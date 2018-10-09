@@ -21,7 +21,7 @@ export class ActivitylistPage {
 
 
   filters: Array<string>;
-  disp$: any;
+  disp$: any = [];
   cityLocation: string;
 	// @ViewChild('sectionSelect') sectionSelect: Select;
   // @ViewChild('sectionSelect2') sectionSelect2: Select;
@@ -82,13 +82,18 @@ export class ActivitylistPage {
   }
 
   loadData(){
-    this.disp$ = this.fsp.getDailyEvent().snapshotChanges().pipe(
+    this.fsp.getDailyEvent().snapshotChanges().pipe(
       map(changes=>{
         return changes.map(c=>({
           key: c.payload.key, ...c.payload.val()
         }))
       })
-    );
+    ).subscribe(data=>{
+      console.log(data);
+      for(let i=0; i< data.length;i++){
+        this.disp$.push(data[i]);
+      }
+    });
   }
 
   openDetail(key){
@@ -102,13 +107,17 @@ export class ActivitylistPage {
       ev: event
     });
     popover.onDidDismiss(data=>{
-      this.disp$ = this.fsp.getDailyEventInOrder(data.idx).snapshotChanges().pipe(
-        map(changes=>{
-          return changes.map(c=>({
-            key: c.payload.key, ...c.payload.val()
-          }))
-        })
-      );
+      switch(data.idx){
+        case 0:
+          this.disp$.sort(function(a,b){
+            return b.createDate - a.createDate
+          });
+          return;
+        case 1:
+          this.disp$.sort(function(a,b){
+            return b.numsLike - a.numsLike
+          });
+      }
     });
   }
   

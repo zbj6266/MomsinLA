@@ -70,10 +70,10 @@
 			</ion-card>
 
 		</ion-list> -->
-		<div class="list-item" *ngFor="let item of disp$ | async" (click)="openDetail(item.key)">
+		<div class="list-item" *ngFor="let item of disp$" (click)="openDetail(item.key)">
 			<div class="title">{{item.title}}</div>
 			<div class="list-content">
-					<img class="list-img" src="assets/imgs/logo.png" alt="">
+					<img *ngIf="item.imgs.length>=1" class="list-img" [src]="item.imgs[0]" alt="">
 				<div class="list-text">
 					<div class="time">时间：6月14日 2:00pm</div>
 					<div class="address">地址：{{item.address}}</div>
