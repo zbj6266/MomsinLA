@@ -142,6 +142,7 @@ var ExchangeaddPage = /** @class */ (function () {
             numRead: 0
         };
         this.fsp.sendExchange(jsonData);
+        this.navCtrl.pop();
     };
     ExchangeaddPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

@@ -98,6 +98,8 @@ export class ExchangeaddPage {
     }
 
     this.fsp.sendExchange(jsonData);
+    this.navCtrl.pop();
+    
   }
 
 }

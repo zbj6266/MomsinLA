@@ -8,26 +8,14 @@
 
 
 <ion-content>
-  <div class="creator">
-    <img src="assets/imgs/logo.png" width="34" height="34" alt="">
-    <div class="name" *ngIf="disp.hasOwnProperty('creator')">{{disp.creator.userName}}</div>
+  <div class="creator" *ngIf="disp.hasOwnProperty('creator')">
+    <img [src]="disp.creator.userImg" width="34" height="34" alt="">
+    <div class="name">{{disp.creator.userName}}</div>
     <span class="offer">发布</span>
   </div>
   <div class="detail">
-    <div class="keyword">
-    <!-- <ul class="keyword"> -->
-        <div class="button-space"><button ion-button>免费停车</button></div>
-        <div class="button-space"><button ion-button>免费停车</button></div>
-        <div class="button-space"><button ion-button>免费停车</button></div>
-        <div class="button-space"><button ion-button>免费停车</button></div>
-        <div class="button-space"><button ion-button>免费停车</button></div>
-        <!-- <li class="button-space"><button ion-button>免费停车</button></li>
-        <li class="button-space"><button ion-button>免费停车</button></li>
-        <li class="button-space"><button ion-button>免费停车</button></li>
-        <li class="button-space"><button ion-button>免费停车</button></li>
-        <li class="button-space"><button ion-button>免费停车</button></li>
-        <li class="button-space"><button ion-button>免费停车</button></li> -->
-    <!-- </ul>    -->
+    <div class="keyword" >
+      <div class="button-space"><button ion-button *ngFor="let item of tags">{{item}}</button></div>
     </div>
     <div class="detail-title">{{disp.title}}</div>
     <div class="section">
@@ -37,7 +25,7 @@
       <div id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
       <div id="content">{{disp.content}}
         </div>
-        <img class="content-img" src="assets/imgs/logo.png" alt="">
+        <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">
     </div>
     <div class="info-user">
         <div class="info-like">
@@ -52,19 +40,19 @@
 
       <div class="comments">
         <div class="comments-title">评论</div>
-        <div></div>
-        <ion-item>
-          <div class="comment-item">
+        <div *ngIf="comments.length == 0" style="color:#d8d8d8;text-align: center;margin:5px 0">暂无评论</div>
+        <ion-item *ngFor="let item of comments">
+          <div class="comment-item" >
             <div class="user-img">
-              <img src="assets/imgs/logo.png" width="32" height="32">
+              <img [src]="item.commentUser.originalPosterUserIMG" width="32" height="32">
             </div>
             <div class="comment-content">
-                <div>Wendy<span>1小时前</span></div>
-                <div class="comment-text">真好，我要带孩子去</div>
+                <div>{{item.commentUser.originalPosterUsername}}<span>{{item.datetime}}</span></div>
+                <div class="comment-text">{{item.replyContent}}</div>
             </div>
             <div class="comment-like">
               <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">
-              <div class="num-like">16</div>
+              <div class="num-like">{{item.totalThumbsUp}}</div>
             </div>
           </div>
         </ion-item>

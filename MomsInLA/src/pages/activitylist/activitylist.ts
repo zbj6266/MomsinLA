@@ -23,6 +23,8 @@ export class ActivitylistPage {
   filters: Array<string>;
   disp$: any = [];
   cityLocation: string;
+  isFree: string;
+  isPublic: string;
 	// @ViewChild('sectionSelect') sectionSelect: Select;
   // @ViewChild('sectionSelect2') sectionSelect2: Select;
   // @ViewChild('sectionSelect3') sectionSelect3: Select;
@@ -91,7 +93,29 @@ export class ActivitylistPage {
     ).subscribe(data=>{
       console.log(data);
       for(let i=0; i< data.length;i++){
-        this.disp$.push(data[i]);
+        let item = {};
+        item['key'] = data[i]['key'];
+        item['title'] = data[i]['title'];
+        item['address'] = data[i]['address'];
+        item['imgs'] = data[i]['imgs'];
+        item['firstBegin'] = data[i]['activityDate'][0]['from'];
+        item['activityDate'] = [];
+        for(let j=0; j<data[i]['activityDate'].length; j++){
+          let start = new Date(data[i]['activityDate'][j]['from']/1000).toLocaleString('en-US');
+          let end = new Date(data[i]['activityDate'][j]['to']/1000).toLocaleString('en-US');
+          item['activityDate'].push({'from': start, 'to': end});
+        }
+        if(data[i]['eventCategory1'])
+          item['isFree'] = '免费';
+        else
+          item['isFree'] = '收费';
+        if(data[i]['eventCategory2'])
+          item['isPublic'] = '公共活动';
+        else
+          item['isPublic'] = '私人活动';
+        item['numsLike'] = data[i]['numsLike']
+        console.log(item);
+        this.disp$.push(item);
       }
     });
   }
@@ -110,7 +134,7 @@ export class ActivitylistPage {
       switch(data.idx){
         case 0:
           this.disp$.sort(function(a,b){
-            return b.createDate - a.createDate
+            return b.firstBegin - a.firstBegin;
           });
           return;
         case 1:

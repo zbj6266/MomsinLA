@@ -44,4 +44,9 @@ export class FirebaseServiceProvider {
   sendExchange(data){
     this.afd.list('/Exchange/').push(data);
   }
+
+  //get comments for DailyEvent
+  getCommentForDailyEvent(id){
+    return this.afd.list('/Comments/'+id);
+  }
 }

@@ -75,12 +75,12 @@
 			<div class="list-content">
 					<img *ngIf="item.imgs.length>=1" class="list-img" [src]="item.imgs[0]" alt="">
 				<div class="list-text">
-					<div class="time">时间：6月14日 2:00pm</div>
+					<div class="time">时间：<span *ngFor="let time of item.activityDate">{{time.from}} 至 {{time.to}};    </span></div>
 					<div class="address">地址：{{item.address}}</div>
 					<div class="distant">距离：3 英里</div>
 					<div style="display: flex;">
-							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">免费停车</div>
-							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">免费停车</div>
+							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isFree}}</div>
+							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isPublic}}</div>
 							<div style="float:right;margin-top:8px;margin-left:4px">
 								<img src="assets/imgs/icon_like.png" width="16" height="16"><span style="margin-left:4px;line-height: 16px">{{item.numsLike}}</span>
 							</div>
