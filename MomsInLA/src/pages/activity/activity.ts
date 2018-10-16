@@ -3,12 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { map } from 'rxjs/operators';
-/**
- * Generated class for the ActivityPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -62,6 +56,9 @@ export class ActivityPage {
   }
 
   openBrowser(url){
+    if(url.trim().substring(0,7)!="http://")
+      url = "http://" + url;
+    console.log(url);
     this.iab.create(url,"_system");
   }
 

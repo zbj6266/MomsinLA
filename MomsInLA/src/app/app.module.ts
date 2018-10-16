@@ -43,7 +43,6 @@ const config = {
 
 firebase.initializeApp(config);
 
-// import { Calendar } from '@ionic-native/calendar';
 @NgModule({
   declarations: [
     MyApp,
@@ -62,7 +61,7 @@ firebase.initializeApp(config);
     IonicModule.forRoot(MyApp,{tabsHideOnSubPages: true}),
     IonicStorageModule.forRoot(),
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config),
 
 
   ],
