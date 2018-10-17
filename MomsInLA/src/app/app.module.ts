@@ -27,6 +27,7 @@ import { ToastProvider } from '../providers/toast/toast';
 
 import { AngularFireModule }  from 'angularfire2/';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth'
 import { ActivityFilterComponent } from '../components/activity-filter/activity-filter';
 import firebase from 'firebase';
 
@@ -62,7 +63,7 @@ firebase.initializeApp(config);
     IonicStorageModule.forRoot(),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(config),
-
+    AngularFireAuthModule
 
   ],
   bootstrap: [IonicApp],

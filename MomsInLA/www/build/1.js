@@ -45,6 +45,9 @@ var RegisterPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_toast_toast__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__ = __webpack_require__(298);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -91,74 +94,65 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 
 
-// declare var Signup;
+
+
+
 var RegisterPage = /** @class */ (function () {
-    function RegisterPage(toastCtrl, navCtrl, navParams) {
-        var _this = this;
-        this.toastCtrl = toastCtrl;
+    function RegisterPage(toast, navCtrl, navParams, afAuth, fsp) {
+        this.toast = toast;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.Signup = function (u, p) { return __awaiter(_this, void 0, void 0, function () {
-            var error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, tim.X('user').New({
-                                email: u,
-                                password: p
-                            })];
-                    case 1:
-                        _a.sent();
-                        this.presentToast('register successfully');
-                        this.navCtrl.push("LoginPage");
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_1 = _a.sent();
-                        console.log(error_1);
-                        this.presentToast('register fail');
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); };
+        this.afAuth = afAuth;
+        this.fsp = fsp;
+        this.user = {};
     }
     RegisterPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad RegisterPage');
     };
-    RegisterPage.prototype.presentToast = function (msg) {
-        var toast = this.toastCtrl.create({
-            message: msg,
-            duration: 1000
+    RegisterPage.prototype.register = function (user) {
+        return __awaiter(this, void 0, void 0, function () {
+            var nav, result, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        nav = this.navCtrl;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)];
+                    case 2:
+                        result = _a.sent();
+                        this.fsp.register(result.user.uid).set({
+                            LikedEvents: [],
+                            displayName: user.username,
+                            email: user.email,
+                            photoURL: "https://firebasestorage.googleapis.com/v0/b/momsinla-de26b.appspot.com/o/UserImg%2Fuser%20portrait.png?alt=media&token=4c242c49-fc36-45cc-a715-e41527ace3f9",
+                            registrationDate: new Date().getTime(),
+                            userID: result.user.uid,
+                            userStatus: "Basic"
+                        });
+                        this.toast.presentToast("注册成功", 1500, "bottom");
+                        setTimeout(function () {
+                            nav.pop();
+                        }, 1500);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-        toast.present();
     };
-    RegisterPage.prototype.registerUser = function () {
-        // this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
-        // .then(data => {
-        // 	console.log('got data ', data);
-        // })
-        // .catch(error => {
-        // 	console.log('got an error ', error)
-        // })
-        //  Signup(this.user.value, this.password.value);
-        this.Signup(this.user.value, this.password.value);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('username'),
-        __metadata("design:type", Object)
-    ], RegisterPage.prototype, "user", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('password'),
-        __metadata("design:type", Object)
-    ], RegisterPage.prototype, "password", void 0);
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/'<ion-header>\n\n    \n  <ion-toolbar>\n   \n \n    <div style="display: flex">\n      <div>\n      <button ion-button clear medium navPop style="padding: 0;">  \n       取消\n      </button>\n      </div>\n  </div>\n   <ion-title>注册</ion-title>\n     \n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding>\n\n\n  <ion-list>\n\n  <ion-item>\n  	<ion-icon name="man" item-left></ion-icon>   \n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = \'请输入您的昵称\'" #username></ion-input> \n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="mail" item-left> </ion-icon>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = \'请输入您的邮箱\'" #email></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="mail" item-left> </ion-icon>\n    <ion-input onfocus="this.placeholder = \'\' " placeholder="请输入您的密码" type="password" onblur="this.placeholder = \'请输入您的密码\'" #password></ion-input>\n  </ion-item>\n\n  <ion-item no-lines>\n        <ion-label>查看并同意用户协议</ion-label>\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n  </ion-item>\n\n</ion-list>\n\n<div padding>\n  <button block ion-button (click) = "registerUser()"  item-left >注册</button>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/'<ion-header>\n\n    \n  <ion-toolbar>\n    <div style="display: flex">\n      <div class="nav-button">\n      <button ion-button clear small navPop>  \n        <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> \n      </button>\n      </div>\n      <div class="nav-title">注册</div>\n      <div class="nav-button">\n      </div>\n    </div>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding>\n\n\n  <ion-list>\n\n  <ion-item>\n    <!-- <ion-icon name="man" item-left></ion-icon>    -->\n    <ion-label floating>请输入昵称</ion-label>\n    <ion-input type="text" [(ngModel)]="user.username"></ion-input> \n  </ion-item>\n\n  <ion-item>\n    <!-- <ion-icon name="mail" item-left> </ion-icon> -->\n    <ion-label floating>请输入邮箱</ion-label>\n    <ion-input type="email" [(ngModel)]="user.email"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <!-- <ion-icon name="mail" item-left> </ion-icon> -->\n    <ion-label floating>请输入密码</ion-label>\n    <ion-input type="password" [(ngModel)]="user.password"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <!-- <ion-icon name="mail" item-left> </ion-icon> -->\n    <ion-label floating >再次输入密码</ion-label>\n    <ion-input type="password" [(ngModel)]="confirm"></ion-input>\n  </ion-item>\n\n  <!-- <ion-item no-lines>\n        <ion-label>查看并同意用户协议</ion-label>\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n  </ion-item> -->\n\n</ion-list>\n\n<div padding>\n  <button block ion-button (click) = "register(user)"  item-left >注册</button>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_toast_toast__["a" /* ToastProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_toast_toast__["a" /* ToastProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]) === "function" && _e || Object])
     ], RegisterPage);
     return RegisterPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=register.js.map

@@ -63,7 +63,7 @@ export class LoginPage {
   
 
 
-  toSignup(){
+  register(){
     this.navCtrl.push('RegisterPage');
   }
 }

@@ -2,17 +2,16 @@
 
     
   <ion-toolbar>
-   
- 
     <div style="display: flex">
-      <div>
-      <button ion-button clear medium navPop style="padding: 0;">  
-       取消
+      <div class="nav-button">
+      <button ion-button clear small navPop>  
+        <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> 
       </button>
       </div>
-  </div>
-   <ion-title>注册</ion-title>
-     
+      <div class="nav-title">注册</div>
+      <div class="nav-button">
+      </div>
+    </div>
   </ion-toolbar>
 
 </ion-header>
@@ -23,28 +22,37 @@
   <ion-list>
 
   <ion-item>
-  	<ion-icon name="man" item-left></ion-icon>   
-    <ion-input onfocus="this.placeholder = '' " placeholder="请输入您的昵称" type="text" onblur="this.placeholder = '请输入您的昵称'" #username></ion-input> 
+    <!-- <ion-icon name="man" item-left></ion-icon>    -->
+    <ion-label floating>请输入昵称</ion-label>
+    <ion-input type="text" [(ngModel)]="user.username"></ion-input> 
   </ion-item>
 
   <ion-item>
-    <ion-icon name="mail" item-left> </ion-icon>
-    <ion-input onfocus="this.placeholder = '' " placeholder="请输入您的邮箱" type="email" onblur="this.placeholder = '请输入您的邮箱'" #email></ion-input>
+    <!-- <ion-icon name="mail" item-left> </ion-icon> -->
+    <ion-label floating>请输入邮箱</ion-label>
+    <ion-input type="email" [(ngModel)]="user.email"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-icon name="mail" item-left> </ion-icon>
-    <ion-input onfocus="this.placeholder = '' " placeholder="请输入您的密码" type="password" onblur="this.placeholder = '请输入您的密码'" #password></ion-input>
+    <!-- <ion-icon name="mail" item-left> </ion-icon> -->
+    <ion-label floating>请输入密码</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
 
-  <ion-item no-lines>
+  <ion-item>
+    <!-- <ion-icon name="mail" item-left> </ion-icon> -->
+    <ion-label floating >再次输入密码</ion-label>
+    <ion-input type="password" [(ngModel)]="confirm"></ion-input>
+  </ion-item>
+
+  <!-- <ion-item no-lines>
         <ion-label>查看并同意用户协议</ion-label>
         <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>
-  </ion-item>
+  </ion-item> -->
 
 </ion-list>
 
 <div padding>
-  <button block ion-button (click) = "registerUser()"  item-left >注册</button>
+  <button block ion-button (click) = "register(user)"  item-left >注册</button>
 </div>
 </ion-content>

@@ -49,4 +49,8 @@ export class FirebaseServiceProvider {
   getCommentForDailyEvent(id){
     return this.afd.list('/Comments/'+id);
   }
+
+  register(uid){
+    return this.afd.object(`/UsersAndAdministrators/${uid}`)
+  }
 }
