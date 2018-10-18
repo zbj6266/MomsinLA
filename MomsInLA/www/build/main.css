@@ -34385,6 +34385,11 @@ page-login .button-small-md, page-login .button-small-ios {
   font-size: 1.5rem;
 }
 
+page-login .button-md, page-login .button-ios {
+  background-color: #ffd500;
+  color: black;
+}
+
 page-login ion-icon {
   font-size: 3rem;
 }

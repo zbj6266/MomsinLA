@@ -50,7 +50,8 @@ export class FirebaseServiceProvider {
     return this.afd.list('/Comments/'+id);
   }
 
-  register(uid){
+  getUserRef(uid){
     return this.afd.object(`/UsersAndAdministrators/${uid}`)
   }
+
 }

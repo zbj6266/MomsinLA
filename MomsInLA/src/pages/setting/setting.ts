@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the SettingPage page.
  *
@@ -15,7 +16,10 @@ import { Storage } from '@ionic/storage';
 })
 export class SettingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public storage: Storage,
+    public events: Events) {
   }
 
   ionViewDidLoad() {
@@ -23,7 +27,8 @@ export class SettingPage {
   }
 
   Logout(){
-    this.storage.set("userId",null);
+    this.storage.set("userID",null);
+    this.events.publish("logout",null);
   	this.navCtrl.pop();
   }
 

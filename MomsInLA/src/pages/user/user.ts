@@ -1,13 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
-/**
- * Generated class for the UserPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,33 +8,33 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'user.html',
 })
 export class UserPage {
-  @ViewChild('username') uname;
-	@ViewChild('password') password;
 
-  key: string = "userId";
-  userId: string = null;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-    this.storage.set(this.key,'dfs');
+  userID: string;
+  userImg: string;
+  userName: string;
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public storage: Storage,
+    public events: Events) {
   }
   
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserPage');
+
+    //get user information
+    this.events.subscribe('user',(name, url, id)=>{
+      this.userName = name;
+      this.userImg = url;
+      this.userID = id;
+    })
+
+    //clear the user information in the page
+    this.events.subscribe('logout',(id)=> this.userID = id);
   }
 
-  ionViewWillEnter(){
-
-    this.storage.get(this.key).then((val)=> {
-      console.log(val);
-      this.userId = val
-  });
-  }
   signIn() {
   this.navCtrl.push("LoginPage");
   }
-  // register() {
-  // 	this.navCtrl.push("RegisterPage");
-  // }
 
   toSetting() {
     this.navCtrl.push("SettingPage");

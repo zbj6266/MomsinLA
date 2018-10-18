@@ -25,22 +25,19 @@
 
 
 <ion-content padding>
-	<ion-list>
-
   <ion-item>
-    <ion-label floating>用户名</ion-label>
-    <ion-input onfocus="this.placeholder = '' " type="text" onblur="this.placeholder = '用户名'" #username></ion-input>
+    <ion-label floating>邮箱</ion-label>
+    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>密码</ion-label>
-    <ion-input onfocus="this.placeholder = '' " type="password" onblur="this.placeholder = '密码'" #password></ion-input>
+    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
 
-	</ion-list>
 
 	<div padding>
-  <button block ion-button (click) = "signInUser()" item-left>登录</button>
+  <button block ion-button (click) = "login(user)" item-left>登录</button>
 	</div>
 
   <button ion-button (click)='loginGoogle()'>

@@ -30,7 +30,7 @@ export class RegisterPage {
     let nav = this.navCtrl;
     try{
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
-      this.fsp.register(result.user.uid).set({
+      this.fsp.getUserRef(result.user.uid).set({
         LikedEvents:[],
         displayName: user.username,
         email: user.email,
