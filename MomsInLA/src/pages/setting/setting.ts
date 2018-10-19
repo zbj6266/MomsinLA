@@ -27,7 +27,7 @@ export class SettingPage {
   }
 
   Logout(){
-    this.storage.set("userID",null);
+    this.storage.remove('user');
     this.events.publish("logout",null);
   	this.navCtrl.pop();
   }

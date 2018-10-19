@@ -39,10 +39,14 @@ export class LoginPage {
       const result = await this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(user.email.trim(), user.password);
       console.log(result.user.uid);
       this.fsp.getUserRef(result.user.uid).valueChanges().subscribe(data=> {
-        this.storage.set('username', data['displayName']);
-        this.storage.set('userImg', data['photoURL']);
-        this.storage.set('userID', data['userID']);
-        this.events.publish("user",data['displayName'], data['photoURL'],data['userID']);
+        let user = {
+          username: data['displayName'],
+          userImg: data['photoURL'],
+          userID: data['userID'],
+          userStatus: data['userStatus']
+        };
+        this.storage.set('user',user);
+        this.events.publish("user", user);
         this.navCtrl.pop();
       });
     }

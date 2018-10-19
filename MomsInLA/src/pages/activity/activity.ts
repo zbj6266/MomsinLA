@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { map } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
+import { ToastProvider } from '../../providers/toast/toast'
 
 @IonicPage()
 @Component({
@@ -15,8 +17,14 @@ export class ActivityPage {
   tagsStr: Array<string> = ["户外游乐","益智教育","动物植物","游乐园","室内游乐","科普知识","免费停车","其他类型"];
   tags: Array<string> = [];
   comments:any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fsp: FirebaseServiceProvider,
-    private iab: InAppBrowser) {
+  commentReply: string;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public fsp: FirebaseServiceProvider,
+    private iab: InAppBrowser,
+    public storage: Storage,
+    public toast: ToastProvider) {
     this.infoId = navParams.get("infoId")
   }
 
@@ -46,12 +54,13 @@ export class ActivityPage {
         }))
       })
     ).subscribe(data=>{
-      console.log(data);
       this.comments = data;
-      console.log(this.comments);
       for(let i=0; i< this.comments.length; i++){
         this.comments[i]['datetime'] = new Date(this.comments[i]['commentTimestamp']).toLocaleString();
       }
+      this.comments.sort(function(a,b){
+        return b.commentTimestamp - a.commentTimestamp;
+      })
     });
   }
 
@@ -60,6 +69,43 @@ export class ActivityPage {
       url = "http://" + url;
     console.log(url);
     this.iab.create(url,"_system");
+  }
+
+  comment(){
+    this.storage.get('user').then(data=>{
+      if(data==null){
+        this.toast.presentToast("请先登陆", 1000, "middle");
+        let nav = this.navCtrl;
+        setTimeout(function(){
+          nav.push('LoginPage');
+        }, 1000);
+      }else{
+        if(this.commentReply==null || this.commentReply.trim() == ""){
+          this.toast.presentToast("请输入评论内容", 1000, "middle");
+          return;
+        }
+        let item = {
+          commentReplies: [],
+          commentTimestamp: new Date().getTime(),
+          commentUser: {
+            originalPosterStatus: data['userStatus'],
+            originalPosterUserID: data['userID'],
+            originalPosterUserIMG: data['userImg'],
+            originalPosterUsername: data['username'],
+          },
+          dailyEventID: this.infoId,
+          dailyEventTitle: this.disp.title,
+          replyContent: this.commentReply,
+          totalThumbsUp: 0
+        };
+        this.commentReply="";
+        this.fsp.getCommentForDailyEvent(this.infoId).push(item);
+      }
+    }).catch(e=>{
+      this.storage.remove('user');
+      
+      
+    })
   }
 
 }

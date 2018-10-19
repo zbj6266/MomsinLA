@@ -17,15 +17,24 @@ export class UserPage {
     public navParams: NavParams, 
     public storage: Storage,
     public events: Events) {
+      this.storage.get('user').then(data=>{
+        if(data==null){
+          this.userID=null;
+        }else{
+          this.userID = data['userID'];
+          this.userImg = data['userImg'];
+          this.userName = data['userName'];
+        }
+      })
   }
   
   ionViewDidLoad() {
 
     //get user information
-    this.events.subscribe('user',(name, url, id)=>{
-      this.userName = name;
-      this.userImg = url;
-      this.userID = id;
+    this.events.subscribe('user', user=>{
+      this.userName = user.username;
+      this.userImg = user.userImg;
+      this.userID = user.userID;
     })
 
     //clear the user information in the page
