@@ -30,6 +30,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { ActivityFilterComponent } from '../components/activity-filter/activity-filter';
 import firebase from 'firebase';
+import { TimeFormatProvider } from '../providers/time-format/time-format';
 
 
 
@@ -88,7 +89,8 @@ firebase.initializeApp(config);
     InAppBrowser,
     NativeGeocoder,
     GooglePlus,
-    ToastProvider
+    ToastProvider,
+    TimeFormatProvider
   ]
 })
 export class AppModule {}

@@ -54,4 +54,8 @@ export class FirebaseServiceProvider {
     return this.afd.object(`/UsersAndAdministrators/${uid}`)
   }
 
+  getUserListRef(uid){
+    return this.afd.list(`/UsersAndAdministrators/${uid}`)
+  }
+
 }

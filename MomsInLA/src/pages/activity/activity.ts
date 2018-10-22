@@ -5,6 +5,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { map } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { ToastProvider } from '../../providers/toast/toast'
+import { TimeFormatProvider } from '../../providers/time-format/time-format';
 
 @IonicPage()
 @Component({
@@ -18,20 +19,23 @@ export class ActivityPage {
   tags: Array<string> = [];
   comments:any = [];
   commentReply: string;
+  saved: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public fsp: FirebaseServiceProvider,
     private iab: InAppBrowser,
     public storage: Storage,
-    public toast: ToastProvider) {
-    this.infoId = navParams.get("infoId")
+    public toast: ToastProvider,
+    public timeFormat: TimeFormatProvider) {
+      this.infoId = navParams.get("infoId")
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActivityPage');
     this.loadData(this.infoId);
     this.getComment(this.infoId);
+    this.getSaved();
   }
 
   loadData(key){
@@ -56,7 +60,8 @@ export class ActivityPage {
     ).subscribe(data=>{
       this.comments = data;
       for(let i=0; i< this.comments.length; i++){
-        this.comments[i]['datetime'] = new Date(this.comments[i]['commentTimestamp']).toLocaleString();
+        // this.comments[i]['datetime'] = new Date(this.comments[i]['commentTimestamp']).toLocaleString();
+        this.comments[i]['datetime'] = this.timeFormat.differFromNow(this.comments[i]['commentTimestamp']);
       }
       this.comments.sort(function(a,b){
         return b.commentTimestamp - a.commentTimestamp;
@@ -103,9 +108,54 @@ export class ActivityPage {
       }
     }).catch(e=>{
       this.storage.remove('user');
-      
-      
     })
+  }
+
+  getSaved(){
+    this.storage.get('user').then(data=>{
+      if(data != null){
+        this.fsp.getUserListRef(data['userID']+'/SavedEvents/').snapshotChanges().subscribe(data=>{
+          data.forEach(item=>{
+            if(item.key == this.infoId){
+              console.log("saveddddd");
+              this.saved = true;
+              return;
+            }
+          })
+        })
+      }
+    })
+  }
+
+  save(){
+    this.storage.get('user').then(data=>{
+      if(data==null){
+        this.toast.presentToast("请先登陆", 1000, "middle");
+        let nav = this.navCtrl;
+        setTimeout(function(){
+          nav.push('LoginPage');
+        }, 1000);
+      }else{
+        if(!this.saved)
+        this.fsp.getUserListRef(data['userID']+'/SavedEvents/').set(this.infoId,{
+          'eventID': this.infoId,
+          'eventTitle': this.disp['title'],
+          'havelSaved': true,
+          'timestamp': new Date().getTime()
+        }).then(data=>{
+          console.log(data);
+          console.log("saved");
+          this.saved = true;
+          this.toast.presentToast("收藏成功", 1000, "bottom");
+        })
+        else{
+          this.fsp.getUserListRef(data['userID']+'/SavedEvents/').remove(this.infoId).then(data=>{
+            this.saved = false;
+            this.toast.presentToast("取消收藏", 1000, "bottom");
+          })
+        }
+      }
+    });
   }
 
 }

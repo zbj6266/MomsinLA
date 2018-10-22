@@ -13,30 +13,12 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'activitylist.html',
 })
 export class ActivitylistPage {
-  
-  //
-  activityCards = [new ActivitylistCard(1), 
-                  new ActivitylistCard(2),
-                  new ActivitylistCard(3)];
-
 
   filters: Array<string>;
   disp$: any = [];
   cityLocation: string;
   isFree: string;
   isPublic: string;
-	// @ViewChild('sectionSelect') sectionSelect: Select;
-  // @ViewChild('sectionSelect2') sectionSelect2: Select;
-  // @ViewChild('sectionSelect3') sectionSelect3: Select;
-  // locate() {
-  //    this.sectionSelect.open();
-  // }
-
-  // filter() {
-  //    this.sectionSelect3.open();
-  // }
-
-
 
   constructor(
     public navCtrl: NavController, 
@@ -101,8 +83,8 @@ export class ActivitylistPage {
         item['firstBegin'] = data[i]['activityDate'][0]['from'];
         item['activityDate'] = [];
         for(let j=0; j<data[i]['activityDate'].length; j++){
-          let start = new Date(data[i]['activityDate'][j]['from']/1000).toLocaleString('en-US');
-          let end = new Date(data[i]['activityDate'][j]['to']/1000).toLocaleString('en-US');
+          let start = new Date(data[i]['activityDate'][j]['from']).toLocaleString('en-US');
+          let end = new Date(data[i]['activityDate'][j]['to']).toLocaleString('en-US');
           item['activityDate'].push({'from': start, 'to': end});
         }
         if(data[i]['eventCategory1'])
@@ -148,25 +130,3 @@ export class ActivitylistPage {
 
 }
 
-
-export class ActivitylistCard{
-
-  title: string;
-  time: string;
-  location: string;
-  featrues: Array<string>
-  likes: number;
-  ThumbnailImg:string;
-  isOfficial:boolean;
-  
-  constructor(public id: number){
-    this.title = 'Kids Club at the Grove: blah blah';
-    this.time = '2018-01-01T18:00:00';//@todo reformat
-    this.location = '189 The Grove DR. CA91719';//@todo reformat
-    this.featrues = ['shoufei 10 dao','huwaiyouwan'];
-    this.likes = 15;
-    this.ThumbnailImg = 'assets/image/activityThumbnail.png';
-    this.isOfficial = false;
-  }
-
-}

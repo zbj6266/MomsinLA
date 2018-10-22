@@ -8,9 +8,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class HomePage {
   lat:any=1;
-  constructor(public navCtrl: NavController, public geolocation: Geolocation) {
-    
-
+  constructor(public navCtrl: NavController,
+    public geolocation: Geolocation) {
   }
 
   activityList() {

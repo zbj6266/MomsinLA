@@ -3,7 +3,10 @@ import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Platform, normalizeURL} from 'ionic-angular';
-
+import { storage } from 'firebase';
+import { Storage } from '@ionic/storage';
+import { ToastProvider } from '../../providers/toast/toast';
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service'
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -14,6 +17,16 @@ export class ContactPage {
 picArray: Array<any> = [];
 picNum: number = -1;
 picUrl:string ="assets/imgs/logo.png";
+picName: Array<string> = [];
+
+test = 0;
+  //dailyEvent content
+  title: string;
+  content: string;
+  address: string;
+  city: string;
+  zipcode: string;
+  website: string;
 
   calName = '';
   events = [];
@@ -21,27 +34,28 @@ picUrl:string ="assets/imgs/logo.png";
   d: string = this.now.getFullYear()+'-'+this.now.getMonth()+'-'+this.now.getDate();
   event:Object = {
     date: this.now,
-    time: '9:00',
-    
+    time: '9:00',    
   }
   //name:string;
- activeMenu: string;
 
   isFree : boolean = true;
   isPublic : boolean = true;
   tags:Array<boolean> = [false,false,false,false,false,false,false,false];
   dateNum : number = 1;
   timeArray : any = [];
+  user: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private camera: Camera,
     public actionSheetCtrl: ActionSheetController,
-    private sanitizer: DomSanitizer,
-    public platform: Platform) {
+    public platform: Platform,
+    public nStorage: Storage,
+    public toast: ToastProvider,
+    public fsp: FirebaseServiceProvider) {
       this.calName = navParams.get('name');
       this.createTime();
-      console.log(platform.is('ios'));
+      this.nStorage.get('user').then(data => this.user = data);
   }
 
   createTime(){
@@ -73,7 +87,6 @@ picUrl:string ="assets/imgs/logo.png";
       this.isFree = true;
     else
       this.isFree = false;
-    console.log(this.isFree);
   }
 
   selectOpen(evt){
@@ -86,7 +99,6 @@ picUrl:string ="assets/imgs/logo.png";
       this.isPublic = true;
     else
       this.isPublic = false;
-    console.log(this.isPublic);
   }
 
   selectTags(evt){
@@ -96,13 +108,11 @@ picUrl:string ="assets/imgs/logo.png";
     else
       evt.target.className = "tag selected";
     this.tags[idx] = !this.tags[idx];
-    console.log(this.tags);
   }
 
   addTime(){
     this.dateNum +=1;
     this.createTime();
-    console.log(this.dateNum);
   }
   deleteTime(){
     this.dateNum -=1;
@@ -116,30 +126,83 @@ picUrl:string ="assets/imgs/logo.png";
   
 
   createEvent() {
-  this.navCtrl.push("");
+    this.nStorage.get('user').then(data =>{
+        this.user = data;
+        if(this.user == null){
+          this.toast.presentToast("请先登陆", 1000, "middle");
+          let n = this.navCtrl;
+          setTimeout(function(){
+            n.push('LoginPage');
+          },1000);
+        }
+        else{
+          for(let i = 0; i < this.picArray.length; i++){
+            let now = new Date().getTime();
+            let name = `/pictures/${now}_${this.user.userID}`;
+            storage().ref(name).putString(this.picArray[i], 'data_url',{contentType: 'image/png'}).then(data=> storage().ref(name).getDownloadURL().then(data=> {
+              this.picName.push(data);
+            }))
+          }
+          let activityTime = [];
+          for(let i = 0; i < this.timeArray.length; i++){
+            activityTime.push({'from': new Date(this.timeArray[i]['start']['date']+"T"+this.timeArray[i]['start']['time']+"-07:00").getTime(),'to': new Date(this.timeArray[i]['end']['date']+"T"+this.timeArray[i]['end']['time']+"-07:00").getTime()});
+          }
+          activityTime.sort(function(a,b){
+            return a['from'] - b['from'];
+          });
+          console.log(this.picName);
+          let item = {
+            activityApproved: false,
+            activityDate: activityTime,
+            activityPreferred: true,
+            address: this.address,
+            city: this.city,
+            content: this.content,
+            createDate: new Date().getTime(),
+            creator: {
+              userId: this.user.userID,
+              userImg: this.user.userImg,
+              userName: this.user.username,
+              userStatus: this.user.userStatus
+            },
+            eventCategory1: this.isFree,
+            eventCategory2: this.isPublic,
+            eventCategory3: this.tags,
+            eventFeeCharged: "0",
+            eventMainSubType: "Official Event",
+            imgs: this.picName,
+            numsLike:0,
+            numsParticipate: 0,
+            numsRead: 0,
+            title: this.title,
+            website: this.website,
+            zip: this.zipcode
+          };
+          console.log(item);
+          this.fsp.getDailyEvent().push(item).then(data=>{
+          });
+        }
+      });
+    
+    
   }
 
-
   openCamera(){
-    // this.picArray.push("assets/imgs/logo.png");
-
     const option: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
       mediaType: this.camera.MediaType.PICTURE,
-      saveToPhotoAlbum: true
+      saveToPhotoAlbum: true,
+      allowEdit:true,
+      targetHeight:300,
+      targetWidth:300,
+      correctOrientation: true
     }
     this.camera.getPicture(option).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      // let showUrl = normalizeURL(imageData) ;
-      // if(this.platform.is('android'))
-      let showUrl = this.sanitizer.bypassSecurityTrustResourceUrl(imageData);
-      this.picArray.push(showUrl);
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.picArray.push(base64Image);
       this.picNum = this.picNum + 1;
-      // let filename = imageData.split("/").pop();
-      console.log(imageData);
      }, (err) => {
       // Handle error
      });
@@ -149,24 +212,19 @@ picUrl:string ="assets/imgs/logo.png";
   openGallery(){
     const option: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true,
+      targetWidth:300,
+      targetHeight: 300,
+      correctOrientation: true
     }
     this.camera.getPicture(option).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      let showUrl: any;
-      if(this.platform.is('android'))
-        showUrl = this.sanitizer.bypassSecurityTrustResourceUrl(imageData);
-      else 
-        showUrl = normalizeURL(imageData);
-      this.picArray.push(showUrl);
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.picArray.push(base64Image);
       this.picNum = this.picNum + 1;
-      let filename = imageData.split("/").pop();
-      console.log(imageData);
-      // let base64Image = 'data:image/jpeg;base64,' + imageData;
      }, (err) => {
       // Handle error
      });
