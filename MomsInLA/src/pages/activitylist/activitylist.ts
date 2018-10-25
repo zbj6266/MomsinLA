@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { ActivityFilterComponent } from '../../components/activity-filter/activity-filter';
 import { Geolocation } from '@ionic-native/geolocation';
+import { TimeFormatProvider } from '../../providers/time-format/time-format';
 
 @IonicPage()
 
@@ -26,7 +27,8 @@ export class ActivitylistPage {
     public fsp: FirebaseServiceProvider,
     private geocoder: NativeGeocoder,
     private popoverCtrl: PopoverController,
-    public geolocation: Geolocation) {
+    public geolocation: Geolocation,
+    public timeFormat: TimeFormatProvider) {
 
     this.filters = ['<1km'];
     this.cityLocation = '(定位中)';
@@ -83,9 +85,8 @@ export class ActivitylistPage {
         item['firstBegin'] = data[i]['activityDate'][0]['from'];
         item['activityDate'] = [];
         for(let j=0; j<data[i]['activityDate'].length; j++){
-          let start = new Date(data[i]['activityDate'][j]['from']).toLocaleString('en-US');
-          let end = new Date(data[i]['activityDate'][j]['to']).toLocaleString('en-US');
-          item['activityDate'].push({'from': start, 'to': end});
+          let time = this.timeFormat.eventTimeFormat(data[i]['activityDate'][j]['from'], data[i]['activityDate'][j]['to']);
+          item['activityDate'].push(time);
         }
         if(data[i]['eventCategory1'])
           item['isFree'] = '免费';

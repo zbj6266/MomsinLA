@@ -705,7 +705,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 303:
+/***/ 301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -750,6 +750,25 @@ var TimeFormatProvider = /** @class */ (function () {
         }
         var years = months / 12;
         return Math.floor(years) + "年前";
+    };
+    TimeFormatProvider.prototype.eventTimeFormat = function (from, to) {
+        var dateF = new Date(from);
+        var fromYear = dateF.getFullYear();
+        var fromMonth = dateF.getMonth();
+        var fromDate = dateF.getDate();
+        var fromHour = dateF.getHours();
+        var fromMinute = dateF.getMinutes();
+        var fromSecond = dateF.getSeconds();
+        var dateT = new Date(to);
+        var toYear = dateT.getFullYear();
+        var toMonth = dateT.getMonth();
+        var toDate = dateT.getDate();
+        var toHour = dateT.getHours();
+        var toMinute = dateT.getMinutes();
+        var toSecond = dateT.getSeconds();
+        if (fromYear == toYear && fromMonth == toMonth && fromDate == toDate)
+            return fromMonth + 1 + "\u6708" + fromDate + "\u65E5 " + fromHour + ":" + fromMinute + ":" + fromSecond + " - " + toHour + ":" + toMinute + ":" + toSecond;
+        return fromMonth + 1 + "\u6708" + fromDate + "\u65E5 " + fromHour + ":" + fromMinute + ":" + fromSecond + " - " + (toMonth + 1) + "\u6708" + toDate + "\u65E5 " + toHour + ":" + toMinute + ":" + toSecond;
     };
     TimeFormatProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -837,18 +856,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_storage__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_geolocation__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_native_geocoder__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_google_plus__ = __webpack_require__(306);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_firebase_service_firebase_service__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_toast_toast__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_angularfire2___ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_angularfire2_database__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_angularfire2_auth__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_angularfire2_auth__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_activity_filter_activity_filter__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_firebase__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_time_format_time_format__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_time_format_time_format__ = __webpack_require__(301);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

@@ -33,4 +33,26 @@ export class TimeFormatProvider {
     return Math.floor(years) + "年前";
   }
 
+  eventTimeFormat(from, to){
+    let dateF = new Date(from);
+    let fromYear = dateF.getFullYear();
+    let fromMonth = dateF.getMonth();
+    let fromDate = dateF.getDate();
+    let fromHour = dateF.getHours();
+    let fromMinute = dateF.getMinutes();
+    let fromSecond = dateF.getSeconds();
+    let dateT = new Date(to);
+    let toYear = dateT.getFullYear();
+    let toMonth = dateT.getMonth();
+    let toDate = dateT.getDate();
+    let toHour = dateT.getHours();
+    let toMinute = dateT.getMinutes();
+    let toSecond = dateT.getSeconds();
+    if(fromYear== toYear && fromMonth == toMonth && fromDate == toDate)
+      return `${fromMonth+1}月${fromDate}日 ${fromHour}:${fromMinute}:${fromSecond} - ${toHour}:${toMinute}:${toSecond}`;
+    return `${fromMonth+1}月${fromDate}日 ${fromHour}:${fromMinute}:${fromSecond} - ${toMonth+1}月${toDate}日 ${toHour}:${toMinute}:${toSecond}`;
+
+
+  }
+
 }
