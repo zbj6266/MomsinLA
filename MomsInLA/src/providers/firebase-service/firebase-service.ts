@@ -58,4 +58,8 @@ export class FirebaseServiceProvider {
     return this.afd.list(`/UsersAndAdministrators/${uid}`)
   }
 
+  getImgListRef(id){
+    return this.afd.list(`/${this.dailyEvent}/${id}/imgs`)
+  }
+
 }

@@ -136,13 +136,6 @@ test = 0;
           },1000);
         }
         else{
-          for(let i = 0; i < this.picArray.length; i++){
-            let now = new Date().getTime();
-            let name = `/pictures/${now}_${this.user.userID}`;
-            storage().ref(name).putString(this.picArray[i], 'data_url',{contentType: 'image/png'}).then(data=> storage().ref(name).getDownloadURL().then(data=> {
-              this.picName.push(data);
-            }))
-          }
           let activityTime = [];
           for(let i = 0; i < this.timeArray.length; i++){
             activityTime.push({'from': new Date(this.timeArray[i]['start']['date']+"T"+this.timeArray[i]['start']['time']+"-07:00").getTime(),'to': new Date(this.timeArray[i]['end']['date']+"T"+this.timeArray[i]['end']['time']+"-07:00").getTime()});
@@ -180,11 +173,34 @@ test = 0;
           };
           console.log(item);
           this.fsp.getDailyEvent().push(item).then(data=>{
+            let key = data.key;
+            for(let i = 0; i < this.picArray.length; i++){
+              let now = new Date().getTime();
+              let name = `/pictures/${now}_${this.user.userID}`;
+              storage().ref(name).putString(this.picArray[i], 'data_url',{contentType: 'image/png'})
+              .then(data=>{
+                storage().ref(name).getDownloadURL().then(data => {
+                  this.fsp.getImgListRef(key).set('0',data)
+                });
+              });
+            }
+            this.toast.presentToast("发送成功",1000,"middle");
+            this.isFree = true;
+            this.isPublic = true;
+            this.tags = [false,false,false,false,false,false,false,false];
+            this.title = null;
+            this.content = null;
+            this.city = null;
+            this.address = null;
+            this.zipcode = null;
+            this.picNum = -1;
+            this.picArray = [];
+            this.picName = [];
+            this.website = null;
+            
           });
-        }
-      });
-    
-    
+ }
+    });
   }
 
   openCamera(){
