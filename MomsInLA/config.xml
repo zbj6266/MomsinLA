@@ -97,5 +97,4 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.240243369411-3dihv28en6u117pbskoinbejs38e6k19" />
     </plugin>
     <allow-navigation href="http://192.168.1.92:8101" />
-    <engine name="android" spec="7.1.1" />
 </widget>
