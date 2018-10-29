@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Events} from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { map } from 'rxjs/operators';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
@@ -7,6 +7,7 @@ import { ActivityFilterComponent } from '../../components/activity-filter/activi
 import { Geolocation } from '@ionic-native/geolocation';
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
 
+declare var google;
 @IonicPage()
 
 @Component({
@@ -15,11 +16,12 @@ import { TimeFormatProvider } from '../../providers/time-format/time-format';
 })
 export class ActivitylistPage {
 
-  filters: Array<string>;
   disp$: any = [];
   cityLocation: string;
-  isFree: string;
-  isPublic: string;
+  longitude: number;
+  latitude: number;
+  isLocated: boolean = false;
+  isLoaded: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -28,22 +30,20 @@ export class ActivitylistPage {
     private geocoder: NativeGeocoder,
     private popoverCtrl: PopoverController,
     public geolocation: Geolocation,
-    public timeFormat: TimeFormatProvider) {
+    public timeFormat: TimeFormatProvider,
+    public events: Events) {
 
-    this.filters = ['<1km'];
     this.cityLocation = '(定位中)';
-  }
-  compareFn(option1: any, option2: any) {
-      return option1.value === option2.value;
-      
-  }
-
-  monthChange(val: any) {
-    console.log('Month Change:', val);
-  }
-
-  dayChange(val: any) {
-    console.log('Day Change:', val);
+    // this.events.subscribe('distance', () => {
+    //   if(this.isLoaded && this.isLocated){
+    //     for(let i= 0; i < this.disp$.length; i++){
+    //       if(!this.disp$[i]['calDistance']){
+    //         this.calDistance({lng: this.longitude, lat: this.latitude},this.disp$[i]['address'],i);
+    //       }
+    //     }
+    //   }
+    // });
+    
   }
 
   ionViewDidLoad() {
@@ -55,6 +55,11 @@ export class ActivitylistPage {
   };
   this.geolocation.getCurrentPosition().then((resp)=>{
     console.log(resp);
+    this.latitude = resp.coords.latitude;
+    this.longitude = resp.coords.longitude;
+    this.isLocated = true;
+    this.events.publish('distance');
+
     this.geocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
     .then((result: NativeGeocoderReverseResult[]) => {
       console.log(JSON.stringify(result[0]));
@@ -97,9 +102,12 @@ export class ActivitylistPage {
         else
           item['isPublic'] = '私人活动';
         item['numsLike'] = data[i]['numsLike']
-        console.log(item);
+        item['distance'] = "0 英里";
+        item['calDistance'] = false;
         this.disp$.push(item);
       }
+      this.isLoaded = true;
+      this.events.publish('distance');
     });
   }
 
@@ -126,6 +134,39 @@ export class ActivitylistPage {
           });
       }
     });
+  }
+
+  calDistance(o, d, index){
+    o = {lat: 34.1379, lng: -118.0537}
+    if(this.disp$[index]['calDistance']) return;
+    console.log(this.latitude);
+    console.log(this.longitude);
+    console.log(d);
+    var service = new google.maps.DistanceMatrixService();
+    let dataItem = this.disp$;
+    service.getDistanceMatrix(
+      {
+        origins: [o],
+        destinations: [{lat: 34.1379, lng: -118.0537}],
+        travelMode: 'DRIVING',
+        // drivingOptions: {
+        //   departureTime: new Date(Date.now()),  // for the time N milliseconds from now.
+        //   trafficModel: 'optimistic'
+        // }
+        unitSystem: google.maps.UnitSystem.IMPERIAL
+      }, callback);
+
+    
+    function callback(response, status) {
+      console.log(response);
+      if(response.rows[0]['elements'][0]['status'] == "OK"){
+        dataItem[index]['distance'] = response.rows[0]['elements'][0]['distance']['text'];
+        dataItem[index]['calDistance'] = true;
+        console.log(dataItem[index]);
+      }
+      // See Parsing the Results for
+      // the basics of a callback function.
+    }
   }
   
 

@@ -33,6 +33,15 @@ export class TimeFormatProvider {
     return Math.floor(years) + "年前";
   }
 
+  timeAppendZero(time: number){
+    if(time < 10) return "0" + time;
+    return time;
+  }
+
+  timeToString(fh, fm, th, tm){
+    return this.timeAppendZero(fh) + ":" + this.timeAppendZero(fm) + "-" + this.timeAppendZero(th) + ":" + this.timeAppendZero(tm);
+  }
+
   eventTimeFormat(from, to){
     let dateF = new Date(from);
     let fromYear = dateF.getFullYear();
@@ -40,17 +49,17 @@ export class TimeFormatProvider {
     let fromDate = dateF.getDate();
     let fromHour = dateF.getHours();
     let fromMinute = dateF.getMinutes();
-    let fromSecond = dateF.getSeconds();
     let dateT = new Date(to);
     let toYear = dateT.getFullYear();
     let toMonth = dateT.getMonth();
     let toDate = dateT.getDate();
     let toHour = dateT.getHours();
     let toMinute = dateT.getMinutes();
-    let toSecond = dateT.getSeconds();
+    
+    let timeString = this.timeToString(fromHour, fromMinute, toHour, toMinute);
     if(fromYear== toYear && fromMonth == toMonth && fromDate == toDate)
-      return `${fromMonth+1}月${fromDate}日 ${fromHour}:${fromMinute}:${fromSecond} - ${toHour}:${toMinute}:${toSecond}`;
-    return `${fromMonth+1}月${fromDate}日 ${fromHour}:${fromMinute}:${fromSecond} - ${toMonth+1}月${toDate}日 ${toHour}:${toMinute}:${toSecond}`;
+      return `${fromMonth+1}月${fromDate}日 ` +  timeString; 
+    return `${fromMonth+1}月${fromDate}日 ` + timeString;
 
 
   }

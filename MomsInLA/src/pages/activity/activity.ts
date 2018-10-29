@@ -119,6 +119,8 @@ export class ActivityPage {
             if(item.key == this.infoId){
               console.log("saveddddd");
               this.saved = true;
+              console.log(document.getElementById('save'));
+              document.getElementById('save').src = "assets/icon/icon_save_click.png";
               return;
             }
           })
@@ -139,18 +141,18 @@ export class ActivityPage {
         if(!this.saved)
         this.fsp.getUserListRef(data['userID']+'/SavedEvents/').set(this.infoId,{
           'eventID': this.infoId,
-          'eventTitle': this.disp['title'],
           'havelSaved': true,
-          'timestamp': new Date().getTime()
         }).then(data=>{
           console.log(data);
           console.log("saved");
           this.saved = true;
+          document.getElementById('save').src = "assets/icon/icon_save_click.png";
           this.toast.presentToast("收藏成功", 1000, "bottom");
         })
         else{
           this.fsp.getUserListRef(data['userID']+'/SavedEvents/').remove(this.infoId).then(data=>{
             this.saved = false;
+            document.getElementById('save').src = "assets/icon/icon_save.png";
             this.toast.presentToast("取消收藏", 1000, "bottom");
           })
         }

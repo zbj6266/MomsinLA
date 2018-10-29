@@ -751,6 +751,14 @@ var TimeFormatProvider = /** @class */ (function () {
         var years = months / 12;
         return Math.floor(years) + "年前";
     };
+    TimeFormatProvider.prototype.timeAppendZero = function (time) {
+        if (time < 10)
+            return "0" + time;
+        return time;
+    };
+    TimeFormatProvider.prototype.timeToString = function (fh, fm, th, tm) {
+        return this.timeAppendZero(fh) + ":" + this.timeAppendZero(fm) + "-" + this.timeAppendZero(th) + ":" + this.timeAppendZero(tm);
+    };
     TimeFormatProvider.prototype.eventTimeFormat = function (from, to) {
         var dateF = new Date(from);
         var fromYear = dateF.getFullYear();
@@ -758,17 +766,16 @@ var TimeFormatProvider = /** @class */ (function () {
         var fromDate = dateF.getDate();
         var fromHour = dateF.getHours();
         var fromMinute = dateF.getMinutes();
-        var fromSecond = dateF.getSeconds();
         var dateT = new Date(to);
         var toYear = dateT.getFullYear();
         var toMonth = dateT.getMonth();
         var toDate = dateT.getDate();
         var toHour = dateT.getHours();
         var toMinute = dateT.getMinutes();
-        var toSecond = dateT.getSeconds();
+        var timeString = this.timeToString(fromHour, fromMinute, toHour, toMinute);
         if (fromYear == toYear && fromMonth == toMonth && fromDate == toDate)
-            return fromMonth + 1 + "\u6708" + fromDate + "\u65E5 " + fromHour + ":" + fromMinute + ":" + fromSecond + " - " + toHour + ":" + toMinute + ":" + toSecond;
-        return fromMonth + 1 + "\u6708" + fromDate + "\u65E5 " + fromHour + ":" + fromMinute + ":" + fromSecond + " - " + (toMonth + 1) + "\u6708" + toDate + "\u65E5 " + toHour + ":" + toMinute + ":" + toSecond;
+            return fromMonth + 1 + "\u6708" + fromDate + "\u65E5 " + timeString;
+        return fromMonth + 1 + "\u6708" + fromDate + "\u65E5 " + timeString;
     };
     TimeFormatProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
