@@ -20,6 +20,8 @@ export class ActivityPage {
   comments:any = [];
   commentReply: string;
   saved: boolean = false;
+  liked: boolean = true;
+  numsLike: number = 0;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,6 +38,7 @@ export class ActivityPage {
     this.loadData(this.infoId);
     this.getComment(this.infoId);
     this.getSaved();
+    this.getLiked();
   }
 
   loadData(key){
@@ -117,10 +120,24 @@ export class ActivityPage {
         this.fsp.getUserListRef(data['userID']+'/SavedEvents/').snapshotChanges().subscribe(data=>{
           data.forEach(item=>{
             if(item.key == this.infoId){
-              console.log("saveddddd");
               this.saved = true;
-              console.log(document.getElementById('save'));
-              document.getElementById('save').src = "assets/icon/icon_save_click.png";
+              document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
+              return;
+            }
+          })
+        })
+      }
+    })
+  }
+
+  getLiked(){
+    this.storage.get('user').then(data=>{
+      if(data != null){
+        this.fsp.getUserListRef(data['userID']+'/LikedEvents/').snapshotChanges().subscribe(data=>{
+          data.forEach(item=>{
+            if(item.key == this.infoId){
+              this.liked = true;
+              document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
               return;
             }
           })
@@ -141,19 +158,48 @@ export class ActivityPage {
         if(!this.saved)
         this.fsp.getUserListRef(data['userID']+'/SavedEvents/').set(this.infoId,{
           'eventID': this.infoId,
-          'havelSaved': true,
+          'haveSaved': true,
         }).then(data=>{
-          console.log(data);
-          console.log("saved");
           this.saved = true;
-          document.getElementById('save').src = "assets/icon/icon_save_click.png";
+          document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
           this.toast.presentToast("收藏成功", 1000, "bottom");
         })
         else{
           this.fsp.getUserListRef(data['userID']+'/SavedEvents/').remove(this.infoId).then(data=>{
             this.saved = false;
-            document.getElementById('save').src = "assets/icon/icon_save.png";
+            document.getElementById('save').setAttribute("src", "assets/icon/icon_save.png");
             this.toast.presentToast("取消收藏", 1000, "bottom");
+          })
+        }
+      }
+    });
+  }
+
+  like(){
+    this.storage.get('user').then(data=>{
+      if(data==null){
+        this.toast.presentToast("请先登陆", 1000, "middle");
+        let nav = this.navCtrl;
+        setTimeout(function(){
+          nav.push('LoginPage');
+        }, 1000);
+      }else{
+        if(!this.liked)
+        this.fsp.getUserListRef(data['userID']+'/LikedEvents/').set(this.infoId,{
+          'eventID': this.infoId,
+          'haveLiked': true,
+        }).then(data=>{
+          this.liked = true;
+          document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
+          this.disp["numsLike"] = this.disp["numsLike"] + 1;
+          this.fsp.getDailyEventDetailRef(this.infoId).set('numsLike', this.disp['numsLike']);
+        })
+        else{
+          this.fsp.getUserListRef(data['userID']+'/LikedEvents/').remove(this.infoId).then(data=>{
+            this.liked = false;
+            document.getElementById('like').setAttribute("src", "assets/icon/icon_like.png");
+            this.disp["numsLike"] = this.disp["numsLike"] - 1;
+            this.fsp.getDailyEventDetailRef(this.infoId).set('numsLike', this.disp['numsLike']);
           })
         }
       }

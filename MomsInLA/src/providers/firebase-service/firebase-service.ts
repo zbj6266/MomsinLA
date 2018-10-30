@@ -40,6 +40,10 @@ export class FirebaseServiceProvider {
     return this.afd.object(this.dailyEvent+key);
   }
 
+  getDailyEventDetailRef(key){
+    return this.afd.list(this.dailyEvent+key);
+  }
+
   //send exchange information
   sendExchange(data){
     this.afd.list('/Exchange/').push(data);

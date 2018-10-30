@@ -49,6 +49,9 @@ var FirebaseServiceProvider = /** @class */ (function () {
     FirebaseServiceProvider.prototype.getDailyEventDetail = function (key) {
         return this.afd.object(this.dailyEvent + key);
     };
+    FirebaseServiceProvider.prototype.getDailyEventDetailRef = function (key) {
+        return this.afd.list(this.dailyEvent + key);
+    };
     //send exchange information
     FirebaseServiceProvider.prototype.sendExchange = function (data) {
         this.afd.list('/Exchange/').push(data);
@@ -68,9 +71,10 @@ var FirebaseServiceProvider = /** @class */ (function () {
     };
     FirebaseServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
     ], FirebaseServiceProvider);
     return FirebaseServiceProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=firebase-service.js.map
@@ -221,35 +225,35 @@ var map = {
 		10
 	],
 	"../pages/activitylist/activitylist.module": [
-		524,
+		526,
 		9
 	],
 	"../pages/collection/collection.module": [
-		525,
+		524,
 		8
 	],
 	"../pages/exchangeadd/exchangeadd.module": [
-		526,
+		525,
 		7
 	],
 	"../pages/exchangedetail/exchangedetail.module": [
-		527,
+		531,
 		6
 	],
 	"../pages/info-detail/info-detail.module": [
-		528,
+		527,
 		5
 	],
 	"../pages/information/information.module": [
-		529,
+		528,
 		4
 	],
 	"../pages/login/login.module": [
-		530,
+		529,
 		3
 	],
 	"../pages/profile/profile.module": [
-		531,
+		530,
 		2
 	],
 	"../pages/register/register.module": [
@@ -257,11 +261,11 @@ var map = {
 		1
 	],
 	"../pages/setting/setting.module": [
-		533,
+		534,
 		0
 	],
 	"../pages/user/user.module": [
-		534,
+		533,
 		11
 	]
 };
@@ -938,17 +942,17 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], { tabsHideOnSubPages: true }, {
                     links: [
                         { loadChildren: '../pages/activity/activity.module#ActivityPageModule', name: 'ActivityPage', segment: 'activity', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/activitylist/activitylist.module#ActivitylistPageModule', name: 'ActivitylistPage', segment: 'activitylist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/collection/collection.module#CollectionPageModule', name: 'CollectionPage', segment: 'collection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/exchangeadd/exchangeadd.module#ExchangeaddPageModule', name: 'ExchangeaddPage', segment: 'exchangeadd', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/exchangedetail/exchangedetail.module#ExchangedetailPageModule', name: 'ExchangedetailPage', segment: 'exchangedetail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/activitylist/activitylist.module#ActivitylistPageModule', name: 'ActivitylistPage', segment: 'activitylist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info-detail/info-detail.module#InfoDetailPageModule', name: 'InfoDetailPage', segment: 'info-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/information/information.module#InformationPageModule', name: 'InformationPage', segment: 'information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/exchangedetail/exchangedetail.module#ExchangedetailPageModule', name: 'ExchangedetailPage', segment: 'exchangedetail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/setting/setting.module#SettingPageModule', name: 'SettingPage', segment: 'setting', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user/user.module#UserPageModule', name: 'UserPage', segment: 'user', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user/user.module#UserPageModule', name: 'UserPage', segment: 'user', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/setting/setting.module#SettingPageModule', name: 'SettingPage', segment: 'setting', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_13__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
