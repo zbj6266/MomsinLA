@@ -18,12 +18,13 @@ export class UserPage {
     public storage: Storage,
     public events: Events) {
       this.storage.get('user').then(data=>{
+        console.log(data);
         if(data==null){
           this.userID=null;
         }else{
           this.userID = data['userID'];
           this.userImg = data['userImg'];
-          this.userName = data['userName'];
+          this.userName = data['username'];
         }
       })
   }

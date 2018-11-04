@@ -10,8 +10,7 @@ export class TimeFormatProvider {
     let now = new Date();
     let seconds = (now.getTime() - timestamp)/1000;
     if(seconds < 60){
-      if(seconds < 1) return "刚刚";
-      return Math.floor(seconds) + "秒前";
+      return "刚刚";
     }
     let minutes = seconds/60;
     if(minutes < 60){

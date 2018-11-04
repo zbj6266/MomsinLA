@@ -1,38 +1,32 @@
 page-user {
-
-.home-logo{
-	background-color: #e5e5e5;
-	}
-
-.button {
+    .home-logo{
+        background-color: #e5e5e5;
+    }
+    .button {
         background: #fad548;
         color: black;
         margin-top: 50px
     }
+    .image{
+        text-align: center;
+    }
+    .username{
+        text-align: center;
+        padding: 10px 0;
+        font-size: 2.2rem;
+    }
+    .title{
+        text-align:center;
+    }
 
-
-.displayed {
-    display: block;
-    margin: 30px auto;
-    
-}
-.title{
-     text-align:center;
-}
-
-.adjust.title-md{
-       
-    text-align:center;
-   }
-    
-.icon1.bar-button-md{
-    margin-right:200px;
-}
-.icon2.bar-button-md{
-    margin-left:110px;
-}
-
-
-
-
+    .adjust.title-md{     
+        text-align:center;
+    }
+        
+    .icon1.bar-button-md{
+        margin-right:200px;
+    }
+    .icon2.bar-button-md{
+        margin-left:110px;
+    }
 }

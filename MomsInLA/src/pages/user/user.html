@@ -16,24 +16,24 @@
 
 <ion-content padding>
 	<div *ngIf="userID==null">
-		<img class="displayed"  height="125" width="125" src="assets/imgs/user_portrait.png">
+		<div text-center><img height="150" width="150" src="assets/imgs/user_portrait.png"></div>
 		<button class="login" block ion-button (click) = "signIn()" item-left>立即登录</button>
 			<!-- <button block ion-button (click) = "register()" color = "dark" >注册</button> -->
 	</div>
 	<div *ngIf="userID != null">
-			<img class="displayed"  height="150 px" width="150 px" [src]="userImg">
-			
-		
-			<ion-title class = "adjust" style = "padding-top: 20px; padding-bottom: 20px">{{userName}}</ion-title>
+		<div text-center><img height="150" width="150" [src]="userImg"></div>
+		<div class = "username" style = "padding-top: 20px; padding-bottom: 20px">
+			{{userName}}
+		</div>
 		
 		
 		<ion-item>
 		<ion-toolbar >
-		<ion-buttons start>
+		<!-- <ion-buttons start>
 					<button class = "icon1" ion-button icon-only>
 						<ion-icon name="chatboxes" color = "dark"></ion-icon>
 					</button>
-			</ion-buttons>
+			</ion-buttons> -->
 					<ion-buttons>
 					<div text-center>
 				 <button ion-button full class = "icon2" (click) = "myPost()" color = "dark">我的帖子</button>

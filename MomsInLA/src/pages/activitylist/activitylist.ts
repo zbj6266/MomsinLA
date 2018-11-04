@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, Events} from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { ActivityFilterComponent } from '../../components/activity-filter/activity-filter';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -22,6 +22,7 @@ export class ActivitylistPage {
   latitude: number;
   isLocated: boolean = false;
   isLoaded: boolean = false;
+  sub: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -73,7 +74,7 @@ export class ActivitylistPage {
   }
 
   loadData(){
-    this.fsp.getDailyEvent().snapshotChanges().pipe(
+    this.sub = this.fsp.getDailyEvent().snapshotChanges().pipe(
       map(changes=>{
         return changes.map(c=>({
           key: c.payload.key, ...c.payload.val()
@@ -108,7 +109,9 @@ export class ActivitylistPage {
       }
       this.isLoaded = true;
       this.events.publish('distance');
+      this.sub.unsubscribe();
     });
+    // data.unsubscribe();
   }
 
   openDetail(key){

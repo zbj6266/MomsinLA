@@ -41,7 +41,8 @@
       <div class="comments">
         <div class="comments-title">评论</div>
         <div *ngIf="comments.length == 0" style="color:#d8d8d8;text-align: center;margin:5px 0">暂无评论</div>
-        <ion-item *ngFor="let item of comments">
+        
+        <div *ngFor="let item of comments" style="border-bottom:1px solid #d8d8d8">
           <div class="comment-item" >
             <div class="user-img">
               <img [src]="item.commentUser.originalPosterUserIMG" width="32" height="32">
@@ -50,12 +51,32 @@
                 <div>{{item.commentUser.originalPosterUsername}}<span>{{item.datetime}}</span></div>
                 <div class="comment-text">{{item.replyContent}}</div>
             </div>
+            <div class="comment-reply" (click)="reply(item.key, item.commentUser)">
+                回复
+              </div>
             <div class="comment-like">
               <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">
               <div class="num-like">{{item.totalThumbsUp}}</div>
             </div>
           </div>
-        </ion-item>
+          <div *ngFor="let key of item.replyKeys" style="margin-left:20px;margin-top:6px;margin-bottom:6px">
+            <div class="comment-item" >
+              
+              <div class="user-img">
+                <img [src]="item.commentReplies[key].replyUserPictureURL" width="32" height="32">
+              </div>
+              <div class="comment-content">
+                  <div>{{item.commentReplies[key].replyUser}}</div>
+                  <div class="comment-text"><span style="color:#d8d8d8">@{{item.commentUser.originalPosterUsername}} </span>{{item.commentReplies[key].replyCommentContent}}</div>
+              </div>
+              <!-- <div class="comment-like">
+                <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">
+                 <div class="num-like">{{item.totalThumbsUp}}</div> 
+              </div> -->
+            </div>
+            
+          </div>
+        </div>
       </div>
       
   </div>

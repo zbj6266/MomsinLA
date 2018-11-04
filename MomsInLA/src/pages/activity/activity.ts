@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { ToastProvider } from '../../providers/toast/toast'
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
+import { Events } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -20,8 +21,10 @@ export class ActivityPage {
   comments:any = [];
   commentReply: string;
   saved: boolean = false;
-  liked: boolean = true;
+  liked: boolean = false;
   numsLike: number = 0;
+  sub: any;
+  userInfo: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,7 +32,8 @@ export class ActivityPage {
     private iab: InAppBrowser,
     public storage: Storage,
     public toast: ToastProvider,
-    public timeFormat: TimeFormatProvider) {
+    public timeFormat: TimeFormatProvider,
+    public events: Events) {
       this.infoId = navParams.get("infoId")
   }
 
@@ -39,10 +43,27 @@ export class ActivityPage {
     this.getComment(this.infoId);
     this.getSaved();
     this.getLiked();
+    this.events.subscribe('commentReply',(res)=>{
+      console.log(res.key);
+      console.log(res.reply);
+      let reply = res.reply.comment;
+      this.storage.get('user').then(data=>{
+        this.fsp.getCommentForDailyEvent(`${this.infoId}/${res.key}/commentReplies`).push({
+          replyCommentContent: reply,
+          replyTime: new Date().getTime(),
+          replyUser: data.username,
+          replyUserPictureURL: data.userImg,
+          replyUserStatus: data.userStatus
+        }).then(()=>{
+          this.toast.presentToast("评论成功", 1000, "bottom");
+        });
+      })
+      
+    })
   }
 
   loadData(key){
-    this.fsp.getDailyEventDetail(key).valueChanges().subscribe(
+    this.sub = this.fsp.getDailyEventDetail(key).valueChanges().subscribe(
       data=>{
         this.disp = data;
         for(let i=0; i< data['eventCategory3'].length; i++){
@@ -50,6 +71,7 @@ export class ActivityPage {
             this.tags.push(this.tagsStr[i])
           }
         }
+        this.sub.unsubscribe();
       });
   }
 
@@ -65,6 +87,14 @@ export class ActivityPage {
       for(let i=0; i< this.comments.length; i++){
         // this.comments[i]['datetime'] = new Date(this.comments[i]['commentTimestamp']).toLocaleString();
         this.comments[i]['datetime'] = this.timeFormat.differFromNow(this.comments[i]['commentTimestamp']);
+        if(this.comments[i].hasOwnProperty('commentReplies'))
+          this.comments[i]['replyKeys'] = Object.keys(this.comments[i]['commentReplies']);
+        else 
+          this.comments[i]['replyKeys'] = []
+        // console.log()
+        // for(let j = 0; j < this.comments.commentReplies.length; j++){
+        //   console.log(this.comments.commentReplies[j]);
+        // }
       }
       this.comments.sort(function(a,b){
         return b.commentTimestamp - a.commentTimestamp;
@@ -73,7 +103,7 @@ export class ActivityPage {
   }
 
   openBrowser(url){
-    if(url.trim().substring(0,7)!="http://")
+    if(url.trim().substring(0,7)!="http://" || url.trim().substring(0,7)!="https://")
       url = "http://" + url;
     console.log(url);
     this.iab.create(url,"_system");
@@ -88,6 +118,8 @@ export class ActivityPage {
           nav.push('LoginPage');
         }, 1000);
       }else{
+        this.userInfo = data;
+        console.log(this.userInfo);
         if(this.commentReply==null || this.commentReply.trim() == ""){
           this.toast.presentToast("请输入评论内容", 1000, "middle");
           return;
@@ -112,6 +144,11 @@ export class ActivityPage {
     }).catch(e=>{
       this.storage.remove('user');
     })
+  }
+
+  reply(key, user){
+    console.log(key);
+    this.toast.presentPrompt(key,user);
   }
 
   getSaved(){

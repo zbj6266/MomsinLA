@@ -33620,6 +33620,8 @@ page-activity .comment-item {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 8px;
+  margin-left: 12px;
 }
 
 page-activity .comment-content {
@@ -33641,6 +33643,12 @@ page-activity .comment-text {
 }
 
 page-activity .comment-like {
+  padding-top: 16px;
+  text-align: center;
+  width: 32px;
+}
+
+page-activity .comment-reply {
   padding-top: 16px;
 }
 
@@ -34472,9 +34480,14 @@ page-user .button {
   margin-top: 50px;
 }
 
-page-user .displayed {
-  display: block;
-  margin: 30px auto;
+page-user .image {
+  text-align: center;
+}
+
+page-user .username {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 2.2rem;
 }
 
 page-user .title {

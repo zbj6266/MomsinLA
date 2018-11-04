@@ -169,6 +169,8 @@ page-activity {
 
     .comment-item{
         display: flex;
+        margin-top:8px;
+        margin-left:12px;
     }
     .comment-content{
         flex:1;
@@ -183,7 +185,12 @@ page-activity {
         margin-top: 8px;
     }
     .comment-like{
-        padding-top:16px
+        padding-top:16px;
+        text-align: center;
+        width: 32px;
+    }
+    .comment-reply{
+        padding-top:16px;
     }
     .num-like{
         font-size:14px;
