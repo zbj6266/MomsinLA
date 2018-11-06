@@ -33915,6 +33915,15 @@ page-contact .selected {
   background-color: #FFD500 !important;
 }
 
+page-contact .subtitle {
+  font-size: 2rem;
+  margin: 20px 0px 8px 0;
+}
+
+page-contact .date-icon {
+  margin: 18px 0px 4px 8px;
+}
+
 page-exchangeadd .nav-title {
   -webkit-box-flex: 1;
   -webkit-flex: 1;

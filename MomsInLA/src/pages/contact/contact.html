@@ -17,36 +17,27 @@
   
   <ion-input onfocus="this.placeholder=''" placeholder="活动名称" type="text" onblur="this.placeholder = '活动名称'" [(ngModel)] = 'title'></ion-input>
   <ion-textarea  rows="7" maxLength="200"  onfocus="this.placeholder =''" placeholder="活动介绍，请不要超过200个字" onblur="this.placeholder = '活动介绍，请不要超过200个字'" [(ngModel)] = 'content'></ion-textarea>
-  <!-- <button ion-button (click)="openCamera()">拍照</button> -->
-  <div>添加图片</div>
-  <div style="width:100%; display: flex">
-    <div style="width: 25%; padding:5px" *ngFor="let pic of picArray">
-      <img [src]="pic" hegiht="100%" width="100%" />
-    </div>
-    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=3">
-        <button  (click)="chooseSource()">add</button>
-    </div>
-    <div style="width: 25%; padding:5px" *ngIf="picArray.length!=0">
-        <button  (click)="deletePic()">delete</button>
-    </div>
+
+  <div style="display: flex;">
+  <div class="subtitle">活动时间</div>
+  <div class="date-icon"><img src="assets/icon/icon_date_add.png" width="32" height="32" (click)="addTime()"></div>
+  <div class="date-icon"><img *ngIf="dateNum != 1" src="assets/icon/icon_date_remove.png" width="32" height="32" (click)="deleteTime()"></div>
   </div>
-  <ion-title>活动时间</ion-title>
 <ion-grid>
   <div *ngFor="let item of timeArray">
   <ion-row>
     <ion-col text-center no-padding style="line-height:3.8rem;">起始时间</ion-col>
-    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.start.date">日期</ion-datetime></ion-col>
+    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.start.date">日期</ion-datetime></ion-col>
     <ion-col text-center no-padding><ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="item.start.time">时间</ion-datetime></ion-col>
   </ion-row>
   <ion-row style="border-bottom:1px solid #aaaaaa">
     <ion-col text-center no-padding style="line-height:3.8rem;">终止时间</ion-col>
-    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MMM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.end.date">日期</ion-datetime></ion-col>
+    <ion-col text-center no-padding><ion-datetime #sectionSelect2 displayFormat="MM-DD-YYYY" pickerFormat="MMM DD YYYY"[(ngModel)]="item.end.date">日期</ion-datetime></ion-col>
     <ion-col text-center no-padding><ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="item.end.time">时间</ion-datetime></ion-col>
   </ion-row>
   </div>
 </ion-grid>
-<button ion-button (click)="addTime()">添加时间</button>
-<button *ngIf="dateNum != 1" ion-button (click)="deleteTime()">删除时间</button>
+
 <!-- <ion-list>
     <ion-grid>
       <ion-row justify-content-start>
@@ -106,23 +97,21 @@
 </ion-row>
 </div>
 
-<ion-title style = "padding-top: 50px">活动属性</ion-title>
+<div class="subtitle">添加图片</div>
+<div style="width:100%; display: flex">
+  <div style="width: 25%; padding:5px" *ngFor="let pic of picArray">
+    <img [src]="pic" hegiht="100%" width="100%" />
+  </div>
+  <div style="width: 25%; padding:5px" *ngIf="picArray.length!=3">
+    <img width="100" src="assets/icon/icon_pic_add.png" (click)="chooseSource()">
+  </div>
+  <div style="width: 25%; padding:5px" *ngIf="picArray.length!=0">
+    <button  (click)="deletePic()">delete</button>
+    <img width="100" src="assets/icon/icon_pic_remove.png" (click)="deletePic()">
+  </div>
+</div>
 
-
-<!-- <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="freeEvent">
-    <ion-segment-button *ngFor="let item of freeEvents" value="{{item}}">
-
-        <div class="custom_button">{{item}}</div>
-
-       
-
-    </ion-segment-button>
-  </ion-segment>
- <div *ngIf="category==1" [ngSwitch]="free" >
-    <ion-list *ngSwitchCase="'免费'">
-      
-    </ion-list>
-  </div> -->
+<div class="subtitle">活动属性</div>
   <div class="feature-one">
   <ion-grid>
    <ion-row class="align-items-flex-end">
