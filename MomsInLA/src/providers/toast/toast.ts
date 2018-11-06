@@ -44,9 +44,7 @@ export class ToastProvider {
         {
           text: '提交',
           handler: data => {
-            console.log(data);
-            let reply = data;
-            this.events.publish('commentReply', {"key": key, "reply": data});
+            this.events.publish('activity_reply', key, data);
           }
         }
       ]

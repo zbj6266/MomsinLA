@@ -8,13 +8,13 @@ import { ToastProvider } from '../../providers/toast/toast'
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
 import { Events } from 'ionic-angular';
 
+var infoId;
 @IonicPage()
 @Component({
   selector: 'page-activity',
   templateUrl: 'activity.html',
 })
 export class ActivityPage {
-  infoId: any;
   disp: any = {};
   tagsStr: Array<string> = ["户外游乐","益智教育","动物植物","游乐园","室内游乐","科普知识","免费停车","其他类型"];
   tags: Array<string> = [];
@@ -34,27 +34,28 @@ export class ActivityPage {
     public toast: ToastProvider,
     public timeFormat: TimeFormatProvider,
     public events: Events) {
-      this.infoId = navParams.get("infoId")
+      infoId = navParams.get("infoId")
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivityPage');
-    this.loadData(this.infoId);
-    this.getComment(this.infoId);
+    this.loadData(infoId);
+    this.getComment(infoId);
     this.getSaved();
     this.getLiked();
-    this.events.subscribe('commentReply',(res)=>{
-      console.log(res.key);
-      console.log(res.reply);
-      let reply = res.reply.comment;
+    
+    this.events.subscribe('activity_reply',(key, data)=>{
+      let comment = data['\bcomment'];
       this.storage.get('user').then(data=>{
-        this.fsp.getCommentForDailyEvent(`${this.infoId}/${res.key}/commentReplies`).push({
-          replyCommentContent: reply,
+        let reply = {
+          replyCommentContent: comment,
           replyTime: new Date().getTime(),
           replyUser: data.username,
           replyUserPictureURL: data.userImg,
           replyUserStatus: data.userStatus
-        }).then(()=>{
+        }
+        console.log("111"+infoId);
+        console.log(`${infoId}/${key}/commentReplies`);
+        this.fsp.getCommentForDailyEvent(`${infoId}/${key}/commentReplies`).push(reply).then(()=>{
           this.toast.presentToast("评论成功", 1000, "bottom");
         });
       })
@@ -72,6 +73,9 @@ export class ActivityPage {
           }
         }
         this.sub.unsubscribe();
+        this.fsp.getDailyEventDetailRef(key).set('numsRead', data['numsRead'] + 1).then(data=>{
+          this.disp['numsRead'] = this.disp['numsRead'] + 1;
+        })
       });
   }
 
@@ -83,12 +87,15 @@ export class ActivityPage {
         }))
       })
     ).subscribe(data=>{
+      console.log("loading");
       this.comments = data;
       for(let i=0; i< this.comments.length; i++){
         // this.comments[i]['datetime'] = new Date(this.comments[i]['commentTimestamp']).toLocaleString();
         this.comments[i]['datetime'] = this.timeFormat.differFromNow(this.comments[i]['commentTimestamp']);
-        if(this.comments[i].hasOwnProperty('commentReplies'))
+        if(this.comments[i].hasOwnProperty('commentReplies')){
           this.comments[i]['replyKeys'] = Object.keys(this.comments[i]['commentReplies']);
+          console.log(this.comments[i]['replyKeys']);
+        }
         else 
           this.comments[i]['replyKeys'] = []
         // console.log()
@@ -133,13 +140,13 @@ export class ActivityPage {
             originalPosterUserIMG: data['userImg'],
             originalPosterUsername: data['username'],
           },
-          dailyEventID: this.infoId,
+          dailyEventID: infoId,
           dailyEventTitle: this.disp.title,
           replyContent: this.commentReply,
           totalThumbsUp: 0
         };
         this.commentReply="";
-        this.fsp.getCommentForDailyEvent(this.infoId).push(item);
+        this.fsp.getCommentForDailyEvent(infoId).push(item);
       }
     }).catch(e=>{
       this.storage.remove('user');
@@ -156,7 +163,7 @@ export class ActivityPage {
       if(data != null){
         this.fsp.getUserListRef(data['userID']+'/SavedEvents/').snapshotChanges().subscribe(data=>{
           data.forEach(item=>{
-            if(item.key == this.infoId){
+            if(item.key == infoId){
               this.saved = true;
               document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
               return;
@@ -172,7 +179,7 @@ export class ActivityPage {
       if(data != null){
         this.fsp.getUserListRef(data['userID']+'/LikedEvents/').snapshotChanges().subscribe(data=>{
           data.forEach(item=>{
-            if(item.key == this.infoId){
+            if(item.key == infoId){
               this.liked = true;
               document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
               return;
@@ -193,8 +200,8 @@ export class ActivityPage {
         }, 1000);
       }else{
         if(!this.saved)
-        this.fsp.getUserListRef(data['userID']+'/SavedEvents/').set(this.infoId,{
-          'eventID': this.infoId,
+        this.fsp.getUserListRef(data['userID']+'/SavedEvents/').set(infoId,{
+          'eventID': infoId,
           'haveSaved': true,
         }).then(data=>{
           this.saved = true;
@@ -202,7 +209,7 @@ export class ActivityPage {
           this.toast.presentToast("收藏成功", 1000, "bottom");
         })
         else{
-          this.fsp.getUserListRef(data['userID']+'/SavedEvents/').remove(this.infoId).then(data=>{
+          this.fsp.getUserListRef(data['userID']+'/SavedEvents/').remove(infoId).then(data=>{
             this.saved = false;
             document.getElementById('save').setAttribute("src", "assets/icon/icon_save.png");
             this.toast.presentToast("取消收藏", 1000, "bottom");
@@ -222,21 +229,21 @@ export class ActivityPage {
         }, 1000);
       }else{
         if(!this.liked)
-        this.fsp.getUserListRef(data['userID']+'/LikedEvents/').set(this.infoId,{
-          'eventID': this.infoId,
+        this.fsp.getUserListRef(data['userID']+'/LikedEvents/').set(infoId,{
+          'eventID': infoId,
           'haveLiked': true,
         }).then(data=>{
           this.liked = true;
           document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
           this.disp["numsLike"] = this.disp["numsLike"] + 1;
-          this.fsp.getDailyEventDetailRef(this.infoId).set('numsLike', this.disp['numsLike']);
+          this.fsp.getDailyEventDetailRef(infoId).set('numsLike', this.disp['numsLike']);
         })
         else{
-          this.fsp.getUserListRef(data['userID']+'/LikedEvents/').remove(this.infoId).then(data=>{
+          this.fsp.getUserListRef(data['userID']+'/LikedEvents/').remove(infoId).then(data=>{
             this.liked = false;
             document.getElementById('like').setAttribute("src", "assets/icon/icon_like.png");
             this.disp["numsLike"] = this.disp["numsLike"] - 1;
-            this.fsp.getDailyEventDetailRef(this.infoId).set('numsLike', this.disp['numsLike']);
+            this.fsp.getDailyEventDetailRef(infoId).set('numsLike', this.disp['numsLike']);
           })
         }
       }

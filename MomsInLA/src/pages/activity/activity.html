@@ -23,9 +23,9 @@
       <div id="city">城市： {{disp.city}}</div>
       <div id="address">具体地址： {{disp.address}}</div>
       <div id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
-      <div id="content">{{disp.content}}
-        </div>
+      <div id="content">{{disp.content}}</div>
         <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">
+      <div style="text-align: end">阅读量 {{disp.numsRead}}</div>
     </div>
     <div class="info-user">
         <div class="info-like">
@@ -42,7 +42,7 @@
         <div class="comments-title">评论</div>
         <div *ngIf="comments.length == 0" style="color:#d8d8d8;text-align: center;margin:5px 0">暂无评论</div>
         
-        <div *ngFor="let item of comments" style="border-bottom:1px solid #d8d8d8">
+        <div *ngFor="let item of comments" style="border-bottom:1px solid #d8d8d8;padding-bottom: 8px">
           <div class="comment-item" >
             <div class="user-img">
               <img [src]="item.commentUser.originalPosterUserIMG" width="32" height="32">

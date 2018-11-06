@@ -102,7 +102,8 @@ export class ActivitylistPage {
           item['isPublic'] = '公共活动';
         else
           item['isPublic'] = '私人活动';
-        item['numsLike'] = data[i]['numsLike']
+        item['numsLike'] = data[i]['numsLike'];
+        item['numsRead'] = data[i]['numsRead'];
         item['distance'] = "0 英里";
         item['calDistance'] = false;
         this.disp$.push(item);
@@ -114,9 +115,10 @@ export class ActivitylistPage {
     // data.unsubscribe();
   }
 
-  openDetail(key){
+  openDetail(key, numsRead){
     console.log(key);
-    this.navCtrl.push('ActivityPage',{infoId:key});
+    console.log(numsRead);
+    this.navCtrl.push('ActivityPage',{infoId:key});   
   }
 
   presentPopover(event) {
