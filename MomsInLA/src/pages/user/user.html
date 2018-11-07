@@ -16,9 +16,8 @@
 
 <ion-content padding>
 	<div *ngIf="userID==null">
-		<div text-center><img height="150" width="150" src="assets/imgs/user_portrait.png"></div>
+		<div text-center class="userImg"><img height="150" width="150" src="assets/imgs/user_portrait.png"></div>
 		<button class="login" block ion-button (click) = "signIn()" item-left>立即登录</button>
-			<!-- <button block ion-button (click) = "register()" color = "dark" >注册</button> -->
 	</div>
 	<div *ngIf="userID != null">
 		<div text-center><img height="150" width="150" [src]="userImg"></div>

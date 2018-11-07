@@ -46,8 +46,8 @@ var LoginPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_firebase_service_firebase_service__ = __webpack_require__(157);
@@ -116,6 +116,7 @@ var LoginPage = /** @class */ (function () {
         this.fsp = fsp;
         this.toast = toast;
         this.user = {};
+        this.googleUser = this.afAuth.authState;
     }
     LoginPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad LoginPage');
@@ -156,16 +157,68 @@ var LoginPage = /** @class */ (function () {
         });
     };
     LoginPage.prototype.loginGoogle = function () {
-        this.googlePlus.login({
-            // 'webClientID':'240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com',
-            'webClientID': '240243369411-3dihv28en6u117pbskoinbejs38e6k19.apps.googleusercontent.com',
-            'offline': true,
-        }).then(function (res) {
-            console.log(res);
-            __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().signInAndRetrieveDataWithCredential(__WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth.GoogleAuthProvider.credential(null, res.accessToken)).then(function (suc) {
-                console.log(suc);
-                alert(suc);
-            }).catch(function (err) { console.log(err); alert(err); });
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var login, result_1, sub_1, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, this.googlePlus.login({
+                                'webClientID': '240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com',
+                                //apple 'webClientID':'240243369411-3dihv28en6u117pbskoinbejs38e6k19.apps.googleusercontent.com',
+                                // 240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com
+                                'offline': true,
+                                'scopes': 'profile email'
+                            })];
+                    case 1:
+                        login = _a.sent();
+                        return [4 /*yield*/, this.afAuth.auth.signInAndRetrieveDataWithCredential(__WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth.GoogleAuthProvider.credential(null, login.accessToken))];
+                    case 2:
+                        result_1 = _a.sent();
+                        sub_1 = this.fsp.getUserRef(result_1.user.uid).valueChanges().subscribe(function (data) {
+                            sub_1.unsubscribe();
+                            if (data == null) {
+                                _this.fsp.getUserRef(result_1.user.uid).set({
+                                    LikedEvents: [],
+                                    displayName: result_1.user.displayName,
+                                    email: result_1.user.email,
+                                    photoURL: result_1.user.photoURL,
+                                    registrationDate: new Date().getTime(),
+                                    userID: result_1.user.uid,
+                                    userStatus: "Basic"
+                                });
+                                var user = {
+                                    username: result_1.user.displayName,
+                                    userImg: result_1.user.photoURL,
+                                    userID: result_1.user.uid,
+                                    userStatus: "Basic"
+                                };
+                                _this.storage.set('user', user);
+                                _this.events.publish("user", user);
+                                _this.navCtrl.pop();
+                            }
+                            else {
+                                var user = {
+                                    username: data['displayName'],
+                                    userImg: data['photoURL'],
+                                    userID: data['userID'],
+                                    userStatus: data['userStatus']
+                                };
+                                _this.storage.set('user', user);
+                                _this.events.publish("user", user);
+                                _this.navCtrl.pop();
+                            }
+                        });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        alert(err_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
     };
     LoginPage.prototype.register = function () {
@@ -173,7 +226,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/login/login.html"*/'<ion-header>\n  <ion-toolbar>\n    <div style="display: flex">\n      <div class="nav-button">\n      <button ion-button clear small navPop>  \n        <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> \n      </button>\n      </div>\n      <div class="nav-title">登陆</div>\n      <div class="nav-button">\n        <button ion-button clear small (click)="register()">快速注册</button>\n      </div>\n    </div>  \n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-item>\n    <ion-label floating>邮箱</ion-label>\n    <ion-input type="text" [(ngModel)]="user.email"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>密码</ion-label>\n    <ion-input type="password" [(ngModel)]="user.password"></ion-input>\n  </ion-item>\n\n\n	<div padding>\n  <button block ion-button (click) = "login(user)" item-left>登录</button>\n	</div>\n\n  <button ion-button (click)=\'loginGoogle()\'>\n    <ion-icon name=\'logo-googleplus\' block outline></ion-icon>\n  </button>\n<ion-title class = "otherlogin" style = "padding-top: 20px" >或用以下账号登录</ion-title>\n\n  <ion-footer no-border>\n  <div class="column">\n    <ion-grid>\n      <ion-item style = "padding-bottom: 30px">\n      <ion-row>\n        <ion-col text-center (click) = "toInformation(1)">\n          <img src="imgs/weibo.png" height="32" width="32" />\n          <div class="font-content">新浪微博</div>\n        </ion-col>\n     \n          <ion-col text-center (click) = "toInformation(2)">\n          <img src="imgs/weixin.png" height="32" width="32" />\n          <div class="font-content">微信</div>\n        </ion-col>\n          <ion-col text-center (click) = "toInformation(2)">\n          <img src="imgs/facebook.png" height="32" width="32" />\n          <div class="font-content">Facebook</div>\n        </ion-col>\n    </ion-row>\n  </ion-item>\n  </ion-grid>\n</div>\n</ion-footer>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/login/login.html"*/'<ion-header>\n  <ion-toolbar>\n    <div style="display: flex">\n      <div class="nav-button">\n      <button ion-button clear small navPop>  \n        <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> \n      </button>\n      </div>\n      <div class="nav-title">登陆</div>\n      <div class="nav-button">\n        <button ion-button clear small (click)="register()">快速注册</button>\n      </div>\n    </div>  \n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-item>\n    <ion-label floating>邮箱</ion-label>\n    <ion-input type="text" [(ngModel)]="user.email"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>密码</ion-label>\n    <ion-input type="password" [(ngModel)]="user.password"></ion-input>\n  </ion-item>\n\n\n	<div padding>\n  <button block ion-button (click) = "login(user)" item-left>登录</button>\n	</div>\n  <div *ngIf="(googleUser | async) || {} as googleUser">\n    <div *ngIf="googleUser.uid">{{googleUser.uid}}</div>\n  </div>\n  <button ion-button (click)=\'loginGoogle()\'>\n    <ion-icon name=\'logo-googleplus\' block outline></ion-icon>\n  </button>\n<ion-title class = "otherlogin" style = "padding-top: 20px" >或用以下账号登录</ion-title>\n\n  <ion-footer no-border>\n  <div class="column">\n    <ion-grid>\n      <ion-item style = "padding-bottom: 30px">\n      <ion-row>\n        <ion-col text-center (click) = "toInformation(1)">\n          <img src="imgs/weibo.png" height="32" width="32" />\n          <div class="font-content">新浪微博</div>\n        </ion-col>\n     \n          <ion-col text-center (click) = "toInformation(2)">\n          <img src="imgs/weixin.png" height="32" width="32" />\n          <div class="font-content">微信</div>\n        </ion-col>\n          <ion-col text-center (click) = "toInformation(2)">\n          <img src="imgs/facebook.png" height="32" width="32" />\n          <div class="font-content">Facebook</div>\n        </ion-col>\n    </ion-row>\n  </ion-item>\n  </ion-grid>\n</div>\n</ion-footer>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/login/login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],

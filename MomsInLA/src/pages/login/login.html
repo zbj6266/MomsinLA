@@ -29,7 +29,9 @@
 	<div padding>
   <button block ion-button (click) = "login(user)" item-left>登录</button>
 	</div>
-
+  <div *ngIf="(googleUser | async) || {} as googleUser">
+    <div *ngIf="googleUser.uid">{{googleUser.uid}}</div>
+  </div>
   <button ion-button (click)='loginGoogle()'>
     <ion-icon name='logo-googleplus' block outline></ion-icon>
   </button>

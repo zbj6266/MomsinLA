@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, Events} from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { ActivityFilterComponent } from '../../components/activity-filter/activity-filter';
 import { Geolocation } from '@ionic-native/geolocation';

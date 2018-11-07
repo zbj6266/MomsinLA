@@ -34514,3 +34514,7 @@ page-user .icon1.bar-button-md {
 page-user .icon2.bar-button-md {
   margin-left: 110px;
 }
+
+page-user .userImg {
+  border-radius: 50%;
+}

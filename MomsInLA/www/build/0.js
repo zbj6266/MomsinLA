@@ -46,6 +46,8 @@ var SettingPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__ = __webpack_require__(303);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,18 +60,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the SettingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
 var SettingPage = /** @class */ (function () {
-    function SettingPage(navCtrl, navParams, storage, events) {
+    function SettingPage(navCtrl, navParams, storage, events, afAuth, gplus) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.storage = storage;
         this.events = events;
+        this.afAuth = afAuth;
+        this.gplus = gplus;
     }
     SettingPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SettingPage');
@@ -77,6 +77,8 @@ var SettingPage = /** @class */ (function () {
     SettingPage.prototype.Logout = function () {
         this.storage.remove('user');
         this.events.publish("logout", null);
+        this.afAuth.auth.signOut();
+        this.gplus.logout();
         this.navCtrl.pop();
     };
     SettingPage = __decorate([
@@ -86,7 +88,9 @@ var SettingPage = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */]])
     ], SettingPage);
     return SettingPage;
 }());

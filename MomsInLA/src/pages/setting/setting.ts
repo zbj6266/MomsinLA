@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
-/**
- * Generated class for the SettingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 @IonicPage()
 @Component({
@@ -19,7 +14,9 @@ export class SettingPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public storage: Storage,
-    public events: Events) {
+    public events: Events,
+    public afAuth: AngularFireAuth,
+    public gplus: GooglePlus) {
   }
 
   ionViewDidLoad() {
@@ -29,6 +26,8 @@ export class SettingPage {
   Logout(){
     this.storage.remove('user');
     this.events.publish("logout",null);
+    this.afAuth.auth.signOut()
+    this.gplus.logout();
   	this.navCtrl.pop();
   }
 

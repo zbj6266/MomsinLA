@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { ToastProvider } from '../../providers/toast/toast'
 import { User } from '../../models/user'; 
+import { Observable } from 'rxjs';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,7 @@ export class LoginPage {
 
 
   user = {} as User;
+  googleUser: Observable<firebase.User>;
 
   constructor(public app : App, 
     public navCtrl: NavController, 
@@ -27,6 +29,7 @@ export class LoginPage {
     public events: Events,
     public fsp: FirebaseServiceProvider,
     public toast: ToastProvider) {
+      this.googleUser = this.afAuth.authState;
   }
 
   ionViewDidLoad() {
@@ -56,23 +59,55 @@ export class LoginPage {
     }
   }
 
-  loginGoogle(){
-    this.googlePlus.login({
-      // 'webClientID':'240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com',
-      'webClientID':'240243369411-3dihv28en6u117pbskoinbejs38e6k19.apps.googleusercontent.com',
-      
-      'offline': true,
-    }).then(res=>{
-      console.log(res);
 
-      firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(null,res.accessToken)).then(
-        suc=>{
-          console.log(suc);
-          alert(suc);
+  async loginGoogle(){
+    try{
+      const login = await this.googlePlus.login({
+        'webClientID':'240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com',
+        //apple 'webClientID':'240243369411-3dihv28en6u117pbskoinbejs38e6k19.apps.googleusercontent.com',
+        // 240243369411-uo2aj7sobr4bbddosb6taejqa7k4j1qj.apps.googleusercontent.com
+        'offline': true,
+        'scopes': 'profile email'
+      });
+      const result = await this.afAuth.auth.signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(null,login.accessToken));
+
+      let sub = this.fsp.getUserRef(result.user.uid).valueChanges().subscribe(data=>{
+        sub.unsubscribe();
+        if(data == null){
+          this.fsp.getUserRef(result.user.uid).set({
+            LikedEvents:[],
+            displayName: result.user.displayName,
+            email: result.user.email,
+            photoURL: result.user.photoURL,
+            registrationDate: new Date().getTime(),
+            userID: result.user.uid,
+            userStatus: "Basic"
+          });
+          let user = {
+            username: result.user.displayName,
+            userImg: result.user.photoURL,
+            userID: result.user.uid,
+            userStatus: "Basic"
+          };
+          this.storage.set('user',user);
+          this.events.publish("user", user);
+          this.navCtrl.pop();
         }
-      ).catch(err=> {console.log(err);alert(err);})
-
-    });
+        else{
+          let user = {
+            username: data['displayName'],
+            userImg: data['photoURL'],
+            userID: data['userID'],
+            userStatus: data['userStatus']
+          };
+          this.storage.set('user',user);
+          this.events.publish("user", user);
+          this.navCtrl.pop();
+        }
+      })
+    }catch(err){
+      console.log(err);alert(err)
+    }
   }
   
   register(){

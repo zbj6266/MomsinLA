@@ -1,12 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <!-- <div style="display: flex">
-      <div>
-      <button ion-button clear medium navPop style="padding: 0;">  
-       取消
-      </button>
-      </div>
-  </div> -->
     <ion-title text-center>
       添加活动
     </ion-title>
@@ -14,7 +7,6 @@
 </ion-header>
 
 <ion-content padding>
-  
   <ion-input onfocus="this.placeholder=''" placeholder="活动名称" type="text" onblur="this.placeholder = '活动名称'" [(ngModel)] = 'title'></ion-input>
   <ion-textarea  rows="7" maxLength="200"  onfocus="this.placeholder =''" placeholder="活动介绍，请不要超过200个字" onblur="this.placeholder = '活动介绍，请不要超过200个字'" [(ngModel)] = 'content'></ion-textarea>
 
@@ -38,43 +30,8 @@
   </div>
 </ion-grid>
 
-<!-- <ion-list>
-    <ion-grid>
-      <ion-row justify-content-start>
-
-  <ion-col col-3>
-    <ion-buttons end>
-        <button ion-button icon-only (click) = "calendar()" color = "dark" clear><ion-icon name="calendar" item-left></ion-icon></button>
-        </ion-buttons>
-      </ion-col>
-      <div>起始时间</div>
-
-      <ion-col col-xl-1>
-    <ion-item>
-
-     <ion-datetime #sectionSelect2 displayFormat="MMM DD YY" [(ngModel)]="event"></ion-datetime>
-    </ion-item>
-  </ion-col>
-  
-
-     
-      <ion-col col-xl-1 >
-        <ion-item>
-      <ion-datetime displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="event"></ion-datetime>
-    </ion-item>
-    </ion-col>
- 
-  </ion-row>
-  </ion-grid>
-</ion-list> -->
 <div class="info">
 <ion-row>
-    <!-- <ion-col col-3>
-            <ion-item no-lines>
-            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>
-            </ion-item>
-      具体地址
-    </ion-col> -->
     <ion-col>
     <ion-input onfocus="this.placeholder = '' " placeholder="具体地址" type="text" onblur="this.placeholder = '具体地址'" [(ngModel)] = 'address'></ion-input>
 </ion-col>
@@ -116,11 +73,9 @@
   <ion-grid>
    <ion-row class="align-items-flex-end">
     <ion-col col-6 no-padding>
-      <!-- <button ion-button no-margin medium full (click)="addEvent();" [ngStyle]="{'background-color': buttonColor}"  class="custom-button" (click) = "changeState()">免费</button> -->
       <button class="price selected" (click)="selectPrice($event)">免费</button>
   </ion-col>
     <ion-col col-6 no-padding>
-      <!-- <button ion-button no-margin full (click)="addEventa();" [ngStyle]="{'background-color': buttonColor1}"  class="custom-button" (click) = "changeState1()">收费</button> -->
       <button class="price" (click)="selectPrice($event)">收费</button>
   </ion-col>
 </ion-row>
@@ -128,55 +83,14 @@
 <ion-grid>
 <ion-row class="align-items-flex-end">
     <ion-col col-6 no-padding>
-      <!-- <button ion-button no-margin medium full (click)="addEventb();" [ngStyle]="{'background-color': buttonColor2}"  class="custom-button" (click) = "changeState2()">公共活动</button> -->
       <button class="open selected" (click)="selectOpen($event)">公共活动</button>
   </ion-col>
   <ion-col col-6 no-padding>
-      <!-- <button ion-button no-margin full (click)="addEventc();" [ngStyle]="{'background-color': buttonColor3}"  class="custom-button" (click) = "changeState3()">私人活动</button> -->
       <button class='open' (click)=selectOpen($event)>私人活动</button>
   </ion-col>
 </ion-row>
 </ion-grid>
 </div>
-<!-- Using radio select --> 
-
-  <!-- <ion-list radio-group>
-   <ion-row class="align-items-flex-end">
-    <ion-col col-4>
-
-    <ion-item >
-      <ion-label color="dark" font = "10px">免费</ion-label>
-      <ion-radio color = "yellow" value="always" checked></ion-radio>
-    </ion-item>
-  </ion-col>
-    <ion-col col-8>
-    <ion-item>
-      <ion-label color="dark">收费</ion-label>
-      <ion-radio color = "yellow" value="locked"></ion-radio>
-      <ion-input onfocus="this.placeholder = '' " placeholder="$/人均" type="number" onblur="this.placeholder = '$/人均'"></ion-input>
-    </ion-item>
-  </ion-col>
-</ion-row>
-</ion-list>
-<ion-list radio-group>
-<ion-row>
-    <ion-col col-6>
-
-    <ion-item>
-      <ion-label color="dark">公共活动</ion-label>
-      <ion-radio color = "yellow" value="always" checked></ion-radio>
-    </ion-item>
-  </ion-col>
-    <ion-col col-6>
-    <ion-item>
-      <ion-label color="dark">私人活动</ion-label>
-      
-      <ion-radio color = "yellow" value="locked"></ion-radio>
-    </ion-item>
-  </ion-col>
-</ion-row>
-  </ion-list> -->
-
 
 <div class="feature-two">
 <ion-grid>
@@ -217,82 +131,7 @@
   </ion-row>
 </ion-grid>
 </div>
-<!-- Using radio select -->
-        
-            <!-- <ion-grid>
-                 <ion-row align-items-center>
-             <ion-col col-xl-1>
 
-    <ion-item no-lines>
-      <ion-label stacked color="dark">户外游乐</ion-label>
-      <ion-radio  color = "yellow"></ion-radio>
-    </ion-item>
-  </ion-col>
-    <ion-col col-xl-1>
-    <ion-item no-lines>
-      <ion-label stacked color="dark">益智教育</ion-label>
-      
-      <ion-radio color = "yellow" ></ion-radio>
-    </ion-item>
-  </ion-col>
-
-  <ion-col col-xl-1>
-    <ion-item no-lines>
-      <ion-label  stacked color="dark">动物植物</ion-label>
-      
-      <ion-radio color = "yellow" ></ion-radio>
-    </ion-item>
-  </ion-col>
-
-  <ion-col col-xl-1>
-    <ion-item no-lines>
-      <ion-label stacked color="dark">游乐园</ion-label>
-      
-      <ion-radio color = "yellow" ></ion-radio>
-    </ion-item>
-  </ion-col>
-</ion-row>
-</ion-grid>
-
-
-
-<ion-list>
-<ion-grid>
-<ion-row>
-  <ion-col col-xl-1>
-    <ion-item no-lines>
-      <ion-label stacked color="dark">室内游乐</ion-label>
-      
-      <ion-radio color = "yellow"></ion-radio>
-    </ion-item>
-  </ion-col>
-
-  <ion-col col-xl-1>
-    <ion-item no-lines>
-      <ion-label stacked color="dark">科普知识</ion-label>
-      
-      <ion-radio color = "yellow"></ion-radio>
-    </ion-item>
-  </ion-col>
-
-  <ion-col col-xl-1>
-    <ion-item no-lines>
-      <ion-label stacked color="dark">免费停车</ion-label>
-      
-      <ion-radio color = "yellow"></ion-radio>
-    </ion-item>
-  </ion-col>
-
-  <ion-col col-xl-1>
-    <ion-item no-lines>
-      <ion-label stacked color="dark">其他类型</ion-label>
-      
-      <ion-radio color = "yellow"></ion-radio>
-    </ion-item>
-  </ion-col>
-</ion-row>
-</ion-grid>
-  </ion-list> -->
 <div class="feature-one"  style="margin-top:14px;margin-bottom: 60px">
 <ion-grid>
   <ion-col no-padding>
