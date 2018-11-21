@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
+import { ToastProvider } from '../../providers/toast/toast';
 import { map } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -21,13 +23,17 @@ export class InformationPage {
   strategy : string = "学区攻略";
   expenses : Array<any> = [{name: "商品买卖", index:0},{name: "家政服务", index:1},{name:"房屋租住", index:2},{name:"妈妈兼职",index:3}];
   expense : string = "商品买卖";
-  
+  userInfo: any;
 
   list$: any;
   disp$: any
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fsp:FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public fsp:FirebaseServiceProvider,
+    public storage: Storage,
+    public toast: ToastProvider) {
     this.category = navParams.get("item");
-
+    storage.get("user").then(data=> this.userInfo=data);
   }
 
   ionViewDidLoad() {
@@ -65,7 +71,15 @@ export class InformationPage {
   }
 
   openAdd(){
-    this.navCtrl.push('ExchangeaddPage');
+    if(this.userInfo == null){
+      this.toast.presentToast("请先登陆", 1000, "middle");
+          let n = this.navCtrl;
+          setTimeout(function(){
+            n.push('LoginPage');
+          },1000);
+    }
+    else
+      this.navCtrl.push('ExchangeaddPage');
   }
 
   openExchange(id){

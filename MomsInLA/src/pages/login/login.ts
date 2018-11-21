@@ -38,6 +38,10 @@ export class LoginPage {
   }
 
   async login(user: User){
+    if(user.email == null || user.password == null){
+      this.toast.presentToast("请输入邮箱/密码",1000,"bottom");
+      return;
+    }
     try{
       const result = await this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(user.email.trim(), user.password);
       console.log(result.user.uid);
@@ -55,7 +59,9 @@ export class LoginPage {
     }
     catch(e){
       if(e.code == "auth/invalid-email") this.toast.presentToast('请输入正确的邮箱格式', 1000, "bottom");
-      else{}
+      else{
+        console.log(e)
+      }
     }
   }
 

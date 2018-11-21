@@ -6,7 +6,7 @@
         <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> 
       </button>
       </div>
-      <div class="nav-title">登陆</div>
+      <div class="nav-title">登录</div>
       <div class="nav-button">
         <button ion-button clear small (click)="register()">快速注册</button>
       </div>
@@ -28,16 +28,20 @@
 
 	<div padding>
   <button block ion-button (click) = "login(user)" item-left>登录</button>
-	</div>
-  <div *ngIf="(googleUser | async) || {} as googleUser">
-    <div *ngIf="googleUser.uid">{{googleUser.uid}}</div>
   </div>
-  <button ion-button (click)='loginGoogle()'>
+  
+  <div padding>
+    <button block ion-button (click)='loginGoogle()' item-left>Google账户登录</button>
+    </div>
+  <!-- <div *ngIf="(googleUser | async) || {} as googleUser">
+    <div *ngIf="googleUser.uid">{{googleUser.uid}}</div>
+  </div> -->
+  <!-- <button ion-button (click)='loginGoogle()'>
     <ion-icon name='logo-googleplus' block outline></ion-icon>
   </button>
-<ion-title class = "otherlogin" style = "padding-top: 20px" >或用以下账号登录</ion-title>
+<ion-title class = "otherlogin" style = "padding-top: 20px" >或用以下账号登录</ion-title> -->
 
-  <ion-footer no-border>
+  <!-- <ion-footer no-border>
   <div class="column">
     <ion-grid>
       <ion-item style = "padding-bottom: 30px">
@@ -59,5 +63,5 @@
   </ion-item>
   </ion-grid>
 </div>
-</ion-footer>
+</ion-footer> -->
 </ion-content>

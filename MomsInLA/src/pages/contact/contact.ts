@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Platform, normalizeURL} from 'ionic-angular';
 import { storage } from 'firebase';
 import { Storage } from '@ionic/storage';
