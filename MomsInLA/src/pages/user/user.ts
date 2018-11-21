@@ -49,8 +49,11 @@ export class UserPage {
   toSetting() {
     this.navCtrl.push("SettingPage");
   }
-  myCollection() {
+  toCollection() {
     this.navCtrl.push("CollectionPage");
+  }
+  toPoint(){
+    console.log("point");
   }
  
 

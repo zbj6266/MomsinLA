@@ -37,6 +37,11 @@
 </ion-col>
 </ion-row>
 
+<ion-row>
+  <ion-col>
+  <ion-input onfocus="this.placeholder = '' " placeholder="活动费用" type="text" onblur="this.placeholder = '活动费用'" [(ngModel)] = 'charge'></ion-input>
+</ion-col>
+</ion-row>
 
 <ion-row no-padding>
     <ion-col col-6>
@@ -48,7 +53,7 @@
 </ion-row>
 
 <ion-row>
-  <ion-col no-padding>
+  <ion-col>
     <ion-input onfocus="this.placeholder = '' " placeholder="官方网站" type="text" onblur="this.placeholder = '官方网站'" [(ngModel)] = 'website'></ion-input>
   </ion-col>
 </ion-row>

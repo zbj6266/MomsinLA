@@ -24,32 +24,4 @@ export class ToastProvider {
     toast.present();
   }
 
-  presentPrompt(key,usr) {
-    let alert = this.alertCtrl.create({
-      title: '回复',
-      inputs: [
-        {
-          name: 'comment',
-          placeholder: '@'+ usr.originalPosterUsername,
-        }
-      ],
-      buttons: [
-        {
-          text: '取消',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: '提交',
-          handler: data => {
-            this.events.publish('activity_reply', key, data);
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { map } from 'rxjs/operators';
@@ -33,8 +33,10 @@ export class ActivityPage {
     public storage: Storage,
     public toast: ToastProvider,
     public timeFormat: TimeFormatProvider,
-    public events: Events) {
-      infoId = navParams.get("infoId")
+    public events: Events,
+    public alertCtrl: AlertController) {
+      infoId = navParams.get("infoId");
+      storage.get('user').then(data=> this.userInfo = data);
   }
 
   ionViewDidLoad() {
@@ -87,10 +89,8 @@ export class ActivityPage {
         }))
       })
     ).subscribe(data=>{
-      console.log("loading");
       this.comments = data;
       for(let i=0; i< this.comments.length; i++){
-        // this.comments[i]['datetime'] = new Date(this.comments[i]['commentTimestamp']).toLocaleString();
         this.comments[i]['datetime'] = this.timeFormat.differFromNow(this.comments[i]['commentTimestamp']);
         if(this.comments[i].hasOwnProperty('commentReplies')){
           this.comments[i]['replyKeys'] = Object.keys(this.comments[i]['commentReplies']);
@@ -98,10 +98,7 @@ export class ActivityPage {
         }
         else 
           this.comments[i]['replyKeys'] = []
-        // console.log()
-        // for(let j = 0; j < this.comments.commentReplies.length; j++){
-        //   console.log(this.comments.commentReplies[j]);
-        // }
+
       }
       this.comments.sort(function(a,b){
         return b.commentTimestamp - a.commentTimestamp;
@@ -117,15 +114,13 @@ export class ActivityPage {
   }
 
   comment(){
-    this.storage.get('user').then(data=>{
-      if(data==null){
+      if(this.userInfo==null){
         this.toast.presentToast("请先登陆", 1000, "middle");
         let nav = this.navCtrl;
         setTimeout(function(){
           nav.push('LoginPage');
         }, 1000);
       }else{
-        this.userInfo = data;
         console.log(this.userInfo);
         if(this.commentReply==null || this.commentReply.trim() == ""){
           this.toast.presentToast("请输入评论内容", 1000, "middle");
@@ -135,10 +130,10 @@ export class ActivityPage {
           commentReplies: [],
           commentTimestamp: new Date().getTime(),
           commentUser: {
-            originalPosterStatus: data['userStatus'],
-            originalPosterUserID: data['userID'],
-            originalPosterUserIMG: data['userImg'],
-            originalPosterUsername: data['username'],
+            originalPosterStatus: this.userInfo['userStatus'],
+            originalPosterUserID: this.userInfo['userID'],
+            originalPosterUserIMG: this.userInfo['userImg'],
+            originalPosterUsername: this.userInfo['username'],
           },
           dailyEventID: infoId,
           dailyEventTitle: this.disp.title,
@@ -148,14 +143,58 @@ export class ActivityPage {
         this.commentReply="";
         this.fsp.getCommentForDailyEvent(infoId).push(item);
       }
-    }).catch(e=>{
-      this.storage.remove('user');
-    })
   }
 
   reply(key, user){
     console.log(key);
-    this.toast.presentPrompt(key,user);
+    if(this.userInfo==null){
+      this.toast.presentToast("请先登陆", 1000, "middle");
+      let nav = this.navCtrl;
+      setTimeout(function(){
+        nav.push('LoginPage');
+      }, 1000);
+    }else{
+      this.presentPrompt(key,user);
+    }
+  }
+
+  presentPrompt(key,usr) {
+    let alert = this.alertCtrl.create({
+      title: '回复',
+      inputs: [
+        {
+          name: 'comment',
+          placeholder: '@'+ usr.originalPosterUsername,
+        }
+      ],
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '提交',
+          handler: data => {
+            let reply = {
+              replyCommentContent: data['\bcomment'],
+              replyTime: new Date().getTime(),
+              replyUser: this.userInfo.username,
+              replyUserPictureURL: this.userInfo.userImg,
+              replyUserStatus: this.userInfo.userStatus
+            }
+            console.log("111"+infoId);
+            console.log(`${infoId}/${key}/commentReplies`);
+            this.fsp.getCommentForDailyEvent(`${infoId}/${key}/commentReplies`).push(reply).then(()=>{
+              this.toast.presentToast("评论成功", 1000, "bottom");
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   getSaved(){

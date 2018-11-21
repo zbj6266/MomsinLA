@@ -27,6 +27,7 @@ test = 0;
   city: string;
   zipcode: string;
   website: string;
+  charge: string;
 
   calName = '';
   events = [];
@@ -161,7 +162,7 @@ test = 0;
             eventCategory1: this.isFree,
             eventCategory2: this.isPublic,
             eventCategory3: this.tags,
-            eventFeeCharged: "0",
+            eventFeeCharged: this.charge,
             eventMainSubType: "Official Event",
             imgs: this.picName,
             numsLike:0,

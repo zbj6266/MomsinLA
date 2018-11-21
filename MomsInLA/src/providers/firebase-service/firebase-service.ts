@@ -21,17 +21,17 @@ export class FirebaseServiceProvider {
   }
 
   getDailyEvent(){
-    return this.afd.list(this.dailyEvent);
+    return this.afd.list(this.dailyEvent, ref => ref.orderByChild('activityApproved').equalTo(false));
   }
 
   getDailyEventInOrder(idx){
     switch(idx){
       case 0:
-        return this.afd.list(this.dailyEvent, ref=> ref.orderByChild('numsLike'));
+        return this.afd.list(this.dailyEvent, ref => ref.orderByChild('numsLike'));
       case 1:
-        return this.afd.list(this.dailyEvent, ref=> ref.orderByChild('numsLike'));
+        return this.afd.list(this.dailyEvent, ref => ref.orderByChild('numsLike'));
       case 2:
-        return this.afd.list(this.dailyEvent, ref=> ref.orderByChild('numsLike'));
+        return this.afd.list(this.dailyEvent, ref => ref.orderByChild('numsLike'));
 
     }
   }
