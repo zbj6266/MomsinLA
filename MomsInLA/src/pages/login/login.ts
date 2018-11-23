@@ -45,7 +45,8 @@ export class LoginPage {
     try{
       const result = await this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(user.email.trim(), user.password);
       console.log(result.user.uid);
-      this.fsp.getUserRef(result.user.uid).valueChanges().subscribe(data=> {
+      firebase.database().ref(`/UsersAndAdministrators/${result.user.uid}`).once('value').then(snapshot=>{
+        let data = snapshot.val();
         let user = {
           username: data['displayName'],
           userImg: data['photoURL'],
@@ -53,9 +54,8 @@ export class LoginPage {
           userStatus: data['userStatus']
         };
         this.storage.set('user',user);
-        this.events.publish("user", user);
         this.navCtrl.pop();
-      });
+      })
     }
     catch(e){
       if(e.code == "auth/invalid-email") this.toast.presentToast('请输入正确的邮箱格式', 1000, "bottom");

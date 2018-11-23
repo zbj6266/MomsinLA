@@ -13,33 +13,33 @@ export class UserPage {
   userImg: string;
   userName: string;
 
+  userInfo: any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public storage: Storage,
     public events: Events) {
-      this.storage.get('user').then(data=>{
-        console.log(data);
-        if(data==null){
-          this.userID=null;
-        }else{
-          this.userID = data['userID'];
-          this.userImg = data['userImg'];
-          this.userName = data['username'];
-        }
-      })
   }
   
   ionViewDidLoad() {
+    this.storage.get('user').then(data=>{
+      this.userInfo = data;
+    });
 
-    //get user information
-    this.events.subscribe('user', user=>{
-      this.userName = user.username;
-      this.userImg = user.userImg;
-      this.userID = user.userID;
-    })
+    // //get user information
+    // this.events.subscribe('user', user=>{
+    //   this.userName = user.username;
+    //   this.userImg = user.userImg;
+    //   this.userID = user.userID;
+    // })
+    
 
-    //clear the user information in the page
-    this.events.subscribe('logout',(id)=> this.userID = id);
+    // //clear the user information in the page
+    // this.events.subscribe('logout',(id)=> this.userID = id);
+  }
+  ionViewDidEnter(){
+    this.storage.get('user').then(data=>{
+      this.userInfo = data;
+    });
   }
 
   signIn() {

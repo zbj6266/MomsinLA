@@ -6,6 +6,7 @@ import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } fr
 import { ActivityFilterComponent } from '../../components/activity-filter/activity-filter';
 import { Geolocation } from '@ionic-native/geolocation';
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
+import firebase from 'firebase/app';
 
 declare var google;
 @IonicPage()
@@ -22,7 +23,10 @@ export class ActivitylistPage {
   latitude: number;
   isLocated: boolean = false;
   isLoaded: boolean = false;
-  sub: any;
+  readMore: string = "";
+  lastTime: number = 4698626463000;
+  hasMore: boolean = true;
+  numsForEach: number = 5;
 
   constructor(
     public navCtrl: NavController, 
@@ -49,7 +53,7 @@ export class ActivitylistPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActivitylistPage');
-    this.loadData();
+    this.loadData(0, this.lastTime, this.numsForEach);
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 5
@@ -73,47 +77,57 @@ export class ActivitylistPage {
 
   }
 
-  loadData(){
-    this.sub = this.fsp.getDailyEvent().snapshotChanges().pipe(
-      map(changes=>{
-        return changes.map(c=>({
-          key: c.payload.key, ...c.payload.val()
-        }))
-      })
-    ).subscribe(data=>{
-      console.log(data);
-      for(let i=0; i< data.length;i++){
+  loadData(startTime, endTime, num){
+    if(this.hasMore)
+    firebase.database().ref('/DailyEvents/').orderByChild('createDate').startAt(startTime).endAt(endTime).limitToLast(num).once('value').then(snapshot => {
+      console.log(snapshot.numChildren());
+      
+      snapshot.forEach(data =>{
         let item = {};
-        item['key'] = data[i]['key'];
-        item['title'] = data[i]['title'];
-        item['address'] = data[i]['address'];
-        item['imgs'] = data[i]['imgs'];
-        item['firstBegin'] = data[i]['activityDate'][0]['from'];
+        item['key'] = data.key;
+        let value = data.val();
+        if(value['createDate'] < this.lastTime)
+          this.lastTime = value['createDate'] - 1;
+        item['title'] = value['title'];
+        item['address'] = value['address'];
+        item['imgs'] = value['imgs'];
+        item['firstBegin'] = value['activityDate'][0]['from'];
         item['activityDate'] = [];
-        for(let j=0; j<data[i]['activityDate'].length; j++){
-          let time = this.timeFormat.eventTimeFormat(data[i]['activityDate'][j]['from'], data[i]['activityDate'][j]['to']);
+        for(let j=0; j<value['activityDate'].length; j++){
+          let time = this.timeFormat.eventTimeFormat(value['activityDate'][j]['from'], value['activityDate'][j]['to']);
           item['activityDate'].push(time);
         }
-        if(data[i]['eventCategory1'])
+        if(value['eventCategory1'])
           item['isFree'] = '免费';
         else
           item['isFree'] = '收费';
-        if(data[i]['eventCategory2'])
+        if(value['eventCategory2'])
           item['isPublic'] = '公共活动';
         else
           item['isPublic'] = '私人活动';
-        item['numsLike'] = data[i]['numsLike'];
-        item['numsRead'] = data[i]['numsRead'];
+        item['numsLike'] = value['numsLike'];
+        item['numsRead'] = value['numsRead'];
         item['distance'] = "0 英里";
         item['calDistance'] = false;
         this.disp$.push(item);
+        this.readMore = "查看更多";
+      });
+      if(snapshot.numChildren() < num){
+        this.hasMore = false;
+        this.readMore = "没有更多活动了";
+        console.log(this.readMore);
       }
+
       this.isLoaded = true;
       this.events.publish('distance');
-      this.sub.unsubscribe();
     });
-    // data.unsubscribe();
+      
   }
+
+  loadMoreData(){
+    this.loadData(0, this.lastTime,this.numsForEach);
+  }
+
 
   openDetail(key, numsRead){
     console.log(key);

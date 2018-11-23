@@ -29,7 +29,7 @@ import { AngularFireModule }  from 'angularfire2/';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { ActivityFilterComponent } from '../components/activity-filter/activity-filter';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { TimeFormatProvider } from '../providers/time-format/time-format';
 
 

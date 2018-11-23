@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { ToastProvider } from '../../providers/toast/toast'
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
 import { Events } from 'ionic-angular';
+import firebase from 'firebase/app';
 
 var infoId;
 @IonicPage()
@@ -23,8 +24,9 @@ export class ActivityPage {
   saved: boolean = false;
   liked: boolean = false;
   numsLike: number = 0;
-  sub: any;
   userInfo: any;
+  activityDate: any = [];
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -65,20 +67,40 @@ export class ActivityPage {
     })
   }
 
+  ionViewDidEnter(){
+    this.storage.get('user').then(data=> this.userInfo=data);
+  }
+
   loadData(key){
-    this.sub = this.fsp.getDailyEventDetail(key).valueChanges().subscribe(
-      data=>{
-        this.disp = data;
-        for(let i=0; i< data['eventCategory3'].length; i++){
-          if(data['eventCategory3'][i]){
-            this.tags.push(this.tagsStr[i])
-          }
+    firebase.database().ref(`/DailyEvents/${key}`).once('value').then(snapshot=>{
+      this.disp = snapshot.val();
+      console.log(snapshot.val());
+      for(let i=0; i< this.disp['eventCategory3'].length; i++){
+        if(this.disp['eventCategory3'][i]){
+          this.tags.push(this.tagsStr[i]);
         }
-        this.sub.unsubscribe();
-        this.fsp.getDailyEventDetailRef(key).set('numsRead', data['numsRead'] + 1).then(data=>{
-          this.disp['numsRead'] = this.disp['numsRead'] + 1;
-        })
-      });
+      }
+
+      for(let j=0; j<this.disp['activityDate'].length; j++){
+        let time = this.timeFormat.eventTimeFormat(this.disp['activityDate'][j]['from'], this.disp['activityDate'][j]['to']);
+        this.activityDate.push(time);
+      }
+
+      
+    })
+    // this.sub = this.fsp.getDailyEventDetail(key).valueChanges().subscribe(
+    //   data=>{
+    //     this.disp = data;
+    //     for(let i=0; i< data['eventCategory3'].length; i++){
+    //       if(data['eventCategory3'][i]){
+    //         this.tags.push(this.tagsStr[i])
+    //       }
+    //     }
+    //     this.sub.unsubscribe();
+    //     this.fsp.getDailyEventDetailRef(key).set('numsRead', data['numsRead'] + 1).then(data=>{
+    //       this.disp['numsRead'] = this.disp['numsRead'] + 1;
+    //     })
+    //   });
   }
 
   getComment(key){
@@ -259,8 +281,8 @@ export class ActivityPage {
   }
 
   like(){
-    this.storage.get('user').then(data=>{
-      if(data==null){
+    console.log(this.userInfo);
+      if(this.userInfo==null){
         this.toast.presentToast("请先登陆", 1000, "middle");
         let nav = this.navCtrl;
         setTimeout(function(){
@@ -268,7 +290,7 @@ export class ActivityPage {
         }, 1000);
       }else{
         if(!this.liked)
-        this.fsp.getUserListRef(data['userID']+'/LikedEvents/').set(infoId,{
+        this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').set(infoId,{
           'eventID': infoId,
           'haveLiked': true,
         }).then(data=>{
@@ -278,7 +300,7 @@ export class ActivityPage {
           this.fsp.getDailyEventDetailRef(infoId).set('numsLike', this.disp['numsLike']);
         })
         else{
-          this.fsp.getUserListRef(data['userID']+'/LikedEvents/').remove(infoId).then(data=>{
+          this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').remove(infoId).then(data=>{
             this.liked = false;
             document.getElementById('like').setAttribute("src", "assets/icon/icon_like.png");
             this.disp["numsLike"] = this.disp["numsLike"] - 1;
@@ -286,7 +308,6 @@ export class ActivityPage {
           })
         }
       }
-    });
   }
 
 }

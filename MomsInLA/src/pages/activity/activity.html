@@ -19,10 +19,10 @@
     </div>
     <div class="detail-title">{{disp.title}}</div>
     <div class="section">
-      <div id="time">活动时间： 7月12日 10:30am</div>
+      <div id="time">活动时间： <span *ngFor="let time of activityDate">{{time}}; </span></div>
       <div id="city">城市： {{disp.city}}</div>
       <div id="address">具体地址： {{disp.address}}</div>
-      <div id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
+      <div *ngIf="disp.hasOwnProperty('website')" id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
       <div id="content">{{disp.content}}</div>
         <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">
       <div style="text-align: end">阅读量 {{disp.numsRead}}</div>

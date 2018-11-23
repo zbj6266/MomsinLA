@@ -9,14 +9,14 @@
 
 
 <ion-content padding>
-	<div *ngIf="userID==null">
+	<div *ngIf="userInfo == null">
 		<div text-center class="userImg"><img height="130" width="130" src="assets/imgs/user_portrait.png"></div>
 		<button class="login" block ion-button (click) = "signIn()" item-left>立即登录</button>
 	</div>
-	<div *ngIf="userID != null" style="padding-top:50px">
-		<div text-center><img height="130" width="130" [src]="userImg"></div>
+	<div *ngIf="userInfo != null" style="padding-top:50px">
+		<div text-center><img height="130" width="130" [src]="userInfo.userImg"></div>
 		<div class = "username" style = "padding-top: 20px; padding-bottom: 20px">
-			{{userName}}
+			{{userInfo.username}}
 		</div>
 		
 		<div><button block ion-button (click) = "toCollection()" item-left>我的收藏</button></div>
