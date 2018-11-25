@@ -54,9 +54,9 @@
             <div class="comment-reply" (click)="reply(item.key, item.commentUser)">
                 回复
               </div>
-            <div class="comment-like">
-              <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">
-              <div class="num-like">{{item.totalThumbsUp}}</div>
+            <div class="comment-like" (click)="commentLike(item.key)">
+              <img [id]='item.key' src="assets/imgs/icon_like.png" alt="" width="16" height="16">
+              <!-- <div class="num-like">{{item.totalThumbsUp}}</div> -->
             </div>
           </div>
           <div *ngFor="let key of item.replyKeys" style="margin-left:20px;margin-top:6px;margin-bottom:6px">
@@ -69,16 +69,11 @@
                   <div>{{item.commentReplies[key].replyUser}}</div>
                   <div class="comment-text"><span style="color:#d8d8d8">@{{item.commentUser.originalPosterUsername}} </span>{{item.commentReplies[key].replyCommentContent}}</div>
               </div>
-              <!-- <div class="comment-like">
-                <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">
-                 <div class="num-like">{{item.totalThumbsUp}}</div> 
-              </div> -->
             </div>
             
           </div>
         </div>
-      </div>
-      
+      </div>    
   </div>
 </ion-content>
 <ion-footer no-border>

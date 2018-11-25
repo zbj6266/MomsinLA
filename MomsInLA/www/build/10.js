@@ -80,10 +80,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var infoId;
 var ActivityPage = /** @class */ (function () {
     function ActivityPage(navCtrl, navParams, fsp, iab, storage, toast, timeFormat, events, alertCtrl) {
-        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.fsp = fsp;
@@ -101,36 +99,50 @@ var ActivityPage = /** @class */ (function () {
         this.liked = false;
         this.numsLike = 0;
         this.activityDate = [];
-        infoId = navParams.get("infoId");
-        storage.get('user').then(function (data) { return _this.userInfo = data; });
+        this.infoId = navParams.get("infoId");
     }
     ActivityPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.loadData(infoId);
-        this.getComment(infoId);
-        this.getSaved();
-        this.getLiked();
-        this.events.subscribe('activity_reply', function (key, data) {
-            var comment = data['\bcomment'];
-            _this.storage.get('user').then(function (data) {
-                var reply = {
-                    replyCommentContent: comment,
-                    replyTime: new Date().getTime(),
-                    replyUser: data.username,
-                    replyUserPictureURL: data.userImg,
-                    replyUserStatus: data.userStatus
-                };
-                console.log("111" + infoId);
-                console.log(infoId + "/" + key + "/commentReplies");
-                _this.fsp.getCommentForDailyEvent(infoId + "/" + key + "/commentReplies").push(reply).then(function () {
-                    _this.toast.presentToast("评论成功", 1000, "bottom");
-                });
-            });
+        this.storage.get('user').then(function (data) {
+            _this.userInfo = data;
+            _this.loadData(_this.infoId);
+            _this.getComment(_this.infoId);
+            _this.getSaved();
+            _this.getLiked();
         });
+        // this.events.subscribe('activity_reply',(key, data)=>{
+        //   let comment = data['\bcomment'];
+        //   this.storage.get('user').then(data=>{
+        //     let reply = {
+        //       replyCommentContent: comment,
+        //       replyTime: new Date().getTime(),
+        //       replyUser: data.username,
+        //       replyUserPictureURL: data.userImg,
+        //       replyUserStatus: data.userStatus
+        //     }
+        //     console.log("111"+this.infoId);
+        //     console.log(`${this.infoId}/${key}/commentReplies`);
+        //     this.fsp.getCommentForDailyEvent(`${this.infoId}/${key}/commentReplies`).push(reply).then(()=>{
+        //       this.toast.presentToast("评论成功", 1000, "bottom");
+        //     });
+        //   })
+        // })
     };
     ActivityPage.prototype.ionViewDidEnter = function () {
         var _this = this;
-        this.storage.get('user').then(function (data) { return _this.userInfo = data; });
+        this.storage.get('user').then(function (data) {
+            _this.userInfo = data;
+            _this.getSaved();
+            _this.getLiked();
+            _this.getCommentLike();
+        });
+    };
+    ActivityPage.prototype.jumpToLogin = function (msg, time, location) {
+        this.toast.presentToast(msg, time, location);
+        var nav = this.navCtrl;
+        setTimeout(function () {
+            nav.push('LoginPage');
+        }, time);
     };
     ActivityPage.prototype.loadData = function (key) {
         var _this = this;
@@ -176,6 +188,7 @@ var ActivityPage = /** @class */ (function () {
                 else
                     _this.comments[i]['replyKeys'] = [];
             }
+            _this.getCommentLike();
             _this.comments.sort(function (a, b) {
                 return b.commentTimestamp - a.commentTimestamp;
             });
@@ -189,11 +202,7 @@ var ActivityPage = /** @class */ (function () {
     };
     ActivityPage.prototype.comment = function () {
         if (this.userInfo == null) {
-            this.toast.presentToast("请先登陆", 1000, "middle");
-            var nav_1 = this.navCtrl;
-            setTimeout(function () {
-                nav_1.push('LoginPage');
-            }, 1000);
+            this.jumpToLogin("请先登录", 1000, "middle");
         }
         else {
             console.log(this.userInfo);
@@ -210,23 +219,19 @@ var ActivityPage = /** @class */ (function () {
                     originalPosterUserIMG: this.userInfo['userImg'],
                     originalPosterUsername: this.userInfo['username'],
                 },
-                dailyEventID: infoId,
+                dailyEventID: this.infoId,
                 dailyEventTitle: this.disp.title,
                 replyContent: this.commentReply,
                 totalThumbsUp: 0
             };
             this.commentReply = "";
-            this.fsp.getCommentForDailyEvent(infoId).push(item);
+            this.fsp.getCommentForDailyEvent(this.infoId).push(item);
         }
     };
     ActivityPage.prototype.reply = function (key, user) {
         console.log(key);
         if (this.userInfo == null) {
-            this.toast.presentToast("请先登陆", 1000, "middle");
-            var nav_2 = this.navCtrl;
-            setTimeout(function () {
-                nav_2.push('LoginPage');
-            }, 1000);
+            this.jumpToLogin("请先登录", 1000, "middle");
         }
         else {
             this.presentPrompt(key, user);
@@ -260,9 +265,9 @@ var ActivityPage = /** @class */ (function () {
                             replyUserPictureURL: _this.userInfo.userImg,
                             replyUserStatus: _this.userInfo.userStatus
                         };
-                        console.log("111" + infoId);
-                        console.log(infoId + "/" + key + "/commentReplies");
-                        _this.fsp.getCommentForDailyEvent(infoId + "/" + key + "/commentReplies").push(reply).then(function () {
+                        console.log("111" + _this.infoId);
+                        console.log(_this.infoId + "/" + key + "/commentReplies");
+                        _this.fsp.getCommentForDailyEvent(_this.infoId + "/" + key + "/commentReplies").push(reply).then(function () {
                             _this.toast.presentToast("评论成功", 1000, "bottom");
                         });
                     }
@@ -273,100 +278,132 @@ var ActivityPage = /** @class */ (function () {
     };
     ActivityPage.prototype.getSaved = function () {
         var _this = this;
-        this.storage.get('user').then(function (data) {
-            if (data != null) {
-                _this.fsp.getUserListRef(data['userID'] + '/SavedEvents/').snapshotChanges().subscribe(function (data) {
-                    data.forEach(function (item) {
-                        if (item.key == infoId) {
-                            _this.saved = true;
-                            document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
-                            return;
-                        }
-                    });
+        if (this.userInfo != null) {
+            this.fsp.getUserListRef(this.userInfo['userID'] + '/SavedEvents/').snapshotChanges().subscribe(function (data) {
+                data.forEach(function (item) {
+                    if (item.key == _this.infoId) {
+                        _this.saved = true;
+                        document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
+                        return;
+                    }
                 });
-            }
-        });
+            });
+        }
     };
     ActivityPage.prototype.getLiked = function () {
         var _this = this;
-        this.storage.get('user').then(function (data) {
-            if (data != null) {
-                _this.fsp.getUserListRef(data['userID'] + '/LikedEvents/').snapshotChanges().subscribe(function (data) {
-                    data.forEach(function (item) {
-                        if (item.key == infoId) {
-                            _this.liked = true;
-                            document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
-                            return;
-                        }
-                    });
+        if (this.userInfo != null) {
+            this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').snapshotChanges().subscribe(function (data) {
+                data.forEach(function (item) {
+                    if (item.key == _this.infoId) {
+                        _this.liked = true;
+                        document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
+                        return;
+                    }
                 });
-            }
-        });
+            });
+        }
     };
     ActivityPage.prototype.save = function () {
         var _this = this;
-        this.storage.get('user').then(function (data) {
-            if (data == null) {
-                _this.toast.presentToast("请先登陆", 1000, "middle");
-                var nav_3 = _this.navCtrl;
-                setTimeout(function () {
-                    nav_3.push('LoginPage');
-                }, 1000);
-            }
+        if (this.userInfo == null) {
+            this.jumpToLogin("请先登录", 1000, "middle");
+        }
+        else {
+            if (!this.saved)
+                this.fsp.getUserListRef(this.userInfo['userID'] + '/SavedEvents/').set(this.infoId, {
+                    'eventID': this.infoId,
+                    'haveSaved': true,
+                }).then(function (data) {
+                    _this.saved = true;
+                    document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
+                    _this.toast.presentToast("收藏成功", 1000, "bottom");
+                });
             else {
-                if (!_this.saved)
-                    _this.fsp.getUserListRef(data['userID'] + '/SavedEvents/').set(infoId, {
-                        'eventID': infoId,
-                        'haveSaved': true,
-                    }).then(function (data) {
-                        _this.saved = true;
-                        document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
-                        _this.toast.presentToast("收藏成功", 1000, "bottom");
-                    });
-                else {
-                    _this.fsp.getUserListRef(data['userID'] + '/SavedEvents/').remove(infoId).then(function (data) {
-                        _this.saved = false;
-                        document.getElementById('save').setAttribute("src", "assets/icon/icon_save.png");
-                        _this.toast.presentToast("取消收藏", 1000, "bottom");
-                    });
-                }
+                this.fsp.getUserListRef(this.userInfo['userID'] + '/SavedEvents/').remove(this.infoId).then(function (data) {
+                    _this.saved = false;
+                    document.getElementById('save').setAttribute("src", "assets/icon/icon_save.png");
+                    _this.toast.presentToast("取消收藏", 1000, "bottom");
+                });
             }
-        });
+        }
     };
     ActivityPage.prototype.like = function () {
         var _this = this;
-        console.log(this.userInfo);
         if (this.userInfo == null) {
-            this.toast.presentToast("请先登陆", 1000, "middle");
-            var nav_4 = this.navCtrl;
-            setTimeout(function () {
-                nav_4.push('LoginPage');
-            }, 1000);
+            this.jumpToLogin("请先登录", 1000, "middle");
         }
         else {
             if (!this.liked)
-                this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').set(infoId, {
-                    'eventID': infoId,
+                this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').set(this.infoId, {
+                    'eventID': this.infoId,
                     'haveLiked': true,
                 }).then(function (data) {
                     _this.liked = true;
                     document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
                     _this.disp["numsLike"] = _this.disp["numsLike"] + 1;
-                    _this.fsp.getDailyEventDetailRef(infoId).set('numsLike', _this.disp['numsLike']);
+                    _this.fsp.getDailyEventDetailRef(_this.infoId).set('numsLike', _this.disp['numsLike']);
                 });
             else {
-                this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').remove(infoId).then(function (data) {
+                this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').remove(this.infoId).then(function (data) {
                     _this.liked = false;
                     document.getElementById('like').setAttribute("src", "assets/icon/icon_like.png");
                     _this.disp["numsLike"] = _this.disp["numsLike"] - 1;
-                    _this.fsp.getDailyEventDetailRef(infoId).set('numsLike', _this.disp['numsLike']);
+                    _this.fsp.getDailyEventDetailRef(_this.infoId).set('numsLike', _this.disp['numsLike']);
                 });
             }
         }
     };
+    ActivityPage.prototype.commentLike = function (key) {
+        var _this = this;
+        if (this.userInfo == null) {
+            this.jumpToLogin("请先登录", 1000, "middle");
+        }
+        else {
+            var commentLikeRef_1 = __WEBPACK_IMPORTED_MODULE_8_firebase_app___default.a.database().ref("/UsersAndAdministrators/" + this.userInfo.userID + "/ThumbsUp/" + this.infoId + "/" + key);
+            commentLikeRef_1.once('value').then(function (snapshot) {
+                console.log();
+                if (snapshot.val() != null) {
+                    document.getElementById(key).setAttribute("src", "assets/icon/icon_like.png");
+                    commentLikeRef_1.remove();
+                }
+                else {
+                    commentLikeRef_1.set({
+                        'eventID': _this.infoId,
+                        'haveLiked': true,
+                    }, function (err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            console.log('successful');
+                            // firebase.database().ref(`Comments/${this.infoId}/${key}/`)
+                            document.getElementById(key).setAttribute("src", "assets/icon/icon_like_click.png");
+                        }
+                    });
+                }
+            });
+        }
+    };
+    ActivityPage.prototype.getCommentLike = function () {
+        console.log(this.userInfo);
+        if (this.userInfo != null) {
+            console.log('userInfo');
+            __WEBPACK_IMPORTED_MODULE_8_firebase_app___default.a.database().ref("/UsersAndAdministrators/" + this.userInfo.userID + "/ThumbsUp/" + this.infoId).once('value').then(function (snapshot) {
+                console.log(snapshot.val());
+                var data = snapshot.val();
+                if (data != null) {
+                    console.log(data);
+                    for (var key in data) {
+                        document.getElementById(key).setAttribute("src", "assets/icon/icon_like_click.png");
+                    }
+                }
+            });
+        }
+    };
     ActivityPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-activity',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activity/activity.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>活动详情</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <div class="creator" *ngIf="disp.hasOwnProperty(\'creator\')">\n    <img [src]="disp.creator.userImg" width="34" height="34" alt="">\n    <div class="name">{{disp.creator.userName}}</div>\n    <span class="offer">发布</span>\n  </div>\n  <div class="detail">\n    <div class="keyword" >\n      <div class="button-space"><button ion-button *ngFor="let item of tags">{{item}}</button></div>\n    </div>\n    <div class="detail-title">{{disp.title}}</div>\n    <div class="section">\n      <div id="time">活动时间： <span *ngFor="let time of activityDate">{{time}}; </span></div>\n      <div id="city">城市： {{disp.city}}</div>\n      <div id="address">具体地址： {{disp.address}}</div>\n      <div *ngIf="disp.hasOwnProperty(\'website\')" id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>\n      <div id="content">{{disp.content}}</div>\n        <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">\n      <div style="text-align: end">阅读量 {{disp.numsRead}}</div>\n    </div>\n    <div class="info-user">\n        <div class="info-like">\n          <div (click)="like()"><img id="like" src="assets/imgs/icon_like.png" width="20" height="20"></div>\n          <div class="info-margin">{{disp.numsLike}}</div>\n        </div>\n        <div class="info-collect" (click)="save()">\n          <div><img id="save" src="assets/icon/icon_save.png" width="20" height="20"></div>\n          <div class="info-margin">收藏</div>\n        </div>\n      </div>\n\n      <div class="comments">\n        <div class="comments-title">评论</div>\n        <div *ngIf="comments.length == 0" style="color:#d8d8d8;text-align: center;margin:5px 0">暂无评论</div>\n        \n        <div *ngFor="let item of comments" style="border-bottom:1px solid #d8d8d8;padding-bottom: 8px">\n          <div class="comment-item" >\n            <div class="user-img">\n              <img [src]="item.commentUser.originalPosterUserIMG" width="32" height="32">\n            </div>\n            <div class="comment-content">\n                <div>{{item.commentUser.originalPosterUsername}}<span>{{item.datetime}}</span></div>\n                <div class="comment-text">{{item.replyContent}}</div>\n            </div>\n            <div class="comment-reply" (click)="reply(item.key, item.commentUser)">\n                回复\n              </div>\n            <div class="comment-like">\n              <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">\n              <div class="num-like">{{item.totalThumbsUp}}</div>\n            </div>\n          </div>\n          <div *ngFor="let key of item.replyKeys" style="margin-left:20px;margin-top:6px;margin-bottom:6px">\n            <div class="comment-item" >\n              \n              <div class="user-img">\n                <img [src]="item.commentReplies[key].replyUserPictureURL" width="32" height="32">\n              </div>\n              <div class="comment-content">\n                  <div>{{item.commentReplies[key].replyUser}}</div>\n                  <div class="comment-text"><span style="color:#d8d8d8">@{{item.commentUser.originalPosterUsername}} </span>{{item.commentReplies[key].replyCommentContent}}</div>\n              </div>\n              <!-- <div class="comment-like">\n                <img src="assets/imgs/icon_like.png" alt="" width="16" height="16">\n                 <div class="num-like">{{item.totalThumbsUp}}</div> \n              </div> -->\n            </div>\n            \n          </div>\n        </div>\n      </div>\n      \n  </div>\n</ion-content>\n<ion-footer no-border>\n  <div style="display: flex">\n  <input type="text" style="flex:1;height:40px;padding-left:6px;border: 1px solid #d8d8d8;margin:2px;border-radius: 2px" placeholder="说两句" [(ngModel)]=\'commentReply\'>\n  <button ion-button (click)="comment()">评论</button>\n</div>\n</ion-footer>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activity/activity.html"*/,
+            selector: 'page-activity',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activity/activity.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>活动详情</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <div class="creator" *ngIf="disp.hasOwnProperty(\'creator\')">\n    <img [src]="disp.creator.userImg" width="34" height="34" alt="">\n    <div class="name">{{disp.creator.userName}}</div>\n    <span class="offer">发布</span>\n  </div>\n  <div class="detail">\n    <div class="keyword" >\n      <div class="button-space"><button ion-button *ngFor="let item of tags">{{item}}</button></div>\n    </div>\n    <div class="detail-title">{{disp.title}}</div>\n    <div class="section">\n      <div id="time">活动时间： <span *ngFor="let time of activityDate">{{time}}; </span></div>\n      <div id="city">城市： {{disp.city}}</div>\n      <div id="address">具体地址： {{disp.address}}</div>\n      <div *ngIf="disp.hasOwnProperty(\'website\')" id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>\n      <div id="content">{{disp.content}}</div>\n        <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">\n      <div style="text-align: end">阅读量 {{disp.numsRead}}</div>\n    </div>\n    <div class="info-user">\n        <div class="info-like">\n          <div (click)="like()"><img id="like" src="assets/imgs/icon_like.png" width="20" height="20"></div>\n          <div class="info-margin">{{disp.numsLike}}</div>\n        </div>\n        <div class="info-collect" (click)="save()">\n          <div><img id="save" src="assets/icon/icon_save.png" width="20" height="20"></div>\n          <div class="info-margin">收藏</div>\n        </div>\n      </div>\n\n      <div class="comments">\n        <div class="comments-title">评论</div>\n        <div *ngIf="comments.length == 0" style="color:#d8d8d8;text-align: center;margin:5px 0">暂无评论</div>\n        \n        <div *ngFor="let item of comments" style="border-bottom:1px solid #d8d8d8;padding-bottom: 8px">\n          <div class="comment-item" >\n            <div class="user-img">\n              <img [src]="item.commentUser.originalPosterUserIMG" width="32" height="32">\n            </div>\n            <div class="comment-content">\n                <div>{{item.commentUser.originalPosterUsername}}<span>{{item.datetime}}</span></div>\n                <div class="comment-text">{{item.replyContent}}</div>\n            </div>\n            <div class="comment-reply" (click)="reply(item.key, item.commentUser)">\n                回复\n              </div>\n            <div class="comment-like" (click)="commentLike(item.key)">\n              <img [id]=\'item.key\' src="assets/imgs/icon_like.png" alt="" width="16" height="16">\n              <!-- <div class="num-like">{{item.totalThumbsUp}}</div> -->\n            </div>\n          </div>\n          <div *ngFor="let key of item.replyKeys" style="margin-left:20px;margin-top:6px;margin-bottom:6px">\n            <div class="comment-item" >\n              \n              <div class="user-img">\n                <img [src]="item.commentReplies[key].replyUserPictureURL" width="32" height="32">\n              </div>\n              <div class="comment-content">\n                  <div>{{item.commentReplies[key].replyUser}}</div>\n                  <div class="comment-text"><span style="color:#d8d8d8">@{{item.commentUser.originalPosterUsername}} </span>{{item.commentReplies[key].replyCommentContent}}</div>\n              </div>\n            </div>\n            \n          </div>\n        </div>\n      </div>    \n  </div>\n</ion-content>\n<ion-footer no-border>\n  <div style="display: flex">\n  <input type="text" style="flex:1;height:40px;padding-left:6px;border: 1px solid #d8d8d8;margin:2px;border-radius: 2px" placeholder="说两句" [(ngModel)]=\'commentReply\'>\n  <button ion-button (click)="comment()">评论</button>\n</div>\n</ion-footer>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activity/activity.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__providers_toast_toast__["a" /* ToastProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_toast_toast__["a" /* ToastProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__providers_time_format_time_format__["a" /* TimeFormatProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_time_format_time_format__["a" /* TimeFormatProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _j || Object])
     ], ActivityPage);

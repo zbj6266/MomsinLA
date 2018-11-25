@@ -77,9 +77,8 @@ export class LoginPage {
       });
       const result = await this.afAuth.auth.signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(null,login.accessToken));
 
-      let sub = this.fsp.getUserRef(result.user.uid).valueChanges().subscribe(data=>{
-        sub.unsubscribe();
-        if(data == null){
+      firebase.database().ref(`/UsersAndAdministrators/${result.user.uid}`).once('value').then(snapshot=>{
+        if(snapshot.exists && snapshot.val() == null){
           this.fsp.getUserRef(result.user.uid).set({
             LikedEvents:[],
             displayName: result.user.displayName,
@@ -100,6 +99,7 @@ export class LoginPage {
           this.navCtrl.pop();
         }
         else{
+          let data = snapshot.val();
           let user = {
             username: data['displayName'],
             userImg: data['photoURL'],
@@ -107,7 +107,6 @@ export class LoginPage {
             userStatus: data['userStatus']
           };
           this.storage.set('user',user);
-          this.events.publish("user", user);
           this.navCtrl.pop();
         }
       })

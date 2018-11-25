@@ -8,8 +8,8 @@ import { ToastProvider } from '../../providers/toast/toast'
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
 import { Events } from 'ionic-angular';
 import firebase from 'firebase/app';
+import { snapshotChanges } from 'angularfire2/database';
 
-var infoId;
 @IonicPage()
 @Component({
   selector: 'page-activity',
@@ -26,7 +26,7 @@ export class ActivityPage {
   numsLike: number = 0;
   userInfo: any;
   activityDate: any = [];
-
+  infoId: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,38 +37,55 @@ export class ActivityPage {
     public timeFormat: TimeFormatProvider,
     public events: Events,
     public alertCtrl: AlertController) {
-      infoId = navParams.get("infoId");
-      storage.get('user').then(data=> this.userInfo = data);
+      this.infoId = navParams.get("infoId");
   }
 
   ionViewDidLoad() {
-    this.loadData(infoId);
-    this.getComment(infoId);
-    this.getSaved();
-    this.getLiked();
+    this.storage.get('user').then(data=>{
+      this.userInfo = data;
+      this.loadData(this.infoId);
+      this.getComment(this.infoId);
+      this.getSaved();
+      this.getLiked();
+    });
     
-    this.events.subscribe('activity_reply',(key, data)=>{
-      let comment = data['\bcomment'];
-      this.storage.get('user').then(data=>{
-        let reply = {
-          replyCommentContent: comment,
-          replyTime: new Date().getTime(),
-          replyUser: data.username,
-          replyUserPictureURL: data.userImg,
-          replyUserStatus: data.userStatus
-        }
-        console.log("111"+infoId);
-        console.log(`${infoId}/${key}/commentReplies`);
-        this.fsp.getCommentForDailyEvent(`${infoId}/${key}/commentReplies`).push(reply).then(()=>{
-          this.toast.presentToast("评论成功", 1000, "bottom");
-        });
-      })
+    
+    // this.events.subscribe('activity_reply',(key, data)=>{
+    //   let comment = data['\bcomment'];
+    //   this.storage.get('user').then(data=>{
+    //     let reply = {
+    //       replyCommentContent: comment,
+    //       replyTime: new Date().getTime(),
+    //       replyUser: data.username,
+    //       replyUserPictureURL: data.userImg,
+    //       replyUserStatus: data.userStatus
+    //     }
+    //     console.log("111"+this.infoId);
+    //     console.log(`${this.infoId}/${key}/commentReplies`);
+    //     this.fsp.getCommentForDailyEvent(`${this.infoId}/${key}/commentReplies`).push(reply).then(()=>{
+    //       this.toast.presentToast("评论成功", 1000, "bottom");
+    //     });
+    //   })
       
-    })
+    // })
   }
 
   ionViewDidEnter(){
-    this.storage.get('user').then(data=> this.userInfo=data);
+    this.storage.get('user').then(data=> {
+      this.userInfo=data;
+      this.getSaved();
+      this.getLiked();
+      this.getCommentLike();
+    
+    });
+  }
+
+  jumpToLogin(msg, time, location){
+    this.toast.presentToast(msg, time, location);
+        let nav = this.navCtrl;
+        setTimeout(function(){
+          nav.push('LoginPage');
+        }, time);
   }
 
   loadData(key){
@@ -122,6 +139,7 @@ export class ActivityPage {
           this.comments[i]['replyKeys'] = []
 
       }
+      this.getCommentLike()
       this.comments.sort(function(a,b){
         return b.commentTimestamp - a.commentTimestamp;
       })
@@ -137,11 +155,7 @@ export class ActivityPage {
 
   comment(){
       if(this.userInfo==null){
-        this.toast.presentToast("请先登陆", 1000, "middle");
-        let nav = this.navCtrl;
-        setTimeout(function(){
-          nav.push('LoginPage');
-        }, 1000);
+        this.jumpToLogin("请先登录", 1000, "middle");
       }else{
         console.log(this.userInfo);
         if(this.commentReply==null || this.commentReply.trim() == ""){
@@ -157,24 +171,20 @@ export class ActivityPage {
             originalPosterUserIMG: this.userInfo['userImg'],
             originalPosterUsername: this.userInfo['username'],
           },
-          dailyEventID: infoId,
+          dailyEventID: this.infoId,
           dailyEventTitle: this.disp.title,
           replyContent: this.commentReply,
           totalThumbsUp: 0
         };
         this.commentReply="";
-        this.fsp.getCommentForDailyEvent(infoId).push(item);
+        this.fsp.getCommentForDailyEvent(this.infoId).push(item);
       }
   }
 
   reply(key, user){
     console.log(key);
     if(this.userInfo==null){
-      this.toast.presentToast("请先登陆", 1000, "middle");
-      let nav = this.navCtrl;
-      setTimeout(function(){
-        nav.push('LoginPage');
-      }, 1000);
+      this.jumpToLogin("请先登录", 1000, "middle");
     }else{
       this.presentPrompt(key,user);
     }
@@ -207,9 +217,9 @@ export class ActivityPage {
               replyUserPictureURL: this.userInfo.userImg,
               replyUserStatus: this.userInfo.userStatus
             }
-            console.log("111"+infoId);
-            console.log(`${infoId}/${key}/commentReplies`);
-            this.fsp.getCommentForDailyEvent(`${infoId}/${key}/commentReplies`).push(reply).then(()=>{
+            console.log("111"+this.infoId);
+            console.log(`${this.infoId}/${key}/commentReplies`);
+            this.fsp.getCommentForDailyEvent(`${this.infoId}/${key}/commentReplies`).push(reply).then(()=>{
               this.toast.presentToast("评论成功", 1000, "bottom");
             });
           }
@@ -220,11 +230,11 @@ export class ActivityPage {
   }
 
   getSaved(){
-    this.storage.get('user').then(data=>{
-      if(data != null){
-        this.fsp.getUserListRef(data['userID']+'/SavedEvents/').snapshotChanges().subscribe(data=>{
+
+      if(this.userInfo != null){
+        this.fsp.getUserListRef(this.userInfo['userID']+'/SavedEvents/').snapshotChanges().subscribe(data=>{
           data.forEach(item=>{
-            if(item.key == infoId){
+            if(item.key == this.infoId){
               this.saved = true;
               document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
               return;
@@ -232,15 +242,14 @@ export class ActivityPage {
           })
         })
       }
-    })
+
   }
 
   getLiked(){
-    this.storage.get('user').then(data=>{
-      if(data != null){
-        this.fsp.getUserListRef(data['userID']+'/LikedEvents/').snapshotChanges().subscribe(data=>{
+      if(this.userInfo != null){
+        this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').snapshotChanges().subscribe(data=>{
           data.forEach(item=>{
-            if(item.key == infoId){
+            if(item.key == this.infoId){
               this.liked = true;
               document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
               return;
@@ -248,21 +257,15 @@ export class ActivityPage {
           })
         })
       }
-    })
   }
 
   save(){
-    this.storage.get('user').then(data=>{
-      if(data==null){
-        this.toast.presentToast("请先登陆", 1000, "middle");
-        let nav = this.navCtrl;
-        setTimeout(function(){
-          nav.push('LoginPage');
-        }, 1000);
+      if(this.userInfo==null){
+        this.jumpToLogin("请先登录", 1000, "middle");
       }else{
         if(!this.saved)
-        this.fsp.getUserListRef(data['userID']+'/SavedEvents/').set(infoId,{
-          'eventID': infoId,
+        this.fsp.getUserListRef(this.userInfo['userID']+'/SavedEvents/').set(this.infoId,{
+          'eventID': this.infoId,
           'haveSaved': true,
         }).then(data=>{
           this.saved = true;
@@ -270,44 +273,87 @@ export class ActivityPage {
           this.toast.presentToast("收藏成功", 1000, "bottom");
         })
         else{
-          this.fsp.getUserListRef(data['userID']+'/SavedEvents/').remove(infoId).then(data=>{
+          this.fsp.getUserListRef(this.userInfo['userID']+'/SavedEvents/').remove(this.infoId).then(data=>{
             this.saved = false;
             document.getElementById('save').setAttribute("src", "assets/icon/icon_save.png");
             this.toast.presentToast("取消收藏", 1000, "bottom");
           })
         }
       }
-    });
   }
 
   like(){
-    console.log(this.userInfo);
       if(this.userInfo==null){
-        this.toast.presentToast("请先登陆", 1000, "middle");
-        let nav = this.navCtrl;
-        setTimeout(function(){
-          nav.push('LoginPage');
-        }, 1000);
+        this.jumpToLogin("请先登录", 1000, "middle");
       }else{
         if(!this.liked)
-        this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').set(infoId,{
-          'eventID': infoId,
+        this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').set(this.infoId,{
+          'eventID': this.infoId,
           'haveLiked': true,
         }).then(data=>{
           this.liked = true;
           document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
           this.disp["numsLike"] = this.disp["numsLike"] + 1;
-          this.fsp.getDailyEventDetailRef(infoId).set('numsLike', this.disp['numsLike']);
+          this.fsp.getDailyEventDetailRef(this.infoId).set('numsLike', this.disp['numsLike']);
         })
         else{
-          this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').remove(infoId).then(data=>{
+          this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').remove(this.infoId).then(data=>{
             this.liked = false;
             document.getElementById('like').setAttribute("src", "assets/icon/icon_like.png");
             this.disp["numsLike"] = this.disp["numsLike"] - 1;
-            this.fsp.getDailyEventDetailRef(infoId).set('numsLike', this.disp['numsLike']);
+            this.fsp.getDailyEventDetailRef(this.infoId).set('numsLike', this.disp['numsLike']);
           })
         }
       }
   }
+
+  commentLike(key){
+    if(this.userInfo == null){
+      this.jumpToLogin("请先登录", 1000, "middle");
+    }
+    else{
+      let commentLikeRef = firebase.database().ref(`/UsersAndAdministrators/${this.userInfo.userID}/ThumbsUp/${this.infoId}/${key}`);
+      commentLikeRef.once('value').then(snapshot => {
+        console.log();
+        if(snapshot.val()!=null){
+          document.getElementById(key).setAttribute("src", "assets/icon/icon_like.png");
+          commentLikeRef.remove();
+        }
+        else{
+          commentLikeRef.set({
+            'eventID': this.infoId,
+            'haveLiked': true,
+          }, function(err){
+            if(err){
+              console.log(err);
+            }
+            else{
+              console.log('successful');
+              // firebase.database().ref(`Comments/${this.infoId}/${key}/`)
+              document.getElementById(key).setAttribute("src", "assets/icon/icon_like_click.png");
+            }
+          })
+        }
+      })
+    }
+  }
+
+  getCommentLike(){
+    console.log(this.userInfo);
+    if(this.userInfo != null){
+      console.log('userInfo');
+      firebase.database().ref(`/UsersAndAdministrators/${this.userInfo.userID}/ThumbsUp/${this.infoId}`).once('value').then(snapshot =>{
+        console.log(snapshot.val());
+        let data = snapshot.val();
+        if(data != null){
+          console.log(data);
+          for(let key in data){
+            document.getElementById(key).setAttribute("src", "assets/icon/icon_like_click.png");
+          }
+        }
+      })
+    }
+  }
+
 
 }
