@@ -2,19 +2,18 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { map } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { ToastProvider } from '../../providers/toast/toast'
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
 import { Events } from 'ionic-angular';
 import firebase from 'firebase/app';
-import { snapshotChanges } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
   selector: 'page-activity',
   templateUrl: 'activity.html',
 })
+
 export class ActivityPage {
   disp: any = {};
   tagsStr: Array<string> = ["户外游乐","益智教育","动物植物","游乐园","室内游乐","科普知识","免费停车","其他类型"];
@@ -91,6 +90,8 @@ export class ActivityPage {
   loadData(key){
     firebase.database().ref(`/DailyEvents/${key}`).once('value').then(snapshot=>{
       this.disp = snapshot.val();
+      this.fsp.getDailyEventDetail(key+'/numsRead').set(this.disp['numsRead']+1);
+      this.disp['numsRead'] = this.disp['numsRead'] + 1;
       console.log(snapshot.val());
       for(let i=0; i< this.disp['eventCategory3'].length; i++){
         if(this.disp['eventCategory3'][i]){
@@ -101,34 +102,27 @@ export class ActivityPage {
       for(let j=0; j<this.disp['activityDate'].length; j++){
         let time = this.timeFormat.eventTimeFormat(this.disp['activityDate'][j]['from'], this.disp['activityDate'][j]['to']);
         this.activityDate.push(time);
-      }
-
-      
+      }   
     })
-    // this.sub = this.fsp.getDailyEventDetail(key).valueChanges().subscribe(
-    //   data=>{
-    //     this.disp = data;
-    //     for(let i=0; i< data['eventCategory3'].length; i++){
-    //       if(data['eventCategory3'][i]){
-    //         this.tags.push(this.tagsStr[i])
-    //       }
-    //     }
-    //     this.sub.unsubscribe();
-    //     this.fsp.getDailyEventDetailRef(key).set('numsRead', data['numsRead'] + 1).then(data=>{
-    //       this.disp['numsRead'] = this.disp['numsRead'] + 1;
-    //     })
-    //   });
   }
 
   getComment(key){
-    this.fsp.getCommentForDailyEvent(key).snapshotChanges().pipe(
-      map(changes=>{
-        return changes.map(c=>({
-          key: c.payload.key, ...c.payload.val()
-        }))
-      })
-    ).subscribe(data=>{
-      this.comments = data;
+    // this.fsp.getCommentForDailyEvent(key).snapshotChanges().pipe(
+    //   map(changes=>{
+    //     return changes.map(c=>({
+    //       key: c.payload.key, ...c.payload.val()
+    //     }))
+    //   })
+    firebase.database().ref(`/Comments/${key}`).once('value').then(snapshot =>{
+      // this.comments = snapshot.val();
+      console.log(this.comments);
+      let idx = 0;
+      snapshot.forEach(data=>{
+        this.comments[idx] = data.val();
+        this.comments[idx]['key'] = data.key;
+        idx += 1;
+      });
+      console.log(this.comments);
       for(let i=0; i< this.comments.length; i++){
         this.comments[i]['datetime'] = this.timeFormat.differFromNow(this.comments[i]['commentTimestamp']);
         if(this.comments[i].hasOwnProperty('commentReplies')){
@@ -137,12 +131,12 @@ export class ActivityPage {
         }
         else 
           this.comments[i]['replyKeys'] = []
-
       }
       this.getCommentLike()
       this.comments.sort(function(a,b){
         return b.commentTimestamp - a.commentTimestamp;
       })
+      // sub.unsubscribe();
     });
   }
 
@@ -153,7 +147,7 @@ export class ActivityPage {
     this.iab.create(url,"_system");
   }
 
-  comment(){
+  async comment(){
       if(this.userInfo==null){
         this.jumpToLogin("请先登录", 1000, "middle");
       }else{
@@ -177,7 +171,8 @@ export class ActivityPage {
           totalThumbsUp: 0
         };
         this.commentReply="";
-        this.fsp.getCommentForDailyEvent(this.infoId).push(item);
+        await this.fsp.getCommentForDailyEvent(this.infoId).push(item);
+        this.getComment(this.infoId);
       }
   }
 
@@ -221,6 +216,7 @@ export class ActivityPage {
             console.log(`${this.infoId}/${key}/commentReplies`);
             this.fsp.getCommentForDailyEvent(`${this.infoId}/${key}/commentReplies`).push(reply).then(()=>{
               this.toast.presentToast("评论成功", 1000, "bottom");
+              this.getComment(this.infoId);
             });
           }
         }
@@ -230,10 +226,9 @@ export class ActivityPage {
   }
 
   getSaved(){
-
       if(this.userInfo != null){
-        this.fsp.getUserListRef(this.userInfo['userID']+'/SavedEvents/').snapshotChanges().subscribe(data=>{
-          data.forEach(item=>{
+        firebase.database().ref(`/UsersAndAdministrators/${this.userInfo.userID}/SavedEvents/`).once('value').then(snapshot=>{
+          snapshot.forEach(item=>{
             if(item.key == this.infoId){
               this.saved = true;
               document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
@@ -247,8 +242,8 @@ export class ActivityPage {
 
   getLiked(){
       if(this.userInfo != null){
-        this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').snapshotChanges().subscribe(data=>{
-          data.forEach(item=>{
+        firebase.database().ref(`/UsersAndAdministrators/${this.userInfo.userID}/ikedEvents/`).once('value').then(snapshot => {
+          snapshot.forEach(item => {
             if(item.key == this.infoId){
               this.liked = true;
               document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
@@ -266,7 +261,7 @@ export class ActivityPage {
         if(!this.saved)
         this.fsp.getUserListRef(this.userInfo['userID']+'/SavedEvents/').set(this.infoId,{
           'eventID': this.infoId,
-          'haveSaved': true,
+          'haveISaved': true,
         }).then(data=>{
           this.saved = true;
           document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
@@ -289,7 +284,7 @@ export class ActivityPage {
         if(!this.liked)
         this.fsp.getUserListRef(this.userInfo['userID']+'/LikedEvents/').set(this.infoId,{
           'eventID': this.infoId,
-          'haveLiked': true,
+          'haveILiked': true,
         }).then(data=>{
           this.liked = true;
           document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
@@ -308,29 +303,40 @@ export class ActivityPage {
   }
 
   commentLike(key){
+    let infoId = this.infoId;
     if(this.userInfo == null){
       this.jumpToLogin("请先登录", 1000, "middle");
     }
     else{
-      let commentLikeRef = firebase.database().ref(`/UsersAndAdministrators/${this.userInfo.userID}/ThumbsUp/${this.infoId}/${key}`);
+      let commentLikeRef = firebase.database().ref(`/UsersAndAdministrators/${this.userInfo.userID}/ThumbsUp/${infoId}/${key}`);
       commentLikeRef.once('value').then(snapshot => {
-        console.log();
         if(snapshot.val()!=null){
           document.getElementById(key).setAttribute("src", "assets/icon/icon_like.png");
           commentLikeRef.remove();
+          let commentsRef = firebase.database().ref(`/Comments/${infoId}/${key}/totalThumbsUp`)
+              commentsRef.once('value').then(snapshot => {
+                  commentsRef.set(snapshot.val() - 1)
+                  document.getElementById(`num${key}`).innerHTML = (snapshot.val() - 1).toString();
+              });
         }
         else{
           commentLikeRef.set({
-            'eventID': this.infoId,
-            'haveLiked': true,
-          }, function(err){
+            'eventID': infoId,
+            'haveILiked': true,
+          }, function(err,){
             if(err){
               console.log(err);
             }
             else{
               console.log('successful');
-              // firebase.database().ref(`Comments/${this.infoId}/${key}/`)
               document.getElementById(key).setAttribute("src", "assets/icon/icon_like_click.png");
+              console.log(infoId);
+              let commentsRef = firebase.database().ref(`/Comments/${infoId}/${key}/totalThumbsUp`)
+              commentsRef.once('value').then(snapshot => {
+                  commentsRef.set(snapshot.val()+1)
+                  document.getElementById(`num${key}`).innerHTML = (snapshot.val() + 1).toString();
+              });
+
             }
           })
         }
@@ -339,7 +345,7 @@ export class ActivityPage {
   }
 
   getCommentLike(){
-    console.log(this.userInfo);
+
     if(this.userInfo != null){
       console.log('userInfo');
       firebase.database().ref(`/UsersAndAdministrators/${this.userInfo.userID}/ThumbsUp/${this.infoId}`).once('value').then(snapshot =>{
@@ -354,6 +360,5 @@ export class ActivityPage {
       })
     }
   }
-
 
 }

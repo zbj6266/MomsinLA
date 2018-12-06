@@ -90,7 +90,10 @@ export class ActivitylistPage {
           this.lastTime = value['createDate'] - 1;
         item['title'] = value['title'];
         item['address'] = value['address'];
-        item['imgs'] = value['imgs'];
+        if(value.hasOwnProperty('imgs'))
+          item['imgs'] = value['imgs'];
+        else 
+          item['imgs'] = [];
         item['firstBegin'] = value['activityDate'][0]['from'];
         item['activityDate'] = [];
         for(let j=0; j<value['activityDate'].length; j++){
@@ -112,6 +115,10 @@ export class ActivitylistPage {
         this.disp$.push(item);
         this.readMore = "查看更多";
       });
+      this.disp$.sort(function(a,b){
+        return b['firstBegin'] - a['firstBegin'];
+      });
+
       if(snapshot.numChildren() < num){
         this.hasMore = false;
         this.readMore = "没有更多活动了";

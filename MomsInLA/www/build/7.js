@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExchangeaddPageModule", function() { return ExchangeaddPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__exchangeadd__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__exchangeadd__ = __webpack_require__(539);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ExchangeaddPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 538:
+/***/ 539:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -148,8 +148,8 @@ var ExchangeaddPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-exchangeadd',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangeadd/exchangeadd.html"*/'<!--\n  Generated template for the ExchangeaddPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-toolbar>\n        <div style="display: flex">\n          <div class="nav-button">\n          <button ion-button clear small navPop>  \n            <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> \n          </button>\n          </div>\n          <div class="nav-title">添加帖子</div>\n          <div class="nav-button publish">\n            <button ion-button clear small (click)="publish()" style="color:#e15b00">发布</button>\n          </div>\n        </div>\n    </ion-toolbar>\n\n</ion-header>\n\n\n<ion-content padding>\n<div class="ex-text">帖子类别:</div>\n<div style="display: flex">\n  <div class="button-space"><button name=1 class="button-select" (click)=\'selectCategory($event)\'>商品买卖</button></div>\n  <div class="button-space"><button name=2 (click)=\'selectCategory($event)\'>家政服务</button></div>\n  <div class="button-space"><button name=3 (click)=\'selectCategory($event)\'>房屋出租</button></div>\n  <div class="button-space"><button name=4 (click)=\'selectCategory($event)\'>妈妈兼职</button></div>\n</div>\n<div class="title-space"><input id="title" class="ex-title" type="text" placeholder="帖子标题" [(ngModel)]="title"></div>\n<div style="display: flex">\n  <div style="flex:1" class="title-space">\n  <input id="price" class="ex-title" type="text" placeholder="单价" [(ngModel)]="price" >\n  </div>\n  <div style="flex:1" class="title-space">\n    <input id="city" class="ex-title" type="text" placeholder="城市" [(ngModel)]="city">\n  </div>\n</div>\n  \n<div class="title-space">\n  <textarea id="content" class="ex-content" cols="30" rows="15" placeholder="请输入帖子文本" [(ngModel)]="content"></textarea>\n</div>\n<div class="ex-text" style="margin-top: 20px">附图</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangeadd/exchangeadd.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_toast_toast__["a" /* ToastProvider */],
             __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]])
     ], ExchangeaddPage);

@@ -1,14 +1,14 @@
 webpackJsonp([9],{
 
-/***/ 524:
+/***/ 525:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivitylistPageModule", function() { return ActivitylistPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangePicPageModule", function() { return ChangePicPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__activitylist__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__change_pic__ = __webpack_require__(538);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,43 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ActivitylistPageModule = /** @class */ (function () {
-    function ActivitylistPageModule() {
+var ChangePicPageModule = /** @class */ (function () {
+    function ChangePicPageModule() {
     }
-    ActivitylistPageModule = __decorate([
+    ChangePicPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */],
+                __WEBPACK_IMPORTED_MODULE_2__change_pic__["a" /* ChangePicPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__change_pic__["a" /* ChangePicPage */]),
             ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */],
-            ]
         })
-    ], ActivitylistPageModule);
-    return ActivitylistPageModule;
+    ], ChangePicPageModule);
+    return ChangePicPageModule;
 }());
 
-//# sourceMappingURL=activitylist.module.js.map
+//# sourceMappingURL=change-pic.module.js.map
 
 /***/ }),
 
-/***/ 536:
+/***/ 538:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivitylistPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangePicPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_geocoder__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_activity_filter_activity_filter__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_time_format_time_format__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase_app__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(90);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -64,185 +58,130 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 
 
 
 
-
-
-
-var ActivitylistPage = /** @class */ (function () {
-    function ActivitylistPage(navCtrl, navParams, fsp, geocoder, popoverCtrl, geolocation, timeFormat, events) {
+/**
+ * Generated class for the ChangePicPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ChangePicPage = /** @class */ (function () {
+    function ChangePicPage(navCtrl, navParams, camera, localStorage) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.fsp = fsp;
-        this.geocoder = geocoder;
-        this.popoverCtrl = popoverCtrl;
-        this.geolocation = geolocation;
-        this.timeFormat = timeFormat;
-        this.events = events;
-        this.disp$ = [];
-        this.isLocated = false;
-        this.isLoaded = false;
-        this.readMore = "";
-        this.lastTime = 4698626463000;
-        this.hasMore = true;
-        this.numsForEach = 5;
-        this.cityLocation = '(定位中)';
-        // this.events.subscribe('distance', () => {
-        //   if(this.isLoaded && this.isLocated){
-        //     for(let i= 0; i < this.disp$.length; i++){
-        //       if(!this.disp$[i]['calDistance']){
-        //         this.calDistance({lng: this.longitude, lat: this.latitude},this.disp$[i]['address'],i);
-        //       }
-        //     }
-        //   }
-        // });
+        this.camera = camera;
+        this.localStorage = localStorage;
     }
-    ActivitylistPage.prototype.ionViewDidLoad = function () {
+    ChangePicPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        console.log('ionViewDidLoad ActivitylistPage');
-        this.loadData(0, this.lastTime, this.numsForEach);
-        var options = {
-            useLocale: true,
-            maxResults: 5
-        };
-        this.geolocation.getCurrentPosition().then(function (resp) {
-            console.log(resp);
-            _this.latitude = resp.coords.latitude;
-            _this.longitude = resp.coords.longitude;
-            _this.isLocated = true;
-            _this.events.publish('distance');
-            _this.geocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
-                .then(function (result) {
-                console.log(JSON.stringify(result[0]));
-                _this.cityLocation = result[0].locality;
-            })
-                .catch(function (error) { return console.log(error); });
-        }).catch(function (err) {
-            console.log(err);
-        });
+        console.log('ionViewDidLoad ChangePicPage');
+        this.localStorage.get('user').then(function (data) { return _this.user = data; });
     };
-    ActivitylistPage.prototype.loadData = function (startTime, endTime, num) {
-        var _this = this;
-        if (this.hasMore)
-            __WEBPACK_IMPORTED_MODULE_7_firebase_app___default.a.database().ref('/DailyEvents/').orderByChild('createDate').startAt(startTime).endAt(endTime).limitToLast(num).once('value').then(function (snapshot) {
-                console.log(snapshot.numChildren());
-                snapshot.forEach(function (data) {
-                    var item = {};
-                    item['key'] = data.key;
-                    var value = data.val();
-                    if (value['createDate'] < _this.lastTime)
-                        _this.lastTime = value['createDate'] - 1;
-                    item['title'] = value['title'];
-                    item['address'] = value['address'];
-                    item['imgs'] = value['imgs'];
-                    item['firstBegin'] = value['activityDate'][0]['from'];
-                    item['activityDate'] = [];
-                    for (var j = 0; j < value['activityDate'].length; j++) {
-                        var time = _this.timeFormat.eventTimeFormat(value['activityDate'][j]['from'], value['activityDate'][j]['to']);
-                        item['activityDate'].push(time);
-                    }
-                    if (value['eventCategory1'])
-                        item['isFree'] = '免费';
-                    else
-                        item['isFree'] = '收费';
-                    if (value['eventCategory2'])
-                        item['isPublic'] = '公共活动';
-                    else
-                        item['isPublic'] = '私人活动';
-                    item['numsLike'] = value['numsLike'];
-                    item['numsRead'] = value['numsRead'];
-                    item['distance'] = "0 英里";
-                    item['calDistance'] = false;
-                    _this.disp$.push(item);
-                    _this.readMore = "查看更多";
-                });
-                if (snapshot.numChildren() < num) {
-                    _this.hasMore = false;
-                    _this.readMore = "没有更多活动了";
-                    console.log(_this.readMore);
+    ChangePicPage.prototype.selectImage = function (index) {
+        return __awaiter(this, void 0, void 0, function () {
+            var option, imageData, base64Image, name, imgUrl;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (index == 0) {
+                            option = {
+                                quality: 100,
+                                destinationType: this.camera.DestinationType.DATA_URL,
+                                encodingType: this.camera.EncodingType.JPEG,
+                                mediaType: this.camera.MediaType.PICTURE,
+                                saveToPhotoAlbum: true,
+                                allowEdit: true,
+                                targetHeight: 300,
+                                targetWidth: 300,
+                                correctOrientation: true
+                            };
+                        }
+                        else {
+                            option = {
+                                quality: 100,
+                                destinationType: this.camera.DestinationType.DATA_URL,
+                                encodingType: this.camera.EncodingType.JPEG,
+                                mediaType: this.camera.MediaType.PICTURE,
+                                sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                                allowEdit: true,
+                                targetWidth: 300,
+                                targetHeight: 300,
+                                correctOrientation: true
+                            };
+                        }
+                        return [4 /*yield*/, this.camera.getPicture(option)];
+                    case 1:
+                        imageData = _a.sent();
+                        base64Image = 'data:image/jpeg;base64,' + imageData;
+                        document.getElementById('protrait').style.backgroundImage = base64Image;
+                        name = "/UserImg/" + this.user.userID;
+                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_3_firebase__["storage"])().ref(name).putString(base64Image, 'data_url', { contentType: 'image/png' })];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_3_firebase__["storage"])().ref(name).getDownloadURL()];
+                    case 3:
+                        imgUrl = _a.sent();
+                        this.localStorage.set('user', {
+                            username: this.user.username,
+                            userImg: imgUrl,
+                            userID: this.user.userID,
+                            userStatus: this.user.userStatus
+                        });
+                        return [2 /*return*/];
                 }
-                _this.isLoaded = true;
-                _this.events.publish('distance');
             });
-    };
-    ActivitylistPage.prototype.loadMoreData = function () {
-        this.loadData(0, this.lastTime, this.numsForEach);
-    };
-    ActivitylistPage.prototype.openDetail = function (key, numsRead) {
-        console.log(key);
-        console.log(numsRead);
-        this.navCtrl.push('ActivityPage', { infoId: key });
-    };
-    ActivitylistPage.prototype.presentPopover = function (event) {
-        var _this = this;
-        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_activity_filter_activity_filter__["a" /* ActivityFilterComponent */]);
-        popover.present({
-            ev: event
-        });
-        popover.onDidDismiss(function (data) {
-            switch (data.idx) {
-                case 0:
-                    _this.disp$.sort(function (a, b) {
-                        return b.firstBegin - a.firstBegin;
-                    });
-                    return;
-                case 1:
-                    _this.disp$.sort(function (a, b) {
-                        return b.numsLike - a.numsLike;
-                    });
-            }
         });
     };
-    ActivitylistPage.prototype.calDistance = function (o, d, index) {
-        o = { lat: 34.1379, lng: -118.0537 };
-        if (this.disp$[index]['calDistance'])
-            return;
-        console.log(this.latitude);
-        console.log(this.longitude);
-        console.log(d);
-        var service = new google.maps.DistanceMatrixService();
-        var dataItem = this.disp$;
-        service.getDistanceMatrix({
-            origins: [o],
-            destinations: [{ lat: 34.1379, lng: -118.0537 }],
-            travelMode: 'DRIVING',
-            // drivingOptions: {
-            //   departureTime: new Date(Date.now()),  // for the time N milliseconds from now.
-            //   trafficModel: 'optimistic'
-            // }
-            unitSystem: google.maps.UnitSystem.IMPERIAL
-        }, callback);
-        function callback(response, status) {
-            console.log(response);
-            if (response.rows[0]['elements'][0]['status'] == "OK") {
-                dataItem[index]['distance'] = response.rows[0]['elements'][0]['distance']['text'];
-                dataItem[index]['calDistance'] = true;
-                console.log(dataItem[index]);
-            }
-            // See Parsing the Results for
-            // the basics of a callback function.
-        }
-    };
-    ActivitylistPage = __decorate([
+    ChangePicPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-activitylist',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activitylist/activitylist.html"*/'<ion-header>\n\n  <ion-toolbar>\n  	<div style="display: flex">\n      <div>\n      	<button ion-button clear small navPop>  \n        	<ion-icon mode="ios" name="ios-arrow-back" style="font-size: 3rem"></ion-icon> \n      	</button>\n      </div>\n			<div style="flex:1">\n				<ion-searchbar [showCancelButton]="shouldShowCancel" (search)="onSearch($event)">\n				</ion-searchbar>\n			</div>\n    </div>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content >\n	<div style="display: flex; padding: 8px 10px 8px 10px;font-size:16px; border-bottom: 1px solid #bebbbb">\n		<div style="flex:1"><img src="assets/icon/icon_location.png" height="20" width="20" ><span style="margin:4px;color:#aaaaaa">{{cityLocation}}</span></div>\n    <div (click)=\'presentPopover($event)\'><img src="assets/icon/icon_filter.png" width="20" height="20"></div>\n	</div>\n		<!-- <ion-select #sectionSelect3 [(ngModel)]="filters" interface="popover" cancelText="Cancel" okText="Ok" style="display: none">\n			<ion-option value="<1km">《1km</ion-option>\n			<ion-option value="rating">评分高</ion-option>\n			<ion-option value="View">访问</ion-option>\n			<ion-option value="feature">热门</ion-option>\n		</ion-select> -->\n\n		<!-- <ion-list>\n			<ion-card ion-item *ngFor="let ActivitylistCard of ActivitylistCards">\n				{{ActivitylistCard.id}}\n			</ion-card>\n\n			<ion-card>\n				<ion-card-header>\n					Kids Club at the Grove: 儿童俱乐部杂耍表演\n				</ion-card-header>\n				<ion-card-content>\n					<ion-grid>\n						<ion-row>\n							<ion-col col-3>\n								<div><img src="assets/imgs/logo.png" height="90" width="120"></div>\n							</ion-col>\n							<ion-col col-9>\n								<div>时间:2018-01-01</div>\n								<div>地址:189 The Grove DR. CA 91719</div>\n								<div>距离: 3 miles</div>\n								<div>\n									<ion-col><button ion-button>免费停车</button></ion-col>\n									<ion-col><button ion-button>免费停车</button></ion-col>\n									<ion-col>\n										<button ion-button icon-start clear small>\n											<ion-icon name="thumbs-up"></ion-icon>\n											<div>15</div>\n										</button>\n									</ion-col>\n								</div>\n							</ion-col>\n						</ion-row>\n					</ion-grid>\n				</ion-card-content>\n			</ion-card>\n\n		</ion-list> -->\n		<div class="list-item" *ngFor="let item of disp$" (click)="openDetail(item.key,item.numsRead)">\n			<div class="title">{{item.title}}</div>\n			<div class="list-content">\n					<img *ngIf="item.imgs.length>=1" class="list-img" [src]="item.imgs[0]" alt="">\n				<div class="list-text">\n					<div class="time">时间：<span *ngFor="let time of item.activityDate">{{time}}; </span></div>\n					<div class="address">地址：{{item.address}}</div>\n					<div class="distant">距离：{{item.distance}}</div>\n					<div style="display: flex;">\n							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isFree}}</div>\n							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isPublic}}</div>\n							<!-- <div style="float:right;margin-top:8px;margin-left:4px">\n								<img src="assets/imgs/icon_like.png" width="16" height="16"><span style="margin-left:4px;line-height: 16px">{{item.numsLike}}</span>\n							</div> -->\n						</div>\n				</div>\n				\n			</div>\n		</div>\n		<div style="text-align: center; font-size: 20px;margin:10px 0px"><span (click)="loadMoreData()">{{readMore}}</span></div>\n\n</ion-content>\n\n    <!-- ion-item>\n      <ion-label>Pets</ion-label>\n      <ion-select [(ngModel)]="pets" multiple="true" [selectOptions]="petAlertOpts">\n        <ion-option *ngFor="let o of petData" [value]="o.value">{{o.text}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Skittles</ion-label>\n      <ion-select [(ngModel)]="skittles" multiple="true" okText="Okay" cancelText="Dismiss" [compareWith]="compareFn">\n        <ion-option *ngFor="let o of skittlesData" [value]="o">{{o.text}}</ion-option>\n      </ion-select>\n    </ion-item> -->\n\n   \n\n  \n    \n\n    <!-- < ion-item> -->\n      <!-- <ion-label>Rating</ion-label>\n      <ion-select [(ngModel)]="rating" interface="action-sheet">\n        <ion-option value="1">1 Star</ion-option>\n        <ion-option value="2">2 Stars</ion-option>\n        <ion-option value="3">3 Stars</ion-option>\n        <ion-option value="4">4 Stars</ion-option>\n        <ion-option value="5">5 Stars</ion-option>\n      </ion-select>\n    </ion-item> --> \n\n<!--  <-----------------Original code--------------->\n <!-- <ion-content padding>\n<ion-searchbar\n  [(ngModel)]="myInput"\n  [showCancelButton]="shouldShowCancel"\n  (ionInput)="onInput($event)"\n  (ionCancel)="onCancel($event)">\n</ion-searchbar>\n<ion-row>\n        <ion-col col-4>\n          <ion-item>\n            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        <ion-col col-4>\n          <ion-item class="padding-left-3px">\n            <button ion-button (click) = "calendar()" color = "dark" clear><ion-icon name="calendar"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        \n        \n\n	<ion-buttons end>\n		<button ion-button icon-only (click) = "filter()" color = "dark" clear><ion-icon name="md-color-filter"></ion-icon></button>\n	</ion-buttons>      		\n	<ion-label>Gender</ion-label>\n  <ion-select [(ngModel)]="gender">\n    <ion-option value="f">Female</ion-option>\n    <ion-option value="m">Male</ion-option>\n  </ion-select>\n	 </ion-row> -->\n	<!-- <ion-row>\n        <ion-col text-center>\n          <ion-item>\n            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        <ion-col>\n        	\n        </ion-col>\n        \n     </ion-row> -->\n\n<!-- </ion-content> -->\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activitylist/activitylist.html"*/,
+            selector: 'page-change-pic',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/change-pic/change-pic.html"*/'<!--\n  Generated template for the ChangePicPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>修改头像</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n<div id="protrait" class="user-img"></div>\n<div class="option" (click)="selectImage(0)"><button ion-button>拍照</button></div>\n<div class="option" (click)="selectImage(1)"><button ion-button>从相片选取</button></div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/change-pic/change-pic.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* PopoverController */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_time_format_time_format__["a" /* TimeFormatProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
-    ], ActivitylistPage);
-    return ActivitylistPage;
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
+    ], ChangePicPage);
+    return ChangePicPage;
+    var _a, _b, _c, _d;
 }());
 
-//# sourceMappingURL=activitylist.js.map
+//# sourceMappingURL=change-pic.js.map
 
 /***/ })
 

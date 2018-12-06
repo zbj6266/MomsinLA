@@ -20,9 +20,9 @@
     <div class="detail-title">{{disp.title}}</div>
     <div class="section">
       <div id="time">活动时间： <span *ngFor="let time of activityDate">{{time}}; </span></div>
-      <div id="city">城市： {{disp.city}}</div>
-      <div id="address">具体地址： {{disp.address}}</div>
-      <div *ngIf="disp.hasOwnProperty('website')" id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
+      <div id="city">费用： {{disp.eventFeeCharged}}</div>
+      <div id="address">具体地址： {{disp.address}}, {{disp.city}}, {{disp.zip}}</div>
+      <div *ngIf="disp.website != ''" id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
       <div id="content">{{disp.content}}</div>
         <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">
       <div style="text-align: end">阅读量 {{disp.numsRead}}</div>
@@ -56,7 +56,7 @@
               </div>
             <div class="comment-like" (click)="commentLike(item.key)">
               <img [id]='item.key' src="assets/imgs/icon_like.png" alt="" width="16" height="16">
-              <!-- <div class="num-like">{{item.totalThumbsUp}}</div> -->
+              <div [id]='"num"+item.key' class="num-like">{{item.totalThumbsUp}}</div>
             </div>
           </div>
           <div *ngFor="let key of item.replyKeys" style="margin-left:20px;margin-top:6px;margin-bottom:6px">

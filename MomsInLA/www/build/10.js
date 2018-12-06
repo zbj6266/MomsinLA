@@ -5,10 +5,10 @@ webpackJsonp([10],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivityPageModule", function() { return ActivityPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivitylistPageModule", function() { return ActivitylistPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__activity__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__activitylist__ = __webpack_require__(536);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,49 +18,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ActivityPageModule = /** @class */ (function () {
-    function ActivityPageModule() {
+var ActivitylistPageModule = /** @class */ (function () {
+    function ActivitylistPageModule() {
     }
-    ActivityPageModule = __decorate([
+    ActivitylistPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__activity__["a" /* ActivityPage */],
+                __WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__activity__["a" /* ActivityPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */]),
             ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_2__activitylist__["a" /* ActivitylistPage */],
+            ]
         })
-    ], ActivityPageModule);
-    return ActivityPageModule;
+    ], ActivitylistPageModule);
+    return ActivitylistPageModule;
 }());
 
-//# sourceMappingURL=activity.module.js.map
+//# sourceMappingURL=activitylist.module.js.map
 
 /***/ }),
 
-/***/ 535:
+/***/ 536:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivitylistPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_toast_toast__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_time_format_time_format__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase_app__);
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_geocoder__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_activity_filter_activity_filter__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_time_format_time_format__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase_app__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -78,340 +72,183 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var ActivityPage = /** @class */ (function () {
-    function ActivityPage(navCtrl, navParams, fsp, iab, storage, toast, timeFormat, events, alertCtrl) {
+var ActivitylistPage = /** @class */ (function () {
+    function ActivitylistPage(navCtrl, navParams, fsp, geocoder, popoverCtrl, geolocation, timeFormat, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.fsp = fsp;
-        this.iab = iab;
-        this.storage = storage;
-        this.toast = toast;
+        this.geocoder = geocoder;
+        this.popoverCtrl = popoverCtrl;
+        this.geolocation = geolocation;
         this.timeFormat = timeFormat;
         this.events = events;
-        this.alertCtrl = alertCtrl;
-        this.disp = {};
-        this.tagsStr = ["户外游乐", "益智教育", "动物植物", "游乐园", "室内游乐", "科普知识", "免费停车", "其他类型"];
-        this.tags = [];
-        this.comments = [];
-        this.saved = false;
-        this.liked = false;
-        this.numsLike = 0;
-        this.activityDate = [];
-        this.infoId = navParams.get("infoId");
-    }
-    ActivityPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.storage.get('user').then(function (data) {
-            _this.userInfo = data;
-            _this.loadData(_this.infoId);
-            _this.getComment(_this.infoId);
-            _this.getSaved();
-            _this.getLiked();
-        });
-        // this.events.subscribe('activity_reply',(key, data)=>{
-        //   let comment = data['\bcomment'];
-        //   this.storage.get('user').then(data=>{
-        //     let reply = {
-        //       replyCommentContent: comment,
-        //       replyTime: new Date().getTime(),
-        //       replyUser: data.username,
-        //       replyUserPictureURL: data.userImg,
-        //       replyUserStatus: data.userStatus
-        //     }
-        //     console.log("111"+this.infoId);
-        //     console.log(`${this.infoId}/${key}/commentReplies`);
-        //     this.fsp.getCommentForDailyEvent(`${this.infoId}/${key}/commentReplies`).push(reply).then(()=>{
-        //       this.toast.presentToast("评论成功", 1000, "bottom");
-        //     });
-        //   })
-        // })
-    };
-    ActivityPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.storage.get('user').then(function (data) {
-            _this.userInfo = data;
-            _this.getSaved();
-            _this.getLiked();
-            _this.getCommentLike();
-        });
-    };
-    ActivityPage.prototype.jumpToLogin = function (msg, time, location) {
-        this.toast.presentToast(msg, time, location);
-        var nav = this.navCtrl;
-        setTimeout(function () {
-            nav.push('LoginPage');
-        }, time);
-    };
-    ActivityPage.prototype.loadData = function (key) {
-        var _this = this;
-        __WEBPACK_IMPORTED_MODULE_8_firebase_app___default.a.database().ref("/DailyEvents/" + key).once('value').then(function (snapshot) {
-            _this.disp = snapshot.val();
-            console.log(snapshot.val());
-            for (var i = 0; i < _this.disp['eventCategory3'].length; i++) {
-                if (_this.disp['eventCategory3'][i]) {
-                    _this.tags.push(_this.tagsStr[i]);
-                }
-            }
-            for (var j = 0; j < _this.disp['activityDate'].length; j++) {
-                var time = _this.timeFormat.eventTimeFormat(_this.disp['activityDate'][j]['from'], _this.disp['activityDate'][j]['to']);
-                _this.activityDate.push(time);
-            }
-        });
-        // this.sub = this.fsp.getDailyEventDetail(key).valueChanges().subscribe(
-        //   data=>{
-        //     this.disp = data;
-        //     for(let i=0; i< data['eventCategory3'].length; i++){
-        //       if(data['eventCategory3'][i]){
-        //         this.tags.push(this.tagsStr[i])
+        this.disp$ = [];
+        this.isLocated = false;
+        this.isLoaded = false;
+        this.readMore = "";
+        this.lastTime = 4698626463000;
+        this.hasMore = true;
+        this.numsForEach = 5;
+        this.cityLocation = '(定位中)';
+        // this.events.subscribe('distance', () => {
+        //   if(this.isLoaded && this.isLocated){
+        //     for(let i= 0; i < this.disp$.length; i++){
+        //       if(!this.disp$[i]['calDistance']){
+        //         this.calDistance({lng: this.longitude, lat: this.latitude},this.disp$[i]['address'],i);
         //       }
         //     }
-        //     this.sub.unsubscribe();
-        //     this.fsp.getDailyEventDetailRef(key).set('numsRead', data['numsRead'] + 1).then(data=>{
-        //       this.disp['numsRead'] = this.disp['numsRead'] + 1;
-        //     })
-        //   });
-    };
-    ActivityPage.prototype.getComment = function (key) {
+        //   }
+        // });
+    }
+    ActivitylistPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.fsp.getCommentForDailyEvent(key).snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["map"])(function (changes) {
-            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
-        })).subscribe(function (data) {
-            _this.comments = data;
-            for (var i = 0; i < _this.comments.length; i++) {
-                _this.comments[i]['datetime'] = _this.timeFormat.differFromNow(_this.comments[i]['commentTimestamp']);
-                if (_this.comments[i].hasOwnProperty('commentReplies')) {
-                    _this.comments[i]['replyKeys'] = Object.keys(_this.comments[i]['commentReplies']);
-                    console.log(_this.comments[i]['replyKeys']);
-                }
-                else
-                    _this.comments[i]['replyKeys'] = [];
-            }
-            _this.getCommentLike();
-            _this.comments.sort(function (a, b) {
-                return b.commentTimestamp - a.commentTimestamp;
-            });
+        console.log('ionViewDidLoad ActivitylistPage');
+        this.loadData(0, this.lastTime, this.numsForEach);
+        var options = {
+            useLocale: true,
+            maxResults: 5
+        };
+        this.geolocation.getCurrentPosition().then(function (resp) {
+            console.log(resp);
+            _this.latitude = resp.coords.latitude;
+            _this.longitude = resp.coords.longitude;
+            _this.isLocated = true;
+            _this.events.publish('distance');
+            _this.geocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
+                .then(function (result) {
+                console.log(JSON.stringify(result[0]));
+                _this.cityLocation = result[0].locality;
+            })
+                .catch(function (error) { return console.log(error); });
+        }).catch(function (err) {
+            console.log(err);
         });
     };
-    ActivityPage.prototype.openBrowser = function (url) {
-        if (url.trim().substring(0, 7) != "http://" || url.trim().substring(0, 7) != "https://")
-            url = "http://" + url;
-        console.log(url);
-        this.iab.create(url, "_system");
+    ActivitylistPage.prototype.loadData = function (startTime, endTime, num) {
+        var _this = this;
+        if (this.hasMore)
+            __WEBPACK_IMPORTED_MODULE_7_firebase_app___default.a.database().ref('/DailyEvents/').orderByChild('createDate').startAt(startTime).endAt(endTime).limitToLast(num).once('value').then(function (snapshot) {
+                console.log(snapshot.numChildren());
+                snapshot.forEach(function (data) {
+                    var item = {};
+                    item['key'] = data.key;
+                    var value = data.val();
+                    if (value['createDate'] < _this.lastTime)
+                        _this.lastTime = value['createDate'] - 1;
+                    item['title'] = value['title'];
+                    item['address'] = value['address'];
+                    if (value.hasOwnProperty('imgs'))
+                        item['imgs'] = value['imgs'];
+                    else
+                        item['imgs'] = [];
+                    item['firstBegin'] = value['activityDate'][0]['from'];
+                    item['activityDate'] = [];
+                    for (var j = 0; j < value['activityDate'].length; j++) {
+                        var time = _this.timeFormat.eventTimeFormat(value['activityDate'][j]['from'], value['activityDate'][j]['to']);
+                        item['activityDate'].push(time);
+                    }
+                    if (value['eventCategory1'])
+                        item['isFree'] = '免费';
+                    else
+                        item['isFree'] = '收费';
+                    if (value['eventCategory2'])
+                        item['isPublic'] = '公共活动';
+                    else
+                        item['isPublic'] = '私人活动';
+                    item['numsLike'] = value['numsLike'];
+                    item['numsRead'] = value['numsRead'];
+                    item['distance'] = "0 英里";
+                    item['calDistance'] = false;
+                    _this.disp$.push(item);
+                    _this.readMore = "查看更多";
+                });
+                _this.disp$.sort(function (a, b) {
+                    return b['firstBegin'] - a['firstBegin'];
+                });
+                if (snapshot.numChildren() < num) {
+                    _this.hasMore = false;
+                    _this.readMore = "没有更多活动了";
+                    console.log(_this.readMore);
+                }
+                _this.isLoaded = true;
+                _this.events.publish('distance');
+            });
     };
-    ActivityPage.prototype.comment = function () {
-        if (this.userInfo == null) {
-            this.jumpToLogin("请先登录", 1000, "middle");
-        }
-        else {
-            console.log(this.userInfo);
-            if (this.commentReply == null || this.commentReply.trim() == "") {
-                this.toast.presentToast("请输入评论内容", 1000, "middle");
-                return;
-            }
-            var item = {
-                commentReplies: [],
-                commentTimestamp: new Date().getTime(),
-                commentUser: {
-                    originalPosterStatus: this.userInfo['userStatus'],
-                    originalPosterUserID: this.userInfo['userID'],
-                    originalPosterUserIMG: this.userInfo['userImg'],
-                    originalPosterUsername: this.userInfo['username'],
-                },
-                dailyEventID: this.infoId,
-                dailyEventTitle: this.disp.title,
-                replyContent: this.commentReply,
-                totalThumbsUp: 0
-            };
-            this.commentReply = "";
-            this.fsp.getCommentForDailyEvent(this.infoId).push(item);
-        }
+    ActivitylistPage.prototype.loadMoreData = function () {
+        this.loadData(0, this.lastTime, this.numsForEach);
     };
-    ActivityPage.prototype.reply = function (key, user) {
+    ActivitylistPage.prototype.openDetail = function (key, numsRead) {
         console.log(key);
-        if (this.userInfo == null) {
-            this.jumpToLogin("请先登录", 1000, "middle");
-        }
-        else {
-            this.presentPrompt(key, user);
-        }
+        console.log(numsRead);
+        this.navCtrl.push('ActivityPage', { infoId: key });
     };
-    ActivityPage.prototype.presentPrompt = function (key, usr) {
+    ActivitylistPage.prototype.presentPopover = function (event) {
         var _this = this;
-        var alert = this.alertCtrl.create({
-            title: '回复',
-            inputs: [
-                {
-                    name: 'comment',
-                    placeholder: '@' + usr.originalPosterUsername,
-                }
-            ],
-            buttons: [
-                {
-                    text: '取消',
-                    role: 'cancel',
-                    handler: function (data) {
-                        console.log('Cancel clicked');
-                    }
-                },
-                {
-                    text: '提交',
-                    handler: function (data) {
-                        var reply = {
-                            replyCommentContent: data['\bcomment'],
-                            replyTime: new Date().getTime(),
-                            replyUser: _this.userInfo.username,
-                            replyUserPictureURL: _this.userInfo.userImg,
-                            replyUserStatus: _this.userInfo.userStatus
-                        };
-                        console.log("111" + _this.infoId);
-                        console.log(_this.infoId + "/" + key + "/commentReplies");
-                        _this.fsp.getCommentForDailyEvent(_this.infoId + "/" + key + "/commentReplies").push(reply).then(function () {
-                            _this.toast.presentToast("评论成功", 1000, "bottom");
-                        });
-                    }
-                }
-            ]
+        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_activity_filter_activity_filter__["a" /* ActivityFilterComponent */]);
+        popover.present({
+            ev: event
         });
-        alert.present();
-    };
-    ActivityPage.prototype.getSaved = function () {
-        var _this = this;
-        if (this.userInfo != null) {
-            this.fsp.getUserListRef(this.userInfo['userID'] + '/SavedEvents/').snapshotChanges().subscribe(function (data) {
-                data.forEach(function (item) {
-                    if (item.key == _this.infoId) {
-                        _this.saved = true;
-                        document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
-                        return;
-                    }
-                });
-            });
-        }
-    };
-    ActivityPage.prototype.getLiked = function () {
-        var _this = this;
-        if (this.userInfo != null) {
-            this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').snapshotChanges().subscribe(function (data) {
-                data.forEach(function (item) {
-                    if (item.key == _this.infoId) {
-                        _this.liked = true;
-                        document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
-                        return;
-                    }
-                });
-            });
-        }
-    };
-    ActivityPage.prototype.save = function () {
-        var _this = this;
-        if (this.userInfo == null) {
-            this.jumpToLogin("请先登录", 1000, "middle");
-        }
-        else {
-            if (!this.saved)
-                this.fsp.getUserListRef(this.userInfo['userID'] + '/SavedEvents/').set(this.infoId, {
-                    'eventID': this.infoId,
-                    'haveSaved': true,
-                }).then(function (data) {
-                    _this.saved = true;
-                    document.getElementById('save').setAttribute("src", "assets/icon/icon_save_click.png");
-                    _this.toast.presentToast("收藏成功", 1000, "bottom");
-                });
-            else {
-                this.fsp.getUserListRef(this.userInfo['userID'] + '/SavedEvents/').remove(this.infoId).then(function (data) {
-                    _this.saved = false;
-                    document.getElementById('save').setAttribute("src", "assets/icon/icon_save.png");
-                    _this.toast.presentToast("取消收藏", 1000, "bottom");
-                });
-            }
-        }
-    };
-    ActivityPage.prototype.like = function () {
-        var _this = this;
-        if (this.userInfo == null) {
-            this.jumpToLogin("请先登录", 1000, "middle");
-        }
-        else {
-            if (!this.liked)
-                this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').set(this.infoId, {
-                    'eventID': this.infoId,
-                    'haveLiked': true,
-                }).then(function (data) {
-                    _this.liked = true;
-                    document.getElementById('like').setAttribute("src", "assets/icon/icon_like_click.png");
-                    _this.disp["numsLike"] = _this.disp["numsLike"] + 1;
-                    _this.fsp.getDailyEventDetailRef(_this.infoId).set('numsLike', _this.disp['numsLike']);
-                });
-            else {
-                this.fsp.getUserListRef(this.userInfo['userID'] + '/LikedEvents/').remove(this.infoId).then(function (data) {
-                    _this.liked = false;
-                    document.getElementById('like').setAttribute("src", "assets/icon/icon_like.png");
-                    _this.disp["numsLike"] = _this.disp["numsLike"] - 1;
-                    _this.fsp.getDailyEventDetailRef(_this.infoId).set('numsLike', _this.disp['numsLike']);
-                });
-            }
-        }
-    };
-    ActivityPage.prototype.commentLike = function (key) {
-        var _this = this;
-        if (this.userInfo == null) {
-            this.jumpToLogin("请先登录", 1000, "middle");
-        }
-        else {
-            var commentLikeRef_1 = __WEBPACK_IMPORTED_MODULE_8_firebase_app___default.a.database().ref("/UsersAndAdministrators/" + this.userInfo.userID + "/ThumbsUp/" + this.infoId + "/" + key);
-            commentLikeRef_1.once('value').then(function (snapshot) {
-                console.log();
-                if (snapshot.val() != null) {
-                    document.getElementById(key).setAttribute("src", "assets/icon/icon_like.png");
-                    commentLikeRef_1.remove();
-                }
-                else {
-                    commentLikeRef_1.set({
-                        'eventID': _this.infoId,
-                        'haveLiked': true,
-                    }, function (err) {
-                        if (err) {
-                            console.log(err);
-                        }
-                        else {
-                            console.log('successful');
-                            // firebase.database().ref(`Comments/${this.infoId}/${key}/`)
-                            document.getElementById(key).setAttribute("src", "assets/icon/icon_like_click.png");
-                        }
+        popover.onDidDismiss(function (data) {
+            switch (data.idx) {
+                case 0:
+                    _this.disp$.sort(function (a, b) {
+                        return b.firstBegin - a.firstBegin;
                     });
-                }
-            });
+                    return;
+                case 1:
+                    _this.disp$.sort(function (a, b) {
+                        return b.numsLike - a.numsLike;
+                    });
+            }
+        });
+    };
+    ActivitylistPage.prototype.calDistance = function (o, d, index) {
+        o = { lat: 34.1379, lng: -118.0537 };
+        if (this.disp$[index]['calDistance'])
+            return;
+        console.log(this.latitude);
+        console.log(this.longitude);
+        console.log(d);
+        var service = new google.maps.DistanceMatrixService();
+        var dataItem = this.disp$;
+        service.getDistanceMatrix({
+            origins: [o],
+            destinations: [{ lat: 34.1379, lng: -118.0537 }],
+            travelMode: 'DRIVING',
+            // drivingOptions: {
+            //   departureTime: new Date(Date.now()),  // for the time N milliseconds from now.
+            //   trafficModel: 'optimistic'
+            // }
+            unitSystem: google.maps.UnitSystem.IMPERIAL
+        }, callback);
+        function callback(response, status) {
+            console.log(response);
+            if (response.rows[0]['elements'][0]['status'] == "OK") {
+                dataItem[index]['distance'] = response.rows[0]['elements'][0]['distance']['text'];
+                dataItem[index]['calDistance'] = true;
+                console.log(dataItem[index]);
+            }
+            // See Parsing the Results for
+            // the basics of a callback function.
         }
     };
-    ActivityPage.prototype.getCommentLike = function () {
-        console.log(this.userInfo);
-        if (this.userInfo != null) {
-            console.log('userInfo');
-            __WEBPACK_IMPORTED_MODULE_8_firebase_app___default.a.database().ref("/UsersAndAdministrators/" + this.userInfo.userID + "/ThumbsUp/" + this.infoId).once('value').then(function (snapshot) {
-                console.log(snapshot.val());
-                var data = snapshot.val();
-                if (data != null) {
-                    console.log(data);
-                    for (var key in data) {
-                        document.getElementById(key).setAttribute("src", "assets/icon/icon_like_click.png");
-                    }
-                }
-            });
-        }
-    };
-    ActivityPage = __decorate([
+    ActivitylistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-activity',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activity/activity.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>活动详情</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <div class="creator" *ngIf="disp.hasOwnProperty(\'creator\')">\n    <img [src]="disp.creator.userImg" width="34" height="34" alt="">\n    <div class="name">{{disp.creator.userName}}</div>\n    <span class="offer">发布</span>\n  </div>\n  <div class="detail">\n    <div class="keyword" >\n      <div class="button-space"><button ion-button *ngFor="let item of tags">{{item}}</button></div>\n    </div>\n    <div class="detail-title">{{disp.title}}</div>\n    <div class="section">\n      <div id="time">活动时间： <span *ngFor="let time of activityDate">{{time}}; </span></div>\n      <div id="city">城市： {{disp.city}}</div>\n      <div id="address">具体地址： {{disp.address}}</div>\n      <div *ngIf="disp.hasOwnProperty(\'website\')" id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>\n      <div id="content">{{disp.content}}</div>\n        <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">\n      <div style="text-align: end">阅读量 {{disp.numsRead}}</div>\n    </div>\n    <div class="info-user">\n        <div class="info-like">\n          <div (click)="like()"><img id="like" src="assets/imgs/icon_like.png" width="20" height="20"></div>\n          <div class="info-margin">{{disp.numsLike}}</div>\n        </div>\n        <div class="info-collect" (click)="save()">\n          <div><img id="save" src="assets/icon/icon_save.png" width="20" height="20"></div>\n          <div class="info-margin">收藏</div>\n        </div>\n      </div>\n\n      <div class="comments">\n        <div class="comments-title">评论</div>\n        <div *ngIf="comments.length == 0" style="color:#d8d8d8;text-align: center;margin:5px 0">暂无评论</div>\n        \n        <div *ngFor="let item of comments" style="border-bottom:1px solid #d8d8d8;padding-bottom: 8px">\n          <div class="comment-item" >\n            <div class="user-img">\n              <img [src]="item.commentUser.originalPosterUserIMG" width="32" height="32">\n            </div>\n            <div class="comment-content">\n                <div>{{item.commentUser.originalPosterUsername}}<span>{{item.datetime}}</span></div>\n                <div class="comment-text">{{item.replyContent}}</div>\n            </div>\n            <div class="comment-reply" (click)="reply(item.key, item.commentUser)">\n                回复\n              </div>\n            <div class="comment-like" (click)="commentLike(item.key)">\n              <img [id]=\'item.key\' src="assets/imgs/icon_like.png" alt="" width="16" height="16">\n              <!-- <div class="num-like">{{item.totalThumbsUp}}</div> -->\n            </div>\n          </div>\n          <div *ngFor="let key of item.replyKeys" style="margin-left:20px;margin-top:6px;margin-bottom:6px">\n            <div class="comment-item" >\n              \n              <div class="user-img">\n                <img [src]="item.commentReplies[key].replyUserPictureURL" width="32" height="32">\n              </div>\n              <div class="comment-content">\n                  <div>{{item.commentReplies[key].replyUser}}</div>\n                  <div class="comment-text"><span style="color:#d8d8d8">@{{item.commentUser.originalPosterUsername}} </span>{{item.commentReplies[key].replyCommentContent}}</div>\n              </div>\n            </div>\n            \n          </div>\n        </div>\n      </div>    \n  </div>\n</ion-content>\n<ion-footer no-border>\n  <div style="display: flex">\n  <input type="text" style="flex:1;height:40px;padding-left:6px;border: 1px solid #d8d8d8;margin:2px;border-radius: 2px" placeholder="说两句" [(ngModel)]=\'commentReply\'>\n  <button ion-button (click)="comment()">评论</button>\n</div>\n</ion-footer>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activity/activity.html"*/,
+            selector: 'page-activitylist',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activitylist/activitylist.html"*/'<ion-header>\n\n  <ion-toolbar>\n  	<div style="display: flex">\n      <div>\n      	<button ion-button clear small navPop>  \n        	<ion-icon mode="ios" name="ios-arrow-back" style="font-size: 3rem"></ion-icon> \n      	</button>\n      </div>\n			<div style="flex:1">\n				<ion-searchbar [showCancelButton]="shouldShowCancel" (search)="onSearch($event)">\n				</ion-searchbar>\n			</div>\n    </div>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content >\n	<div style="display: flex; padding: 8px 10px 8px 10px;font-size:16px; border-bottom: 1px solid #bebbbb">\n		<div style="flex:1"><img src="assets/icon/icon_location.png" height="20" width="20" ><span style="margin:4px;color:#aaaaaa">{{cityLocation}}</span></div>\n    <div (click)=\'presentPopover($event)\'><img src="assets/icon/icon_filter.png" width="20" height="20"></div>\n	</div>\n		<!-- <ion-select #sectionSelect3 [(ngModel)]="filters" interface="popover" cancelText="Cancel" okText="Ok" style="display: none">\n			<ion-option value="<1km">《1km</ion-option>\n			<ion-option value="rating">评分高</ion-option>\n			<ion-option value="View">访问</ion-option>\n			<ion-option value="feature">热门</ion-option>\n		</ion-select> -->\n\n		<!-- <ion-list>\n			<ion-card ion-item *ngFor="let ActivitylistCard of ActivitylistCards">\n				{{ActivitylistCard.id}}\n			</ion-card>\n\n			<ion-card>\n				<ion-card-header>\n					Kids Club at the Grove: 儿童俱乐部杂耍表演\n				</ion-card-header>\n				<ion-card-content>\n					<ion-grid>\n						<ion-row>\n							<ion-col col-3>\n								<div><img src="assets/imgs/logo.png" height="90" width="120"></div>\n							</ion-col>\n							<ion-col col-9>\n								<div>时间:2018-01-01</div>\n								<div>地址:189 The Grove DR. CA 91719</div>\n								<div>距离: 3 miles</div>\n								<div>\n									<ion-col><button ion-button>免费停车</button></ion-col>\n									<ion-col><button ion-button>免费停车</button></ion-col>\n									<ion-col>\n										<button ion-button icon-start clear small>\n											<ion-icon name="thumbs-up"></ion-icon>\n											<div>15</div>\n										</button>\n									</ion-col>\n								</div>\n							</ion-col>\n						</ion-row>\n					</ion-grid>\n				</ion-card-content>\n			</ion-card>\n\n		</ion-list> -->\n		<div class="list-item" *ngFor="let item of disp$" (click)="openDetail(item.key,item.numsRead)">\n			<div class="title">{{item.title}}</div>\n			<div class="list-content">\n					<img *ngIf="item.imgs.length>0" class="list-img" [src]="item.imgs[0]" alt="">\n				<div class="list-text">\n					<div class="time">时间：<span *ngFor="let time of item.activityDate">{{time}}; </span></div>\n					<div class="address">地址：{{item.address}}</div>\n					<div class="distant">距离：{{item.distance}}</div>\n					<div style="display: flex;">\n							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isFree}}</div>\n							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isPublic}}</div>\n							<!-- <div style="float:right;margin-top:8px;margin-left:4px">\n								<img src="assets/imgs/icon_like.png" width="16" height="16"><span style="margin-left:4px;line-height: 16px">{{item.numsLike}}</span>\n							</div> -->\n						</div>\n				</div>\n				\n			</div>\n		</div>\n		<div style="text-align: center; font-size: 20px;margin:10px 0px"><span (click)="loadMoreData()">{{readMore}}</span></div>\n\n</ion-content>\n\n    <!-- ion-item>\n      <ion-label>Pets</ion-label>\n      <ion-select [(ngModel)]="pets" multiple="true" [selectOptions]="petAlertOpts">\n        <ion-option *ngFor="let o of petData" [value]="o.value">{{o.text}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Skittles</ion-label>\n      <ion-select [(ngModel)]="skittles" multiple="true" okText="Okay" cancelText="Dismiss" [compareWith]="compareFn">\n        <ion-option *ngFor="let o of skittlesData" [value]="o">{{o.text}}</ion-option>\n      </ion-select>\n    </ion-item> -->\n\n   \n\n  \n    \n\n    <!-- < ion-item> -->\n      <!-- <ion-label>Rating</ion-label>\n      <ion-select [(ngModel)]="rating" interface="action-sheet">\n        <ion-option value="1">1 Star</ion-option>\n        <ion-option value="2">2 Stars</ion-option>\n        <ion-option value="3">3 Stars</ion-option>\n        <ion-option value="4">4 Stars</ion-option>\n        <ion-option value="5">5 Stars</ion-option>\n      </ion-select>\n    </ion-item> --> \n\n<!--  <-----------------Original code--------------->\n <!-- <ion-content padding>\n<ion-searchbar\n  [(ngModel)]="myInput"\n  [showCancelButton]="shouldShowCancel"\n  (ionInput)="onInput($event)"\n  (ionCancel)="onCancel($event)">\n</ion-searchbar>\n<ion-row>\n        <ion-col col-4>\n          <ion-item>\n            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        <ion-col col-4>\n          <ion-item class="padding-left-3px">\n            <button ion-button (click) = "calendar()" color = "dark" clear><ion-icon name="calendar"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        \n        \n\n	<ion-buttons end>\n		<button ion-button icon-only (click) = "filter()" color = "dark" clear><ion-icon name="md-color-filter"></ion-icon></button>\n	</ion-buttons>      		\n	<ion-label>Gender</ion-label>\n  <ion-select [(ngModel)]="gender">\n    <ion-option value="f">Female</ion-option>\n    <ion-option value="m">Male</ion-option>\n  </ion-select>\n	 </ion-row> -->\n	<!-- <ion-row>\n        <ion-col text-center>\n          <ion-item>\n            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>\n          </ion-item>\n        </ion-col>\n        <ion-col>\n        	\n        </ion-col>\n        \n     </ion-row> -->\n\n<!-- </ion-content> -->\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/activitylist/activitylist.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__providers_toast_toast__["a" /* ToastProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_toast_toast__["a" /* ToastProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__providers_time_format_time_format__["a" /* TimeFormatProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_time_format_time_format__["a" /* TimeFormatProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _j || Object])
-    ], ActivityPage);
-    return ActivityPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_time_format_time_format__["a" /* TimeFormatProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
+    ], ActivitylistPage);
+    return ActivitylistPage;
 }());
 
-//# sourceMappingURL=activity.js.map
+//# sourceMappingURL=activitylist.js.map
 
 /***/ })
 

@@ -22,6 +22,7 @@ export class UserPage {
   
   ionViewDidLoad() {
     this.storage.get('user').then(data=>{
+      console.log(data);
       this.userInfo = data;
     });
 
@@ -38,6 +39,7 @@ export class UserPage {
   }
   ionViewDidEnter(){
     this.storage.get('user').then(data=>{
+      console.log(data);
       this.userInfo = data;
     });
   }

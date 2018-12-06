@@ -1,11 +1,12 @@
 import { Component} from '@angular/core';
-import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, LoadingController} from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Platform, normalizeURL} from 'ionic-angular';
+import { Platform} from 'ionic-angular';
 import { storage } from 'firebase';
 import { Storage } from '@ionic/storage';
 import { ToastProvider } from '../../providers/toast/toast';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service'
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -27,8 +28,6 @@ test = 0;
   zipcode: string;
   website: string;
   charge: string;
-
-  calName = '';
   events = [];
   now = new Date();
   d: string = this.now.getFullYear()+'-'+this.now.getMonth()+'-'+this.now.getDate();
@@ -36,7 +35,9 @@ test = 0;
     date: this.now,
     time: '9:00',    
   }
-  //name:string;
+
+  verifyArr = ['title', 'content','address','charge','city','zipcode',];
+  verifyContent = ['活动标题','活动内容','活动地址','活动费用','城市','邮编'];
 
   isFree : boolean = true;
   isPublic : boolean = true;
@@ -44,18 +45,32 @@ test = 0;
   dateNum : number = 1;
   timeArray : any = [];
   user: any;
+  loading: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private camera: Camera,
     public actionSheetCtrl: ActionSheetController,
     public platform: Platform,
-    public nStorage: Storage,
+    public storage: Storage,
     public toast: ToastProvider,
-    public fsp: FirebaseServiceProvider) {
-      this.calName = navParams.get('name');
+    public fsp: FirebaseServiceProvider,
+    public loadingCtrl: LoadingController) {
       this.createTime();
-      this.nStorage.get('user').then(data => this.user = data);
+      this.storage.get('user').then(data => this.user = data);
+  }
+
+  showLoading(){
+    this.loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: '创建中，请稍候'
+    });
+  
+    this.loading.present();
+  }
+
+  ionViewDidEnter(){
+    this.storage.get('user').then(data => this.user = data);
   }
 
   createTime(){
@@ -123,11 +138,22 @@ test = 0;
     console.log('ionViewDidLoad ContactPage');
   }
   
-  
+  verifiyNull(verifyArr, verifyContent){
+    for(let i=0; i < verifyArr.length; i++){
+      if(this[verifyArr[i]] == null || this[verifyArr[i]].trim() == ""){
+        this.toast.presentToast(`请输入${verifyContent[i]}`, 1000, 'middle');
+        return false;
+      }
+    }
+    if(!RegExp('[0-9]{5}').test(this.zipcode)){
+      this.toast.presentToast('请输入正确邮编格式',1000,'middle');
+      return false;
+    }
 
-  createEvent() {
-    this.nStorage.get('user').then(data =>{
-        this.user = data;
+    return true;
+  }
+
+  async createEvent() {
         if(this.user == null){
           this.toast.presentToast("请先登陆", 1000, "middle");
           let n = this.navCtrl;
@@ -136,6 +162,8 @@ test = 0;
           },1000);
         }
         else{
+          if(!this.verifiyNull(this.verifyArr, this.verifyContent))
+            return;
           let activityTime = [];
           for(let i = 0; i < this.timeArray.length; i++){
             activityTime.push({'from': new Date(this.timeArray[i]['start']['date']+"T"+this.timeArray[i]['start']['time']+"-07:00").getTime(),'to': new Date(this.timeArray[i]['end']['date']+"T"+this.timeArray[i]['end']['time']+"-07:00").getTime()});
@@ -143,7 +171,21 @@ test = 0;
           activityTime.sort(function(a,b){
             return a['from'] - b['from'];
           });
-          console.log(this.picName);
+          this.showLoading();
+          //upload dailyEvent images
+          for(let i = 0; i < this.picArray.length; i++){
+            let now = new Date().getTime() + i * 100;
+            let name = `/pictures/${now}_${this.user.userID}`;
+            const img = await storage().ref(name).putString(this.picArray[i], 'data_url',{contentType: 'image/png'});
+            let imgUrl: string = await storage().ref(name).getDownloadURL();
+            this.picName.push(imgUrl); 
+          }
+
+          let subType = "";
+          if(this.user.Status == "Admin")
+            subType = "Official Event";
+          else
+            subType = "Self Posted Event";
           let item = {
             activityApproved: false,
             activityDate: activityTime,
@@ -162,52 +204,41 @@ test = 0;
             eventCategory2: this.isPublic,
             eventCategory3: this.tags,
             eventFeeCharged: this.charge,
-            eventMainSubType: "Official Event",
+            eventMainSubType: subType,
             imgs: this.picName,
             numsLike:0,
             numsParticipate: 0,
             numsRead: 0,
             title: this.title,
-            website: this.website,
+            website: this.website == null || this.website.trim() ? "" : this.website,
             zip: this.zipcode
           };
-          console.log(item);
-          this.fsp.getDailyEvent().push(item).then(data=>{
-            let key = data.key;
-            for(let i = 0; i < this.picArray.length; i++){
-              let now = new Date().getTime();
-              let name = `/pictures/${now}_${this.user.userID}`;
-              storage().ref(name).putString(this.picArray[i], 'data_url',{contentType: 'image/png'})
-              .then(data=>{
-                storage().ref(name).getDownloadURL().then(data => {
-                  this.fsp.getImgListRef(key).set('0',data)
-                });
-              });
-            }
-            this.toast.presentToast("发送成功",1000,"middle");
-            this.isFree = true;
-            this.isPublic = true;
-            this.tags = [false,false,false,false,false,false,false,false];
-            this.title = null;
-            this.content = null;
-            this.city = null;
-            this.address = null;
-            this.zipcode = null;
-            this.picNum = -1;
-            this.picArray = [];
-            this.picName = [];
-            this.website = null;
-            
-          });
- }
-    });
+
+          await this.fsp.getDailyEvent().push(item);
+          this.loading.dismiss();
+          this.toast.presentToast("发送成功",1000,"middle");
+          this.isFree = true;
+          this.isPublic = true;
+          this.tags = [false,false,false,false,false,false,false,false];
+          this.title = null;
+          this.content = null;
+          this.city = null;
+          this.address = null;
+          this.zipcode = null;
+          this.picNum = -1;
+          this.picArray = [];
+          this.picName = [];
+          this.website = null;
+          this.charge = null;
+        }
   }
+
 
   openCamera(){
     const option: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.PNG,
+      encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       saveToPhotoAlbum: true,
       allowEdit:true,

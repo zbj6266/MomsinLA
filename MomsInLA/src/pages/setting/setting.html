@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-	<ion-grid>
+	<!-- <ion-grid>
 	<ion-item >
 <button ion-button full class = "customBtn1" (click) = "Account()" color = "white">帐号与安全</button>
 </ion-item>
@@ -33,10 +33,15 @@
 <ion-item>
 <button ion-button full class = "customBtn1" (click) = "About()" color = "white">关于MomsinLA</button>
 </ion-item>
-</ion-grid>
-	
+</ion-grid> -->
 <ion-item no-lines>
-          <button ion-button block class = "customBtn" (click) = "Logout()" color = "yellow">退出登录</button>
-          </ion-item>
+  <button ion-button block class = "customBtn" (click) = "changeName()" color = "yellow">修改昵称</button>
+</ion-item>
+<ion-item no-lines>
+  <button ion-button block class = "customBtn" (click) = "changePic()" color = "yellow">修改头像</button>
+</ion-item>
+  <ion-item no-lines>
+    <button ion-button block class = "customBtn" (click) = "Logout()" color = "yellow">退出登录</button>
+  </ion-item>
       
 </ion-content>

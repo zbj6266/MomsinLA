@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 532:
+/***/ 533:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(544);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(546);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var RegisterPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 544:
+/***/ 546:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -150,8 +150,8 @@ var RegisterPage = /** @class */ (function () {
             selector: 'page-register',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/'<ion-header>\n\n    \n  <ion-toolbar>\n    <div style="display: flex">\n      <div class="nav-button">\n      <button ion-button clear small navPop>  \n        <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> \n      </button>\n      </div>\n      <div class="nav-title">注册</div>\n      <div class="nav-button">\n      </div>\n    </div>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding>\n\n\n  <ion-list>\n\n  <ion-item>\n    <!-- <ion-icon name="man" item-left></ion-icon>    -->\n    <ion-label floating>请输入昵称</ion-label>\n    <ion-input type="text" [(ngModel)]="user.username"></ion-input> \n  </ion-item>\n\n  <ion-item>\n    <!-- <ion-icon name="mail" item-left> </ion-icon> -->\n    <ion-label floating>请输入邮箱</ion-label>\n    <ion-input type="email" [(ngModel)]="user.email"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <!-- <ion-icon name="mail" item-left> </ion-icon> -->\n    <ion-label floating>请输入密码</ion-label>\n    <ion-input type="password" [(ngModel)]="user.password"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <!-- <ion-icon name="mail" item-left> </ion-icon> -->\n    <ion-label floating >再次输入密码</ion-label>\n    <ion-input type="password" [(ngModel)]="confirm"></ion-input>\n  </ion-item>\n\n\n  \n  <!-- <ion-item no-lines>\n        <ion-label>查看并同意用户协议</ion-label>\n        <ion-checkbox [(ngModel)]="pepperoni" color = "yellow"></ion-checkbox>\n  </ion-item> -->\n\n</ion-list>\n\n<div padding>\n  <button block ion-button (click) = "register(user)"  item-left >注册</button>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/register/register.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_toast_toast__["a" /* ToastProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */],
             __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]])
     ], RegisterPage);

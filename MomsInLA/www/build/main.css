@@ -33688,7 +33688,7 @@ page-activitylist .list-content {
 
 page-activitylist .list-img {
   width: 30%;
-  height: 6.6rem;
+  height: 7.6rem;
 }
 
 page-activitylist .list-text {
@@ -33698,6 +33698,26 @@ page-activitylist .list-text {
   flex: 1;
   font-size: 1.3rem;
   margin-left: .8rem;
+}
+
+page-change-pic .user-img {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  background-image: url("../../assets/imgs/user_portrait.png");
+  background-size: cover;
+  margin: 30px auto;
+}
+
+page-change-pic .option {
+  width: 60%;
+  margin: auto;
+}
+
+page-change-pic .option button {
+  width: 100%;
+  background-color: #ffd500;
+  color: black;
 }
 
 page-collection .nav-title {
