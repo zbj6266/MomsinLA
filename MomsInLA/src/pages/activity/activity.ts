@@ -79,6 +79,14 @@ export class ActivityPage {
     });
   }
 
+  ionViewWillLeave(){
+    console.log(this.saved);
+    
+    if(!this.saved){
+      this.events.publish('refreshCollection');
+    }
+  }
+
   jumpToLogin(msg, time, location){
     this.toast.presentToast(msg, time, location);
         let nav = this.navCtrl;

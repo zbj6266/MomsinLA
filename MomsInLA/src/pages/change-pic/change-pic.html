@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-<div id="protrait" class="user-img"></div>
+<div id="protrait" class="user-img" [style.background-image]="'url('+ this.user.userImg+')'"></div>
 <div class="option" (click)="selectImage(0)"><button ion-button>拍照</button></div>
 <div class="option" (click)="selectImage(1)"><button ion-button>从相片选取</button></div>
 </ion-content>

@@ -66,31 +66,45 @@ page-collection {
         margin-top: 20px;
         box-shadow: 0px 1px 1px 0px rgba(170, 170, 170, 0.5);
     }
+
+    .list-item{
+        padding:1rem;
+        border-bottom:1px solid rgb(71, 70, 70);
+        overflow: hidden;
+      }
     
-    .ex-content{
-        width:100%;
-    }
-    .exchange-text{
+      .title{
+        font-size:1.4rem;
+      }
+    
+      .list-content{
+        display: flex;
+        margin-top: .6rem;
+      }
+      .list-img{
+        width: 100px;
+        // height:auto;
+      }
+      .list-text{
         flex:1;
-        margin-left: 11px;
-        margin-bottom: 17px;
-    }
-
-    .exchange-content{
-        
-        font-size: 13px;
-        
-        color:rgba(16, 16, 16, 0.5);
+        font-size:1.3rem;
+        margin-left:.8rem
+      }
+    
+    .out{height:100px; 
+        width:150px; 
+        position:relative; 
         overflow:hidden;
-        text-overflow: ellipsis;
-        line-height: 19px;
-        max-height:38px;
     }
-
-    .exchange-time{
-        margin-top: 5px;
-        font-size: 13px;
+    .mid{position:absolute;
+        top:50%; 
+        left:50%; 
+        width:1000px; 
+        margin-left:-500px; 
+        text-align:center;
     }
+    .in{ position:relative; 
+        top:-50%;}
 
 
 }

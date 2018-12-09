@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 534:
+/***/ 533:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingPageModule", function() { return SettingPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setting__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setting__ = __webpack_require__(546);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var SettingPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 547:
+/***/ 546:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,8 +46,8 @@ var SettingPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase_app__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase_app__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_toast_toast__ = __webpack_require__(158);
@@ -134,7 +134,7 @@ var SettingPage = /** @class */ (function () {
     };
     SettingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-setting',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/setting/setting.html"*/'<!--\n  Generated template for the SettingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>设置</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<!-- <ion-grid>\n	<ion-item >\n<button ion-button full class = "customBtn1" (click) = "Account()" color = "white">帐号与安全</button>\n</ion-item>\n</ion-grid>\n\n\n<ion-item>\n<button ion-button full class = "customBtn1" (click) = "General()" color = "white">通用</button>\n</ion-item>\n\n<ion-item>\n<button ion-button full class = "customBtn1" (click) = "Notification()" color = "white">消息通知</button>\n</ion-item>\n\n<ion-grid>\n<ion-item>\n<button ion-button full class = "customBtn1" (click) = "About()" color = "white">关于MomsinLA</button>\n</ion-item>\n</ion-grid> -->\n<ion-item no-lines>\n  <button ion-button block class = "customBtn" (click) = "changeName()" color = "yellow">修改昵称</button>\n</ion-item>\n<ion-item no-lines>\n  <button ion-button block class = "customBtn" (click) = "changePic()" color = "yellow">修改头像</button>\n</ion-item>\n  <ion-item no-lines>\n    <button ion-button block class = "customBtn" (click) = "Logout()" color = "yellow">退出登录</button>\n  </ion-item>\n      \n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/setting/setting.html"*/,
+            selector: 'page-setting',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/setting/setting.html"*/'<!--\n  Generated template for the SettingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <!-- <ion-navbar>\n    <ion-title>设置</ion-title>\n  </ion-navbar> -->\n\n  <ion-toolbar>\n      <div style="display: flex">\n        <div class="nav-button">\n        <button ion-button small clear navPop>  \n          <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> \n        </button>\n        </div>\n        <div class="nav-title">我的设置</div>\n        <div class="nav-button">\n            <button ion-button small clear disabled>  \n              <!-- <ion-icon mode="ios" name="ios-arrow-back"></ion-icon>  -->\n            </button>\n            </div>\n      </div>\n  </ion-toolbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<!-- <ion-grid>\n	<ion-item >\n<button ion-button full class = "customBtn1" (click) = "Account()" color = "white">帐号与安全</button>\n</ion-item>\n</ion-grid>\n\n\n<ion-item>\n<button ion-button full class = "customBtn1" (click) = "General()" color = "white">通用</button>\n</ion-item>\n\n<ion-item>\n<button ion-button full class = "customBtn1" (click) = "Notification()" color = "white">消息通知</button>\n</ion-item>\n\n<ion-grid>\n<ion-item>\n<button ion-button full class = "customBtn1" (click) = "About()" color = "white">关于MomsinLA</button>\n</ion-item>\n</ion-grid> -->\n<ion-item no-lines>\n  <button ion-button block class = "customBtn" (click) = "changeName()" color = "yellow">修改昵称</button>\n</ion-item>\n<ion-item no-lines>\n  <button ion-button block class = "customBtn" (click) = "changePic()" color = "yellow">修改头像</button>\n</ion-item>\n  <ion-item no-lines>\n    <button ion-button block class = "customBtn" (click) = "Logout()" color = "yellow">退出登录</button>\n  </ion-item>\n      \n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/setting/setting.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],

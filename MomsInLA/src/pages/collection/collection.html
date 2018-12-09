@@ -13,34 +13,32 @@
             <ion-icon mode="ios" name="ios-arrow-back"></ion-icon> 
           </button>
           </div>
-          <div class="nav-title">收藏</div>
-          
+          <div class="nav-title">我的收藏</div>
+          <div class="nav-button">
+              <button ion-button clear small disabled>  
+                <!-- <ion-icon mode="ios" name="ios-arrow-back"></ion-icon>  -->
+              </button>
+              </div>
         </div>
     </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
 
 
-<div style="display: flex">
+<!-- <div style="display: flex">
   <div class="button-space"><button  name="活动" class="button-select" (click)='selectCategory($event)'>活动</button></div>
   <div class="button-space"><button  name="讲座" (click)='selectCategory($event)'>讲座</button></div>
   <div class="button-space"><button  name="攻略" (click)='selectCategory($event)'>攻略</button></div>
   
-</div>
-
-
-
-
-
-
+</div> -->
 
   <!-- information start -->
  
-  <div class="info-list">
+  <!-- <div class="info-list">
     <div class="info-title">纽约人寿保险介绍及经验分享</div>
     <div style="display: flex">
       <div><img src="assets/imgs/logo.png" height="70" width="110"></div>
@@ -92,7 +90,33 @@
       
     </div>  
   </div>
-  
+   -->
+
+   <div class="list-item" *ngFor="let item of disp" (click)="openDetail(item.key)">
+			<div class="title">{{item.title}}</div>
+			<div class="list-content">
+        <!-- <div class="out">
+          <div class="mid">
+            <div class="in">
+                <img  width='100%' [src]="item.imgs[0]" alt="">
+            </div>
+          </div>
+        </div> -->
+          <div style="width: 30%; height:7rem;overflow: hidden;"><img  width='100%' [src]="item.imgs[0]" alt=""></div>
+				<div class="list-text">
+					<div class="time">时间：<span *ngFor="let time of item.activityDate">{{time}}; </span></div>
+					<div class="address">地址：{{item.address}}</div>
+					<!-- <div class="distant">距离：{{item.distance}}</div> -->
+					<div style="display: flex;">
+							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isFree}}</div>
+							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isPublic}}</div>
+							<!-- <div style="float:right;margin-top:8px;margin-left:4px">
+								<img src="assets/imgs/icon_like.png" width="16" height="16"><span style="margin-left:4px;line-height: 16px">{{item.numsLike}}</span>
+							</div> -->
+						</div>
+				</div>
+			</div>
+		</div>
   
 
 </ion-content>

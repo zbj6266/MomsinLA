@@ -33700,11 +33700,17 @@ page-activitylist .list-text {
   margin-left: .8rem;
 }
 
+page-activitylist .no-result {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.8rem;
+  color: #aeaeae;
+}
+
 page-change-pic .user-img {
   height: 130px;
   width: 130px;
   border-radius: 50%;
-  background-image: url("../../assets/imgs/user_portrait.png");
   background-size: cover;
   margin: 30px auto;
 }
@@ -33792,31 +33798,56 @@ page-collection .title-space {
   box-shadow: 0px 1px 1px 0px rgba(170, 170, 170, 0.5);
 }
 
-page-collection .ex-content {
-  width: 100%;
+page-collection .list-item {
+  padding: 1rem;
+  border-bottom: 1px solid #474646;
+  overflow: hidden;
 }
 
-page-collection .exchange-text {
+page-collection .title {
+  font-size: 1.4rem;
+}
+
+page-collection .list-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: .6rem;
+}
+
+page-collection .list-img {
+  width: 100px;
+}
+
+page-collection .list-text {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  margin-left: 11px;
-  margin-bottom: 17px;
+  font-size: 1.3rem;
+  margin-left: .8rem;
 }
 
-page-collection .exchange-content {
-  font-size: 13px;
-  color: rgba(16, 16, 16, 0.5);
+page-collection .out {
+  height: 100px;
+  width: 150px;
+  position: relative;
   overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 19px;
-  max-height: 38px;
 }
 
-page-collection .exchange-time {
-  margin-top: 5px;
-  font-size: 13px;
+page-collection .mid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1000px;
+  margin-left: -500px;
+  text-align: center;
+}
+
+page-collection .in {
+  position: relative;
+  top: -50%;
 }
 
 page-contact .text-input::-webkit-input-placeholder {
@@ -34497,6 +34528,30 @@ page-setting .button.customBtn {
 
 page-setting .button.customBtn1 {
   font-size: small;
+}
+
+page-setting .nav-title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  color: black;
+  padding: 1.2rem 0;
+}
+
+page-setting .nav-button {
+  width: 76px;
+  color: black;
+}
+
+page-setting .button-small-md, page-setting .button-small-ios {
+  font-size: 2.2rem;
+}
+
+page-setting .button-clear-md, page-setting .button-clear-ios {
+  color: black;
 }
 
 page-user .home-logo {

@@ -17,7 +17,7 @@ import { Storage } from '@ionic/storage';
 })
 export class ChangePicPage {
 
-  user:any;
+  user:any = {};
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public camera: Camera,

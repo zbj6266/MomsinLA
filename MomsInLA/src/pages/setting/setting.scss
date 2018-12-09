@@ -11,4 +11,24 @@ page-setting {
 		
 		 font-size: small;
 	}
+
+	.nav-title{
+        flex:1;
+        text-align: center;
+        font-size: 2rem;
+        color:black;
+        // line-height: 2rem
+        padding: 1.2rem 0;
+    }
+    .nav-button{
+		width:76px;
+		color: black;
+	}
+	.button-small-md,.button-small-ios{
+		font-size:2.2rem;
+	}
+
+	.button-clear-md,.button-clear-ios{
+		color:black;
+	}
 }

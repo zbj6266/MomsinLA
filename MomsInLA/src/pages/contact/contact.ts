@@ -176,7 +176,7 @@ test = 0;
           for(let i = 0; i < this.picArray.length; i++){
             let now = new Date().getTime() + i * 100;
             let name = `/pictures/${now}_${this.user.userID}`;
-            const img = await storage().ref(name).putString(this.picArray[i], 'data_url',{contentType: 'image/png'});
+            await storage().ref(name).putString(this.picArray[i], 'data_url',{contentType: 'image/png'});
             let imgUrl: string = await storage().ref(name).getDownloadURL();
             this.picName.push(imgUrl); 
           }
@@ -220,6 +220,11 @@ test = 0;
           this.isFree = true;
           this.isPublic = true;
           this.tags = [false,false,false,false,false,false,false,false];
+          
+          let dom = document.getElementsByClassName('tag selected');
+          for(let i=0; i< dom.length; i++){
+            dom.item(i).className='tag';
+          }
           this.title = null;
           this.content = null;
           this.city = null;

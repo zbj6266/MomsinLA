@@ -7,9 +7,13 @@
         	<ion-icon mode="ios" name="ios-arrow-back" style="font-size: 3rem"></ion-icon> 
       	</button>
       </div>
-			<div style="flex:1">
-				<ion-searchbar [showCancelButton]="shouldShowCancel" (search)="onSearch($event)">
-				</ion-searchbar>
+			<div style="flex:1;background:white; border:1px solid #dedede">
+				<!-- <ion-searchbar [showCancelButton]="shouldShowCancel" (search)="onSearch($event)">
+				</ion-searchbar> -->
+				<ion-input id="searchText" placeholder="请输入关键字" [(ngModel)]="keyword" (ionInput)="onInput($event)"></ion-input>
+			</div>
+			<div>
+				<button ion-button clear small (click)="search(keyword)">搜索</button>
 			</div>
     </div>
   </ion-toolbar>
@@ -21,49 +25,7 @@
 		<div style="flex:1"><img src="assets/icon/icon_location.png" height="20" width="20" ><span style="margin:4px;color:#aaaaaa">{{cityLocation}}</span></div>
     <div (click)='presentPopover($event)'><img src="assets/icon/icon_filter.png" width="20" height="20"></div>
 	</div>
-		<!-- <ion-select #sectionSelect3 [(ngModel)]="filters" interface="popover" cancelText="Cancel" okText="Ok" style="display: none">
-			<ion-option value="<1km">《1km</ion-option>
-			<ion-option value="rating">评分高</ion-option>
-			<ion-option value="View">访问</ion-option>
-			<ion-option value="feature">热门</ion-option>
-		</ion-select> -->
-
-		<!-- <ion-list>
-			<ion-card ion-item *ngFor="let ActivitylistCard of ActivitylistCards">
-				{{ActivitylistCard.id}}
-			</ion-card>
-
-			<ion-card>
-				<ion-card-header>
-					Kids Club at the Grove: 儿童俱乐部杂耍表演
-				</ion-card-header>
-				<ion-card-content>
-					<ion-grid>
-						<ion-row>
-							<ion-col col-3>
-								<div><img src="assets/imgs/logo.png" height="90" width="120"></div>
-							</ion-col>
-							<ion-col col-9>
-								<div>时间:2018-01-01</div>
-								<div>地址:189 The Grove DR. CA 91719</div>
-								<div>距离: 3 miles</div>
-								<div>
-									<ion-col><button ion-button>免费停车</button></ion-col>
-									<ion-col><button ion-button>免费停车</button></ion-col>
-									<ion-col>
-										<button ion-button icon-start clear small>
-											<ion-icon name="thumbs-up"></ion-icon>
-											<div>15</div>
-										</button>
-									</ion-col>
-								</div>
-							</ion-col>
-						</ion-row>
-					</ion-grid>
-				</ion-card-content>
-			</ion-card>
-
-		</ion-list> -->
+		<div *ngIf="disp$.length == 0" class='no-result'>{{noResult}}</div>
 		<div class="list-item" *ngFor="let item of disp$" (click)="openDetail(item.key,item.numsRead)">
 			<div class="title">{{item.title}}</div>
 			<div class="list-content">
@@ -80,84 +42,8 @@
 							</div> -->
 						</div>
 				</div>
-				
 			</div>
 		</div>
-		<div style="text-align: center; font-size: 20px;margin:10px 0px"><span (click)="loadMoreData()">{{readMore}}</span></div>
+		<!-- <div style="text-align: center; font-size: 20px;margin:10px 0px"><span (click)="loadMoreData()">{{readMore}}</span></div> -->
 
 </ion-content>
-
-    <!-- ion-item>
-      <ion-label>Pets</ion-label>
-      <ion-select [(ngModel)]="pets" multiple="true" [selectOptions]="petAlertOpts">
-        <ion-option *ngFor="let o of petData" [value]="o.value">{{o.text}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Skittles</ion-label>
-      <ion-select [(ngModel)]="skittles" multiple="true" okText="Okay" cancelText="Dismiss" [compareWith]="compareFn">
-        <ion-option *ngFor="let o of skittlesData" [value]="o">{{o.text}}</ion-option>
-      </ion-select>
-    </ion-item> -->
-
-   
-
-  
-    
-
-    <!-- < ion-item> -->
-      <!-- <ion-label>Rating</ion-label>
-      <ion-select [(ngModel)]="rating" interface="action-sheet">
-        <ion-option value="1">1 Star</ion-option>
-        <ion-option value="2">2 Stars</ion-option>
-        <ion-option value="3">3 Stars</ion-option>
-        <ion-option value="4">4 Stars</ion-option>
-        <ion-option value="5">5 Stars</ion-option>
-      </ion-select>
-    </ion-item> --> 
-
-<!--  <-----------------Original code--------------->
- <!-- <ion-content padding>
-<ion-searchbar
-  [(ngModel)]="myInput"
-  [showCancelButton]="shouldShowCancel"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)">
-</ion-searchbar>
-<ion-row>
-        <ion-col col-4>
-          <ion-item>
-            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>
-          </ion-item>
-        </ion-col>
-        <ion-col col-4>
-          <ion-item class="padding-left-3px">
-            <button ion-button (click) = "calendar()" color = "dark" clear><ion-icon name="calendar"></ion-icon></button>
-          </ion-item>
-        </ion-col>
-        
-        
-
-	<ion-buttons end>
-		<button ion-button icon-only (click) = "filter()" color = "dark" clear><ion-icon name="md-color-filter"></ion-icon></button>
-	</ion-buttons>      		
-	<ion-label>Gender</ion-label>
-  <ion-select [(ngModel)]="gender">
-    <ion-option value="f">Female</ion-option>
-    <ion-option value="m">Male</ion-option>
-  </ion-select>
-	 </ion-row> -->
-	<!-- <ion-row>
-        <ion-col text-center>
-          <ion-item>
-            <button ion-button (click) = "locate()" color = "dark" clear><ion-icon name="locate"></ion-icon></button>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-        	
-        </ion-col>
-        
-     </ion-row> -->
-
-<!-- </ion-content> -->
