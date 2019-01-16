@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
+import firebase from 'firebase/app';
+import { snapshotChanges } from 'angularfire2/database';
 
 /**
  * Generated class for the ExchangedetailPage page.
@@ -29,8 +31,9 @@ export class ExchangedetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExchangedetailPage');
-    this.fsp.getItem(this.category-1, this.infoId).valueChanges().subscribe(data=>{
-      this.disp = data;
+
+    firebase.database().ref(`/Exchange/${this.infoId}`).once('value').then(snapshot =>{
+      this.disp = snapshot.val();
       this.disp.createTime = new Date(this.disp.createTime).toLocaleDateString("en-US");
     })
 

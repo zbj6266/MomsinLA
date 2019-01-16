@@ -4,6 +4,7 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 import { ToastProvider } from '../../providers/toast/toast';
 import { map } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -12,11 +13,11 @@ import { Storage } from '@ionic/storage';
 })
 export class InformationPage {
   
-
   category: number;
+  cateforyArray: Array<string> = ["/Discount/","/lectures/","","/Exchange/"];
   disp : any;
   planPurchases : Array<any> = [{name:"打折软件",index:0},{name:"打折商品", index:1},{name:"团购信息",index:2}];
-  planPurchase : string = "智能消费";
+  planPurchase : string = "打折软件";
   lectures : any = [{name:"保险理财", index:0},{name:"宝宝教育",index:1},{name:"健康常识", index:2},{name:"法律知识",index:3}];
   lecture : string = "保险理财";
   strategies : Array<any> = [{name:"学区攻略", index:0},{name:"出游攻略", index:1},{name:"医疗攻略", index:2},{name:"小知识", index:3}];
@@ -38,27 +39,58 @@ export class InformationPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformationPage');
-    this.loadData(0);
-  
+    this.loadData(0);  
   }
 
 
   loadData(index){
-    this.fsp.getInformationItems(this.category-1,index).snapshotChanges().pipe(
-      map(changes=>{
-        return changes.map(c=>({
-          key: c.payload.key, ...c.payload.val()
-        }))
-      })
-    ).subscribe(data=> {
-      this.disp$ = data;
-      console.log(data);
-      if(this.category == 4){
-        for(let i = 0; i < this.disp$.length; i++){
-          this.disp$[i].createTime = new Date(this.disp$[i].createTime).toLocaleDateString("en-US");
-        }
+
+    firebase.database().ref(this.cateforyArray[this.category]).orderByChild('category').equalTo(index).once('value').then(snapshot =>{
+      console.log(snapshot.val());
+      this.disp = [];
+      if(this.category == 0){
+        this.disp.push({"title": "这是个打折软件", "content":"这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈这个打折软件好哈", "img":["https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"]});
+        console.log(this.disp);
       }
-    });
+      snapshot.forEach(data=>{
+        let item = data.val();
+        item['key'] = data.key;
+        console.log(data.val());
+        if(this.category == 0){
+          this.disp.push({"title": "this is discount", "content":"there is a lot of discount.there is a lot of discount.there is a lot of discount.there is a lot of discount."});
+          console.log(this.disp);
+        }
+        //Lecture or Exchange show
+        else if(this.category == 1){
+          // item['createTime'] = new Date(data['createDate'].toLocaleDateString("en-US"))
+          this.disp.push(item);
+        }
+        else if(this.category == 2){
+
+        }
+        else{
+          // console.log(item['createTime']);
+          item['createTime'] = new Date(item['createTime']).toLocaleDateString("en-US");
+          this.disp.push(item);
+        }
+        
+      })
+    })
+    // this.fsp.getInformationItems(this.category-1,index).snapshotChanges().pipe(
+    //   map(changes=>{
+    //     return changes.map(c=>({
+    //       key: c.payload.key, ...c.payload.val()
+    //     }))
+    //   })
+    // ).subscribe(data=> {
+    //   this.disp$ = data;
+    //   console.log(data);
+    //   if(this.category == 4){
+    //     for(let i = 0; i < this.disp$.length; i++){
+    //       this.disp$[i].createTime = new Date(this.disp$[i].createTime).toLocaleDateString("en-US");
+    //     }
+    //   }
+    // });
   }
 
   openDetail(id){

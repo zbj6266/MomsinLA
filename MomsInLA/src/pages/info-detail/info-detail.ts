@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
-
+import firebase from 'firebase';
 /**
  * Generated class for the InfoDetailPage page.
  *
@@ -16,23 +16,32 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 })
 export class InfoDetailPage {
   infoId: string;
-  table: any;
+  category: number;
+  categoryArray: any = ["","lectures",""];
   disp: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public fsp: FirebaseServiceProvider) {
     this.infoId = navParams.get("infoId");
-    this.table = navParams.get("category");
+    this.category = navParams.get("category");
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InfoDetailPage');
-    this.fsp.getItem(this.table-1,this.infoId).valueChanges().subscribe(data=>{
-      this.disp = data;
-      console.log(this.disp);
-     }
-    )
+    this.loadData();
+    // this.fsp.getItem(this.table-1,this.infoId).valueChanges().subscribe(data=>{
+    //   this.disp = data;
+    //   console.log(this.disp);
+    //  }
+    // )
     
+  }
+
+  loadData(){
+    firebase.database().ref(`${this.categoryArray[this.category]}/${this.infoId}`).once('value').then(snapshot=>{
+      this.disp = snapshot.val();
+      console.log(this.disp)
+    })
   }
 
   like(){

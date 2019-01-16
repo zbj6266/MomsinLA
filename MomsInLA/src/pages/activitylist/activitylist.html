@@ -25,15 +25,25 @@
 		<div style="flex:1"><img src="assets/icon/icon_location.png" height="20" width="20" ><span style="margin:4px;color:#aaaaaa">{{cityLocation}}</span></div>
     <div (click)='presentPopover($event)'><img src="assets/icon/icon_filter.png" width="20" height="20"></div>
 	</div>
-		<div *ngIf="disp$.length == 0" class='no-result'>{{noResult}}</div>
-		<div class="list-item" *ngFor="let item of disp$" (click)="openDetail(item.key,item.numsRead)">
+		<!-- <div (click)="openLibrary()">
+			<img src="../../assets/imgs/libaray.png" width="100%">
+			<button></button>
+		</div> -->
+		<ion-card (click)="openLibrary()">
+			<img src="assets/imgs/libaray.png">
+			<ion-card-content>
+				<p style="text-align: center; padding:3px 0px">点击进入</p>
+			</ion-card-content>
+		</ion-card>
+		<div *ngIf="disp.length == 0" class='no-result'>{{noResult}}</div>
+		<div class="list-item" *ngFor="let item of disp" (click)="openDetail(item.key,item.numsRead)">
 			<div class="title">{{item.title}}</div>
 			<div class="list-content">
 					<img *ngIf="item.imgs.length>0" class="list-img" [src]="item.imgs[0]" alt="">
 				<div class="list-text">
 					<div class="time">时间：<span *ngFor="let time of item.activityDate">{{time}}; </span></div>
 					<div class="address">地址：{{item.address}}</div>
-					<div class="distant">距离：{{item.distance}}</div>
+					<div >距离：<span class="distant">{{item.distance}}</span></div>
 					<div style="display: flex;">
 							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isFree}}</div>
 							<div style="width:35%;font-size: 1.3rem;background-color: #ffd500;text-align: center;height:2rem;margin:4px">{{item.isPublic}}</div>

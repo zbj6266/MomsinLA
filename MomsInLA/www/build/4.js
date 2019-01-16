@@ -1,14 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 534:
+/***/ 531:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InformationPageModule", function() { return InformationPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LibraryPageModule", function() { return LibraryPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__library__ = __webpack_require__(545);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,45 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var InformationPageModule = /** @class */ (function () {
-    function InformationPageModule() {
+var LibraryPageModule = /** @class */ (function () {
+    function LibraryPageModule() {
     }
-    InformationPageModule = __decorate([
+    LibraryPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__information__["a" /* InformationPage */],
+                __WEBPACK_IMPORTED_MODULE_2__library__["a" /* LibraryPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__information__["a" /* InformationPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__library__["a" /* LibraryPage */]),
             ],
         })
-    ], InformationPageModule);
-    return InformationPageModule;
+    ], LibraryPageModule);
+    return LibraryPageModule;
 }());
 
-//# sourceMappingURL=information.module.js.map
+//# sourceMappingURL=library.module.js.map
 
 /***/ }),
 
-/***/ 547:
+/***/ 545:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LibraryPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_toast_toast__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(90);
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase_app__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_time_format_time_format__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_launch_navigator__ = __webpack_require__(304);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -71,79 +63,84 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var InformationPage = /** @class */ (function () {
-    function InformationPage(navCtrl, navParams, fsp, storage, toast) {
-        var _this = this;
+/**
+ * Generated class for the LibraryPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LibraryPage = /** @class */ (function () {
+    function LibraryPage(navCtrl, navParams, timeFormat, navi) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.fsp = fsp;
-        this.storage = storage;
-        this.toast = toast;
-        this.planPurchases = [{ name: "打折软件", index: 0 }, { name: "打折商品", index: 1 }, { name: "团购信息", index: 2 }];
-        this.planPurchase = "智能消费";
-        this.lectures = [{ name: "保险理财", index: 0 }, { name: "宝宝教育", index: 1 }, { name: "健康常识", index: 2 }, { name: "法律知识", index: 3 }];
-        this.lecture = "保险理财";
-        this.strategies = [{ name: "学区攻略", index: 0 }, { name: "出游攻略", index: 1 }, { name: "医疗攻略", index: 2 }, { name: "小知识", index: 3 }];
-        this.strategy = "学区攻略";
-        this.expenses = [{ name: "商品买卖", index: 0 }, { name: "家政服务", index: 1 }, { name: "房屋租住", index: 2 }, { name: "妈妈兼职", index: 3 }];
-        this.expense = "商品买卖";
-        this.category = navParams.get("item");
-        storage.get("user").then(function (data) { return _this.userInfo = data; });
+        this.timeFormat = timeFormat;
+        this.navi = navi;
+        this.tip = "";
+        this.disp = [];
     }
-    InformationPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad InformationPage');
-        this.loadData(0);
+    LibraryPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LibraryPage');
+        this.loadData();
     };
-    InformationPage.prototype.loadData = function (index) {
+    LibraryPage.prototype.loadData = function () {
         var _this = this;
-        this.fsp.getInformationItems(this.category - 1, index).snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["map"])(function (changes) {
-            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
-        })).subscribe(function (data) {
-            _this.disp$ = data;
-            console.log(data);
-            if (_this.category == 4) {
-                for (var i = 0; i < _this.disp$.length; i++) {
-                    _this.disp$[i].createTime = new Date(_this.disp$[i].createTime).toLocaleDateString("en-US");
-                }
+        var currentDate = this.getCurrentDate(new Date("2019-01-08"));
+        console.log(currentDate);
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app___default.a.database().ref("/Library/" + currentDate).once('value').then(function (snapshot) {
+            if (snapshot.val() == null) {
+                _this.tip = "暂无当日图书馆活动";
+                return;
             }
+            console.log(snapshot.val());
+            snapshot.forEach(function (data) {
+                var item = data.val();
+                var evt = {
+                    "title": item["title"],
+                    "description": item["description"],
+                    "address": item["address"],
+                };
+                if (item.hasOwnProperty("image") && (item["image"] != "" || item["image"] != null)) {
+                    evt["image"] = item["image"];
+                }
+                var timeArr = [];
+                for (var i = 0; i < item["time"].length; i++) {
+                    timeArr.push(_this.getEventTime(item["time"][i]["startTime"], item["time"][i]["endTime"]));
+                }
+                evt["timeArr"] = timeArr;
+                _this.disp.push(evt);
+                console.log(_this.disp);
+            });
+        }).catch(function (err) {
+            _this.tip = "网络无法连接，请稍后重试";
         });
     };
-    InformationPage.prototype.openDetail = function (id) {
-        console.log(id);
-        this.navCtrl.push('InfoDetailPage', { category: this.category, infoId: id });
+    LibraryPage.prototype.getCurrentDate = function (currentDate) {
+        var mm = currentDate.getMonth() + 1; // getMonth() is zero-based
+        var dd = currentDate.getDate();
+        return [currentDate.getFullYear(),
+            (mm > 9 ? '' : '0') + mm,
+            (dd > 9 ? '' : '0') + dd
+        ].join('-');
     };
-    InformationPage.prototype.onSearch = function (event) {
-        console.log(event.target.value);
+    LibraryPage.prototype.getEventTime = function (from, to) {
+        return this.timeFormat.formatAMPM(new Date(from)) + "-" + this.timeFormat.formatAMPM(new Date(to));
     };
-    InformationPage.prototype.openAdd = function () {
-        if (this.userInfo == null) {
-            this.toast.presentToast("请先登陆", 1000, "middle");
-            var n_1 = this.navCtrl;
-            setTimeout(function () {
-                n_1.push('LoginPage');
-            }, 1000);
-        }
-        else
-            this.navCtrl.push('ExchangeaddPage');
+    LibraryPage.prototype.navigate = function (address) {
+        this.navi.navigate(address);
     };
-    InformationPage.prototype.openExchange = function (id) {
-        this.navCtrl.push('ExchangedetailPage', { category: this.category, infoId: id });
-    };
-    InformationPage = __decorate([
+    LibraryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-information',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/information/information.html"*/'<ion-header>\n  <!-- <ion-navbar>\n    <ion-title><ion-searchbar></ion-searchbar></ion-title>\n    \n  </ion-navbar> -->\n  <ion-toolbar>\n    <!-- <ion-grid>\n      <ion-row>\n        <ion-col col-1>\n          <button ion-button clear small navPop style="padding: 0;">  \n            <img class="back-btn" src="assets/image/back.png" />  \n          </button>\n        </ion-col>\n        <ion-col col-11>\n          <ion-searchbar></ion-searchbar>\n        </ion-col>\n      </ion-row>\n    </ion-grid> -->\n    <div style="display: flex">\n      <div>\n      <button ion-button clear small navPop>  \n        <ion-icon mode="ios" name="ios-arrow-back" style="font-size:3rem"></ion-icon> \n      </button>\n      </div>\n      <div style="flex:1"><ion-searchbar [showCancelButton]="shouldShowCancel" (search)="onSearch($event)"></ion-searchbar></div>\n    </div>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content fullscreen>\n <!-- <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="planPurchase">\n    <ion-segment-button *ngFor="let item of planPurchases" value="{{item}}">\n        {{item}}\n    </ion-segment-button>\n  </ion-segment> -->\n\n  <!-- <div *ngIf="category==1" [ngSwitch]="planPurchase" >\n    <ion-list *ngSwitchCase="\'智能消费\'">\n      <ion-row>\n        <ion-col col-6>\n          <ion-item>\n            <ion-input placeholder="输入您的座驾" clearInput></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col col-6>\n          <ion-item class="padding-left-3px">\n            <ion-input type="number" placeholder="输入您完成购物最长时限" clearInput></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col col-4>\n          <ion-item>\n            <ion-input type="text" placeholder="输入商品1" clearInput></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col col-4>\n          <ion-item class="padding-left-3px">\n            <ion-input type="text" placeholder="输入商品2" clearInput></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col col-4>\n          <ion-item class="padding-left-3px">\n            <ion-input type="text" placeholder="输入商品3" clearInput></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-item>\n        <ion-label>是否只去有机商店</ion-label>\n        <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>\n      </ion-item>\n      <ion-item text-center>\n            <button ion-button (click) = "calculate()" color = "dark" outline>计算</button>\n      </ion-item>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'打折软件\'">\n      <ion-item>\n          <img src="imgs/dealmoon.png">\n        <h2>打折软件</h2>\n      </ion-item>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'打折商品\'">\n      <ion-item>\n          <img src="imgs/discount-poster.jpg">\n        <h2>打折商品</h2>\n      </ion-item>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'团购信息\'">\n      <ion-item>\n          <img src="imgs/group-discount.jpg">\n        <h2>团购信息</h2>\n      </ion-item>\n    </ion-list>\n  </div> -->\n  <!-- moms strategies end -->\n\n  <!-- information start -->\n  <div class="container" >\n  <div>\n  <ion-segment mode="md" *ngIf="category==1" [(ngModel)]="planPurchase">\n      <ion-segment-button *ngFor="let item of planPurchases" value="{{item.name}}" (click)="loadData(item.index)">\n        <div class="custom_button">{{item.name}}</div>\n      </ion-segment-button>\n    </ion-segment>\n\n  <ion-segment mode="md" *ngIf="category==2" [(ngModel)]="lecture">\n    <ion-segment-button *ngFor="let item of lectures" value="{{item.name}}" (click)="loadData(item.index)">\n      <div class="custom_button">{{item.name}}</div>\n    </ion-segment-button>\n  </ion-segment>\n\n  <ion-segment mode="md" *ngIf="category==3" [(ngModel)]="strategy">\n      <ion-segment-button *ngFor="let item of strategies" value="{{item.name}}" (click)="loadData(item.index)">\n          <div class="custom_button">{{item.name}}</div>\n      </ion-segment-button>\n    </ion-segment>\n\n    <ion-segment mode="md" *ngIf="category==4" [(ngModel)]="expense">\n      <ion-segment-button *ngFor="let item of expenses" value="{{item.name}}" (click)="loadData(item.index)">\n          <div class="custom_button">{{item.name}}</div>\n      </ion-segment-button>\n    </ion-segment>\n\n  </div>\n  <div style="flex:1">\n  <ion-scroll scrollY="true" style="height: 100%;">\n  <div>\n    <ion-list *ngIf="category!=4">\n        <div class="info-list" *ngFor="let item of disp$ | async" (click)="openDetail(item.key)">\n          <div class="info-title">{{item.title}}</div>\n          <div style="display: flex">\n            <div><img src="assets/imgs/logo.png" height="70" width="110"></div>\n            <div class="info-content">\n                {{item.content}}\n             </div>\n          </div>  \n        </div>\n    </ion-list>\n    <ion-list *ngIf="category==4">\n        <div class="info-list" *ngFor="let item of disp$"(click)="openExchange(item.key)">\n          <div class="info-title">{{item.title}}</div>\n          <div style="display: flex">\n            <div><img src="assets/imgs/logo.png" height="70" width="110"></div>\n            <div class="exchange-text">\n                <div class="exchange-content">\n                    位置：{{item.zipCode}}\n                 </div>\n                 <div class="exchange-content">\n                    单价：{{item.sale}}\n                 </div>\n            <div class="exchange-time">\n                  发帖日期：{{item.createTime}}\n            </div>\n            </div>\n          </div>  \n        </div>\n    </ion-list>\n  </div>\n  </ion-scroll>\n  </div>\n  </div>\n  <!-- information end -->\n\n  <!-- moms strategies start -->\n  \n\n  <!-- <div *ngIf="category==3" [ngSwitch]="strategy">\n    <ion-list *ngSwitchCase="\'学区攻略\'">\n        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n            <div style="display: flex">\n              <div><img src="assets/imgs/logo.png" height="70" width="110"></div>\n              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n               </div>\n            </div>  \n          </div>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'出游攻略\'">\n        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n            <div style="display: flex">\n              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>\n              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n               </div>\n            </div>  \n          </div>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'医疗攻略\'">\n        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n            <div style="display: flex">\n              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>\n              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n               </div>\n            </div>  \n          </div>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'小知识\'">\n          <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n              <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n              <div style="display: flex">\n                <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>\n                <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                    洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n                 </div>\n              </div>  \n            </div>\n    </ion-list>\n  </div> -->\n  <!-- moms strategies end -->\n\n  <!-- expense platform start -->\n  <!-- <div *ngIf="category==4" [ngSwitch]="expense">\n    <ion-list *ngSwitchCase="\'商品买卖\'">\n        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n            <div style="display: flex">\n              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>\n              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n               </div>\n            </div>  \n          </div>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'家政服务\'">\n        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n            <div style="display: flex">\n              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>\n              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n               </div>\n            </div>  \n          </div>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'房屋租住\'">\n        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n            <div style="display: flex">\n              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>\n              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n               </div>\n            </div>  \n          </div>\n    </ion-list>\n    <ion-list *ngSwitchCase="\'妈妈兼职\'">\n        <div style="padding-left:9px; padding-right:21px;border-bottom:1px solid #aaaaaa">\n            <div style="font-size: 15px;margin: 7px 0px;width:100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财</div>\n            <div style="display: flex">\n              <div style=""><img src="assets/imgs/logo.png" height="70" width="110"></div>\n              <div style="flex:1; font-size: 13px;margin-left: 11px;margin-bottom: 17px;color:rgba(16, 16, 16, 0.5);overflow:hidden;text-overflow: ellipsis;height:76px">\n                  洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财洛杉矶理财\n               </div>\n            </div>  \n          </div>\n    </ion-list>\n  </div> -->\n  <!-- expense platform end -->\n</ion-content>\n<ion-footer no-border *ngIf="category==4" transparent>\n    <div class="icon-add" (click)="openAdd()"></div>\n  </ion-footer>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/information/information.html"*/,
+            selector: 'page-library',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/library/library.html"*/'<!--\n  Generated template for the LibraryPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>图书馆活动</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <div class="tip">{{tip}}</div>\n  <ion-card style="background:#fefefe" *ngFor="let item of disp">\n    <ion-card-header>\n      <div class="title">{{item.title}}</div>\n    </ion-card-header>\n    <ion-card-content class="content">\n        <div *ngIf="item.hasOwnProperty(\'image\')">\n            <img [src]="item.image" width="100%">\n          </div>\n      <div class="margin-10">{{item.description}}</div>\n      <div class="bold">活动时间：<span *ngFor="let time of item.timeArr">{{time}};</span></div>\n      <div class="bold" >地址：<span (click)="navigate(item.address)">{{item.address}}</span></div>\n    </ion-card-content>\n  </ion-card>\n\n  <!-- <ion-card style="background:#fefefe">\n    <ion-card-header>\n      <div class="title">Rivera图书馆</div>\n    </ion-card-header>\n    <ion-card-content class="content">\n      <div>\n        <img src="../../assets/imgs/libaray.png" width="100%">\n      </div>\n      <div class="margin-10">"Makmo Thrusday: Mega Marble Run"一起来做个高速运转的玩具吧，适合5-12岁孩童及监护人。</div>\n      <div class="bold">活动日期：1月3日 8:45pm-4:45pm</div>\n      <div class="bold">地址：7828 S. Serams Ave. Pico Revera, CA, 90660</div>\n    </ion-card-content>\n  </ion-card> -->\n  \n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/library/library.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_toast_toast__["a" /* ToastProvider */]])
-    ], InformationPage);
-    return InformationPage;
+            __WEBPACK_IMPORTED_MODULE_3__providers_time_format_time_format__["a" /* TimeFormatProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_launch_navigator__["a" /* LaunchNavigator */]])
+    ], LibraryPage);
+    return LibraryPage;
 }());
 
-//# sourceMappingURL=information.js.map
+//# sourceMappingURL=library.js.map
 
 /***/ })
 

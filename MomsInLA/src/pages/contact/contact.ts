@@ -241,14 +241,14 @@ test = 0;
 
   openCamera(){
     const option: CameraOptions = {
-      quality: 100,
+      quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       saveToPhotoAlbum: true,
-      allowEdit:true,
-      targetHeight:300,
-      targetWidth:300,
+      // allowEdit:true,
+      // targetHeight:300,
+      // targetWidth:300,
       correctOrientation: true
     }
     this.camera.getPicture(option).then((imageData) => {
@@ -263,14 +263,14 @@ test = 0;
   
   openGallery(){
     const option: CameraOptions = {
-      quality: 100,
+      quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      allowEdit: true,
-      targetWidth:300,
-      targetHeight: 300,
+      // allowEdit: true,
+      // targetWidth:300,
+      // targetHeight: 300,
       correctOrientation: true
     }
     this.camera.getPicture(option).then((imageData) => {

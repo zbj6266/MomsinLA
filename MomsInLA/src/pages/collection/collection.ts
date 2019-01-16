@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase/app';
-import { ToastProvider} from '../../providers/toast/toast'
 import { TimeFormatProvider} from '../../providers/time-format/time-format';
 @IonicPage()
 @Component({
@@ -61,10 +60,15 @@ export class CollectionPage {
     firebase.database().ref(`/UsersAndAdministrators/${this.user.userID}/SavedEvents`).once('value').then(
       snapshot =>{
         console.log(snapshot.val());
-        snapshot.forEach(each =>{
+        snapshot.forEach(each =>{  
           console.log(each.key);
           firebase.database().ref(`/DailyEvents/${each.key}`).once('value').then(data => {
             console.log(data.val());
+            
+            //delete the favorite daily event if it is removed.
+            if(data.val() == null){
+              firebase.database().ref(`/UsersAndAdministrators/${this.user.userID}/SavedEvents/`).child(`${each.key}`).remove();
+            }else{
             let item = {};
               item['key'] = data.key;
               let value = data.val();
@@ -93,6 +97,8 @@ export class CollectionPage {
               // item['distance'] = "0 英里";
               // item['calDistance'] = false;
               this.disp.push(item);
+            }
+
             });
             this.disp.sort(function(a,b){
               return b['firstBegin'] - a['firstBegin'];

@@ -59,8 +59,16 @@ export class TimeFormatProvider {
     if(fromYear== toYear && fromMonth == toMonth && fromDate == toDate)
       return `${fromMonth+1}月${fromDate}日 ` +  timeString; 
     return `${fromMonth+1}月${fromDate}日 ` + timeString;
+  }
 
-
+  formatAMPM(timestamp) {
+    let date = new Date(timestamp)
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    return (hours < 10 ? '0' + hours : hours) + ':' + (minutes < 10 ? '0'+ minutes : minutes) + ' ' + ampm;
   }
 
 }

@@ -32,7 +32,7 @@
     <div class="section">
       <div id="time">活动时间： <span *ngFor="let time of activityDate">{{time}}; </span></div>
       <div id="city">费用： {{disp.eventFeeCharged}}</div>
-      <div id="address">具体地址： {{disp.address}}, {{disp.city}}, {{disp.zip}}</div>
+      <div id="address">具体地址： <span (click)="navigate(disp.address)">{{disp.address}}, {{disp.city}}, {{disp.zip}}</span></div>
       <div *ngIf="disp.website != ''" id="website" (click)="openBrowser(disp.website)">官网：{{disp.website}}</div>
       <div id="content">{{disp.content}}</div>
         <img *ngFor="let item of disp.imgs" class="content-img" [src]="item" alt="">

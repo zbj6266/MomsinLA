@@ -9,6 +9,7 @@ import firebase from 'firebase/app';
 import { ToastProvider} from '../../providers/toast/toast'
 
 declare var google;
+
 @IonicPage()
 
 @Component({
@@ -18,7 +19,7 @@ declare var google;
 export class ActivitylistPage {
 
   allData: any = [];
-  disp$: any = [];
+  disp: any = [];
   cityLocation: string;
   longitude: number;
   latitude: number;
@@ -45,33 +46,34 @@ export class ActivitylistPage {
     public toast: ToastProvider) {
 
     this.cityLocation = '(定位中)';
-    // this.events.subscribe('distance', () => {
-    //   if(this.isLoaded && this.isLocated){
-    //     for(let i= 0; i < this.disp$.length; i++){
-    //       if(!this.disp$[i]['calDistance']){
-    //         this.calDistance({lng: this.longitude, lat: this.latitude},this.disp$[i]['address'],i);
-    //       }
-    //     }
-    //   }
-    // });
+    this.events.subscribe('distance', () => {
+      if(this.isLoaded && this.isLocated){
+        for(let i= 0; i < this.allData.length; i++){
+          if(!this.allData[i]['calDistance']){
+            this.calDistance({lng: this.longitude, lat: this.latitude},this.allData[i]['address'],i);
+          }
+        }
+      }
+    });
     
   }
 
   sortData(){
     switch(this.orderIndex){
       case 0:
-        this.disp$.sort(function(a,b){
+        this.disp.sort(function(a,b){
           return b['firstBegin'] - a['firstBegin']
         });
         break;
       case 1:
-        this.disp$.sort(function(a,b){
+        this.disp.sort(function(a,b){
           return b['numsLike'] - a['numsLike']
         });
         break;
       case 2:
-        this.disp$.sort(function(a,b){
-          return b['distance'] - a['distance']
+        this.disp.sort(function(a,b){
+          console.log(parseFloat(b['distance'].split(" ")[0]));
+          return parseFloat(a['distance'].split(" ")[0]) - parseFloat(b['distance'].split(" ")[0]);
         });
         break;
     }
@@ -79,7 +81,7 @@ export class ActivitylistPage {
 
   ionViewDidLoad() {
     this.events.subscribe('showAll',()=>{
-      this.disp$ = this.allData;
+      this.disp = this.allData;
     });
     let searchBar = document.getElementById('searchText');
     let e = this.events;
@@ -114,7 +116,7 @@ export class ActivitylistPage {
   }
 
   loadAllData(){
-    firebase.database().ref('/DailyEvents/').once('value').then(snapshot => {
+    firebase.database().ref('/DailyEvents/').orderByChild('activityApproved').equalTo(true).once('value').then(snapshot => {
       console.log(snapshot.numChildren());
       snapshot.forEach(data =>{
         let item = {};
@@ -145,13 +147,14 @@ export class ActivitylistPage {
           item['isPublic'] = '私人活动';
         item['numsLike'] = value['numsLike'];
         item['numsRead'] = value['numsRead'];
-        item['distance'] = "0 英里";
-        item['calDistance'] = false;
+        item['distance'] = "-- mi";
+        // item['calDistance'] = false;
         this.allData.push(item);
       });
-      this.disp$ = this.allData;
+      this.disp = this.allData;
       this.sortData();
       this.noResult = "无相关内容";
+
       this.isLoaded = true;
       this.events.publish('distance');
     });
@@ -193,10 +196,10 @@ export class ActivitylistPage {
         item['numsRead'] = value['numsRead'];
         item['distance'] = "0 英里";
         item['calDistance'] = false;
-        this.disp$.push(item);
+        this.disp.push(item);
         this.readMore = "查看更多";
       });
-      this.disp$.sort(function(a,b){
+      this.disp.sort(function(a,b){
         return b['firstBegin'] - a['firstBegin'];
       });
 
@@ -223,6 +226,10 @@ export class ActivitylistPage {
     this.navCtrl.push('ActivityPage',{infoId:key});   
   }
 
+  openLibrary(){
+    this.navCtrl.push('LibraryPage');
+  }
+
   presentPopover(event) {
     const popover = this.popoverCtrl.create(ActivityFilterComponent);
     popover.present({
@@ -238,22 +245,26 @@ export class ActivitylistPage {
         case 1:
           this.orderIndex = 1;
           this.sortData();
+          break;
+        case 2:
+          this.orderIndex = 2;
+          this.sortData();
       }
     });
   }
 
   calDistance(o, d, index){
-    o = {lat: 34.1379, lng: -118.0537}
-    if(this.disp$[index]['calDistance']) return;
+    //o = {lat: 34.1379, lng: -118.0537}
+    // if(this.disp\$[index]['calDistance']) return;
     console.log(this.latitude);
     console.log(this.longitude);
     console.log(d);
     var service = new google.maps.DistanceMatrixService();
-    let dataItem = this.disp$;
+    let dataItem = this.allData;
     service.getDistanceMatrix(
       {
         origins: [o],
-        destinations: [{lat: 34.1379, lng: -118.0537}],
+        destinations: [d],
         travelMode: 'DRIVING',
         // drivingOptions: {
         //   departureTime: new Date(Date.now()),  // for the time N milliseconds from now.
@@ -268,7 +279,12 @@ export class ActivitylistPage {
       if(response.rows[0]['elements'][0]['status'] == "OK"){
         dataItem[index]['distance'] = response.rows[0]['elements'][0]['distance']['text'];
         dataItem[index]['calDistance'] = true;
-        console.log(dataItem[index]);
+
+        let dom = document.getElementsByClassName('distant').item(index);
+        if(dom != null)
+          dom.innerHTML = response.rows[0]['elements'][0]['distance']['text'];
+        // console.log(this.allData[index]);
+        // this.disp[index]['distance'] = dataItem[index]['distance'];
       }
       // See Parsing the Results for
       // the basics of a callback function.
@@ -279,23 +295,23 @@ export class ActivitylistPage {
     console.log(keyword);
     if(keyword != null && keyword != ""){
       console.log(keyword);
-      this.disp$ = [];
+      this.disp = [];
       let regex = new RegExp(keyword.toLowerCase());
       for(let i=0; i < this.allData.length; i++){
         // console.log(this.allData[i]['content'].search(regex));
         if(this.allData[i]['title'].toLowerCase().search(regex) != -1 || this.allData[i]['address'].toLowerCase().search(regex) != -1 || this.allData[i]['content'].toLowerCase().search(regex) != -1){
-          this.disp$.push(this.allData[i]);
+          this.disp.push(this.allData[i]);
         }
         for(let j = 0; j < this.allData[i]['activityDate'].length; j++){
           if(this.allData[i]['activityDate'][j].toLowerCase().search(regex) != -1){
-            this.disp$.push(this.allData[i]);
+            this.disp.push(this.allData[i]);
             break;
           }
         }
       }
     }
     else{
-      this.disp$ = this.allData;
+      this.disp = this.allData;
     }
     this.sortData();
   }

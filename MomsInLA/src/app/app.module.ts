@@ -20,7 +20,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { GooglePlus } from '@ionic-native/google-plus';
-
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { ToastProvider } from '../providers/toast/toast';
@@ -90,7 +90,8 @@ firebase.initializeApp(config);
     NativeGeocoder,
     GooglePlus,
     ToastProvider,
-    TimeFormatProvider
+    TimeFormatProvider,
+    LaunchNavigator
   ]
 })
 export class AppModule {}

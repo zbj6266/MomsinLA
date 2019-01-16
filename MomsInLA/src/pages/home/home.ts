@@ -18,16 +18,6 @@ export class HomePage {
 
   toInformation(c : number) {
     console.log(c);
-    this.geolocation.getCurrentPosition().then((resp)=>{
-      this.lat = resp.coords.latitude;
-      console.log(resp);
-      console.log(1111);
-      console.log(resp.coords.latitude);
-      console.log(resp.coords.longitude);
-    }).catch(err=>{
-      console.log(err)
-    });
-    console.log("test geolocation");
     this.navCtrl.push("InformationPage",{item:c});
   }
 }

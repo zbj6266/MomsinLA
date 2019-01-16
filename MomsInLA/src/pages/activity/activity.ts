@@ -7,7 +7,7 @@ import { ToastProvider } from '../../providers/toast/toast'
 import { TimeFormatProvider } from '../../providers/time-format/time-format';
 import { Events } from 'ionic-angular';
 import firebase from 'firebase/app';
-
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 @IonicPage()
 @Component({
   selector: 'page-activity',
@@ -35,7 +35,8 @@ export class ActivityPage {
     public toast: ToastProvider,
     public timeFormat: TimeFormatProvider,
     public events: Events,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public navi: LaunchNavigator) {
       this.infoId = navParams.get("infoId");
   }
 
@@ -47,26 +48,6 @@ export class ActivityPage {
       this.getSaved();
       this.getLiked();
     });
-    
-    
-    // this.events.subscribe('activity_reply',(key, data)=>{
-    //   let comment = data['\bcomment'];
-    //   this.storage.get('user').then(data=>{
-    //     let reply = {
-    //       replyCommentContent: comment,
-    //       replyTime: new Date().getTime(),
-    //       replyUser: data.username,
-    //       replyUserPictureURL: data.userImg,
-    //       replyUserStatus: data.userStatus
-    //     }
-    //     console.log("111"+this.infoId);
-    //     console.log(`${this.infoId}/${key}/commentReplies`);
-    //     this.fsp.getCommentForDailyEvent(`${this.infoId}/${key}/commentReplies`).push(reply).then(()=>{
-    //       this.toast.presentToast("评论成功", 1000, "bottom");
-    //     });
-    //   })
-      
-    // })
   }
 
   ionViewDidEnter(){
@@ -367,6 +348,10 @@ export class ActivityPage {
         }
       })
     }
+  }
+
+  navigate(address){
+    this.navi.navigate(address);
   }
 
 }

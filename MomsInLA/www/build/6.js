@@ -1,14 +1,14 @@
 webpackJsonp([6],{
 
-/***/ 528:
+/***/ 530:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExchangedetailPageModule", function() { return ExchangedetailPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfoDetailPageModule", function() { return InfoDetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__exchangedetail__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_detail__ = __webpack_require__(544);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ExchangedetailPageModule = /** @class */ (function () {
-    function ExchangedetailPageModule() {
+var InfoDetailPageModule = /** @class */ (function () {
+    function InfoDetailPageModule() {
     }
-    ExchangedetailPageModule = __decorate([
+    InfoDetailPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__exchangedetail__["a" /* ExchangedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_2__info_detail__["a" /* InfoDetailPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__exchangedetail__["a" /* ExchangedetailPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__info_detail__["a" /* InfoDetailPage */]),
             ],
         })
-    ], ExchangedetailPageModule);
-    return ExchangedetailPageModule;
+    ], InfoDetailPageModule);
+    return InfoDetailPageModule;
 }());
 
-//# sourceMappingURL=exchangedetail.module.js.map
+//# sourceMappingURL=info-detail.module.js.map
 
 /***/ }),
 
-/***/ 541:
+/***/ 544:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExchangedetailPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoDetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,42 +60,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Generated class for the ExchangedetailPage page.
+ * Generated class for the InfoDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ExchangedetailPage = /** @class */ (function () {
-    function ExchangedetailPage(navCtrl, navParams, fsp) {
+var InfoDetailPage = /** @class */ (function () {
+    function InfoDetailPage(navCtrl, navParams, fsp) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.fsp = fsp;
+        this.categoryArray = ["", "lectures", ""];
         this.disp = {};
-        this.category = navParams.get("category");
         this.infoId = navParams.get("infoId");
-        console.log(this.category, this.infoId);
+        this.category = navParams.get("category");
     }
-    ExchangedetailPage.prototype.ionViewDidLoad = function () {
+    InfoDetailPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InfoDetailPage');
+        this.loadData();
+        // this.fsp.getItem(this.table-1,this.infoId).valueChanges().subscribe(data=>{
+        //   this.disp = data;
+        //   console.log(this.disp);
+        //  }
+        // )
+    };
+    InfoDetailPage.prototype.loadData = function () {
         var _this = this;
-        console.log('ionViewDidLoad ExchangedetailPage');
-        this.fsp.getItem(this.category - 1, this.infoId).valueChanges().subscribe(function (data) {
-            _this.disp = data;
-            _this.disp.createTime = new Date(_this.disp.createTime).toLocaleDateString("en-US");
+        __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref(this.categoryArray[this.category] + "/" + this.infoId).once('value').then(function (snapshot) {
+            _this.disp = snapshot.val();
+            console.log(_this.disp);
         });
     };
-    ExchangedetailPage = __decorate([
+    InfoDetailPage.prototype.like = function () {
+        var obj = document.getElementById("like");
+        var imgSrc = obj.getAttribute("src");
+        if (imgSrc == "assets/imgs/icon_like.png") {
+            obj.setAttribute("src", "assets/imgs/icon_like_select.png");
+        }
+        else {
+            obj.setAttribute("src", "assets/imgs/icon_like.png");
+        }
+    };
+    InfoDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-exchangedetail',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangedetail/exchangedetail.html"*/'<!--\n  Generated template for the ExchangedetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-toolbar>\n        <div style="display: flex">\n          <div class="nav-button">\n          </div>\n          <div class="nav-title">交易帖子</div>\n          <div class="nav-button">\n          </div>\n        </div>\n    </ion-toolbar>\n\n</ion-header>\n\n\n<ion-content padding *ngIf="disp.hasOwnProperty(\'title\')">\n  <div class="title">{{disp.title}}</div>\n  <div class="content-space">\n    <img src="assets/imgs/logo.png" width="100%">\n    <div class="content">{{disp.content}}</div>\n    <div class="date">截止日期：{{disp.createTime}}<br>\n    阅读量 {{disp.numRead}}</div>\n  </div>\n  <div class="share-space">\n        <div class="info-share">\n          <div class="share-title">分享</div>\n          <div class="share-content">\n            <div class="sina">\n              <div><img src="assets/imgs/weibo.png"></div>\n              <div class="share-content-title">新浪微博</div>\n            </div>\n            <div class="wechat">\n              <div><img src="assets/imgs/weixin.png" alt=""></div>\n              <div class="share-content-title">微信</div>\n            </div>\n            <div class="facebook">\n                <div><img src="assets/imgs/facebook.png" alt=""></div>\n                <div class="share-content-title">Facebook</div>  \n            </div>\n          </div>\n        </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/exchangedetail/exchangedetail.html"*/,
+            selector: 'page-info-detail',template:/*ion-inline-start:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/info-detail/info-detail.html"*/'<!--\n  Generated template for the InfoDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar center>\n    <ion-title>专家讲座</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-card>\n    <div class="info-img">\n        <img src="assets/imgs/logo.png"/>\n    </div>\n    <ion-card-content *ngIf="disp.hasOwnProperty(\'introduction\')">\n      <ion-card-title>\n          {{disp.introduction.introTitle}}<br>\n          {{disp.introduction.introText}}\n      </ion-card-title>\n      <p>\n          {{disp.introduction.introduction}}\n      </p>\n    </ion-card-content>\n  </ion-card>\n  <div class="info-title">{{disp.title}}</div>\n  <ion-card>\n    <ion-card-content id="info-content" class="info-content" innerHTML="{{disp.content}}">     \n    </ion-card-content>\n  </ion-card>\n  <div *ngIf="disp.hasOwnProperty(\'suplement\')">\n  <div class="option-title">{{disp.suplement.title}}</div>\n  <ion-card>\n    <ion-card-content id="supplement" class="info-content" innerHTML="{{disp.suplement.content}}">\n    </ion-card-content>\n  </ion-card>\n  </div>\n  <div class="info-user">\n    <div class="info-like">\n      <div (click)="like()"><img id="like" src="assets/imgs/icon_like.png" width="20" height="20"></div>\n      <div class="info-margin">点赞</div>\n    </div>\n    <div class="info-collect">\n      <div><img src="assets/imgs/icon_collect.png" width="20" height="20"></div>\n      <div class="info-margin">收藏</div>\n    </div>\n    <div class="info-read">阅读 {{disp.numsRead}}</div>\n  </div>\n  <div class="info-share">\n    <div class="share-title">分享</div>\n    <div class="share-content">\n      <div class="sina">\n        <div><img src="assets/imgs/weibo.png"></div>\n        <div class="share-content-title">新浪微博</div>\n      </div>\n      <div class="wechat">\n        <div><img src="assets/imgs/weixin.png" alt=""></div>\n        <div class="share-content-title">微信</div>\n      </div>\n      <div class="facebook">\n          <div><img src="assets/imgs/facebook.png" alt=""></div>\n          <div class="share-content-title">Facebook</div>  \n      </div>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/fox/Documents/MyProject/MomsinLA/MomsInLA/src/pages/info-detail/info-detail.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]])
-    ], ExchangedetailPage);
-    return ExchangedetailPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]])
+    ], InfoDetailPage);
+    return InfoDetailPage;
 }());
 
-//# sourceMappingURL=exchangedetail.js.map
+//# sourceMappingURL=info-detail.js.map
 
 /***/ })
 

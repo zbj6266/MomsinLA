@@ -1,0 +1,46 @@
+<!--
+  Generated template for the LibraryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>图书馆活动</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="tip">{{tip}}</div>
+  <ion-card style="background:#fefefe" *ngFor="let item of disp">
+    <ion-card-header>
+      <div class="title">{{item.title}}</div>
+    </ion-card-header>
+    <ion-card-content class="content">
+        <div *ngIf="item.hasOwnProperty('image')">
+            <img [src]="item.image" width="100%">
+          </div>
+      <div class="margin-10">{{item.description}}</div>
+      <div class="bold">活动时间：<span *ngFor="let time of item.timeArr">{{time}};</span></div>
+      <div class="bold" >地址：<span (click)="navigate(item.address)">{{item.address}}</span></div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-card style="background:#fefefe">
+    <ion-card-header>
+      <div class="title">Rivera图书馆</div>
+    </ion-card-header>
+    <ion-card-content class="content">
+      <div>
+        <img src="../../assets/imgs/libaray.png" width="100%">
+      </div>
+      <div class="margin-10">"Makmo Thrusday: Mega Marble Run"一起来做个高速运转的玩具吧，适合5-12岁孩童及监护人。</div>
+      <div class="bold">活动日期：1月3日 8:45pm-4:45pm</div>
+      <div class="bold">地址：7828 S. Serams Ave. Pico Revera, CA, 90660</div>
+    </ion-card-content>
+  </ion-card> -->
+  
+</ion-content>
